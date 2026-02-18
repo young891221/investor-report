@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Worktree Parallel"
+  short_description: "Run Codex in parallel across Git worktrees"
+  default_prompt: "Use $codex-worktree-parallel to create worktrees and run Codex sessions in parallel by branch."
