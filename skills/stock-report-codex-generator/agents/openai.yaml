@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Report Generator"
+  short_description: "Generate stock JSON for investor-report repo"
+  default_prompt: "Use $stock-report-codex-generator to add a new stock report JSON from a natural-language company or ticker request, validate data, and refresh the index."
