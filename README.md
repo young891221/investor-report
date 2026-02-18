@@ -15,10 +15,12 @@ Option C (Hybrid) structure for managing stock analysis reports on GitHub Pages.
 │   └── render.js              # Dashboard rendering engine
 ├── data/
 │   ├── IREN.json              # Per-stock dashboard data
-│   └── index.json             # Auto-generated stock card index
+│   ├── index.json             # Auto-generated stock card index
+│   └── sources/               # Field-level source tracking metadata
 ├── schema/
 │   └── stock.schema.json      # Stock data schema reference
 └── scripts/
+    ├── generate-stock.js      # Company name/ticker -> JSON generation pipeline
     ├── validate-stocks.js     # Data validation
     └── build-index.js         # data/index.json generation
 ```
@@ -49,6 +51,51 @@ npm run build:index
 ```bash
 npm run build:data
 ```
+
+## Automated Stock Generation
+
+Generate a new stock report by ticker:
+
+```bash
+npm run generate:stock -- --ticker RKLB --build-index --force
+```
+
+Generate by company name:
+
+```bash
+npm run generate:stock -- --name "Rocket Lab" --build-index --force
+```
+
+Options:
+
+- `--strict` / `--no-strict`: strict mode fails when critical source fields are missing
+- `--allow-placeholders` / `--no-allow-placeholders`: allow or disallow placeholder narrative text
+- `--force`: overwrite existing `data/{TICKER}.json`
+- `--dry-run`: run generation without writing files
+- `--build-index`: run `validate:stocks` and `build:index` after generation
+
+The generator also writes source metadata to:
+
+- `data/sources/{TICKER}.sources.json`
+
+This file records source URLs, generation timestamp, placeholder usage, and field-level source mapping.
+
+Note: strict mode requires network access to SEC/Yahoo endpoints. If SEC access is blocked, use `--no-strict` or set `SEC_USER_AGENT`.
+
+## GitHub Actions (Manual Run)
+
+Workflow: `.github/workflows/generate-stock.yml`
+
+In GitHub Actions, run **Generate Stock Report** with either:
+
+- `ticker` (e.g. `RKLB`)
+- `name` (e.g. `Rocket Lab`)
+
+Optional flags:
+
+- `strict`
+- `allow_placeholders`
+- `create_pr`
 
 ## GitHub Pages Deployment
 
