@@ -16,5 +16,23 @@
     ],
     "rating": "Buy",
     "analysisDate": "2026.02.17"
+  },
+  {
+    "ticker": "RKLB",
+    "name": "Rocket Lab Corporation",
+    "nameKr": "로켓 랩",
+    "price": "$67.44",
+    "change": "▲ +139%",
+    "changeDir": "up",
+    "changeBasis": "52주",
+    "sector": "우주항공 / 국방 우주 시스템",
+    "description": "소형 발사체 Electron, 위성 플랫폼/부품, 그리고 중형 재사용 로켓 Neutron을 축으로 확장 중인 엔드투엔드 우주 인프라 기업.",
+    "tags": [
+      "우주 시스템/위성 제품",
+      "발사 서비스 (Electron/HASTE)",
+      "Neutron + 국방 메가프로그램"
+    ],
+    "rating": "Buy",
+    "analysisDate": "2026.02.18"
   }
 ]
