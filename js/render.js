@@ -17,7 +17,6 @@ function renderDashboard(CONFIG) {
   Chart.defaults.plugins.tooltip.padding = 12;
   Chart.defaults.plugins.tooltip.titleFont = {weight:'600'};
   Chart.defaults.elements.bar.borderRadius = 6;
-  Chart.defaults.scale.grid = {color:'rgba(30,42,66,.5)',drawBorder:false};
 
   const C = CONFIG;
   const ensureArray = value => Array.isArray(value) ? value : [];
@@ -53,7 +52,8 @@ function renderDashboard(CONFIG) {
       return null;
     }
     try {
-      return new Chart(canvas, config);
+      const chart = new Chart(canvas, config);
+      return chart;
     } catch (error) {
       console.error(`[renderDashboard] chart render failed: ${id}`, error);
       showChartPlaceholder(id, errorMessage || '차트를 렌더링하지 못했습니다.');
