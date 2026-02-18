@@ -20,6 +20,46 @@ function renderDashboard(CONFIG) {
   Chart.defaults.scale.grid = {color:'rgba(30,42,66,.5)',drawBorder:false};
 
   const C = CONFIG;
+  const ensureArray = value => Array.isArray(value) ? value : [];
+  const toNumber = value => {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      return value;
+    }
+    if (typeof value === 'string') {
+      const parsed = Number(value.replaceAll(',', '').trim());
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+    return 0;
+  };
+  const ensureNumberArray = value => ensureArray(value).map(toNumber);
+  const getCanvas = id => {
+    const canvas = document.getElementById(id);
+    if (!(canvas instanceof HTMLCanvasElement)) {
+      console.warn(`[renderDashboard] missing canvas: ${id}`);
+      return null;
+    }
+    return canvas;
+  };
+  const showChartPlaceholder = (id, message) => {
+    const canvas = getCanvas(id);
+    if (!canvas || !canvas.parentElement) {
+      return;
+    }
+    canvas.parentElement.innerHTML = `<div class="chart-empty">${message}</div>`;
+  };
+  const safeNewChart = (id, config, errorMessage) => {
+    const canvas = getCanvas(id);
+    if (!canvas) {
+      return null;
+    }
+    try {
+      return new Chart(canvas, config);
+    } catch (error) {
+      console.error(`[renderDashboard] chart render failed: ${id}`, error);
+      showChartPlaceholder(id, errorMessage || '차트를 렌더링하지 못했습니다.');
+      return null;
+    }
+  };
 
   // ── Nav ──
   document.getElementById('nav-ticker').textContent = C.ticker;
@@ -80,17 +120,38 @@ function renderDashboard(CONFIG) {
   });
 
   // ── Annual Revenue (Bar) ──
-  const estIdx = C.annualRevenue.estimateStartIndex;
-  new Chart(document.getElementById('revenueChart'),{
-    type:'bar',
-    data:{labels:C.annualRevenue.labels, datasets:[{
-      label:'연간 매출', data:C.annualRevenue.data,
-      backgroundColor: ctx => ctx.dataIndex >= estIdx ? 'rgba(59,130,246,.35)' : '#3b82f6',
-      borderColor: ctx => ctx.dataIndex >= estIdx ? '#3b82f6' : 'transparent',
-      borderWidth: ctx => ctx.dataIndex >= estIdx ? 2 : 0,
-    }]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>`$${c.raw}M`}}}, scales:{y:{beginAtZero:true,ticks:{callback:v=>'$'+v+'M'}}}}
-  });
+  const annualLabelsRaw = ensureArray(C.annualRevenue && C.annualRevenue.labels);
+  const annualDataRaw = ensureNumberArray(C.annualRevenue && C.annualRevenue.data);
+  const annualLength = Math.min(annualLabelsRaw.length, annualDataRaw.length);
+  if (annualLength > 0) {
+    const annualLabels = annualLabelsRaw.slice(0, annualLength);
+    const annualData = annualDataRaw.slice(0, annualLength);
+    const estIdx = Number.isInteger(C.annualRevenue && C.annualRevenue.estimateStartIndex)
+      ? C.annualRevenue.estimateStartIndex
+      : annualLength;
+    const annualBackground = annualData.map((_, index) =>
+      index >= estIdx ? 'rgba(59,130,246,.35)' : '#3b82f6'
+    );
+    const annualBorders = annualData.map((_, index) =>
+      index >= estIdx ? '#3b82f6' : 'transparent'
+    );
+    const annualBorderWidth = annualData.map((_, index) =>
+      index >= estIdx ? 2 : 0
+    );
+
+    safeNewChart('revenueChart',{
+      type:'bar',
+      data:{labels:annualLabels, datasets:[{
+        label:'연간 매출', data:annualData,
+        backgroundColor: annualBackground,
+        borderColor: annualBorders,
+        borderWidth: annualBorderWidth,
+      }]},
+      options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>`$${c.raw}M`}}}, scales:{y:{beginAtZero:true,ticks:{callback:v=>'$'+v+'M'}}}}
+    }, '연간 매출 차트를 렌더링하지 못했습니다.');
+  } else {
+    showChartPlaceholder('revenueChart', '연간 매출 데이터가 없습니다.');
+  }
 
   // ── Quarterly Revenue (Line) ──
   new Chart(document.getElementById('quarterlyChart'),{
@@ -120,14 +181,22 @@ function renderDashboard(CONFIG) {
   });
 
   // ── Valuation (Bar) ──
-  new Chart(document.getElementById('valuationChart'),{
-    type:'bar',
-    data:{labels:C.valuation.labels, datasets:[
-      {label:C.ticker, data:C.valuation.company, backgroundColor:'#3b82f6'},
-      {label:'업종 평균', data:C.valuation.industry, backgroundColor:'#5e6e8a'},
-    ]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}, scales:{y:{beginAtZero:true,ticks:{callback:v=>v+'x'}}}}
-  });
+  const valuationLabelsRaw = ensureArray(C.valuation && C.valuation.labels);
+  const valuationCompanyRaw = ensureNumberArray(C.valuation && C.valuation.company);
+  const valuationIndustryRaw = ensureNumberArray(C.valuation && C.valuation.industry);
+  const valuationLength = Math.min(valuationLabelsRaw.length, valuationCompanyRaw.length, valuationIndustryRaw.length);
+  if (valuationLength > 0) {
+    safeNewChart('valuationChart',{
+      type:'bar',
+      data:{labels:valuationLabelsRaw.slice(0, valuationLength), datasets:[
+        {label:C.ticker, data:valuationCompanyRaw.slice(0, valuationLength), backgroundColor:'#3b82f6'},
+        {label:'업종 평균', data:valuationIndustryRaw.slice(0, valuationLength), backgroundColor:'#5e6e8a'},
+      ]},
+      options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}, scales:{y:{beginAtZero:true,ticks:{callback:v=>v+'x'}}}}
+    }, '밸류에이션 비교 차트를 렌더링하지 못했습니다.');
+  } else {
+    showChartPlaceholder('valuationChart', '밸류에이션 데이터가 없습니다.');
+  }
 
   // ── Financial Health Bars ──
   const hBars = document.getElementById('health-bars');
@@ -146,12 +215,36 @@ function renderDashboard(CONFIG) {
   });
 
   // ── Competitor Chart (Bar) ──
-  document.getElementById('comp-chart-title').textContent = C.competitorChart.chartLabel;
-  new Chart(document.getElementById('competitorChart'),{
-    type:'bar',
-    data:{labels:C.competitorChart.labels, datasets:[{label:C.competitorChart.chartLabel, data:C.competitorChart.data, backgroundColor:C.competitorChart.colors, borderWidth:0}]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,ticks:{callback:v=>'$'+v+C.competitorChart.yLabel}}}}
-  });
+  const competitorTitle = C.competitorChart && typeof C.competitorChart.chartLabel === 'string'
+    ? C.competitorChart.chartLabel
+    : '경쟁사 비교';
+  document.getElementById('comp-chart-title').textContent = competitorTitle;
+
+  const competitorLabelsRaw = ensureArray(C.competitorChart && C.competitorChart.labels);
+  const competitorDataRaw = ensureNumberArray(C.competitorChart && C.competitorChart.data);
+  const competitorColorsRaw = ensureArray(C.competitorChart && C.competitorChart.colors);
+  const competitorLength = Math.min(competitorLabelsRaw.length, competitorDataRaw.length);
+  if (competitorLength > 0) {
+    const competitorColors = Array.from({ length: competitorLength }, (_, index) =>
+      typeof competitorColorsRaw[index] === 'string' ? competitorColorsRaw[index] : '#3b82f6'
+    );
+    const yLabel = C.competitorChart && typeof C.competitorChart.yLabel === 'string'
+      ? C.competitorChart.yLabel
+      : '';
+
+    safeNewChart('competitorChart',{
+      type:'bar',
+      data:{labels:competitorLabelsRaw.slice(0, competitorLength), datasets:[{
+        label:competitorTitle,
+        data:competitorDataRaw.slice(0, competitorLength),
+        backgroundColor:competitorColors,
+        borderWidth:0
+      }]},
+      options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,ticks:{callback:v=>'$'+v+yLabel}}}}
+    }, '시가총액 비교 차트를 렌더링하지 못했습니다.');
+  } else {
+    showChartPlaceholder('competitorChart', '경쟁사 비교 데이터가 없습니다.');
+  }
 
   // ── Competitor Table ──
   const ctTbl = document.getElementById('competitor-table');
@@ -217,6 +310,15 @@ function renderDashboard(CONFIG) {
     el.style.transition='opacity .5s,transform .5s';
     observer.observe(el);
   });
+  // Fallback: if observer timing fails, force visible so charts are never hidden.
+  window.setTimeout(() => {
+    document.querySelectorAll('.section,.card').forEach(el => {
+      if (el.style.opacity === '0') {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }
+    });
+  }, 1200);
 
   // ── Active Nav Link ──
   const sections = document.querySelectorAll('.section[id], .hero[id]');
