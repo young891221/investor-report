@@ -111,6 +111,8 @@
   "healthMetrics": [
     {"label":"D/E 비율", "value":"1.53 (높음)", "color":"var(--red2)"},
     {"label":"유동비율", "value":"4.96 (양호)", "color":"var(--green2)"},
+    {"label":"ROE (최근 1년)", "value":"20.53%", "color":"var(--green2)"},
+    {"label":"PEG (최근 1년)", "value":"N/A (데이터 없음)", "color":"var(--text2)"},
     {"label":"베타", "value":"4.28 (초고변동)", "color":"var(--red2)"},
     {"label":"FCF", "value":"-$1.39B (투자기)", "color":"var(--orange)"}
   ],

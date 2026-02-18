@@ -277,6 +277,16 @@
       "color": "var(--green2)"
     },
     {
+      "label": "ROE (최근 1년)",
+      "value": "4.93%",
+      "color": "var(--green2)"
+    },
+    {
+      "label": "PEG (최근 1년)",
+      "value": "4.90x",
+      "color": "var(--orange)"
+    },
+    {
       "label": "베타",
       "value": "1.89 (고변동)",
       "color": "var(--orange)"
