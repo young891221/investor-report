@@ -102,6 +102,11 @@
     "company": [48, 19, 4.6, 113],
     "industry": [24, 8, 3, 45]
   },
+  "pegInputs": {
+    "forwardPE": null,
+    "epsGrowthPct": null,
+    "basis": "Forward P/E, PEG 미제공 (2026-02-13 기준)"
+  },
 
   "financialHealth": [
     {"label":"현금", "value":"$3,261M", "width":"75%", "gradient":"var(--green),var(--green2)"},

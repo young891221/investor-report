@@ -18,6 +18,14 @@
 - Fill quantitative arrays with numbers, not strings.
 - Ensure at least 5 `keyPoints`.
 - Keep `navSections` aligned with renderer sections.
+- In `healthMetrics`, include:
+  - `ROE (최근 1년)`
+  - `PEG (최근 1년)`
+- For PEG:
+  - If directly sourced, use numeric string (for example `1.35x`).
+  - If unavailable, keep explicit reason text (for example `N/A (적자 구간)`).
+  - If forward inputs exist, add optional `pegInputs` with `forwardPE`, `epsGrowthPct`, `basis`.
+- Do not synthesize PEG from guesses. Use source-backed values only.
 
 ## 4) File output
 

@@ -102,6 +102,11 @@
     "company": [61, 45, 34, 58],
     "industry": [8, 7, 4, 9]
   },
+  "pegInputs": {
+    "forwardPE": null,
+    "epsGrowthPct": null,
+    "basis": "적자 구간으로 Forward PEG 산출 불가"
+  },
 
   "financialHealth": [
     {"label":"현금+유가증권", "value":"$1,023M", "width":"78%", "gradient":"var(--green),var(--green2)"},

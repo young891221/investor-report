@@ -34,6 +34,16 @@ Use this skill to convert natural-language stock requests into a production-read
 - Keep all required top-level keys.
 - Use numeric arrays where schema requires numbers.
 - Keep Korean narrative concise and investor-focused.
+- Apply PEG/ROE metric policy:
+  - Include `ROE (최근 1년)` and `PEG (최근 1년)` in `healthMetrics`.
+  - If PEG is unavailable, keep explicit `N/A` reason text (for example, `N/A (적자 구간)`).
+  - When forward inputs are available, add optional `pegInputs`:
+    - `forwardPE` (number or `null`)
+    - `epsGrowthPct` (number or `null`)
+    - `basis` (source + date note)
+  - Renderer priority is `Forward PEG > PSG fallback` when `healthMetrics` PEG is `N/A`:
+    - Forward PEG = `forwardPE / epsGrowthPct`
+    - PSG fallback = `P/S / next-year revenue growth(%)`
 
 5. Validate and rebuild index.
 - Run `node scripts/validate-stocks.js`.
@@ -50,6 +60,7 @@ Use this skill to convert natural-language stock requests into a production-read
 - Default to 신규 종목 생성 only.
 - Do not overwrite an existing ticker unless the user explicitly asks.
 - Never fabricate critical financial figures when source is missing.
+- Never fabricate PEG values. If unavailable, keep explicit `N/A` and/or verifiable `pegInputs`.
 - Mark unknown narrative or estimates as placeholders with explicit wording.
 - Keep final JSON compatible with current dashboard renderer.
 

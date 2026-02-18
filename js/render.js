@@ -31,6 +31,113 @@ function renderDashboard(CONFIG) {
     return 0;
   };
   const ensureNumberArray = value => ensureArray(value).map(toNumber);
+  const parseFlexibleNumber = value => {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      return value;
+    }
+    if (typeof value === 'string') {
+      const cleaned = value.replaceAll(',', '').replace(/[xX%]/g, '').trim();
+      if (!cleaned) {
+        return null;
+      }
+      const parsed = Number(cleaned);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+    return null;
+  };
+  const pegColor = value => {
+    if (!Number.isFinite(value)) {
+      return 'var(--text2)';
+    }
+    if (value <= 1) {
+      return 'var(--green2)';
+    }
+    if (value <= 2) {
+      return 'var(--orange)';
+    }
+    return 'var(--red2)';
+  };
+  const isPegUnavailable = value => {
+    if (typeof value !== 'string') {
+      return true;
+    }
+    const normalized = value.toLowerCase().trim();
+    return (
+      normalized.includes('n/a') ||
+      normalized.includes('데이터 없음') ||
+      normalized.includes('적자') ||
+      normalized.includes('불가') ||
+      normalized === '-' ||
+      /^[-–—]+$/u.test(normalized)
+    );
+  };
+  const deriveForwardPeg = () => {
+    const pegInputs = C.pegInputs && typeof C.pegInputs === 'object' ? C.pegInputs : null;
+    if (!pegInputs) {
+      return null;
+    }
+
+    const forwardPE = parseFlexibleNumber(pegInputs.forwardPE);
+    const epsGrowthPct = parseFlexibleNumber(pegInputs.epsGrowthPct);
+    if (!Number.isFinite(forwardPE) || !Number.isFinite(epsGrowthPct) || forwardPE <= 0 || epsGrowthPct <= 0) {
+      return null;
+    }
+
+    return {
+      forwardPE,
+      epsGrowthPct,
+      peg: forwardPE / epsGrowthPct,
+      basis: typeof pegInputs.basis === 'string' ? pegInputs.basis.trim() : '',
+    };
+  };
+  const derivePsgProxy = () => {
+    const valuationLabels = ensureArray(C.valuation && C.valuation.labels);
+    const valuationCompany = ensureNumberArray(C.valuation && C.valuation.company);
+    const psIndex = valuationLabels.findIndex(label =>
+      typeof label === 'string' && label.toUpperCase().includes('P/S')
+    );
+    if (psIndex < 0) {
+      return null;
+    }
+
+    const psRatio = valuationCompany[psIndex];
+    if (!Number.isFinite(psRatio) || psRatio <= 0) {
+      return null;
+    }
+
+    const annualLabels = ensureArray(C.annualRevenue && C.annualRevenue.labels);
+    const annualData = ensureNumberArray(C.annualRevenue && C.annualRevenue.data);
+    if (annualData.length < 2) {
+      return null;
+    }
+
+    const estimateStartIndex = Number.isInteger(C.annualRevenue && C.annualRevenue.estimateStartIndex)
+      ? C.annualRevenue.estimateStartIndex
+      : annualData.length - 1;
+    const baseIndex = estimateStartIndex - 1;
+    if (baseIndex < 0 || estimateStartIndex >= annualData.length) {
+      return null;
+    }
+
+    const baseRevenue = annualData[baseIndex];
+    const nextRevenue = annualData[estimateStartIndex];
+    if (!Number.isFinite(baseRevenue) || !Number.isFinite(nextRevenue) || baseRevenue <= 0 || nextRevenue <= 0) {
+      return null;
+    }
+
+    const growthPct = ((nextRevenue - baseRevenue) / baseRevenue) * 100;
+    if (!Number.isFinite(growthPct) || growthPct <= 0) {
+      return null;
+    }
+
+    return {
+      psRatio,
+      growthPct,
+      proxy: psRatio / growthPct,
+      fromLabel: annualLabels[baseIndex] || String(baseIndex),
+      toLabel: annualLabels[estimateStartIndex] || String(estimateStartIndex),
+    };
+  };
   const getCanvas = id => {
     const canvas = document.getElementById(id);
     if (!(canvas instanceof HTMLCanvasElement)) {
@@ -260,9 +367,40 @@ function renderDashboard(CONFIG) {
     hBars.innerHTML += `<div class="comp-row"><div class="comp-label">${h.label}</div><div class="comp-bar-track"><div class="comp-bar" style="width:${h.width};background:linear-gradient(90deg,${h.gradient})">${h.value}</div></div></div>`;
   });
   const hMetrics = document.getElementById('health-metrics');
+  const forwardPeg = deriveForwardPeg();
+  const psgProxy = derivePsgProxy();
+  let pegFallbackNote = '';
   C.healthMetrics.forEach(m => {
-    hMetrics.innerHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:.5rem"><span style="font-size:.78rem;color:var(--text3)">${m.label}</span><span class="mono" style="font-size:.85rem;color:${m.color}">${m.value}</span></div>`;
+    const metricLabel = typeof m.label === 'string' ? m.label : '';
+    const metricValue = typeof m.value === 'string' ? m.value : '';
+    let label = metricLabel;
+    let value = metricValue;
+    let color = typeof m.color === 'string' ? m.color : 'var(--text2)';
+
+    if (metricLabel.includes('PEG') && isPegUnavailable(metricValue)) {
+      if (forwardPeg && Number.isFinite(forwardPeg.peg)) {
+        label = 'PEG (Forward)';
+        value = `${forwardPeg.peg.toFixed(2)}x`;
+        color = pegColor(forwardPeg.peg);
+        if (!pegFallbackNote) {
+          const basisSuffix = forwardPeg.basis ? `, ${forwardPeg.basis}` : '';
+          pegFallbackNote = `* Forward PEG = Forward P/E(${forwardPeg.forwardPE.toFixed(2)}x) ÷ EPS 성장률(${forwardPeg.epsGrowthPct.toFixed(2)}%${basisSuffix})`;
+        }
+      } else if (psgProxy && Number.isFinite(psgProxy.proxy)) {
+        label = 'PEG 대체(PSG)';
+        value = `${psgProxy.proxy.toFixed(2)}x`;
+        color = pegColor(psgProxy.proxy);
+        if (!pegFallbackNote) {
+          pegFallbackNote = `* PEG 계산 불가 시 P/S(${psgProxy.psRatio.toFixed(2)}x) ÷ 매출성장률(${psgProxy.growthPct.toFixed(1)}%, ${psgProxy.fromLabel}→${psgProxy.toLabel})로 대체했습니다.`;
+        }
+      }
+    }
+
+    hMetrics.innerHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:.5rem"><span style="font-size:.78rem;color:var(--text3)">${label}</span><span class="mono" style="font-size:.85rem;color:${color}">${value}</span></div>`;
   });
+  if (pegFallbackNote) {
+    hMetrics.innerHTML += `<div style="margin-top:.25rem;font-size:.72rem;color:var(--text3)">${pegFallbackNote}</div>`;
+  }
 
   // ── Timeline ──
   const tlEl = document.getElementById('timeline');

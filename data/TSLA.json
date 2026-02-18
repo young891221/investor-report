@@ -245,6 +245,11 @@
       23
     ]
   },
+  "pegInputs": {
+    "forwardPE": 202.7,
+    "epsGrowthPct": 41.37,
+    "basis": "Stock Analysis statistics (2026-02-13)"
+  },
   "financialHealth": [
     {
       "label": "현금 및 단기투자자산",

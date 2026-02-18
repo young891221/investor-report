@@ -6,6 +6,13 @@ Use this map before writing `data/{TICKER}.json`.
 
 `ticker`, `companyName`, `companyNameEn`, `exchange`, `sector`, `description`, `analysisDate`, `price`, `priceChange`, `priceChangeDir`, `marketCap`, `marketCapChange`, `weekRange`, `analystRating`, `analystTarget`, `reportScore`, `reportVerdict`, `keyPoints`, `navSections`, `segments`, `revenueBreakdown`, `annualRevenue`, `quarterlyRevenue`, `marginTrend`, `financialTable`, `valuation`, `financialHealth`, `healthMetrics`, `timeline`, `competitorChart`, `competitorTable`, `risks`, `radar`, `bullCase`, `bearCase`, `checklist`, `moats`.
 
+## Optional extension keys (renderer-supported)
+
+- `pegInputs` (object)
+  - `forwardPE`: number or `null`
+  - `epsGrowthPct`: number or `null`
+  - `basis`: string (source/date note)
+
 ## High-risk constraints
 
 - `priceChangeDir`: must be `up` or `down`.
@@ -25,6 +32,12 @@ Use this map before writing `data/{TICKER}.json`.
   - `valuation.company`, `valuation.industry`
   - `competitorChart.data`
   - `radar.data`
+- `healthMetrics` PEG field:
+  - If unavailable, keep explicit `N/A` reason text.
+  - Do not replace missing PEG with guessed numeric strings.
+- `pegInputs` safety:
+  - If provided, `forwardPE` and `epsGrowthPct` should be positive numbers (or `null` when unavailable).
+  - Keep `basis` as a short reproducible source/date memo.
 
 ## Date and locale conventions
 
@@ -36,3 +49,6 @@ Use this map before writing `data/{TICKER}.json`.
 
 - `segments[].color` should match existing CSS tags (e.g., `accent`, `orange`, `purple`).
 - HTML tags in text fields are allowed (existing dashboards use `<strong>` and `<span>`).
+- PEG render priority when `healthMetrics` has PEG = `N/A`:
+  1. Use `pegInputs` to derive `PEG (Forward)`.
+  2. If unavailable, renderer falls back to PSG (`P/S / next-year revenue growth(%)`).
