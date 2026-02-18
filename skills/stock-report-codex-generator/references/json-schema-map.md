@@ -4,11 +4,13 @@ Use this map before writing `data/{TICKER}.json`.
 
 ## Required top-level keys
 
-`ticker`, `companyName`, `companyNameEn`, `exchange`, `sector`, `description`, `analysisDate`, `price`, `priceChange`, `priceChangeDir`, `marketCap`, `marketCapChange`, `weekRange`, `analystRating`, `analystTarget`, `keyPoints`, `navSections`, `segments`, `revenueBreakdown`, `annualRevenue`, `quarterlyRevenue`, `marginTrend`, `financialTable`, `valuation`, `financialHealth`, `healthMetrics`, `timeline`, `competitorChart`, `competitorTable`, `risks`, `radar`, `bullCase`, `bearCase`, `checklist`, `moats`.
+`ticker`, `companyName`, `companyNameEn`, `exchange`, `sector`, `description`, `analysisDate`, `price`, `priceChange`, `priceChangeDir`, `marketCap`, `marketCapChange`, `weekRange`, `analystRating`, `analystTarget`, `reportScore`, `reportVerdict`, `keyPoints`, `navSections`, `segments`, `revenueBreakdown`, `annualRevenue`, `quarterlyRevenue`, `marginTrend`, `financialTable`, `valuation`, `financialHealth`, `healthMetrics`, `timeline`, `competitorChart`, `competitorTable`, `risks`, `radar`, `bullCase`, `bearCase`, `checklist`, `moats`.
 
 ## High-risk constraints
 
 - `priceChangeDir`: must be `up` or `down`.
+- `reportScore`: number between `0` and `100`.
+- `reportVerdict`: one of `STRONG BUY`, `BUY`, `HOLD`, `REDUCE`, `SELL`.
 - `keyPoints`: at least 5 string items.
 - `annualRevenue.estimateStartIndex`: integer within label range.
 - `financialTable`: each row needs at least 6 string cells.

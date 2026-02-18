@@ -123,12 +123,26 @@ function validateStock(stock, options = {}) {
     'weekRange',
     'analystRating',
     'analystTarget',
+    'reportVerdict',
   ];
 
   basicFields.forEach(field => requireString(stock, field, errors));
+  const reportScore = requireNumber(stock, 'reportScore', errors);
 
   if (!['up', 'down'].includes(stock.priceChangeDir)) {
     addError(errors, 'root.priceChangeDir', "must be either 'up' or 'down'");
+  }
+
+  if (
+    Number.isFinite(reportScore) &&
+    (reportScore < 0 || reportScore > 100)
+  ) {
+    addError(errors, 'root.reportScore', 'must be between 0 and 100');
+  }
+
+  const allowedVerdicts = ['STRONG BUY', 'BUY', 'HOLD', 'REDUCE', 'SELL'];
+  if (!allowedVerdicts.includes(stock.reportVerdict)) {
+    addError(errors, 'root.reportVerdict', `must be one of: ${allowedVerdicts.join(', ')}`);
   }
 
   const keyPoints = requireArray(stock, 'keyPoints', errors);

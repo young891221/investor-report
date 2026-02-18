@@ -277,6 +277,55 @@ function scoreCatalyst(upsidePct) {
   return clamp(Math.round((upsidePct + 30) / 7), 1, 10);
 }
 
+function scoreReport(radarScores) {
+  const weights = [0.24, 0.19, 0.16, 0.17, 0.12, 0.12];
+  if (!Array.isArray(radarScores) || radarScores.length === 0) {
+    return 50;
+  }
+
+  let weightedTotal = 0;
+  let totalWeight = 0;
+
+  radarScores.forEach((value, index) => {
+    if (!Number.isFinite(value)) {
+      return;
+    }
+
+    const weight = Number.isFinite(weights[index]) ? weights[index] : 0;
+    if (weight <= 0) {
+      return;
+    }
+
+    weightedTotal += clamp(value, 1, 10) * weight;
+    totalWeight += weight;
+  });
+
+  if (totalWeight === 0) {
+    return 50;
+  }
+
+  return clamp(Math.round((weightedTotal / totalWeight) * 10), 0, 100);
+}
+
+function toReportVerdict(score) {
+  if (!Number.isFinite(score)) {
+    return 'HOLD';
+  }
+  if (score >= 80) {
+    return 'STRONG BUY';
+  }
+  if (score >= 65) {
+    return 'BUY';
+  }
+  if (score >= 50) {
+    return 'HOLD';
+  }
+  if (score >= 35) {
+    return 'REDUCE';
+  }
+  return 'SELL';
+}
+
 function tagColorByValue(value) {
   if (!Number.isFinite(value)) {
     return 'orange';
@@ -902,6 +951,8 @@ function buildStockJson(input) {
     labels: ['성장성', '수익성', '경쟁우위', '재무건전성', '밸류에이션\n매력도', '카탈리스트'],
     data: [growthScore, profitScore, moatScore, healthScore, valuationScore, catalystScore],
   };
+  const reportScore = scoreReport(radar.data);
+  const reportVerdict = toReportVerdict(reportScore);
 
   const bullCase = [
     '📌 <strong>매출 성장 유지:</strong> 최근 분기/연간 매출 추세가 유지되면 멀티플 프리미엄 방어 가능성',
@@ -976,6 +1027,8 @@ function buildStockJson(input) {
           Number.isFinite(targetUpside) ? ` (${targetUpside >= 0 ? '↑' : '↓'}${Math.abs(round(targetUpside, 1))}%)` : ''
         }`
       : '목표가 데이터 확인 필요',
+    reportScore,
+    reportVerdict,
 
     keyPoints,
 

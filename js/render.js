@@ -60,6 +60,47 @@ function renderDashboard(CONFIG) {
       return null;
     }
   };
+  const deriveReportScoreFromRadar = () => {
+    const radarScores = ensureNumberArray(C.radar && C.radar.data);
+    const weights = [0.24, 0.19, 0.16, 0.17, 0.12, 0.12];
+    if (radarScores.length === 0) {
+      return null;
+    }
+
+    let weightedTotal = 0;
+    let totalWeight = 0;
+    radarScores.forEach((value, index) => {
+      if (!Number.isFinite(value)) {
+        return;
+      }
+      const weight = Number.isFinite(weights[index]) ? weights[index] : 0;
+      if (weight <= 0) {
+        return;
+      }
+      const clamped = Math.min(10, Math.max(1, value));
+      weightedTotal += clamped * weight;
+      totalWeight += weight;
+    });
+
+    if (totalWeight === 0) {
+      return null;
+    }
+    return Math.round((weightedTotal / totalWeight) * 10);
+  };
+  const verdictFromScore = score => {
+    if (!Number.isFinite(score)) return null;
+    if (score >= 80) return 'STRONG BUY';
+    if (score >= 65) return 'BUY';
+    if (score >= 50) return 'HOLD';
+    if (score >= 35) return 'REDUCE';
+    return 'SELL';
+  };
+  const reportToneFromVerdict = verdict => {
+    if (typeof verdict !== 'string') return { valueClass: '', changeDir: 'down' };
+    if (verdict.includes('BUY')) return { valueClass: 'green', changeDir: 'up' };
+    if (verdict === 'HOLD') return { valueClass: 'orange', changeDir: 'neutral' };
+    return { valueClass: 'red', changeDir: 'down' };
+  };
 
   // ── Nav ──
   document.getElementById('nav-ticker').textContent = C.ticker;
@@ -76,11 +117,26 @@ function renderDashboard(CONFIG) {
   document.getElementById('hero-sub').innerHTML = `${C.exchange}: ${C.ticker} — ${C.description}`;
   document.title = `${C.ticker} — 종합 분석 리포트`;
 
+  const reportScore = Number.isFinite(C.reportScore)
+    ? Math.round(C.reportScore)
+    : deriveReportScoreFromRadar();
+  const reportVerdict = typeof C.reportVerdict === 'string' && C.reportVerdict.trim()
+    ? C.reportVerdict.trim().toUpperCase()
+    : verdictFromScore(reportScore);
+  const reportTone = reportToneFromVerdict(reportVerdict);
+
   const statsData = [
     {label:'현재 주가', value: C.price, change: C.priceChange, dir: C.priceChangeDir},
     {label:'시가총액', value: C.marketCap, change: C.marketCapChange, dir:'up'},
     {label:'52주 범위', value: C.weekRange, valueStyle:'font-size:1.15rem'},
     {label:'애널리스트', value: C.analystRating, valueClass:'green', change: C.analystTarget, dir:'up'},
+    {
+      label:'리포트 점수',
+      value: Number.isFinite(reportScore) ? `${reportScore}점` : '-',
+      valueClass: reportTone.valueClass,
+      change: reportVerdict ? `AI 결론 ${reportVerdict}` : 'AI 결론 산출 필요',
+      dir: reportTone.changeDir,
+    },
   ];
   const heroStats = document.getElementById('hero-stats');
   statsData.forEach((s,i) => {

@@ -62,9 +62,12 @@ body{
 .stat-label{color:var(--text3);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
 .stat-value{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:700;color:var(--text)}
 .stat-value.green{color:var(--green2)}
+.stat-value.orange{color:var(--orange)}
+.stat-value.red{color:var(--red2)}
 .stat-change{font-size:.75rem;font-weight:600;margin-top:2px}
 .stat-change.up{color:var(--green2)}
 .stat-change.down{color:var(--red2)}
+.stat-change.neutral{color:var(--orange)}
 
 /* ═══ Section ═══ */
 .section{margin-bottom:3rem}
@@ -179,7 +182,7 @@ body{
 /* ═══ Animations ═══ */
 .fade-in{opacity:0;transform:translateY(20px);animation:fadeIn .6s forwards}
 @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
-.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}
 
 /* ═══ Responsive ═══ */
 @media(max-width:768px){

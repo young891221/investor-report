@@ -20,6 +20,8 @@
     "weekRange",
     "analystRating",
     "analystTarget",
+    "reportScore",
+    "reportVerdict",
     "keyPoints",
     "navSections",
     "segments",
@@ -57,6 +59,8 @@
     "weekRange": { "type": "string", "minLength": 1 },
     "analystRating": { "type": "string", "minLength": 1 },
     "analystTarget": { "type": "string", "minLength": 1 },
+    "reportScore": { "type": "number", "minimum": 0, "maximum": 100 },
+    "reportVerdict": { "type": "string", "enum": ["STRONG BUY", "BUY", "HOLD", "REDUCE", "SELL"] },
     "keyPoints": {
       "type": "array",
       "minItems": 5,
