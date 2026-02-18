@@ -34,5 +34,23 @@
     ],
     "rating": "Buy",
     "analysisDate": "2026.02.18"
+  },
+  {
+    "ticker": "TSLA",
+    "name": "Tesla, Inc.",
+    "nameKr": "테슬라",
+    "price": "$410.63",
+    "change": "▲ +15.4%",
+    "changeDir": "up",
+    "changeBasis": "52주",
+    "sector": "자동차 / 에너지 저장 / 자율주행 소프트웨어",
+    "description": "전기차와 에너지저장장치(ESS), 자율주행 소프트웨어를 통합 운영하는 글로벌 모빌리티·에너지 기업.",
+    "tags": [
+      "자동차",
+      "에너지 발전·저장",
+      "서비스·기타"
+    ],
+    "rating": "Hold",
+    "analysisDate": "2026.02.18"
   }
 ]
