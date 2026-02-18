@@ -44,6 +44,22 @@ Use this skill to convert natural-language stock requests into a production-read
   - Renderer priority is `Forward PEG > PSG fallback` when `healthMetrics` PEG is `N/A`:
     - Forward PEG = `forwardPE / epsGrowthPct`
     - PSG fallback = `P/S / next-year revenue growth(%)`
+- Apply 100x-book score model (`100x-book-v1`) for `reportScore`:
+  - Criteria and weights:
+    - `small_cap` (25): 시가총액이 작고 성장 여력이 큼 (`<$20B` 우대)
+    - `roe_quality` (20): ROE 15~20% 고수익 구조
+    - `reinvestment` (20): 성장률·FCF·재무여력 기반 재투자 효율
+    - `reasonable_per` (20): PER 8~30 구간 안전마진
+    - `founder_led` (15): Founder CEO + 내부자 지분 병행
+  - Missing critical inputs must use neutral score (중립점수), not fabricated values.
+  - Populate:
+    - `reportScoreModel` (string, `100x-book-v1`)
+    - `reportScoreBreakdown.total`
+    - `reportScoreBreakdown.criteria[]`
+    - `reportScoreBreakdown.notes[]`
+- Keep checklist in dual mode:
+  - Existing operational checklist rows
+  - Add 5 `[100배]` gate rows mapped to the criteria above.
 
 5. Validate and rebuild index.
 - Run `node scripts/validate-stocks.js`.
@@ -61,6 +77,8 @@ Use this skill to convert natural-language stock requests into a production-read
 - Do not overwrite an existing ticker unless the user explicitly asks.
 - Never fabricate critical financial figures when source is missing.
 - Never fabricate PEG values. If unavailable, keep explicit `N/A` and/or verifiable `pegInputs`.
+- Never fabricate founder/insider/ROE/PER inputs for score calculation.
+- If score inputs are missing, keep neutral score + explicit note in breakdown.
 - Mark unknown narrative or estimates as placeholders with explicit wording.
 - Keep final JSON compatible with current dashboard renderer.
 

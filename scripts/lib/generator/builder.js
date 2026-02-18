@@ -28,6 +28,15 @@ const SECTOR_BENCHMARKS = [
   { pattern: /에너지|energy|oil|gas/iu, values: [14, 1.6, 1.7, 6] },
 ];
 
+const REPORT_SCORE_MODEL = '100x-book-v1';
+const HUNDRED_BAGGER_WEIGHTS = {
+  small_cap: 25,
+  roe_quality: 20,
+  reinvestment: 20,
+  reasonable_per: 20,
+  founder_led: 15,
+};
+
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
@@ -307,6 +316,333 @@ function scoreReport(radarScores) {
   return clamp(Math.round((weightedTotal / totalWeight) * 10), 0, 100);
 }
 
+function toPct(value) {
+  if (!Number.isFinite(value)) {
+    return null;
+  }
+  if (Math.abs(value) <= 1) {
+    return value * 100;
+  }
+  return value;
+}
+
+function neutralScore(weight) {
+  return Math.round(weight / 2);
+}
+
+function statusFromScore(score, weight) {
+  if (!Number.isFinite(score) || !Number.isFinite(weight) || weight <= 0) {
+    return 'unknown';
+  }
+  if (score >= Math.round(weight * 0.75)) {
+    return 'pass';
+  }
+  if (score >= Math.round(weight * 0.45)) {
+    return 'watch';
+  }
+  return 'fail';
+}
+
+function scoreSmallCapCriterion(marketCap) {
+  const weight = HUNDRED_BAGGER_WEIGHTS.small_cap;
+  if (!Number.isFinite(marketCap)) {
+    return {
+      id: 'small_cap',
+      label: '시가총액이 작고 성장 여력이 큼',
+      weight,
+      score: neutralScore(weight),
+      status: 'unknown',
+      evidence: '시가총액 데이터 미확보로 중립 처리',
+    };
+  }
+
+  let score = 4;
+  if (marketCap < 2e10) {
+    score = weight;
+  } else if (marketCap < 3e10) {
+    score = 18;
+  } else if (marketCap < 5e10) {
+    score = 12;
+  } else if (marketCap < 1e11) {
+    score = 7;
+  }
+
+  return {
+    id: 'small_cap',
+    label: '시가총액이 작고 성장 여력이 큼',
+    weight,
+    score,
+    status: statusFromScore(score, weight),
+    evidence: `시가총액 ${formatCompactDollar(marketCap)} 기준 (<$20B 우대)`,
+  };
+}
+
+function scoreRoeCriterion(roePct) {
+  const weight = HUNDRED_BAGGER_WEIGHTS.roe_quality;
+  if (!Number.isFinite(roePct)) {
+    return {
+      id: 'roe_quality',
+      label: 'ROE 15~20% 고수익 구조',
+      weight,
+      score: neutralScore(weight),
+      status: 'unknown',
+      evidence: 'ROE 데이터 미확보로 중립 처리',
+    };
+  }
+
+  let score = 6;
+  if (roePct >= 15 && roePct <= 20) {
+    score = weight;
+  } else if ((roePct >= 12 && roePct < 15) || (roePct > 20 && roePct <= 25)) {
+    score = 16;
+  } else if ((roePct >= 8 && roePct < 12) || (roePct > 25 && roePct <= 30)) {
+    score = 12;
+  } else if ((roePct >= 0 && roePct < 8) || (roePct > 30 && roePct <= 40)) {
+    score = 7;
+  } else if (roePct < 0) {
+    score = 2;
+  }
+
+  return {
+    id: 'roe_quality',
+    label: 'ROE 15~20% 고수익 구조',
+    weight,
+    score,
+    status: statusFromScore(score, weight),
+    evidence: `ROE ${round(roePct, 2)}%`,
+  };
+}
+
+function scoreReinvestmentCriterion(input) {
+  const weight = HUNDRED_BAGGER_WEIGHTS.reinvestment;
+  const growthPct = Number.isFinite(input.revenueGrowthPct) ? input.revenueGrowthPct : input.annualGrowthPct;
+  const freeCashflow = input.freeCashflow;
+  const netCash = input.netCash;
+  const currentRatio = input.currentRatio;
+
+  let total = 0;
+  let count = 0;
+  const evidenceParts = [];
+
+  if (Number.isFinite(growthPct)) {
+    if (growthPct >= 25) total += 10;
+    else if (growthPct >= 15) total += 8;
+    else if (growthPct >= 5) total += 6;
+    else if (growthPct >= 0) total += 5;
+    else total += 3;
+    count += 1;
+    evidenceParts.push(`성장률 ${round(growthPct, 1)}%`);
+  }
+
+  if (Number.isFinite(freeCashflow)) {
+    if (freeCashflow > 0) total += 8;
+    else if (freeCashflow === 0) total += 6;
+    else total += 4;
+    count += 1;
+    evidenceParts.push(`FCF ${formatCompactDollar(freeCashflow)}`);
+  }
+
+  if (Number.isFinite(netCash) || Number.isFinite(currentRatio)) {
+    let balanceScore = 3;
+    if (Number.isFinite(netCash) && netCash > 0 && Number.isFinite(currentRatio) && currentRatio >= 1.5) {
+      balanceScore = 8;
+    } else if ((Number.isFinite(netCash) && netCash > 0) || (Number.isFinite(currentRatio) && currentRatio >= 1.5)) {
+      balanceScore = 6;
+    } else if (Number.isFinite(currentRatio) && currentRatio >= 1) {
+      balanceScore = 5;
+    }
+    total += balanceScore;
+    count += 1;
+    evidenceParts.push(
+      `순현금 ${formatCompactDollar(netCash)}, 유동비율 ${
+        Number.isFinite(currentRatio) ? round(currentRatio, 2) : 'N/A'
+      }`
+    );
+  }
+
+  if (count === 0) {
+    return {
+      id: 'reinvestment',
+      label: '이익의 효율적 재투자(복리)',
+      weight,
+      score: neutralScore(weight),
+      status: 'unknown',
+      evidence: '재투자 프록시(성장률/FCF/재무여력) 미확보로 중립 처리',
+    };
+  }
+
+  const avgScore = total / count;
+  const score = clamp(Math.round((avgScore / 10) * weight), 0, weight);
+
+  return {
+    id: 'reinvestment',
+    label: '이익의 효율적 재투자(복리)',
+    weight,
+    score,
+    status: statusFromScore(score, weight),
+    evidence: evidenceParts.join(' · '),
+  };
+}
+
+function scorePerCriterion(trailingPE, forwardPE) {
+  const weight = HUNDRED_BAGGER_WEIGHTS.reasonable_per;
+  const hasTrailingValid = Number.isFinite(trailingPE) && trailingPE > 0;
+  const hasForwardValid = Number.isFinite(forwardPE) && forwardPE > 0;
+  const hasTrailing = Number.isFinite(trailingPE);
+  const hasForward = Number.isFinite(forwardPE);
+  const selectedPer = hasTrailingValid
+    ? trailingPE
+    : hasForwardValid
+      ? forwardPE
+      : hasTrailing
+        ? trailingPE
+        : hasForward
+          ? forwardPE
+          : null;
+  let source = 'P/E';
+  if (hasTrailingValid) source = 'Trailing P/E';
+  else if (hasForwardValid) source = 'Forward P/E';
+  else if (hasTrailing) source = 'Trailing P/E';
+  else if (hasForward) source = 'Forward P/E';
+
+  if (!Number.isFinite(selectedPer)) {
+    return {
+      id: 'reasonable_per',
+      label: 'PER이 과열되지 않은 안전마진',
+      weight,
+      score: neutralScore(weight),
+      status: 'unknown',
+      evidence: 'PER 데이터 미확보로 중립 처리',
+    };
+  }
+
+  let score = 4;
+  if (selectedPer <= 0) {
+    score = 4;
+  } else if (selectedPer >= 8 && selectedPer <= 30) {
+    score = weight;
+  } else if ((selectedPer >= 5 && selectedPer < 8) || (selectedPer > 30 && selectedPer <= 40)) {
+    score = 14;
+  } else if ((selectedPer >= 2 && selectedPer < 5) || (selectedPer > 40 && selectedPer <= 60)) {
+    score = 8;
+  }
+
+  return {
+    id: 'reasonable_per',
+    label: 'PER이 과열되지 않은 안전마진',
+    weight,
+    score,
+    status: statusFromScore(score, weight),
+    evidence: `${source} ${round(selectedPer, 2)}x (8~30 우대)`,
+  };
+}
+
+function detectFounderCeo(companyOfficers) {
+  if (!Array.isArray(companyOfficers) || companyOfficers.length === 0) {
+    return { isFounderCeo: null, detail: '임원 데이터 미확보' };
+  }
+
+  const ceoPattern = /(chief executive officer|ceo)/iu;
+  const founderPattern = /(founder|co-founder|cofounder|founding)/iu;
+
+  let hasCeo = false;
+  for (const officer of companyOfficers) {
+    const title = String(officer && officer.title ? officer.title : '');
+    if (!title) {
+      continue;
+    }
+    if (!ceoPattern.test(title)) {
+      continue;
+    }
+
+    hasCeo = true;
+    if (founderPattern.test(title)) {
+      return { isFounderCeo: true, detail: `${title}` };
+    }
+  }
+
+  if (!hasCeo) {
+    return { isFounderCeo: null, detail: 'CEO 타이틀 미확인' };
+  }
+
+  return { isFounderCeo: false, detail: 'Founder 표기 없는 CEO' };
+}
+
+function scoreFounderCriterion(companyOfficers, insiderOwnershipPct) {
+  const weight = HUNDRED_BAGGER_WEIGHTS.founder_led;
+  const founderSignal = detectFounderCeo(companyOfficers);
+  const hasInsider = Number.isFinite(insiderOwnershipPct);
+
+  if (founderSignal.isFounderCeo === null && !hasInsider) {
+    return {
+      id: 'founder_led',
+      label: '창업자 주도 운영(Founder-led)',
+      weight,
+      score: neutralScore(weight),
+      status: 'unknown',
+      evidence: 'Founder/내부자 지분 데이터 미확보로 중립 처리',
+    };
+  }
+
+  let score = 5;
+  if (founderSignal.isFounderCeo === true && hasInsider && insiderOwnershipPct >= 5) {
+    score = weight;
+  } else if (founderSignal.isFounderCeo === true) {
+    score = 13;
+  } else if (hasInsider && insiderOwnershipPct >= 8) {
+    score = 10;
+  } else if (hasInsider && insiderOwnershipPct >= 3) {
+    score = 8;
+  } else if (founderSignal.isFounderCeo === false && !hasInsider) {
+    score = 6;
+  }
+
+  const evidence = [
+    `Founder CEO: ${
+      founderSignal.isFounderCeo === true ? '예' : founderSignal.isFounderCeo === false ? '아니오' : '미확인'
+    }`,
+    `내부자 지분: ${hasInsider ? `${round(insiderOwnershipPct, 2)}%` : '미확인'}`,
+    founderSignal.detail,
+  ].join(' · ');
+
+  return {
+    id: 'founder_led',
+    label: '창업자 주도 운영(Founder-led)',
+    weight,
+    score,
+    status: statusFromScore(score, weight),
+    evidence,
+  };
+}
+
+function buildHundredBaggerScore(input) {
+  const criteria = [
+    scoreSmallCapCriterion(input.marketCap),
+    scoreRoeCriterion(input.roePct),
+    scoreReinvestmentCriterion({
+      revenueGrowthPct: input.revenueGrowthPct,
+      annualGrowthPct: input.annualGrowthPct,
+      freeCashflow: input.freeCashflow,
+      netCash: input.netCash,
+      currentRatio: input.currentRatio,
+    }),
+    scorePerCriterion(input.trailingPE, input.forwardPE),
+    scoreFounderCriterion(input.companyOfficers, input.insiderOwnershipPct),
+  ];
+
+  const total = clamp(criteria.reduce((sum, criterion) => sum + criterion.score, 0), 0, 100);
+  const notes = criteria
+    .filter(criterion => criterion.status === 'unknown')
+    .map(criterion => `${criterion.label}: 데이터 미확보로 중립 점수 적용`);
+
+  return {
+    model: REPORT_SCORE_MODEL,
+    total,
+    criteria,
+    notes,
+  };
+}
+
 function toReportVerdict(score) {
   if (!Number.isFinite(score)) {
     return 'HOLD';
@@ -511,6 +847,16 @@ function buildStockJson(input) {
   const totalCash = asNumber(pickRaw(financialData.totalCash));
   const totalDebt = asNumber(pickRaw(financialData.totalDebt));
   const netCash = Number.isFinite(totalCash) && Number.isFinite(totalDebt) ? totalCash - totalDebt : null;
+  const trailingPE = asNumber(quote && quote.trailingPE);
+  const forwardPE = asNumber(quote && quote.forwardPE);
+  const returnOnEquityFromFinancialData = asNumber(pickRaw(financialData.returnOnEquity));
+  const returnOnEquityFromKeyStats = asNumber(pickRaw(defaultKeyStatistics.returnOnEquity));
+  const returnOnEquity = toPct(
+    Number.isFinite(returnOnEquityFromFinancialData) ? returnOnEquityFromFinancialData : returnOnEquityFromKeyStats
+  );
+  const pegRatio = asNumber(pickRaw(defaultKeyStatistics.pegRatio));
+  const insiderOwnershipPct = toPct(asNumber(pickRaw(defaultKeyStatistics.heldPercentInsiders)));
+  const companyOfficers = Array.isArray(assetProfile.companyOfficers) ? assetProfile.companyOfficers : [];
 
   const debtToEquityRaw = asNumber(pickRaw(financialData.debtToEquity));
   const debtToEquity = Number.isFinite(debtToEquityRaw)
@@ -748,7 +1094,7 @@ function buildStockJson(input) {
   ];
 
   const companyValuation = [
-    numberOrFallback(asNumber(quote && quote.trailingPE), 0, placeholders, 'valuation.trailingPE', 'Trailing P/E unavailable'),
+    numberOrFallback(trailingPE, 0, placeholders, 'valuation.trailingPE', 'Trailing P/E unavailable'),
     numberOrFallback(asNumber(quote && quote.priceToSalesTrailing12Months), 0, placeholders, 'valuation.priceToSales', 'P/S unavailable'),
     numberOrFallback(asNumber(quote && quote.priceToBook), 0, placeholders, 'valuation.priceToBook', 'P/B unavailable'),
     numberOrFallback(asNumber(quote && quote.enterpriseToEbitda), 0, placeholders, 'valuation.evToEbitda', 'EV/EBITDA unavailable'),
@@ -779,6 +1125,15 @@ function buildStockJson(input) {
     },
   ];
 
+  let pegMetricValue = 'N/A (데이터 없음)';
+  if (Number.isFinite(pegRatio) && pegRatio > 0) {
+    pegMetricValue = `${round(pegRatio, 2)}x`;
+  } else if (Number.isFinite(trailingPE) && trailingPE <= 0) {
+    pegMetricValue = 'N/A (적자 구간)';
+  } else if (Number.isFinite(forwardPE) && forwardPE <= 0) {
+    pegMetricValue = 'N/A (Forward P/E 비유효)';
+  }
+
   const healthMetrics = [
     {
       label: 'D/E 비율',
@@ -789,6 +1144,22 @@ function buildStockJson(input) {
       label: '유동비율',
       value: Number.isFinite(currentRatio) ? `${round(currentRatio, 2)} ${currentRatio >= 1.5 ? '(양호)' : '(주의)'}` : 'N/A',
       color: Number.isFinite(currentRatio) && currentRatio >= 1.5 ? 'var(--green2)' : 'var(--orange)',
+    },
+    {
+      label: 'ROE (최근 1년)',
+      value: Number.isFinite(returnOnEquity) ? `${round(returnOnEquity, 2)}%` : 'N/A (데이터 없음)',
+      color: Number.isFinite(returnOnEquity) && returnOnEquity >= 15 && returnOnEquity <= 20
+        ? 'var(--green2)'
+        : Number.isFinite(returnOnEquity) && returnOnEquity > 0
+          ? 'var(--orange)'
+          : 'var(--text2)',
+    },
+    {
+      label: 'PEG (최근 1년)',
+      value: pegMetricValue,
+      color: Number.isFinite(pegRatio) && pegRatio > 0
+        ? (pegRatio <= 1 ? 'var(--green2)' : pegRatio <= 2 ? 'var(--orange)' : 'var(--red2)')
+        : 'var(--text2)',
     },
     {
       label: '베타',
@@ -951,7 +1322,20 @@ function buildStockJson(input) {
     labels: ['성장성', '수익성', '경쟁우위', '재무건전성', '밸류에이션\n매력도', '카탈리스트'],
     data: [growthScore, profitScore, moatScore, healthScore, valuationScore, catalystScore],
   };
-  const reportScore = scoreReport(radar.data);
+  const hundredBaggerScore = buildHundredBaggerScore({
+    marketCap,
+    roePct: returnOnEquity,
+    revenueGrowthPct: quarterlyRevenueYoY,
+    annualGrowthPct,
+    freeCashflow,
+    netCash,
+    currentRatio,
+    trailingPE,
+    forwardPE,
+    companyOfficers,
+    insiderOwnershipPct,
+  });
+  const reportScore = hundredBaggerScore.total;
   const reportVerdict = toReportVerdict(reportScore);
 
   const bullCase = [
@@ -970,6 +1354,17 @@ function buildStockJson(input) {
     '🧪 <strong>데이터 공백:</strong> 자동 생성된 정성 항목은 최신 IR 원문 검증 전제',
   ];
 
+  const statusToKorean = status => {
+    if (status === 'pass') return '통과';
+    if (status === 'watch') return '관찰';
+    if (status === 'fail') return '미달';
+    return '데이터 부족';
+  };
+
+  const criterionById = Object.fromEntries(
+    hundredBaggerScore.criteria.map(criterion => [criterion.id, criterion])
+  );
+
   const checklist = [
     ['다음 실적 발표', nextEarningsDate || `${now.getFullYear()}.Q${Math.floor(now.getMonth() / 3) + 2}`, '매출/가이던스/마진 변동 여부 확인'],
     ['매출 성장률', '분기별', `YoY ${Number.isFinite(quarterlyRevenueYoY) ? `${round(quarterlyRevenueYoY, 1)}%` : '추적 필요'} 유지 여부`],
@@ -977,6 +1372,31 @@ function buildStockJson(input) {
     ['재무건전성', '분기별', '현금·부채·FCF 동시 점검'],
     ['밸류에이션', '상시', 'P/S·P/E 괴리 확대 시 비중 조절 검토'],
     ['경쟁사 비교', '분기별', '동종 상장사 대비 성장률/시총 변화 추적'],
+    [
+      '[100배] 시총 여력',
+      '분기별',
+      `${statusToKorean(criterionById.small_cap.status)} · ${criterionById.small_cap.score}/${criterionById.small_cap.weight} · ${criterionById.small_cap.evidence}`,
+    ],
+    [
+      '[100배] ROE 품질',
+      '분기별',
+      `${statusToKorean(criterionById.roe_quality.status)} · ${criterionById.roe_quality.score}/${criterionById.roe_quality.weight} · ${criterionById.roe_quality.evidence}`,
+    ],
+    [
+      '[100배] 재투자 효율',
+      '분기별',
+      `${statusToKorean(criterionById.reinvestment.status)} · ${criterionById.reinvestment.score}/${criterionById.reinvestment.weight} · ${criterionById.reinvestment.evidence}`,
+    ],
+    [
+      '[100배] PER 안전마진',
+      '상시',
+      `${statusToKorean(criterionById.reasonable_per.status)} · ${criterionById.reasonable_per.score}/${criterionById.reasonable_per.weight} · ${criterionById.reasonable_per.evidence}`,
+    ],
+    [
+      '[100배] 창업자 운영력',
+      '반기별',
+      `${statusToKorean(criterionById.founder_led.status)} · ${criterionById.founder_led.score}/${criterionById.founder_led.weight} · ${criterionById.founder_led.evidence}`,
+    ],
   ];
 
   const moats = [
@@ -1027,8 +1447,14 @@ function buildStockJson(input) {
           Number.isFinite(targetUpside) ? ` (${targetUpside >= 0 ? '↑' : '↓'}${Math.abs(round(targetUpside, 1))}%)` : ''
         }`
       : '목표가 데이터 확인 필요',
+    reportScoreModel: hundredBaggerScore.model,
     reportScore,
     reportVerdict,
+    reportScoreBreakdown: {
+      total: hundredBaggerScore.total,
+      criteria: hundredBaggerScore.criteria,
+      notes: hundredBaggerScore.notes,
+    },
 
     keyPoints,
 
@@ -1124,6 +1550,8 @@ function buildStockJson(input) {
       summary: {
         companyNameEn,
         sector,
+        reportScoreModel: output.reportScoreModel,
+        reportScore: output.reportScore,
         annualPoints: output.annualRevenue.data.length,
         quarterPoints: output.quarterlyRevenue.data.length,
       },

@@ -194,6 +194,58 @@ function renderDashboard(CONFIG) {
     }
     return Math.round((weightedTotal / totalWeight) * 10);
   };
+  const normalizeScoreCriterion = criterion => {
+    if (!criterion || typeof criterion !== 'object') {
+      return null;
+    }
+
+    const weight = parseFlexibleNumber(criterion.weight);
+    const score = parseFlexibleNumber(criterion.score);
+    const id = typeof criterion.id === 'string' ? criterion.id.trim() : '';
+    const label = typeof criterion.label === 'string' ? criterion.label.trim() : '';
+    const status = typeof criterion.status === 'string' ? criterion.status.trim().toLowerCase() : 'unknown';
+    const evidence = typeof criterion.evidence === 'string' ? criterion.evidence.trim() : '';
+
+    if (!label || !Number.isFinite(weight) || !Number.isFinite(score)) {
+      return null;
+    }
+
+    return {
+      id,
+      label,
+      weight: Math.max(0, Math.round(weight)),
+      score: Math.max(0, Math.round(score)),
+      status: ['pass', 'watch', 'fail', 'unknown'].includes(status) ? status : 'unknown',
+      evidence,
+    };
+  };
+  const getReportScoreBreakdown = () => {
+    const raw = C.reportScoreBreakdown;
+    if (!raw || typeof raw !== 'object') {
+      return null;
+    }
+
+    const criteria = ensureArray(raw.criteria)
+      .map(normalizeScoreCriterion)
+      .filter(Boolean);
+    const totalCandidate = parseFlexibleNumber(raw.total);
+    const total = Number.isFinite(totalCandidate) ? Math.round(totalCandidate) : null;
+    const notes = ensureArray(raw.notes).filter(note => typeof note === 'string' && note.trim() !== '');
+    const modelFromRoot = typeof C.reportScoreModel === 'string' ? C.reportScoreModel.trim() : '';
+    const modelFromBreakdown = typeof raw.model === 'string' ? raw.model.trim() : '';
+    const model = modelFromRoot || modelFromBreakdown;
+
+    if (criteria.length === 0 && !Number.isFinite(total)) {
+      return null;
+    }
+
+    return {
+      model,
+      total,
+      criteria,
+      notes,
+    };
+  };
   const verdictFromScore = score => {
     if (!Number.isFinite(score)) return null;
     if (score >= 80) return 'STRONG BUY';
@@ -224,9 +276,12 @@ function renderDashboard(CONFIG) {
   document.getElementById('hero-sub').innerHTML = `${C.exchange}: ${C.ticker} — ${C.description}`;
   document.title = `${C.ticker} — 종합 분석 리포트`;
 
-  const reportScore = Number.isFinite(C.reportScore)
-    ? Math.round(C.reportScore)
-    : deriveReportScoreFromRadar();
+  const reportScoreBreakdown = getReportScoreBreakdown();
+  const reportScore = Number.isFinite(reportScoreBreakdown && reportScoreBreakdown.total)
+    ? Math.round(reportScoreBreakdown.total)
+    : Number.isFinite(C.reportScore)
+      ? Math.round(C.reportScore)
+      : deriveReportScoreFromRadar();
   const reportVerdict = typeof C.reportVerdict === 'string' && C.reportVerdict.trim()
     ? C.reportVerdict.trim().toUpperCase()
     : verdictFromScore(reportScore);
@@ -485,6 +540,47 @@ function renderDashboard(CONFIG) {
     options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
       scales:{r:{beginAtZero:true,max:10,ticks:{stepSize:2,backdropColor:'transparent',font:{size:10}},grid:{color:'rgba(30,42,66,.6)'},angleLines:{color:'rgba(30,42,66,.6)'},pointLabels:{font:{size:11,weight:'500'},color:'#94a3c0'}}}}
   });
+
+  // ── Report Score Breakdown ──
+  const breakdownCard = document.getElementById('score-breakdown-card');
+  const breakdownMeta = document.getElementById('score-breakdown-meta');
+  const breakdownBody = document.querySelector('#score-breakdown-table tbody');
+  const breakdownNotes = document.getElementById('score-breakdown-notes');
+  if (breakdownCard && breakdownMeta && breakdownBody && breakdownNotes) {
+    if (reportScoreBreakdown && reportScoreBreakdown.criteria.length > 0) {
+      const statusTag = status => {
+        if (status === 'pass') return "<span class='tag tag-green'>통과</span>";
+        if (status === 'watch') return "<span class='tag tag-orange'>관찰</span>";
+        if (status === 'fail') return "<span class='tag tag-red'>미달</span>";
+        return "<span class='tag tag-blue'>데이터 부족</span>";
+      };
+
+      breakdownCard.style.display = 'block';
+      const modelLabel = reportScoreBreakdown.model || 'custom';
+      const totalLabel = Number.isFinite(reportScore) ? `${reportScore}/100` : '-';
+      breakdownMeta.textContent = `모델: ${modelLabel} · 총점: ${totalLabel}`;
+
+      breakdownBody.innerHTML = '';
+      reportScoreBreakdown.criteria.forEach(item => {
+        breakdownBody.innerHTML += `<tr>
+          <td style="font-weight:600">${item.label}</td>
+          <td class="mono">${item.score}/${item.weight}</td>
+          <td>${statusTag(item.status)}</td>
+          <td style="color:var(--text2);font-size:.82rem">${item.evidence || '-'}</td>
+        </tr>`;
+      });
+
+      breakdownNotes.innerHTML = '';
+      reportScoreBreakdown.notes.forEach(note => {
+        breakdownNotes.innerHTML += `<li>${note}</li>`;
+      });
+      breakdownNotes.style.display = reportScoreBreakdown.notes.length > 0 ? 'block' : 'none';
+    } else {
+      breakdownCard.style.display = 'none';
+      breakdownBody.innerHTML = '';
+      breakdownNotes.innerHTML = '';
+    }
+  }
 
   // ── Checklist Table ──
   const clBody = document.querySelector('#checklist-table tbody');

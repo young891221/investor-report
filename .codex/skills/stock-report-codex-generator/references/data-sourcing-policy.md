@@ -14,6 +14,7 @@ Prefer recent, dated facts and keep the event date separate from publish date.
 - Core revenue trend values
 - Major contract amounts and key milestone dates
 - PEG / ROE related inputs (`PEG`, `forwardPE`, `epsGrowthPct`)
+- 100x score inputs (`marketCap`, `ROE`, `PER`, founder/insider ownership signals)
 
 If a critical value is missing:
 
@@ -32,6 +33,21 @@ If a critical value is missing:
   1. `Forward PEG = forwardPE / epsGrowthPct`
   2. `PSG = P/S / next-year revenue growth(%)`
 - Do not invent PEG, forward P/E, or EPS growth figures.
+
+## 100x score sourcing policy (`100x-book-v1`)
+
+- Score criteria use these inputs:
+  - `small_cap`: market cap
+  - `roe_quality`: ROE (recent snapshot)
+  - `reinvestment`: growth + FCF + balance-sheet proxies
+  - `reasonable_per`: trailing P/E first, forward P/E fallback
+  - `founder_led`: founder-CEO signal + insider ownership
+- Founder-led signal priority:
+  1. `assetProfile.companyOfficers[].title` founder/CEO text
+  2. `defaultKeyStatistics.heldPercentInsiders`
+- Missing score inputs:
+  - Do **not** fabricate values.
+  - Apply neutral score and record explicit note in `reportScoreBreakdown.notes`.
 
 ## Placeholder policy
 

@@ -127,6 +127,19 @@
     <div class="card-title">투자 매력도 레이더 차트</div>
     <div class="chart-wrap chart-wrap-sq" style="max-width:420px;margin:0 auto"><canvas id="radarChart"></canvas></div>
   </div>
+  <div class="card" id="score-breakdown-card" style="margin-bottom:1.5rem;display:none">
+    <div class="card-title">📐 리포트 점수 산식 (100배 기준)</div>
+    <div id="score-breakdown-meta" style="margin:.4rem 0 1rem 0;color:var(--text2);font-size:.85rem"></div>
+    <div style="overflow-x:auto">
+      <table class="data-table" id="score-breakdown-table">
+        <thead>
+          <tr><th>기준</th><th>점수</th><th>상태</th><th>근거</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <ul id="score-breakdown-notes" style="margin-top:.8rem;color:var(--text2);font-size:.82rem"></ul>
+  </div>
   <div class="card">
     <div class="card-title">📋 장기 투자자 체크리스트</div>
     <div style="overflow-x:auto"><table class="data-table" id="checklist-table"><thead><tr><th>확인 항목</th><th>시점</th><th>평가 포인트</th></tr></thead><tbody></tbody></table></div>

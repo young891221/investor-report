@@ -176,10 +176,13 @@ function buildSourceManifest(input) {
       analystTarget: ['yahoo_quote_summary'],
       reportScore: ['yahoo_quote', 'yahoo_quote_summary'],
       reportVerdict: ['yahoo_quote', 'yahoo_quote_summary'],
+      reportScoreModel: ['yahoo_quote', 'yahoo_quote_summary'],
+      reportScoreBreakdown: ['yahoo_quote', 'yahoo_quote_summary'],
       annualRevenue: ['yahoo_quote_summary'],
       quarterlyRevenue: ['yahoo_quote_summary'],
       valuation: ['yahoo_quote', 'yahoo_quote_summary'],
       timeline: ['yahoo_quote_summary'],
+      checklist: ['yahoo_quote_summary'],
     },
   };
 }

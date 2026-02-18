@@ -12,11 +12,24 @@ Use this map before writing `data/{TICKER}.json`.
   - `forwardPE`: number or `null`
   - `epsGrowthPct`: number or `null`
   - `basis`: string (source/date note)
+- `reportScoreModel` (string)
+  - Recommended: `100x-book-v1`
+- `reportScoreBreakdown` (object)
+  - `total`: number (0~100)
+  - `criteria`: array of objects
+    - `id`: `small_cap | roe_quality | reinvestment | reasonable_per | founder_led`
+    - `label`: string
+    - `weight`: number
+    - `score`: number
+    - `status`: `pass | watch | fail | unknown`
+    - `evidence`: string
+  - `notes`: string array
 
 ## High-risk constraints
 
 - `priceChangeDir`: must be `up` or `down`.
 - `reportScore`: number between `0` and `100`.
+- If `reportScoreBreakdown.total` exists, keep it consistent with `reportScore`.
 - `reportVerdict`: one of `STRONG BUY`, `BUY`, `HOLD`, `REDUCE`, `SELL`.
 - `keyPoints`: at least 5 string items.
 - `annualRevenue.estimateStartIndex`: integer within label range.
@@ -24,6 +37,7 @@ Use this map before writing `data/{TICKER}.json`.
 - `timeline[].status`: `done` or `pending`.
 - `competitorTable.rows[]`: each row length must match headers length.
 - `checklist`: each row needs at least 3 string cells.
+- Checklist should keep legacy 운영 항목 and add 100배 기준 gate rows (`[100배] ...`).
 - Numeric arrays must stay numeric:
   - `revenueBreakdown.data`
   - `annualRevenue.data`
@@ -52,3 +66,7 @@ Use this map before writing `data/{TICKER}.json`.
 - PEG render priority when `healthMetrics` has PEG = `N/A`:
   1. Use `pegInputs` to derive `PEG (Forward)`.
   2. If unavailable, renderer falls back to PSG (`P/S / next-year revenue growth(%)`).
+- Report score render priority:
+  1. `reportScoreBreakdown.total`
+  2. `reportScore`
+  3. Legacy radar-derived fallback

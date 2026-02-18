@@ -26,6 +26,21 @@
   - If unavailable, keep explicit reason text (for example `N/A (적자 구간)`).
   - If forward inputs exist, add optional `pegInputs` with `forwardPE`, `epsGrowthPct`, `basis`.
 - Do not synthesize PEG from guesses. Use source-backed values only.
+- For `reportScore`, apply `100x-book-v1`:
+  - `small_cap` (25): 시총 성장 여력 (`<$20B` 우대)
+  - `roe_quality` (20): ROE 15~20%
+  - `reinvestment` (20): 성장률·FCF·재무여력 프록시
+  - `reasonable_per` (20): PER 8~30 우대
+  - `founder_led` (15): Founder CEO + 내부자 지분
+- Missing score inputs must use neutral score (중립점수) + reason text in notes.
+- Include score payload fields:
+  - `reportScoreModel: "100x-book-v1"`
+  - `reportScoreBreakdown.total`
+  - `reportScoreBreakdown.criteria[]`
+  - `reportScoreBreakdown.notes[]`
+- Checklist must include both:
+  - Existing monitoring rows
+  - 5 additional `[100배]` gate rows linked to criteria.
 
 ## 4) File output
 
