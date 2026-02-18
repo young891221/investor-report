@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://young891221.github.io/investor-report/schema/stock.schema.json",
+  "title": "Stock Dashboard Data",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "ticker",
+    "companyName",
+    "companyNameEn",
+    "exchange",
+    "sector",
+    "description",
+    "analysisDate",
+    "price",
+    "priceChange",
+    "priceChangeDir",
+    "marketCap",
+    "marketCapChange",
+    "weekRange",
+    "analystRating",
+    "analystTarget",
+    "keyPoints",
+    "navSections",
+    "segments",
+    "revenueBreakdown",
+    "annualRevenue",
+    "quarterlyRevenue",
+    "marginTrend",
+    "financialTable",
+    "valuation",
+    "financialHealth",
+    "healthMetrics",
+    "timeline",
+    "competitorChart",
+    "competitorTable",
+    "risks",
+    "radar",
+    "bullCase",
+    "bearCase",
+    "checklist",
+    "moats"
+  ],
+  "properties": {
+    "ticker": { "type": "string", "minLength": 1 },
+    "companyName": { "type": "string", "minLength": 1 },
+    "companyNameEn": { "type": "string", "minLength": 1 },
+    "exchange": { "type": "string", "minLength": 1 },
+    "sector": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "analysisDate": { "type": "string", "minLength": 1 },
+    "price": { "type": "string", "minLength": 1 },
+    "priceChange": { "type": "string", "minLength": 1 },
+    "priceChangeDir": { "type": "string", "enum": ["up", "down"] },
+    "marketCap": { "type": "string", "minLength": 1 },
+    "marketCapChange": { "type": "string", "minLength": 1 },
+    "weekRange": { "type": "string", "minLength": 1 },
+    "analystRating": { "type": "string", "minLength": 1 },
+    "analystTarget": { "type": "string", "minLength": 1 },
+    "keyPoints": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "navSections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "icon", "color", "backlog", "description", "revenue"],
+        "properties": {
+          "name": { "type": "string" },
+          "icon": { "type": "string" },
+          "color": { "type": "string" },
+          "backlog": { "type": "string" },
+          "description": { "type": "string" },
+          "revenue": { "type": "string" }
+        }
+      }
+    },
+    "revenueBreakdown": {
+      "type": "object",
+      "required": ["labels", "data", "colors"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "data": { "type": "array", "items": { "type": "number" } },
+        "colors": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "annualRevenue": {
+      "type": "object",
+      "required": ["labels", "data", "estimateStartIndex"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "data": { "type": "array", "items": { "type": "number" } },
+        "estimateStartIndex": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "quarterlyRevenue": {
+      "type": "object",
+      "required": ["labels", "data"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "data": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "marginTrend": {
+      "type": "object",
+      "required": ["labels", "gaap", "nonGaap"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "gaap": { "type": "array", "items": { "type": ["number", "null"] } },
+        "nonGaap": { "type": "array", "items": { "type": ["number", "null"] } }
+      }
+    },
+    "financialTable": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 6,
+        "items": { "type": "string" }
+      }
+    },
+    "valuation": {
+      "type": "object",
+      "required": ["labels", "company", "industry"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "company": { "type": "array", "items": { "type": "number" } },
+        "industry": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "financialHealth": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "value", "width", "gradient"],
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "width": { "type": "string" },
+          "gradient": { "type": "string" }
+        }
+      }
+    },
+    "healthMetrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "value", "color"],
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "color": { "type": "string" }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "text", "status"],
+        "properties": {
+          "date": { "type": "string" },
+          "text": { "type": "string" },
+          "status": { "type": "string", "enum": ["done", "pending"] }
+        }
+      }
+    },
+    "competitorChart": {
+      "type": "object",
+      "required": ["labels", "data", "colors", "chartLabel", "yLabel"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "data": { "type": "array", "items": { "type": "number" } },
+        "colors": { "type": "array", "items": { "type": "string" } },
+        "chartLabel": { "type": "string" },
+        "yLabel": { "type": "string" }
+      }
+    },
+    "competitorTable": {
+      "type": "object",
+      "required": ["headers", "rows"],
+      "properties": {
+        "headers": { "type": "array", "items": { "type": "string" } },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "risks": {
+      "type": "object",
+      "required": ["items", "warnings"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "x", "y", "r", "bg", "border"],
+            "properties": {
+              "label": { "type": "string" },
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "r": { "type": "number" },
+              "bg": { "type": "string" },
+              "border": { "type": "string" }
+            }
+          }
+        },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "radar": {
+      "type": "object",
+      "required": ["labels", "data"],
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "data": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "bullCase": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "bearCase": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "checklist": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 3,
+        "items": { "type": "string" }
+      }
+    },
+    "moats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["icon", "name", "desc"],
+        "properties": {
+          "icon": { "type": "string" },
+          "name": { "type": "string" },
+          "desc": { "type": "string" }
+        }
+      }
+    }
+  }
+}

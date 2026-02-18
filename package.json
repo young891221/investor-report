@@ -1,0 +1,10 @@
+{
+  "name": "investor-report",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "validate:stocks": "node scripts/validate-stocks.js",
+    "build:index": "node scripts/build-index.js",
+    "build:data": "npm run validate:stocks && npm run build:index"
+  }
+}

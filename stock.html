@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>종합 분석 리포트</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav"><div class="nav-inner">
+  <a href="index.html" class="nav-logo"><span class="dot"></span> <span id="nav-ticker"></span> 분석 리포트</a>
+  <div class="nav-links" id="nav-links"></div>
+</div></nav>
+
+<div class="main">
+
+<!-- ═══ HERO ═══ -->
+<div class="hero fade-in" id="summary">
+  <div class="hero-left">
+    <div class="hero-badge"><span class="live"></span> <span id="hero-date"></span></div>
+    <h1 class="hero-title" id="hero-title"></h1>
+    <p class="hero-sub" id="hero-sub"></p>
+  </div>
+  <div class="hero-right" id="hero-stats"></div>
+</div>
+
+<!-- ═══ 01. 핵심 투자 포인트 ═══ -->
+<div class="section fade-in">
+  <div class="section-header"><div class="section-num">01</div><h2 class="section-title">핵심 투자 포인트</h2></div>
+  <div class="callout">
+    <div class="callout-title">💡 5가지 핵심 포인트</div>
+    <ul id="key-points"></ul>
+  </div>
+</div>
+
+<!-- ═══ 02. 비즈니스 모델 ═══ -->
+<div class="section fade-in" id="business">
+  <div class="section-header"><div class="section-num">02</div><h2 class="section-title">비즈니스 모델</h2></div>
+  <div class="grid grid-2" style="margin-bottom:1.5rem" id="segments-grid"></div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-title">매출 구성 비교</div>
+    <div class="chart-wrap"><canvas id="revenueBreakdownChart"></canvas></div>
+  </div>
+  <div class="subsection"><div class="subsection-title"><span class="dot"></span>경쟁 우위 (Competitive Moat)</div></div>
+  <div class="grid grid-4" id="moats-grid"></div>
+</div>
+
+<!-- ═══ 03. 재무 분석 ═══ -->
+<div class="section fade-in" id="finance">
+  <div class="section-header"><div class="section-num">03</div><h2 class="section-title">재무 분석</h2></div>
+  <div class="grid grid-2" style="margin-bottom:1.5rem">
+    <div class="card"><div class="card-title">연간 매출 추이</div><div class="chart-wrap"><canvas id="revenueChart"></canvas></div></div>
+    <div class="card"><div class="card-title">분기별 매출 추이</div><div class="chart-wrap"><canvas id="quarterlyChart"></canvas></div></div>
+  </div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-title">마진 개선 추이</div>
+    <div class="chart-wrap"><canvas id="marginChart"></canvas></div>
+  </div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-title">핵심 재무지표</div>
+    <div style="overflow-x:auto"><table class="data-table" id="financial-table"><thead><tr><th>항목</th><th>최근 분기</th><th>전년 동기</th><th>변화</th><th>의미</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">밸류에이션 비교</div><div class="chart-wrap"><canvas id="valuationChart"></canvas></div></div>
+    <div class="card">
+      <div class="card-title" style="display:flex;align-items:center;gap:6px">재무 건전성 <span class="info-icon">?<span class="info-tip">부채비율(D/E)이 낮고 현금이 많을수록 안정적</span></span></div>
+      <div id="health-bars" style="margin-top:.5rem"></div>
+      <div id="health-metrics" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:var(--radius-xs)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 04. 핵심 촉매 ═══ -->
+<div class="section fade-in" id="catalyst">
+  <div class="section-header"><div class="section-num">04</div><h2 class="section-title">핵심 촉매 & 성장 동력</h2></div>
+  <div class="card">
+    <div class="card-title">이벤트 타임라인</div>
+    <div class="timeline" style="margin-top:.8rem" id="timeline"></div>
+  </div>
+</div>
+
+<!-- ═══ 05. 경쟁사 비교 ═══ -->
+<div class="section fade-in" id="competitors">
+  <div class="section-header"><div class="section-num">05</div><h2 class="section-title">경쟁사 비교</h2></div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-title" id="comp-chart-title"></div>
+    <div class="chart-wrap"><canvas id="competitorChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">경쟁사 종합 비교표</div>
+    <div style="overflow-x:auto"><table class="data-table" id="competitor-table"></table></div>
+  </div>
+</div>
+
+<!-- ═══ 06. 리스크 ═══ -->
+<div class="section fade-in" id="risks">
+  <div class="section-header"><div class="section-num">06</div><h2 class="section-title">주요 리스크 요인</h2></div>
+  <div class="callout callout-risk" style="margin-bottom:1.5rem">
+    <div class="callout-title">핵심 리스크 요약</div>
+    <ul id="risk-warnings"></ul>
+  </div>
+  <div class="card">
+    <div class="card-title">리스크 영향도 매트릭스</div>
+    <div class="chart-wrap chart-wrap-tall"><canvas id="riskChart"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══ 07. 투자 결론 ═══ -->
+<div class="section fade-in" id="verdict">
+  <div class="section-header"><div class="section-num">07</div><h2 class="section-title">장기 투자 관점 종합 평가</h2></div>
+  <div class="pros-cons" style="margin-bottom:1.5rem">
+    <div class="card card-green">
+      <div class="card-title" style="color:var(--green2)">✦ 강점 (Bull Case)</div>
+      <ul class="pros-list" id="bull-list"></ul>
+    </div>
+    <div class="card card-red">
+      <div class="card-title" style="color:var(--red2)">✦ 약점 (Bear Case)</div>
+      <ul class="cons-list" id="bear-list"></ul>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-title">투자 매력도 레이더 차트</div>
+    <div class="chart-wrap chart-wrap-sq" style="max-width:420px;margin:0 auto"><canvas id="radarChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">📋 장기 투자자 체크리스트</div>
+    <div style="overflow-x:auto"><table class="data-table" id="checklist-table"><thead><tr><th>확인 항목</th><th>시점</th><th>평가 포인트</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</div>
+
+<div class="disclaimer" id="disclaimer"></div>
+</div><!-- .main -->
+
+<script src="js/render.js"></script>
+<script>
+function showLoadError(message) {
+  document.querySelector('.main').innerHTML = `<div style="text-align:center;padding:4rem;color:var(--text2)">
+    <h2 style="color:var(--red2);margin-bottom:1rem">데이터 로딩 실패</h2>
+    <p>${message}</p>
+    <p style="margin-top:1rem"><a href="index.html" style="color:var(--accent2)">← 홈으로 돌아가기</a></p>
+  </div>`;
+}
+
+const params = new URLSearchParams(window.location.search);
+const rawTicker = (params.get('ticker') || params.get('stock') || '').trim().toUpperCase();
+
+if (!rawTicker) {
+  showLoadError('요청된 종목 코드가 없습니다. 예: stock.html?ticker=IREN');
+} else if (!/^[A-Z0-9._-]{1,15}$/.test(rawTicker)) {
+  showLoadError(`유효하지 않은 종목 코드입니다: ${rawTicker}`);
+} else {
+  fetch(`data/${rawTicker}.json`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`종목 파일을 찾을 수 없습니다 (${response.status})`);
+      }
+      return response.json();
+    })
+    .then(data => renderDashboard(data))
+    .catch(err => showLoadError(err.message));
+}
+</script>
+</body>
+</html>
