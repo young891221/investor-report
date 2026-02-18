@@ -14,8 +14,8 @@
   "weekRange": "$214.25 — $498.83",
   "analystRating": "Hold",
   "analystTarget": "평균 $396.15 (↓3.5%)",
-  "reportScore": 58,
-  "reportVerdict": "HOLD",
+  "reportScore": 36,
+  "reportVerdict": "REDUCE",
   "keyPoints": [
     "🚗 <strong>EV 본업 둔화:</strong> 2025년 연간 매출은 $94.8B로 전년 대비 2.9% 감소, 자동차 매출이 조정 국면에 진입했습니다.",
     "🔋 <strong>에너지 사업 고성장:</strong> 2025년 Q4 에너지 발전·저장 매출은 $3.85B로 전년동기 대비 +113% 성장했습니다.",
@@ -518,6 +518,31 @@
       "밸류에이션 디레이팅 리스크",
       "상시",
       "금리·실적 미스 시 멀티플 조정 폭 점검"
+    ],
+    [
+      "[100배] 시총 여력",
+      "분기별",
+      "미달 · 4/25 · 시가총액 $1.54T 기준 (<$20B 우대)"
+    ],
+    [
+      "[100배] ROE 품질",
+      "분기별",
+      "미달 · 7/20 · ROE 4.93%"
+    ],
+    [
+      "[100배] 재투자 효율",
+      "분기별",
+      "관찰 · 13/20 · 연매출 성장률 -2.9% · FCF $6.22B · 순현금/부채 $29.3B, 유동비율 2.16"
+    ],
+    [
+      "[100배] PER 안전마진",
+      "상시",
+      "미달 · 4/20 · P/E 380.21x (8~30 우대)"
+    ],
+    [
+      "[100배] 창업자 운영력",
+      "반기별",
+      "데이터 부족 · 8/15 · Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
     ]
   ],
   "moats": [
@@ -541,5 +566,54 @@
       "name": "차량+에너지 통합 포트폴리오",
       "desc": "EV와 ESS의 이중 성장축<br>수요 사이클 분산 효과"
     }
-  ]
+  ],
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 36,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력이 큼",
+        "weight": 25,
+        "score": 4,
+        "status": "fail",
+        "evidence": "시가총액 $1.54T 기준 (<$20B 우대)"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 7,
+        "status": "fail",
+        "evidence": "ROE 4.93%"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자(복리)",
+        "weight": 20,
+        "score": 13,
+        "status": "watch",
+        "evidence": "연매출 성장률 -2.9% · FCF $6.22B · 순현금/부채 $29.3B, 유동비율 2.16"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER이 과열되지 않은 안전마진",
+        "weight": 20,
+        "score": 4,
+        "status": "fail",
+        "evidence": "P/E 380.21x (8~30 우대)"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영(Founder-led)",
+        "weight": 15,
+        "score": 8,
+        "status": "unknown",
+        "evidence": "Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
+      }
+    ],
+    "notes": [
+      "창업자 주도 운영(Founder-led): 데이터 미확보로 중립 점수 적용"
+    ]
+  }
 }

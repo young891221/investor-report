@@ -6,7 +6,6 @@
   "sector": "AI 인프라 / 비트코인 채굴",
   "description": "비트코인 채굴에서 AI 클라우드 인프라로 전환 중인 차세대 데이터센터 기업. 마이크로소프트 $97억 계약 확보.",
   "analysisDate": "2026.02.17",
-
   "price": "$42.22",
   "priceChange": "▼ 45% from ATH ($76.87)",
   "priceChangeDir": "down",
@@ -15,9 +14,8 @@
   "weekRange": "$5.13 — $76.87",
   "analystRating": "Buy",
   "analystTarget": "목표 $79.31 (↑88%)",
-  "reportScore": 61,
-  "reportVerdict": "HOLD",
-
+  "reportScore": 70,
+  "reportVerdict": "BUY",
   "keyPoints": [
     "🔄 <strong>사업 전환 핵심:</strong> 비트코인 채굴 → AI 클라우드 인프라로 대전환 중. 마이크로소프트와 $97억(약 14조원) 규모 AI 클라우드 계약 확보",
     "⚡ <strong>거대한 전력 확보:</strong> 4.5GW 이상의 전력 확보, 실제 사용량은 10% 미만 — 향후 AI 확장에 막대한 여력 보유",
@@ -25,17 +23,36 @@
     "💰 <strong>강력한 자금 조달:</strong> 현금 $32.6억, $36억 GPU 파이낸싱, MS 선급금 $19억 확보. 총 $92억 자금 확보",
     "⚠️ <strong>단기 리스크 존재:</strong> Q2 FY26 실적 미스(매출 $1.85억 vs 컨센 $2.30억), 비트코인 가격 하락, 높은 밸류에이션(P/E 48x)"
   ],
-
   "navSections": [
-    {"id":"summary", "label":"핵심요약"},
-    {"id":"business", "label":"비즈니스"},
-    {"id":"finance", "label":"재무"},
-    {"id":"catalyst", "label":"촉매"},
-    {"id":"competitors", "label":"경쟁사"},
-    {"id":"risks", "label":"리스크"},
-    {"id":"verdict", "label":"투자결론"}
+    {
+      "id": "summary",
+      "label": "핵심요약"
+    },
+    {
+      "id": "business",
+      "label": "비즈니스"
+    },
+    {
+      "id": "finance",
+      "label": "재무"
+    },
+    {
+      "id": "catalyst",
+      "label": "촉매"
+    },
+    {
+      "id": "competitors",
+      "label": "경쟁사"
+    },
+    {
+      "id": "risks",
+      "label": "리스크"
+    },
+    {
+      "id": "verdict",
+      "label": "투자결론"
+    }
   ],
-
   "segments": [
     {
       "name": "비트코인 채굴",
@@ -62,105 +79,403 @@
       "revenue": "확보 전력: 4.5GW+ (활용률 <10%)"
     }
   ],
-
   "revenueBreakdown": {
-    "labels": ["비트코인 채굴 ($167.4M)", "AI 클라우드 ($17.3M)"],
-    "data": [91, 9],
-    "colors": ["#f59e0b", "#3b82f6"]
+    "labels": [
+      "비트코인 채굴 ($167.4M)",
+      "AI 클라우드 ($17.3M)"
+    ],
+    "data": [
+      91,
+      9
+    ],
+    "colors": [
+      "#f59e0b",
+      "#3b82f6"
+    ]
   },
-
   "annualRevenue": {
-    "labels": ["FY2022", "FY2023", "FY2024", "FY2025", "FY2026E", "FY2027E"],
-    "data": [47, 82, 187, 501, 850, 2200],
+    "labels": [
+      "FY2022",
+      "FY2023",
+      "FY2024",
+      "FY2025",
+      "FY2026E",
+      "FY2027E"
+    ],
+    "data": [
+      47,
+      82,
+      187,
+      501,
+      850,
+      2200
+    ],
     "estimateStartIndex": 4
   },
-
   "quarterlyRevenue": {
-    "labels": ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
-    "data": [53, 116, 148, 187, 240, 185]
+    "labels": [
+      "Q1'25",
+      "Q2'25",
+      "Q3'25",
+      "Q4'25",
+      "Q1'26",
+      "Q2'26"
+    ],
+    "data": [
+      53,
+      116,
+      148,
+      187,
+      240,
+      185
+    ]
   },
-
   "marginTrend": {
-    "labels": ["FY2022", "FY2023", "FY2024", "Q4'25", "Q1'26", "Q2'26", "Q3'26E", "Q4'26E"],
-    "gaap": [-120, -45, -15, 17, 51, -84, -10, 5],
-    "nonGaap": [null, null, null, null, 38, 41, 45, 50]
+    "labels": [
+      "FY2022",
+      "FY2023",
+      "FY2024",
+      "Q4'25",
+      "Q1'26",
+      "Q2'26",
+      "Q3'26E",
+      "Q4'26E"
+    ],
+    "gaap": [
+      -120,
+      -45,
+      -15,
+      17,
+      51,
+      -84,
+      -10,
+      5
+    ],
+    "nonGaap": [
+      null,
+      null,
+      null,
+      null,
+      38,
+      41,
+      45,
+      50
+    ]
   },
-
   "financialTable": [
-    ["매출", "$184.7M", "$116.1M", "+59% YoY", "green", "전년 대비 성장 유지, 다만 QoQ 23% 감소"],
-    ["BTC 채굴 매출", "$167.4M", "$113.5M", "+47.5%", "green", "해시레이트 확대로 YoY 성장"],
-    ["AI 클라우드 매출", "~$17.3M", "~$2.6M", "+565%", "green", "Q1 $7.3M → Q2 $17.3M, 급성장 중"],
-    ["순이익", "-$155.4M", "+$23.3M", "적자전환", "red", "비현금 비용 $219M 포함 (전환사채 손실)"],
-    ["조정 EBITDA", "$75.3M", "$62.4M", "+21%", "green", "영업 기반 수익성은 개선 중"],
-    ["EPS", "-$0.52", "$0.09", "Miss", "red", "컨센서스 -$0.18 대비 크게 하회"],
-    ["현금", "$3,260.6M", "-", "충분", "blue", "MS 선급금 + 전환사채로 막대한 유동성"],
-    ["총 부채", "$3,840M", "-", "증가", "orange", "GPU 파이낸싱·전환사채 반영"]
+    [
+      "매출",
+      "$184.7M",
+      "$116.1M",
+      "+59% YoY",
+      "green",
+      "전년 대비 성장 유지, 다만 QoQ 23% 감소"
+    ],
+    [
+      "BTC 채굴 매출",
+      "$167.4M",
+      "$113.5M",
+      "+47.5%",
+      "green",
+      "해시레이트 확대로 YoY 성장"
+    ],
+    [
+      "AI 클라우드 매출",
+      "~$17.3M",
+      "~$2.6M",
+      "+565%",
+      "green",
+      "Q1 $7.3M → Q2 $17.3M, 급성장 중"
+    ],
+    [
+      "순이익",
+      "-$155.4M",
+      "+$23.3M",
+      "적자전환",
+      "red",
+      "비현금 비용 $219M 포함 (전환사채 손실)"
+    ],
+    [
+      "조정 EBITDA",
+      "$75.3M",
+      "$62.4M",
+      "+21%",
+      "green",
+      "영업 기반 수익성은 개선 중"
+    ],
+    [
+      "EPS",
+      "-$0.52",
+      "$0.09",
+      "Miss",
+      "red",
+      "컨센서스 -$0.18 대비 크게 하회"
+    ],
+    [
+      "현금",
+      "$3,260.6M",
+      "-",
+      "충분",
+      "blue",
+      "MS 선급금 + 전환사채로 막대한 유동성"
+    ],
+    [
+      "총 부채",
+      "$3,840M",
+      "-",
+      "증가",
+      "orange",
+      "GPU 파이낸싱·전환사채 반영"
+    ]
   ],
-
   "valuation": {
-    "labels": ["P/E (TTM)", "P/S (TTM)", "P/B", "EV/EBITDA"],
-    "company": [48, 19, 4.6, 113],
-    "industry": [24, 8, 3, 45]
+    "labels": [
+      "P/E (TTM)",
+      "P/S (TTM)",
+      "P/B",
+      "EV/EBITDA"
+    ],
+    "company": [
+      48,
+      19,
+      4.6,
+      113
+    ],
+    "industry": [
+      24,
+      8,
+      3,
+      45
+    ]
   },
   "pegInputs": {
     "forwardPE": null,
     "epsGrowthPct": null,
     "basis": "Forward P/E, PEG 미제공 (2026-02-13 기준)"
   },
-
   "financialHealth": [
-    {"label":"현금", "value":"$3,261M", "width":"75%", "gradient":"var(--green),var(--green2)"},
-    {"label":"총 부채", "value":"$3,840M", "width":"85%", "gradient":"var(--red),var(--red2)"},
-    {"label":"순부채", "value":"$582M", "width":"15%", "gradient":"var(--orange),#fbbf24"}
+    {
+      "label": "현금",
+      "value": "$3,261M",
+      "width": "75%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "총 부채",
+      "value": "$3,840M",
+      "width": "85%",
+      "gradient": "var(--red),var(--red2)"
+    },
+    {
+      "label": "순부채",
+      "value": "$582M",
+      "width": "15%",
+      "gradient": "var(--orange),#fbbf24"
+    }
   ],
   "healthMetrics": [
-    {"label":"D/E 비율", "value":"1.53 (높음)", "color":"var(--red2)"},
-    {"label":"유동비율", "value":"4.96 (양호)", "color":"var(--green2)"},
-    {"label":"ROE (최근 1년)", "value":"20.53%", "color":"var(--green2)"},
-    {"label":"PEG (최근 1년)", "value":"N/A (데이터 없음)", "color":"var(--text2)"},
-    {"label":"베타", "value":"4.28 (초고변동)", "color":"var(--red2)"},
-    {"label":"FCF", "value":"-$1.39B (투자기)", "color":"var(--orange)"}
+    {
+      "label": "D/E 비율",
+      "value": "1.53 (높음)",
+      "color": "var(--red2)"
+    },
+    {
+      "label": "유동비율",
+      "value": "4.96 (양호)",
+      "color": "var(--green2)"
+    },
+    {
+      "label": "ROE (최근 1년)",
+      "value": "20.53%",
+      "color": "var(--green2)"
+    },
+    {
+      "label": "PEG (최근 1년)",
+      "value": "N/A (데이터 없음)",
+      "color": "var(--text2)"
+    },
+    {
+      "label": "베타",
+      "value": "4.28 (초고변동)",
+      "color": "var(--red2)"
+    },
+    {
+      "label": "FCF",
+      "value": "-$1.39B (투자기)",
+      "color": "var(--orange)"
+    }
   ],
-
   "timeline": [
-    {"date":"2021.11", "text":"NASDAQ 상장 (당시 Iris Energy)", "status":"done"},
-    {"date":"2024.04", "text":"비트코인 4차 반감기 — 채굴 수익성 압박 시작", "status":"done"},
-    {"date":"2024.11", "text":"IREN으로 사명 변경, AI 인프라 전환 선언", "status":"done"},
-    {"date":"2025.08", "text":"FY25 연간 실적 발표 — 매출 $5.01억 (+168% YoY)", "status":"done"},
-    {"date":"2025.11", "text":"마이크로소프트 $97억 AI 클라우드 계약 체결 (Q1 FY26)", "status":"done"},
-    {"date":"2025.12", "text":"$36억 GPU 파이낸싱 + NVIDIA 우선 파트너 지위 확보", "status":"done"},
-    {"date":"2026.02", "text":"MSCI USA 편입 확정 (2/27 시행)", "status":"done"},
-    {"date":"2026.H1", "text":"GPU 140,000대 확장 + Sweetwater 캠퍼스 가동", "status":"pending"},
-    {"date":"2026.말", "text":"AI 클라우드 ARR $34억 목표 달성 여부 — 핵심 촉매", "status":"pending"},
-    {"date":"2027~28", "text":"Oklahoma 1.6GW 캠퍼스 본격 가동 + 수익성 전환 기대", "status":"pending"}
+    {
+      "date": "2021.11",
+      "text": "NASDAQ 상장 (당시 Iris Energy)",
+      "status": "done"
+    },
+    {
+      "date": "2024.04",
+      "text": "비트코인 4차 반감기 — 채굴 수익성 압박 시작",
+      "status": "done"
+    },
+    {
+      "date": "2024.11",
+      "text": "IREN으로 사명 변경, AI 인프라 전환 선언",
+      "status": "done"
+    },
+    {
+      "date": "2025.08",
+      "text": "FY25 연간 실적 발표 — 매출 $5.01억 (+168% YoY)",
+      "status": "done"
+    },
+    {
+      "date": "2025.11",
+      "text": "마이크로소프트 $97억 AI 클라우드 계약 체결 (Q1 FY26)",
+      "status": "done"
+    },
+    {
+      "date": "2025.12",
+      "text": "$36억 GPU 파이낸싱 + NVIDIA 우선 파트너 지위 확보",
+      "status": "done"
+    },
+    {
+      "date": "2026.02",
+      "text": "MSCI USA 편입 확정 (2/27 시행)",
+      "status": "done"
+    },
+    {
+      "date": "2026.H1",
+      "text": "GPU 140,000대 확장 + Sweetwater 캠퍼스 가동",
+      "status": "pending"
+    },
+    {
+      "date": "2026.말",
+      "text": "AI 클라우드 ARR $34억 목표 달성 여부 — 핵심 촉매",
+      "status": "pending"
+    },
+    {
+      "date": "2027~28",
+      "text": "Oklahoma 1.6GW 캠퍼스 본격 가동 + 수익성 전환 기대",
+      "status": "pending"
+    }
   ],
-
   "competitorChart": {
-    "labels": ["CoreWeave", "IREN", "Core\nScientific", "Cipher\nMining", "TeraWulf"],
-    "data": [65, 14, 9.5, 5.5, 3.8],
-    "colors": ["#8b5cf6", "#3b82f6", "#ec4899", "#0ea5e9", "#f59e0b"],
+    "labels": [
+      "CoreWeave",
+      "IREN",
+      "Core\nScientific",
+      "Cipher\nMining",
+      "TeraWulf"
+    ],
+    "data": [
+      65,
+      14,
+      9.5,
+      5.5,
+      3.8
+    ],
+    "colors": [
+      "#8b5cf6",
+      "#3b82f6",
+      "#ec4899",
+      "#0ea5e9",
+      "#f59e0b"
+    ],
     "chartLabel": "시가총액 비교 (2026.02, 단위: $B)",
     "yLabel": "B"
   },
-
   "competitorTable": {
-    "headers": ["기업", "티커", "핵심 사업", "AI 계약", "차별화", "위협 수준"],
+    "headers": [
+      "기업",
+      "티커",
+      "핵심 사업",
+      "AI 계약",
+      "차별화",
+      "위협 수준"
+    ],
     "rows": [
-      ["IREN", "IREN", "BTC채굴 + AI클라우드", "MS $97억", "수직통합·4.5GW전력", "—"],
-      ["CoreWeave", "CRWV", "GPU 클라우드 전문", "MS/OpenAI $119억", "NVIDIA 핵심파트너·규모", "<span class='tag tag-red'>높음</span>"],
-      ["Core Scientific", "CORZ", "BTC채굴 + HPC호스팅", "CoreWeave 계약", "조기 HPC 전환·안정수익", "<span class='tag tag-orange'>중간</span>"],
-      ["Cipher Mining", "CIFR", "BTC채굴 + HPC전환", "Google Cloud $26억", "1GW 텍사스 개발·전력우위", "<span class='tag tag-orange'>중간</span>"],
-      ["TeraWulf", "WULF", "BTC채굴 + AI데이터센터", "Google/AWS 대형계약", "원자력·수력 저비용 전력", "<span class='tag tag-orange'>중간</span>"]
+      [
+        "IREN",
+        "IREN",
+        "BTC채굴 + AI클라우드",
+        "MS $97억",
+        "수직통합·4.5GW전력",
+        "—"
+      ],
+      [
+        "CoreWeave",
+        "CRWV",
+        "GPU 클라우드 전문",
+        "MS/OpenAI $119억",
+        "NVIDIA 핵심파트너·규모",
+        "<span class='tag tag-red'>높음</span>"
+      ],
+      [
+        "Core Scientific",
+        "CORZ",
+        "BTC채굴 + HPC호스팅",
+        "CoreWeave 계약",
+        "조기 HPC 전환·안정수익",
+        "<span class='tag tag-orange'>중간</span>"
+      ],
+      [
+        "Cipher Mining",
+        "CIFR",
+        "BTC채굴 + HPC전환",
+        "Google Cloud $26억",
+        "1GW 텍사스 개발·전력우위",
+        "<span class='tag tag-orange'>중간</span>"
+      ],
+      [
+        "TeraWulf",
+        "WULF",
+        "BTC채굴 + AI데이터센터",
+        "Google/AWS 대형계약",
+        "원자력·수력 저비용 전력",
+        "<span class='tag tag-orange'>중간</span>"
+      ]
     ]
   },
-
   "risks": {
     "items": [
-      {"label":"비트코인 가격 하락", "x":9, "y":9, "r":22, "bg":"rgba(239,68,68,.6)", "border":"#ef4444"},
-      {"label":"AI 전환 실행 리스크", "x":7, "y":9, "r":20, "bg":"rgba(245,158,11,.5)", "border":"#f59e0b"},
-      {"label":"밸류에이션 부담", "x":8, "y":7, "r":18, "bg":"rgba(139,92,246,.5)", "border":"#8b5cf6"},
-      {"label":"MS 의존도 집중", "x":6, "y":7, "r":16, "bg":"rgba(6,182,212,.5)", "border":"#06b6d4"},
-      {"label":"주식 희석화 위험", "x":5, "y":5, "r":13, "bg":"rgba(236,72,153,.4)", "border":"#ec4899"}
+      {
+        "label": "비트코인 가격 하락",
+        "x": 9,
+        "y": 9,
+        "r": 22,
+        "bg": "rgba(239,68,68,.6)",
+        "border": "#ef4444"
+      },
+      {
+        "label": "AI 전환 실행 리스크",
+        "x": 7,
+        "y": 9,
+        "r": 20,
+        "bg": "rgba(245,158,11,.5)",
+        "border": "#f59e0b"
+      },
+      {
+        "label": "밸류에이션 부담",
+        "x": 8,
+        "y": 7,
+        "r": 18,
+        "bg": "rgba(139,92,246,.5)",
+        "border": "#8b5cf6"
+      },
+      {
+        "label": "MS 의존도 집중",
+        "x": 6,
+        "y": 7,
+        "r": 16,
+        "bg": "rgba(6,182,212,.5)",
+        "border": "#06b6d4"
+      },
+      {
+        "label": "주식 희석화 위험",
+        "x": 5,
+        "y": 5,
+        "r": 13,
+        "bg": "rgba(236,72,153,.4)",
+        "border": "#ec4899"
+      }
     ],
     "warnings": [
       "⛏️ <strong>비트코인 가격 변동성:</strong> 현재 매출의 91%가 BTC 채굴 의존. BTC가 $66K 수준으로 하락하며 채굴 수익성 급감. 반감기 이후 경쟁 심화로 해시프라이스 하락 지속 위험",
@@ -170,12 +485,24 @@
       "💸 <strong>자본 구조 리스크:</strong> 총 부채 $38.4억으로 D/E 1.53배. 전환사채·GPU 리스 등 금융 비용 증가. 현금 소진 속도가 빠르며 FCF -$13.9억 적자 상태"
     ]
   },
-
   "radar": {
-    "labels": ["성장성", "수익성", "경쟁우위", "재무건전성", "밸류에이션\n매력도", "카탈리스트"],
-    "data": [9, 3, 7, 5, 3, 9]
+    "labels": [
+      "성장성",
+      "수익성",
+      "경쟁우위",
+      "재무건전성",
+      "밸류에이션\n매력도",
+      "카탈리스트"
+    ],
+    "data": [
+      9,
+      3,
+      7,
+      5,
+      3,
+      9
+    ]
   },
-
   "bullCase": [
     "🚀 <strong>AI 인프라 폭발적 성장:</strong> $97억 MS 계약을 포함, $23억 ARR 이미 확보. 2026년 말 $34억 ARR 달성 시 매출 구조 근본적 변화 — BTC 의존도 대폭 감소",
     "⚡ <strong>전력 확보 = 최고의 해자:</strong> 4.5GW+ 그리드 연결 전력 중 실제 사용률 10% 미만. 경쟁사 대비 압도적인 확장 여력. 전력 확보가 AI 인프라 시장의 최대 진입장벽",
@@ -190,20 +517,132 @@
     "🏗️ <strong>건설 지연 리스크:</strong> Childress 750MW 확장, Sweetwater 2GW, Oklahoma 1.6GW 등 3개 대형 프로젝트 동시 진행. 어느 하나라도 지연되면 ARR 목표 차질",
     "🤖 <strong>치열한 경쟁 환경:</strong> CoreWeave($65B), Core Scientific, Cipher Mining 등 경쟁사들도 동시에 AI 전환 중. CoreWeave-NVIDIA 독점적 관계가 GPU 확보 경쟁에서 불리하게 작용 가능"
   ],
-
   "checklist": [
-    ["다음 실적 발표", "2026.05.13", "Q3 FY26 — AI 클라우드 매출 비중 증가 속도 확인"],
-    ["ARR 목표 추적", "2026년 말", "$34억 ARR 달성 여부 — 투자 테시스의 핵심"],
-    ["GPU 확장 진척", "분기별", "140K GPU 배치 일정 준수 여부 (현재 23K)"],
-    ["BTC 가격 모니터링", "상시", "$60K 이하 시 채굴 수익성 위험 — 전환 속도 가속 필요"],
-    ["MSCI 편입 효과", "2026.02.27~", "패시브 자금 유입 규모 + 기관 수급 변화"],
-    ["경쟁사 동향", "분기별", "CoreWeave·Cipher 계약 확대 시 경쟁 심화 우려"]
+    [
+      "다음 실적 발표",
+      "2026.05.13",
+      "Q3 FY26 — AI 클라우드 매출 비중 증가 속도 확인"
+    ],
+    [
+      "ARR 목표 추적",
+      "2026년 말",
+      "$34억 ARR 달성 여부 — 투자 테시스의 핵심"
+    ],
+    [
+      "GPU 확장 진척",
+      "분기별",
+      "140K GPU 배치 일정 준수 여부 (현재 23K)"
+    ],
+    [
+      "BTC 가격 모니터링",
+      "상시",
+      "$60K 이하 시 채굴 수익성 위험 — 전환 속도 가속 필요"
+    ],
+    [
+      "MSCI 편입 효과",
+      "2026.02.27~",
+      "패시브 자금 유입 규모 + 기관 수급 변화"
+    ],
+    [
+      "경쟁사 동향",
+      "분기별",
+      "CoreWeave·Cipher 계약 확대 시 경쟁 심화 우려"
+    ],
+    [
+      "[100배] 시총 여력",
+      "분기별",
+      "통과 · 25/25 · 시가총액 $14B 기준 (<$20B 우대)"
+    ],
+    [
+      "[100배] ROE 품질",
+      "분기별",
+      "통과 · 16/20 · ROE 20.53%"
+    ],
+    [
+      "[100배] 재투자 효율",
+      "분기별",
+      "관찰 · 13/20 · 연매출 성장률 167.9% · FCF $-1.39B · 순현금/부채 $-582M, 유동비율 4.96"
+    ],
+    [
+      "[100배] PER 안전마진",
+      "상시",
+      "미달 · 8/20 · P/E 48x (8~30 우대)"
+    ],
+    [
+      "[100배] 창업자 운영력",
+      "반기별",
+      "데이터 부족 · 8/15 · Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
+    ]
   ],
-
   "moats": [
-    {"icon":"⚡", "name":"전력 확보 우위", "desc":"4.5GW+ 그리드 연결 전력<br>실사용 <10% — 막대한 확장 여력"},
-    {"icon":"🔧", "name":"수직 통합", "desc":"설계·건설·운영 자체 수행<br>3자 의존 제거 → 비용 절감"},
-    {"icon":"🌱", "name":"100% 재생에너지", "desc":"수력·태양광 기반 전력<br>ESG 선호 고객(MS) 확보 강점"},
-    {"icon":"🤝", "name":"전략적 파트너십", "desc":"MS $97억 + NVIDIA 우선파트너<br>GB300 NVL72 우선 배치권"}
-  ]
+    {
+      "icon": "⚡",
+      "name": "전력 확보 우위",
+      "desc": "4.5GW+ 그리드 연결 전력<br>실사용 <10% — 막대한 확장 여력"
+    },
+    {
+      "icon": "🔧",
+      "name": "수직 통합",
+      "desc": "설계·건설·운영 자체 수행<br>3자 의존 제거 → 비용 절감"
+    },
+    {
+      "icon": "🌱",
+      "name": "100% 재생에너지",
+      "desc": "수력·태양광 기반 전력<br>ESG 선호 고객(MS) 확보 강점"
+    },
+    {
+      "icon": "🤝",
+      "name": "전략적 파트너십",
+      "desc": "MS $97억 + NVIDIA 우선파트너<br>GB300 NVL72 우선 배치권"
+    }
+  ],
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 70,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력이 큼",
+        "weight": 25,
+        "score": 25,
+        "status": "pass",
+        "evidence": "시가총액 $14B 기준 (<$20B 우대)"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 16,
+        "status": "pass",
+        "evidence": "ROE 20.53%"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자(복리)",
+        "weight": 20,
+        "score": 13,
+        "status": "watch",
+        "evidence": "연매출 성장률 167.9% · FCF $-1.39B · 순현금/부채 $-582M, 유동비율 4.96"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER이 과열되지 않은 안전마진",
+        "weight": 20,
+        "score": 8,
+        "status": "fail",
+        "evidence": "P/E 48x (8~30 우대)"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영(Founder-led)",
+        "weight": 15,
+        "score": 8,
+        "status": "unknown",
+        "evidence": "Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
+      }
+    ],
+    "notes": [
+      "창업자 주도 운영(Founder-led): 데이터 미확보로 중립 점수 적용"
+    ]
+  }
 }
