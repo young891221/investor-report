@@ -1,0 +1,20 @@
+# IDE
+.idea/
+*.iml
+
+# Build output
+out/
+build/
+target/
+.gradle/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# OS artifacts
+.DS_Store
+Thumbs.db
