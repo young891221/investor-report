@@ -29,6 +29,10 @@
     return report.priceChange || '-';
   }
 
+  function formatReportScore(rawScore) {
+    return Number.isFinite(Number(rawScore)) ? `${Math.round(Number(rawScore))}점` : '-';
+  }
+
   function buildReportHref(ticker, date, rawHref) {
     if (typeof rawHref === 'string' && rawHref.trim() !== '') {
       return rawHref;
@@ -63,11 +67,13 @@
         const date = String(report.date || '').trim();
         const href = buildReportHref(ticker, date, report.href);
         const reportLabel = formatDisplayDate(date);
+        const score = formatReportScore(report.score);
 
         return `
           <a class="stock-report-link" href="${escapeHtml(href)}">
             <span class="stock-report-date">${escapeHtml(reportLabel)} Report</span>
             <span class="stock-report-rating">${escapeHtml(report.rating || '-')}</span>
+            <span class="stock-report-score">${escapeHtml(score)}</span>
             <span class="stock-report-change">${escapeHtml(report.change || '-')}</span>
           </a>
         `;
@@ -85,6 +91,7 @@
       changeDir: detectChangeDir(raw || {}),
       changeBasis: raw && raw.changeBasis ? raw.changeBasis : '기준',
       rating: raw && (raw.rating || raw.analystRating) ? raw.rating || raw.analystRating : '-',
+      score: raw && Object.prototype.hasOwnProperty.call(raw, 'reportScore') ? raw.reportScore : '-',
       href: buildReportHref(ticker, date, raw && raw.href),
     };
   }
@@ -209,6 +216,7 @@
         <div class="stock-list-tag-row">
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
           <span class="stock-card-tag buy">${escapeHtml(latest.rating || '-')}</span>
+          <span class="stock-card-tag">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}`)}</span>
           <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
         </div>
         ${stock.description ? `<p class="stock-list-desc">${escapeHtml(stock.description || '')}</p>` : ''}

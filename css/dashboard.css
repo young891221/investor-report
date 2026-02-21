@@ -265,4 +265,5 @@ body{
 .stock-report-link:hover{border-color:var(--accent);background:rgba(59,130,246,.08)}
 .stock-report-date{font-size:.74rem;font-weight:600;color:var(--text)}
 .stock-report-rating{font-size:.68rem;font-weight:700;color:var(--accent2)}
+.stock-report-score{font-size:.68rem;font-weight:700;color:var(--text2)}
 .stock-report-change{font-size:.68rem;color:var(--text2)}

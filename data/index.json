@@ -17,6 +17,7 @@
       "changeDir": "up",
       "changeBasis": "52주",
       "rating": "Strong Buy",
+      "reportScore": 57,
       "href": "stock.html?ticker=BMNR&date=2026-02-21"
     },
     "reports": [
@@ -27,6 +28,7 @@
         "changeDir": "up",
         "changeBasis": "52주",
         "rating": "Strong Buy",
+        "reportScore": 57,
         "href": "stock.html?ticker=BMNR&date=2026-02-21"
       }
     ]
@@ -49,6 +51,7 @@
       "changeDir": "up",
       "changeBasis": "52주",
       "rating": "Buy",
+      "reportScore": 43,
       "href": "stock.html?ticker=CRWD&date=2026-02-21"
     },
     "reports": [
@@ -59,6 +62,7 @@
         "changeDir": "up",
         "changeBasis": "52주",
         "rating": "Buy",
+        "reportScore": 43,
         "href": "stock.html?ticker=CRWD&date=2026-02-21"
       }
     ]
@@ -81,6 +85,7 @@
       "changeDir": "down",
       "changeBasis": "52주",
       "rating": "Strong Buy",
+      "reportScore": 52,
       "href": "stock.html?ticker=DT&date=2026-02-21"
     },
     "reports": [
@@ -91,6 +96,7 @@
         "changeDir": "down",
         "changeBasis": "52주",
         "rating": "Strong Buy",
+        "reportScore": 52,
         "href": "stock.html?ticker=DT&date=2026-02-21"
       }
     ]
@@ -113,6 +119,7 @@
       "changeDir": "up",
       "changeBasis": "52주",
       "rating": "Buy",
+      "reportScore": 61,
       "href": "stock.html?ticker=IREN&date=2026-02-17"
     },
     "reports": [
@@ -123,6 +130,7 @@
         "changeDir": "up",
         "changeBasis": "52주",
         "rating": "Buy",
+        "reportScore": 61,
         "href": "stock.html?ticker=IREN&date=2026-02-17"
       }
     ]
@@ -145,6 +153,7 @@
       "changeDir": "down",
       "changeBasis": "52주",
       "rating": "Buy",
+      "reportScore": 41,
       "href": "stock.html?ticker=PANW&date=2026-02-21"
     },
     "reports": [
@@ -155,6 +164,7 @@
         "changeDir": "down",
         "changeBasis": "52주",
         "rating": "Buy",
+        "reportScore": 41,
         "href": "stock.html?ticker=PANW&date=2026-02-21"
       }
     ]
@@ -177,6 +187,7 @@
       "changeDir": "up",
       "changeBasis": "52주",
       "rating": "Buy",
+      "reportScore": 68,
       "href": "stock.html?ticker=RKLB&date=2026-02-18"
     },
     "reports": [
@@ -187,6 +198,7 @@
         "changeDir": "up",
         "changeBasis": "52주",
         "rating": "Buy",
+        "reportScore": 68,
         "href": "stock.html?ticker=RKLB&date=2026-02-18"
       }
     ]
@@ -209,6 +221,7 @@
       "changeDir": "up",
       "changeBasis": "52주",
       "rating": "Hold",
+      "reportScore": 36,
       "href": "stock.html?ticker=TSLA&date=2026-02-18"
     },
     "reports": [
@@ -219,6 +232,7 @@
         "changeDir": "up",
         "changeBasis": "52주",
         "rating": "Hold",
+        "reportScore": 36,
         "href": "stock.html?ticker=TSLA&date=2026-02-18"
       }
     ]
