@@ -151,32 +151,182 @@
 
 <script src="js/render.js"></script>
 <script>
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 function showLoadError(message) {
   document.querySelector('.main').innerHTML = `<div style="text-align:center;padding:4rem;color:var(--text2)">
     <h2 style="color:var(--red2);margin-bottom:1rem">데이터 로딩 실패</h2>
-    <p>${message}</p>
+    <p>${escapeHtml(message)}</p>
     <p style="margin-top:1rem"><a href="index.html" style="color:var(--accent2)">← 홈으로 돌아가기</a></p>
   </div>`;
 }
 
-const params = new URLSearchParams(window.location.search);
-const rawTicker = (params.get('ticker') || params.get('stock') || '').trim().toUpperCase();
+function showLoadNotice(message) {
+  const main = document.querySelector('.main');
+  if (!main) {
+    return;
+  }
 
-if (!rawTicker) {
-  showLoadError('요청된 종목 코드가 없습니다. 예: stock.html?ticker=IREN');
-} else if (!/^[A-Z0-9._-]{1,15}$/.test(rawTicker)) {
-  showLoadError(`유효하지 않은 종목 코드입니다: ${rawTicker}`);
-} else {
-  fetch(`data/${rawTicker}.json`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`종목 파일을 찾을 수 없습니다 (${response.status})`);
-      }
-      return response.json();
-    })
-    .then(data => renderDashboard(data))
-    .catch(err => showLoadError(err.message));
+  const notice = document.createElement('div');
+  notice.style.margin = '0 0 1rem';
+  notice.style.padding = '.8rem 1rem';
+  notice.style.border = '1px solid var(--border2)';
+  notice.style.borderRadius = '10px';
+  notice.style.background = 'var(--bg3)';
+  notice.style.color = 'var(--text2)';
+  notice.style.fontSize = '.82rem';
+  notice.innerHTML = escapeHtml(message);
+  main.prepend(notice);
 }
+
+function isIsoDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(value || '').trim());
+}
+
+  function sortDatesDesc(dates) {
+    return [...dates].sort((a, b) => String(b).localeCompare(String(a)));
+  }
+
+  async function fetchReportJsonByDate(ticker, date) {
+    const candidates = [
+      `data/${ticker}/${date}.json`,
+      `data/${ticker}/${ticker}-${date}.json`,
+    ];
+    const tried = new Set();
+
+    for (const path of candidates) {
+      if (tried.has(path)) {
+        continue;
+      }
+
+      tried.add(path);
+      try {
+        return await fetchJson(path);
+      } catch (error) {
+        // keep trying next possible report filename format
+      }
+    }
+
+    throw new Error(`지원하는 리포트 파일을 찾지 못했습니다: ${Array.from(tried).join(', ')}`);
+  }
+
+async function fetchJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`파일을 불러오지 못했습니다 (${response.status}): ${path}`);
+  }
+  return response.json();
+}
+
+function normalizeDates(entry) {
+  if (!entry || typeof entry !== 'object') {
+    return [];
+  }
+
+  const dates = [];
+
+  if (Array.isArray(entry.reports)) {
+    entry.reports.forEach(report => {
+      const date = String(report && report.date ? report.date : '').trim();
+      if (isIsoDate(date)) {
+        dates.push(date);
+      }
+    });
+  }
+
+  const latestDate = String(entry.latest && entry.latest.date ? entry.latest.date : '').trim();
+  if (isIsoDate(latestDate)) {
+    dates.push(latestDate);
+  }
+
+  const singleDate = String(entry.analysisDate || entry.date || '').trim();
+  if (isIsoDate(singleDate)) {
+    dates.push(singleDate);
+  }
+
+  return sortDatesDesc(Array.from(new Set(dates)));
+}
+
+function replaceCanonicalQuery(ticker, date) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('ticker', ticker);
+  url.searchParams.delete('stock');
+  if (date) {
+    url.searchParams.set('date', date);
+  } else {
+    url.searchParams.delete('date');
+  }
+  history.replaceState(null, '', url.toString());
+}
+
+async function bootstrap() {
+  const params = new URLSearchParams(window.location.search);
+  const rawTicker = (params.get('ticker') || params.get('stock') || '').trim().toUpperCase();
+  const rawDate = (params.get('date') || '').trim();
+
+  if (!rawTicker) {
+    throw new Error('요청된 종목 코드가 없습니다. 예: stock.html?ticker=IREN&date=2026-02-18');
+  }
+
+  if (!/^[A-Z0-9._-]{1,15}$/.test(rawTicker)) {
+    throw new Error(`유효하지 않은 종목 코드입니다: ${rawTicker}`);
+  }
+
+  const index = await fetchJson('data/index.json');
+  const entry = Array.isArray(index)
+    ? index.find(item => item && String(item.ticker || '').toUpperCase() === rawTicker)
+    : null;
+
+  if (!entry) {
+    throw new Error(`종목을 찾을 수 없습니다: ${rawTicker}`);
+  }
+
+  const availableDates = normalizeDates(entry);
+  if (availableDates.length === 0) {
+    throw new Error(`${rawTicker}의 리포트 날짜 정보를 찾을 수 없습니다.`);
+  }
+
+  let selectedDate = availableDates[0];
+  let noticeMessage = '';
+
+  if (rawDate) {
+    if (!isIsoDate(rawDate)) {
+      noticeMessage = `요청한 date(${rawDate}) 형식이 올바르지 않아 최신 리포트(${selectedDate})를 표시합니다.`;
+    } else if (!availableDates.includes(rawDate)) {
+      noticeMessage = `요청한 date(${rawDate}) 리포트가 없어 최신 리포트(${selectedDate})를 표시합니다.`;
+    } else {
+      selectedDate = rawDate;
+    }
+  }
+
+  let data = null;
+  try {
+    data = await fetchReportJsonByDate(rawTicker, selectedDate);
+  } catch (error) {
+    throw new Error(
+      `${rawTicker} ${selectedDate} 리포트를 불러오지 못했습니다. `
+      + `사용 가능한 날짜: ${availableDates.join(', ')}`
+    );
+  }
+
+  replaceCanonicalQuery(rawTicker, selectedDate);
+  renderDashboard(data);
+
+  if (noticeMessage) {
+    showLoadNotice(noticeMessage);
+  }
+}
+
+bootstrap().catch(error => {
+  showLoadError(error.message);
+});
 </script>
 </body>
 </html>

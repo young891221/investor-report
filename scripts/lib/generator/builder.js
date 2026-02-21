@@ -53,11 +53,16 @@ function asNumber(value) {
   return null;
 }
 
-function formatDateDots(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}.${month}.${day}`;
+function toKstDate(date) {
+  return new Date(date.getTime() + (9 * 60 * 60 * 1000));
+}
+
+function formatDateIsoKst(date) {
+  const kstDate = toKstDate(date);
+  const year = kstDate.getUTCFullYear();
+  const month = String(kstDate.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(kstDate.getUTCDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 function unixToLabel(unixSeconds, annual = false) {
@@ -780,7 +785,10 @@ function buildStockJson(input) {
 
   const placeholders = [];
   const now = new Date();
-  const analysisDate = formatDateDots(now);
+  const nowKst = toKstDate(now);
+  const nowYear = nowKst.getUTCFullYear();
+  const nowMonth = nowKst.getUTCMonth();
+  const analysisDate = formatDateIsoKst(now);
 
   const assetProfile = summary && summary.assetProfile ? summary.assetProfile : {};
   const financialData = summary && summary.financialData ? summary.financialData : {};
@@ -879,7 +887,7 @@ function buildStockJson(input) {
 
   if (annualData.length === 0 && Number.isFinite(latestQuarterRevenue)) {
     placeholders.push({ field: 'annualRevenue', reason: 'No annual income statement; fallback from latest quarter' });
-    annualLabels.push(`FY${now.getFullYear()}`);
+    annualLabels.push(`FY${nowYear}`);
     annualData.push(round((latestQuarterRevenue * 4) / 1e6, 1));
   }
 
@@ -900,7 +908,7 @@ function buildStockJson(input) {
   const lastAnnual = annualData[annualData.length - 1];
   const estimateYear = annualLabels.length > 0
     ? Number(String(annualLabels[annualLabels.length - 1]).replace('FY', '')) + 1
-    : now.getFullYear() + 1;
+    : nowYear + 1;
   annualLabels.push(`FY${estimateYear}E`);
   annualData.push(round(lastAnnual * (1 + projectedGrowthPct), 1));
   const estimateStartIndex = annualData.length - 1;
@@ -920,7 +928,7 @@ function buildStockJson(input) {
     const runRate = (annualData[annualData.length - 2 >= 0 ? annualData.length - 2 : 0] * 1e6) / 4;
     while (quarterData.length < 4) {
       const qIndex = quarterData.length + 1;
-      const label = `Q${qIndex}'${String(now.getFullYear()).slice(-2)}`;
+      const label = `Q${qIndex}'${String(nowYear).slice(-2)}`;
       quarterLabels.push(label);
       quarterData.push(round((runRate * (1 + qIndex * 0.03)) / 1e6, 1));
     }
@@ -951,7 +959,7 @@ function buildStockJson(input) {
 
   if (marginLabels.length === 0) {
     placeholders.push({ field: 'marginTrend', reason: 'No margin history available' });
-    marginLabels.push(`FY${now.getFullYear() - 1}`, `FY${now.getFullYear()}`);
+    marginLabels.push(`FY${nowYear - 1}`, `FY${nowYear}`);
     marginGaap.push(-10, -5);
     marginNonGaap.push(null, null);
   }
@@ -1184,12 +1192,12 @@ function buildStockJson(input) {
 
   const timeline = [
     {
-      date: latestAnnualDate || `${now.getFullYear() - 1}.12.31`,
+      date: latestAnnualDate || `${nowYear - 1}.12.31`,
       text: '최근 연간 실적 기준 데이터 반영',
       status: 'done',
     },
     {
-      date: latestQuarterDate || `${now.getFullYear()}.Q${Math.floor(now.getMonth() / 3) + 1}`,
+      date: latestQuarterDate || `${nowYear}.Q${Math.floor(nowMonth / 3) + 1}`,
       text: '최근 분기 실적 데이터 반영',
       status: 'done',
     },
@@ -1199,17 +1207,17 @@ function buildStockJson(input) {
       status: 'done',
     },
     {
-      date: nextEarningsDate || `${now.getFullYear()}.${String(now.getMonth() + 2).padStart(2, '0')}`,
+      date: nextEarningsDate || `${nowYear}.${String(nowMonth + 2).padStart(2, '0')}`,
       text: '다음 실적 발표 확인',
       status: 'pending',
     },
     {
-      date: `${now.getFullYear()}.H2`,
+      date: `${nowYear}.H2`,
       text: '가이던스 업데이트 및 실행 지표 점검',
       status: 'pending',
     },
     {
-      date: `${now.getFullYear() + 1}.상반기`,
+      date: `${nowYear + 1}.상반기`,
       text: '중기 성장 로드맵 재점검',
       status: 'pending',
     },
@@ -1366,7 +1374,7 @@ function buildStockJson(input) {
   );
 
   const checklist = [
-    ['다음 실적 발표', nextEarningsDate || `${now.getFullYear()}.Q${Math.floor(now.getMonth() / 3) + 2}`, '매출/가이던스/마진 변동 여부 확인'],
+    ['다음 실적 발표', nextEarningsDate || `${nowYear}.Q${Math.floor(nowMonth / 3) + 2}`, '매출/가이던스/마진 변동 여부 확인'],
     ['매출 성장률', '분기별', `YoY ${Number.isFinite(quarterlyRevenueYoY) ? `${round(quarterlyRevenueYoY, 1)}%` : '추적 필요'} 유지 여부`],
     ['수익성 추세', '분기별', '순이익률 및 총마진 개선 경로 확인'],
     ['재무건전성', '분기별', '현금·부채·FCF 동시 점검'],
@@ -1562,5 +1570,5 @@ function buildStockJson(input) {
 module.exports = {
   buildStockJson,
   choosePeers,
-  formatDateDots,
+  formatDateIsoKst,
 };

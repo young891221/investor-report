@@ -5,7 +5,7 @@
   "exchange": "NASDAQ",
   "sector": "우주항공 / 국방 우주 시스템",
   "description": "소형 발사체 Electron, 위성 플랫폼/부품, 그리고 중형 재사용 로켓 Neutron을 축으로 확장 중인 엔드투엔드 우주 인프라 기업.",
-  "analysisDate": "2026.02.18",
+  "analysisDate": "2026-02-18",
   "price": "$67.44",
   "priceChange": "▼ 32% from ATH ($99.58)",
   "priceChangeDir": "down",
@@ -14,8 +14,8 @@
   "weekRange": "$14.71 — $99.58",
   "analystRating": "Buy",
   "analystTarget": "목표 $65.91 (보수적)",
-  "reportScore": 47,
-  "reportVerdict": "REDUCE",
+  "reportScore": 68,
+  "reportVerdict": "BUY",
   "keyPoints": [
     "🚀 <strong>실적 고성장 지속:</strong> 2025년 3분기 매출 $155.1M으로 YoY +48% 성장, 분기 기준 최고 매출 경신",
     "🛰️ <strong>수주 대형화:</strong> SDA Tranche 3 추적위성 계약 $816M 수주로 단일 최대 계약 기록, 총 SDA 계약 누적 $1.3B+",
@@ -547,31 +547,6 @@
       "멀티플 부담",
       "상시",
       "동종 업계 대비 P/S 괴리 확대 시 리밸런싱 검토"
-    ],
-    [
-      "[100배] 시총 여력",
-      "분기별",
-      "관찰 · 12/25 · 시가총액 $35.3B 기준 (<$20B 우대)"
-    ],
-    [
-      "[100배] ROE 품질",
-      "분기별",
-      "미달 · 2/20 · ROE -23.24%"
-    ],
-    [
-      "[100배] 재투자 효율",
-      "분기별",
-      "통과 · 15/20 · 연매출 성장률 78% · FCF $-111M · 순현금/부채 $608M, 유동비율 3.18"
-    ],
-    [
-      "[100배] PER 안전마진",
-      "상시",
-      "데이터 부족 · 10/20 · PER 데이터 미확보로 중립 처리"
-    ],
-    [
-      "[100배] 창업자 운영력",
-      "반기별",
-      "데이터 부족 · 8/15 · Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
     ]
   ],
   "moats": [
@@ -595,55 +570,5 @@
       "name": "엔드투엔드 포트폴리오",
       "desc": "발사+위성+부품+소프트웨어<br>고객 Lock-in 효과"
     }
-  ],
-  "reportScoreModel": "100x-book-v1",
-  "reportScoreBreakdown": {
-    "total": 47,
-    "criteria": [
-      {
-        "id": "small_cap",
-        "label": "시가총액이 작고 성장 여력이 큼",
-        "weight": 25,
-        "score": 12,
-        "status": "watch",
-        "evidence": "시가총액 $35.3B 기준 (<$20B 우대)"
-      },
-      {
-        "id": "roe_quality",
-        "label": "ROE 15~20% 고수익 구조",
-        "weight": 20,
-        "score": 2,
-        "status": "fail",
-        "evidence": "ROE -23.24%"
-      },
-      {
-        "id": "reinvestment",
-        "label": "이익의 효율적 재투자(복리)",
-        "weight": 20,
-        "score": 15,
-        "status": "pass",
-        "evidence": "연매출 성장률 78% · FCF $-111M · 순현금/부채 $608M, 유동비율 3.18"
-      },
-      {
-        "id": "reasonable_per",
-        "label": "PER이 과열되지 않은 안전마진",
-        "weight": 20,
-        "score": 10,
-        "status": "unknown",
-        "evidence": "PER 데이터 미확보로 중립 처리"
-      },
-      {
-        "id": "founder_led",
-        "label": "창업자 주도 운영(Founder-led)",
-        "weight": 15,
-        "score": 8,
-        "status": "unknown",
-        "evidence": "Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
-      }
-    ],
-    "notes": [
-      "PER이 과열되지 않은 안전마진: 데이터 미확보로 중립 점수 적용",
-      "창업자 주도 운영(Founder-led): 데이터 미확보로 중립 점수 적용"
-    ]
-  }
+  ]
 }

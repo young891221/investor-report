@@ -23,7 +23,10 @@ function main() {
   let hasErrors = false;
 
   files.forEach(file => {
-    const errors = validateStock(file.json, { expectedTicker: file.expectedTicker });
+    const errors = validateStock(file.json, {
+      expectedTicker: file.expectedTicker,
+      expectedDate: file.expectedDate,
+    });
     if (errors.length === 0) {
       return;
     }

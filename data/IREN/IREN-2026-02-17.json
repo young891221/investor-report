@@ -5,7 +5,7 @@
   "exchange": "NASDAQ",
   "sector": "AI 인프라 / 비트코인 채굴",
   "description": "비트코인 채굴에서 AI 클라우드 인프라로 전환 중인 차세대 데이터센터 기업. 마이크로소프트 $97억 계약 확보.",
-  "analysisDate": "2026.02.17",
+  "analysisDate": "2026-02-17",
   "price": "$42.22",
   "priceChange": "▼ 45% from ATH ($76.87)",
   "priceChangeDir": "down",
@@ -14,8 +14,8 @@
   "weekRange": "$5.13 — $76.87",
   "analystRating": "Buy",
   "analystTarget": "목표 $79.31 (↑88%)",
-  "reportScore": 70,
-  "reportVerdict": "BUY",
+  "reportScore": 61,
+  "reportVerdict": "HOLD",
   "keyPoints": [
     "🔄 <strong>사업 전환 핵심:</strong> 비트코인 채굴 → AI 클라우드 인프라로 대전환 중. 마이크로소프트와 $97억(약 14조원) 규모 AI 클라우드 계약 확보",
     "⚡ <strong>거대한 전력 확보:</strong> 4.5GW 이상의 전력 확보, 실제 사용량은 10% 미만 — 향후 AI 확장에 막대한 여력 보유",
@@ -547,31 +547,6 @@
       "경쟁사 동향",
       "분기별",
       "CoreWeave·Cipher 계약 확대 시 경쟁 심화 우려"
-    ],
-    [
-      "[100배] 시총 여력",
-      "분기별",
-      "통과 · 25/25 · 시가총액 $14B 기준 (<$20B 우대)"
-    ],
-    [
-      "[100배] ROE 품질",
-      "분기별",
-      "통과 · 16/20 · ROE 20.53%"
-    ],
-    [
-      "[100배] 재투자 효율",
-      "분기별",
-      "관찰 · 13/20 · 연매출 성장률 167.9% · FCF $-1.39B · 순현금/부채 $-582M, 유동비율 4.96"
-    ],
-    [
-      "[100배] PER 안전마진",
-      "상시",
-      "미달 · 8/20 · P/E 48x (8~30 우대)"
-    ],
-    [
-      "[100배] 창업자 운영력",
-      "반기별",
-      "데이터 부족 · 8/15 · Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
     ]
   ],
   "moats": [
@@ -595,54 +570,5 @@
       "name": "전략적 파트너십",
       "desc": "MS $97억 + NVIDIA 우선파트너<br>GB300 NVL72 우선 배치권"
     }
-  ],
-  "reportScoreModel": "100x-book-v1",
-  "reportScoreBreakdown": {
-    "total": 70,
-    "criteria": [
-      {
-        "id": "small_cap",
-        "label": "시가총액이 작고 성장 여력이 큼",
-        "weight": 25,
-        "score": 25,
-        "status": "pass",
-        "evidence": "시가총액 $14B 기준 (<$20B 우대)"
-      },
-      {
-        "id": "roe_quality",
-        "label": "ROE 15~20% 고수익 구조",
-        "weight": 20,
-        "score": 16,
-        "status": "pass",
-        "evidence": "ROE 20.53%"
-      },
-      {
-        "id": "reinvestment",
-        "label": "이익의 효율적 재투자(복리)",
-        "weight": 20,
-        "score": 13,
-        "status": "watch",
-        "evidence": "연매출 성장률 167.9% · FCF $-1.39B · 순현금/부채 $-582M, 유동비율 4.96"
-      },
-      {
-        "id": "reasonable_per",
-        "label": "PER이 과열되지 않은 안전마진",
-        "weight": 20,
-        "score": 8,
-        "status": "fail",
-        "evidence": "P/E 48x (8~30 우대)"
-      },
-      {
-        "id": "founder_led",
-        "label": "창업자 주도 운영(Founder-led)",
-        "weight": 15,
-        "score": 8,
-        "status": "unknown",
-        "evidence": "Founder CEO/내부자 지분 데이터가 리포트 JSON에 없어 중립 처리"
-      }
-    ],
-    "notes": [
-      "창업자 주도 운영(Founder-led): 데이터 미확보로 중립 점수 적용"
-    ]
-  }
+  ]
 }

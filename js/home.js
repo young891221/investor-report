@@ -11,22 +11,124 @@
       .replaceAll("'", '&#39;');
   }
 
-  function detectChangeDir(stock) {
-    const value = String(stock.change || stock.priceChange || '');
-    if (stock.changeDir === 'up' || stock.changeDir === 'down') {
-      return stock.changeDir;
+  function detectChangeDir(report) {
+    const value = String(report.change || report.priceChange || '');
+    if (report.changeDir === 'up' || report.changeDir === 'down') {
+      return report.changeDir;
     }
     return /^[-▼]/.test(value) ? 'down' : 'up';
   }
 
-  function getDisplayChange(stock) {
-    if (stock.change) {
-      return stock.change;
+  function getDisplayChange(report) {
+    if (report.change) {
+      return report.change;
     }
-    if (stock.marketCapChange) {
-      return String(stock.marketCapChange).replace(/\s*\([^)]*\)\s*$/u, '');
+    if (report.marketCapChange) {
+      return String(report.marketCapChange).replace(/\s*\([^)]*\)\s*$/u, '');
     }
-    return stock.priceChange || '-';
+    return report.priceChange || '-';
+  }
+
+  function buildReportHref(ticker, date, rawHref) {
+    if (typeof rawHref === 'string' && rawHref.trim() !== '') {
+      return rawHref;
+    }
+
+    if (ticker && date) {
+      return `stock.html?ticker=${encodeURIComponent(ticker)}&date=${encodeURIComponent(date)}`;
+    }
+
+    if (ticker) {
+      return `stock.html?ticker=${encodeURIComponent(ticker)}`;
+    }
+
+    return '#';
+  }
+
+  function formatDisplayDate(dateText) {
+    const date = String(dateText || '').trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return date.replace(/-/g, '.');
+    }
+    return date || '-';
+  }
+
+  function renderReportLinks(ticker, reports) {
+    if (!Array.isArray(reports) || reports.length === 0) {
+      return `<div class="stock-report-empty">리포트 이력이 없습니다.</div>`;
+    }
+
+    return reports
+      .map(report => {
+        const date = String(report.date || '').trim();
+        const href = buildReportHref(ticker, date, report.href);
+        const reportLabel = formatDisplayDate(date);
+
+        return `
+          <a class="stock-report-link" href="${escapeHtml(href)}">
+            <span class="stock-report-date">${escapeHtml(reportLabel)}</span>
+            <span class="stock-report-rating">${escapeHtml(report.rating || '-')}</span>
+            <span class="stock-report-change">${escapeHtml(report.change || '-')}</span>
+          </a>
+        `;
+      })
+      .join('');
+  }
+
+  function normalizeReport(ticker, raw, fallbackDate) {
+    const date = String(raw && (raw.date || raw.analysisDate || fallbackDate) || '').trim();
+
+    return {
+      date,
+      price: raw && raw.price ? raw.price : '-',
+      change: getDisplayChange(raw || {}),
+      changeDir: detectChangeDir(raw || {}),
+      changeBasis: raw && raw.changeBasis ? raw.changeBasis : '기준',
+      rating: raw && (raw.rating || raw.analystRating) ? raw.rating || raw.analystRating : '-',
+      href: buildReportHref(ticker, date, raw && raw.href),
+    };
+  }
+
+  function normalizeStock(raw) {
+    if (!raw || typeof raw !== 'object' || typeof raw.ticker !== 'string') {
+      return null;
+    }
+
+    const ticker = raw.ticker.trim().toUpperCase();
+    const reports = [];
+
+    if (Array.isArray(raw.reports)) {
+      raw.reports.forEach(report => {
+        reports.push(normalizeReport(ticker, report, ''));
+      });
+    }
+
+    if (reports.length === 0) {
+      reports.push(normalizeReport(ticker, raw, raw.analysisDate || raw.date || ''));
+    }
+
+    reports.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+
+    const latest = raw.latest && typeof raw.latest === 'object'
+      ? normalizeReport(ticker, raw.latest, reports[0] ? reports[0].date : '')
+      : reports[0];
+
+    const latestDate = latest && latest.date;
+    if (latestDate && !reports.some(report => report.date === latestDate)) {
+      reports.unshift(latest);
+      reports.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    }
+
+    return {
+      ticker,
+      name: raw.name || raw.companyNameEn || '-',
+      nameKr: raw.nameKr || raw.companyName || '-',
+      sector: raw.sector || '',
+      description: raw.description || '',
+      tags: Array.isArray(raw.tags) ? raw.tags : [],
+      reports,
+      latest: reports[0] || latest,
+    };
   }
 
   function createSectorFilters(stocks, onSelect) {
@@ -74,35 +176,77 @@
 
     stocks.forEach((stock, idx) => {
       const tags = Array.isArray(stock.tags) ? stock.tags : [];
-      const card = document.createElement('a');
-      card.href = `stock.html?ticker=${encodeURIComponent(stock.ticker)}`;
-      card.className = 'stock-card fade-in';
-      card.style.animationDelay = `${idx * 0.08}s`;
+      const latest = stock.latest || {};
+      const hasReportHistory = Array.isArray(stock.reports) && stock.reports.length > 0;
+      const reportListId = `stock-reports-${stock.ticker.toLowerCase()}-${idx}`;
 
-      const changeText = getDisplayChange(stock);
-      const changeBasis = stock.changeBasis || '기준';
-      const changeDir = detectChangeDir(stock);
-      const date = stock.analysisDate || stock.date || '-';
+      const card = document.createElement('article');
+      card.className = 'stock-list-item fade-in';
+      card.style.animationDelay = `${idx * 0.08}s`;
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-expanded', 'false');
+      card.dataset.open = 'false';
+
+      const changeText = getDisplayChange(latest);
+      const latestDate = latest.date || '-';
+      const changeDir = detectChangeDir(latest);
+      const listHtml = renderReportLinks(stock.ticker, stock.reports);
 
       card.innerHTML = `
-        <div class="stock-card-header">
+        <div class="stock-list-head">
           <div>
-            <div class="stock-card-ticker">${escapeHtml(stock.ticker)}</div>
-            <div class="stock-card-name">${escapeHtml(stock.name || '-')} · ${escapeHtml(stock.nameKr || '-')}</div>
+            <div class="stock-list-ticker">${escapeHtml(stock.ticker)}</div>
+            <div class="stock-list-name">${escapeHtml(stock.name || '-')} · ${escapeHtml(stock.nameKr || '-')}</div>
           </div>
-          <div class="stock-card-price">
-            <div class="stock-card-price-val">${escapeHtml(stock.price || '-')}</div>
-            <div class="stat-change ${escapeHtml(changeDir)}" style="text-align:right;font-size:.75rem">${escapeHtml(changeText)} (${escapeHtml(changeBasis)})</div>
+          <div class="stock-list-latest">
+            <div class="stock-list-latest-date">${escapeHtml(formatDisplayDate(latestDate))}</div>
+            <div class="stat-change ${escapeHtml(changeDir)}" style="font-size:.72rem">${escapeHtml(changeText)}</div>
           </div>
+          <div class="stock-list-arrow ${hasReportHistory ? '' : 'disabled'}">${hasReportHistory ? '▸' : '—'}</div>
         </div>
-        <div class="stock-card-desc">${escapeHtml(stock.description || '')}</div>
-        <div class="stock-card-tags">
+        ${hasReportHistory ? `<div class="stock-date-list" id="${escapeHtml(reportListId)}" hidden>${listHtml}</div>` : ''}
+        <div class="stock-list-tag-row">
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
-          <span class="stock-card-tag buy">${escapeHtml(stock.rating || '-')}</span>
-          <span class="stock-card-tag">${escapeHtml(date)}</span>
+          <span class="stock-card-tag buy">${escapeHtml(latest.rating || '-')}</span>
+          <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
         </div>
-        <div class="stock-card-arrow">→</div>
+        ${stock.description ? `<p class="stock-list-desc">${escapeHtml(stock.description || '')}</p>` : ''}
       `;
+
+      const reportList = card.querySelector('.stock-date-list');
+      const arrow = card.querySelector('.stock-list-arrow');
+      const toggleCard = event => {
+        if (!hasReportHistory || !reportList) {
+          return;
+        }
+
+        if (event && event.target && event.target.closest('.stock-report-link')) {
+          return;
+        }
+        if (event && event.target && event.target.closest('.stock-list-arrow')) {
+          return;
+        }
+
+        const isOpen = card.dataset.open === 'true';
+        const nextOpen = !isOpen;
+        card.dataset.open = nextOpen ? 'true' : 'false';
+        card.setAttribute('aria-expanded', String(nextOpen));
+        reportList.hidden = !nextOpen;
+        if (arrow && nextOpen) {
+          arrow.classList.remove('disabled');
+        } else if (arrow) {
+          arrow.classList.remove('disabled');
+        }
+      };
+
+      card.addEventListener('click', toggleCard);
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleCard(event);
+        }
+      });
 
       grid.appendChild(card);
     });
@@ -114,7 +258,8 @@
     }
 
     return raw
-      .filter(item => item && typeof item === 'object' && typeof item.ticker === 'string')
+      .map(normalizeStock)
+      .filter(Boolean)
       .sort((a, b) => a.ticker.localeCompare(b.ticker));
   }
 

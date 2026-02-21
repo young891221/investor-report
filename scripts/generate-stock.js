@@ -12,7 +12,7 @@ function printHelp() {
   console.log('Options:');
   console.log('  --strict | --no-strict');
   console.log('  --allow-placeholders | --no-allow-placeholders');
-  console.log('  --force');
+  console.log('  --force                  Overwrite existing data/{TICKER}/{TICKER}-YYYY-MM-DD.json');
   console.log('  --dry-run');
   console.log('  --build-index');
   console.log('  -h, --help');

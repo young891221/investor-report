@@ -11,6 +11,19 @@ const SEC_USER_AGENT =
   process.env.SEC_USER_AGENT ||
   'investor-report-generator/1.0 (contact: investor-report@example.com)';
 
+function extractReportDate(fileName) {
+  const base = path.basename(String(fileName || ''), '.json');
+  const direct = /^(\d{4}-\d{2}-\d{2})$/u;
+  const withTicker = /^.+-(\d{4}-\d{2}-\d{2})$/u;
+
+  if (direct.test(base)) {
+    return base;
+  }
+
+  const match = withTicker.exec(base);
+  return match ? match[1] : null;
+}
+
 function normalizeText(value) {
   return String(value || '')
     .toLowerCase()
@@ -55,28 +68,65 @@ async function fetchSecTickerTable() {
 }
 
 function readLocalKnownStocks(dataDir) {
-  const files = fs
-    .readdirSync(dataDir)
-    .filter(file => file.endsWith('.json') && file !== 'index.json')
-    .sort();
+  const resultsByTicker = new Map();
+  const entries = fs.readdirSync(dataDir, { withFileTypes: true });
 
-  const results = [];
+  entries
+    .filter(entry => entry.isDirectory() && entry.name !== 'sources')
+    .forEach(entry => {
+      const ticker = entry.name.toUpperCase();
+      const tickerDir = path.join(dataDir, entry.name);
+      const reportFiles = fs.readdirSync(tickerDir, { withFileTypes: true })
+        .filter(item => item.isFile() && item.name.endsWith('.json'))
+        .map(item => item.name)
+        .sort((a, b) => {
+          const dateA = extractReportDate(a);
+          const dateB = extractReportDate(b);
+          return String(dateB).localeCompare(String(dateA));
+        });
 
-  files.forEach(file => {
-    const fullPath = path.join(dataDir, file);
-    try {
-      const json = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
-      results.push({
-        ticker: String(json.ticker || '').toUpperCase(),
-        companyName: String(json.companyName || '').trim(),
-        companyNameEn: String(json.companyNameEn || '').trim(),
-      });
-    } catch (error) {
-      // Ignore malformed files here; validation is handled elsewhere.
-    }
-  });
+      if (reportFiles.length === 0) {
+        return;
+      }
 
-  return results.filter(entry => entry.ticker);
+      const latestReportPath = path.join(tickerDir, reportFiles[0]);
+      try {
+        const json = JSON.parse(fs.readFileSync(latestReportPath, 'utf8'));
+        resultsByTicker.set(ticker, {
+          ticker,
+          companyName: String(json.companyName || '').trim(),
+          companyNameEn: String(json.companyNameEn || '').trim(),
+        });
+      } catch (error) {
+        // Ignore malformed files here; validation is handled elsewhere.
+      }
+    });
+
+  // Backward compatibility: also scan legacy flat files if still present.
+  entries
+    .filter(entry => entry.isFile() && entry.name.endsWith('.json') && entry.name !== 'index.json')
+    .forEach(entry => {
+      const legacyTicker = path.basename(entry.name, '.json').toUpperCase();
+      if (resultsByTicker.has(legacyTicker)) {
+        return;
+      }
+
+      const fullPath = path.join(dataDir, entry.name);
+      try {
+        const json = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+        resultsByTicker.set(legacyTicker, {
+          ticker: String(json.ticker || legacyTicker).toUpperCase(),
+          companyName: String(json.companyName || '').trim(),
+          companyNameEn: String(json.companyNameEn || '').trim(),
+        });
+      } catch (error) {
+        // Ignore malformed files here; validation is handled elsewhere.
+      }
+    });
+
+  return Array.from(resultsByTicker.values())
+    .filter(entry => entry.ticker)
+    .sort((a, b) => a.ticker.localeCompare(b.ticker));
 }
 
 function findTickerFromLocalName(name, localStocks) {

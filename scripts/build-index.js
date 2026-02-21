@@ -33,7 +33,7 @@ function toCardTags(stock) {
   return tags.slice(0, 3);
 }
 
-function toCardIndex(stock) {
+function toChangeMeta(stock) {
   const rawChange = stock.marketCapChange || stock.priceChange || '-';
   const cleanChange = String(rawChange).replace(/\s*\([^)]*\)\s*$/u, '').trim();
   const changeDir = /▲|\+/u.test(cleanChange)
@@ -43,19 +43,28 @@ function toCardIndex(stock) {
       : stock.priceChangeDir;
 
   return {
-    ticker: stock.ticker,
-    name: stock.companyNameEn,
-    nameKr: stock.companyName,
-    price: stock.price,
     change: cleanChange,
     changeDir,
     changeBasis: stock.marketCapChange ? '52주' : '주가',
-    sector: stock.sector,
-    description: stock.description,
-    tags: toCardTags(stock),
-    rating: stock.analystRating,
-    analysisDate: stock.analysisDate,
   };
+}
+
+function toReportIndex(stock, date) {
+  const changeMeta = toChangeMeta(stock);
+
+  return {
+    date,
+    price: stock.price,
+    change: changeMeta.change,
+    changeDir: changeMeta.changeDir,
+    changeBasis: changeMeta.changeBasis,
+    rating: stock.analystRating,
+    href: `stock.html?ticker=${encodeURIComponent(stock.ticker)}&date=${encodeURIComponent(date)}`,
+  };
+}
+
+function byDateDesc(left, right) {
+  return String(right.date).localeCompare(String(left.date));
 }
 
 function main() {
@@ -76,7 +85,10 @@ function main() {
   const allErrors = [];
 
   files.forEach(file => {
-    const errors = validateStock(file.json, { expectedTicker: file.expectedTicker });
+    const errors = validateStock(file.json, {
+      expectedTicker: file.expectedTicker,
+      expectedDate: file.expectedDate,
+    });
     if (errors.length > 0) {
       errors.forEach(error => {
         allErrors.push(`${file.file}: ${error}`);
@@ -90,13 +102,50 @@ function main() {
     process.exit(1);
   }
 
-  const index = files
-    .map(file => file.json)
-    .sort((a, b) => a.ticker.localeCompare(b.ticker))
-    .map(toCardIndex);
+  const grouped = new Map();
+
+  files.forEach(file => {
+    const stock = file.json;
+    const ticker = String(stock.ticker || '').toUpperCase();
+    const reportDate = file.expectedDate || stock.analysisDate;
+    const snapshot = {
+      stock,
+      report: toReportIndex(stock, reportDate),
+    };
+
+    if (!grouped.has(ticker)) {
+      grouped.set(ticker, []);
+    }
+    grouped.get(ticker).push(snapshot);
+  });
+
+  const index = Array.from(grouped.entries())
+    .map(([ticker, snapshots]) => {
+      snapshots.sort((a, b) => byDateDesc(a.report, b.report));
+
+      const latestSnapshot = snapshots[0];
+      const latestStock = latestSnapshot.stock;
+      const reports = snapshots.map(snapshot => snapshot.report);
+
+      return {
+        ticker,
+        name: latestStock.companyNameEn,
+        nameKr: latestStock.companyName,
+        sector: latestStock.sector,
+        description: latestStock.description,
+        tags: toCardTags(latestStock),
+        latest: reports[0],
+        reports,
+      };
+    })
+    .sort((a, b) => a.ticker.localeCompare(b.ticker));
 
   fs.writeFileSync(indexPath, `${JSON.stringify(index, null, 2)}\n`, 'utf8');
-  console.log(`Updated ${path.relative(process.cwd(), indexPath)} (${index.length} stock card(s)).`);
+  const reportCount = index.reduce((sum, item) => sum + item.reports.length, 0);
+  console.log(
+    `Updated ${path.relative(process.cwd(), indexPath)} `
+    + `(${index.length} stock card(s), ${reportCount} report(s)).`
+  );
 }
 
 main();

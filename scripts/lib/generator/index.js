@@ -11,7 +11,7 @@ const {
   readLocalKnownStocks,
   resolveTicker,
 } = require('./sources');
-const { buildStockJson, choosePeers, formatDateDots } = require('./builder');
+const { buildStockJson, choosePeers, formatDateIsoKst } = require('./builder');
 
 function writeJsonAtomic(filePath, json) {
   const tempPath = `${filePath}.tmp`;
@@ -120,6 +120,7 @@ function buildSourceManifest(input) {
     options,
     metadata,
     secEntry,
+    asOfDate,
   } = input;
 
   const generatedAt = new Date().toISOString();
@@ -129,7 +130,7 @@ function buildSourceManifest(input) {
     requestedName: requestedName || null,
     resolvedBy,
     generatedAt,
-    asOfDate: formatDateDots(new Date()),
+    asOfDate: asOfDate || formatDateIsoKst(new Date()),
     policy: {
       strict: options.strict,
       allowPlaceholders: options.allowPlaceholders,
@@ -205,9 +206,9 @@ async function generateStockReport(optionsInput = {}) {
 
   const repoRoot = path.join(__dirname, '..', '..', '..');
   const dataDir = path.join(repoRoot, 'data');
-  const sourceDir = path.join(dataDir, 'sources');
+  const sourceRootDir = path.join(dataDir, 'sources');
 
-  ensureDir(sourceDir);
+  ensureDir(sourceRootDir);
 
   const localStocks = readLocalKnownStocks(dataDir);
   let secRows = [];
@@ -276,13 +277,19 @@ async function generateStockReport(optionsInput = {}) {
     options,
   });
 
-  const validationErrors = validateStock(stock, { expectedTicker: ticker });
+  const reportDate = stock.analysisDate;
+  const validationErrors = validateStock(stock, {
+    expectedTicker: ticker,
+    expectedDate: reportDate,
+  });
   if (validationErrors.length > 0) {
     throw new Error(`Generated JSON validation failed: ${validationErrors.join('; ')}`);
   }
 
-  const stockPath = path.join(dataDir, `${ticker}.json`);
-  const sourcePath = path.join(sourceDir, `${ticker}.sources.json`);
+  const stockDir = path.join(dataDir, ticker);
+  const sourceDir = path.join(sourceRootDir, ticker);
+  const stockPath = path.join(stockDir, `${ticker}-${reportDate}.json`);
+  const sourcePath = path.join(sourceDir, `${ticker}-${reportDate}.sources.json`);
 
   if (!options.force && !options.dryRun && fs.existsSync(stockPath)) {
     throw new Error(`File already exists: ${path.relative(repoRoot, stockPath)} (use --force to overwrite)`);
@@ -295,9 +302,12 @@ async function generateStockReport(optionsInput = {}) {
     options,
     metadata,
     secEntry,
+    asOfDate: reportDate,
   });
 
   if (!options.dryRun) {
+    ensureDir(stockDir);
+    ensureDir(sourceDir);
     writeJsonAtomic(stockPath, stock);
     writeJsonAtomic(sourcePath, sourceManifest);
 

@@ -6,41 +6,59 @@ Option C (Hybrid) structure for managing stock analysis reports on GitHub Pages.
 
 ```
 .
-├── index.html                 # Portfolio home
-├── stock.html                 # Single stock dashboard template (?ticker=IREN)
+├── index.html                        # Portfolio home
+├── stock.html                        # Stock dashboard (?ticker=RKLB&date=2026-02-18)
 ├── css/
-│   └── dashboard.css          # Shared design system
+│   └── dashboard.css                 # Shared design system
 ├── js/
-│   ├── home.js                # Home card rendering + sector filters
-│   └── render.js              # Dashboard rendering engine
-├── data/
-│   ├── IREN.json              # Per-stock dashboard data
-│   ├── index.json             # Auto-generated stock card index
-│   └── sources/               # Field-level source tracking metadata
+│   ├── home.js                       # Home card rendering + sector filters + report dates
+│   └── render.js                     # Dashboard rendering engine
+  ├── data/
+  │   ├── RKLB/
+  │   │   ├── RKLB-2026-02-17.json     # Per-date stock report
+  │   │   └── RKLB-2026-02-18.json
+│   ├── index.json                    # Auto-generated stock card/report index
+│   └── sources/
+│       └── RKLB/
+│           └── 2026-02-18.sources.json
 ├── schema/
-│   └── stock.schema.json      # Stock data schema reference
+│   └── stock.schema.json             # Stock data schema reference
 └── scripts/
-    ├── generate-stock.js      # Company name/ticker -> JSON generation pipeline
-    ├── validate-stocks.js     # Data validation
-    └── build-index.js         # data/index.json generation
+    ├── migrate-stock-layout.js       # Legacy flat data/* migration script
+    ├── generate-stock.js             # Company name/ticker -> JSON generation pipeline
+    ├── validate-stocks.js            # Data validation
+    └── build-index.js                # data/index.json generation
 ```
 
 ## URL Routes
 
 - Home: `index.html`
-- Stock dashboard: `stock.html?ticker=IREN`
-- Backward compatible query: `stock.html?stock=IREN`
+- Stock dashboard (specific report): `stock.html?ticker=RKLB&date=2026-02-18`
+- Stock dashboard (latest report auto-resolve): `stock.html?ticker=RKLB`
+- Backward compatible ticker query: `stock.html?stock=RKLB`
+
+## Data Rules
+
+- Report file path: `data/{TICKER}/{TICKER}-{YYYY-MM-DD}.json` (기존 `YYYY-MM-DD.json`도 호환)
+- `analysisDate` must use `YYYY-MM-DD`
+- `analysisDate` must match report file name
+- `index.json` is generated; do not edit manually
 
 ## Data Operations
 
-1. Add a new file in `data/` (for example `data/RKLB.json`).
+1. (If needed) migrate legacy flat files once:
+
+```bash
+npm run migrate:layout
+```
+
 2. Validate stock JSON files:
 
 ```bash
 npm run validate:stocks
 ```
 
-3. Build stock card index:
+3. Build stock card/report index:
 
 ```bash
 npm run build:index
@@ -57,26 +75,26 @@ npm run build:data
 Generate a new stock report by ticker:
 
 ```bash
-npm run generate:stock -- --ticker RKLB --build-index --force
+npm run generate:stock -- --ticker RKLB --build-index
 ```
 
 Generate by company name:
 
 ```bash
-npm run generate:stock -- --name "Rocket Lab" --build-index --force
+npm run generate:stock -- --name "Rocket Lab" --build-index
 ```
 
 Options:
 
 - `--strict` / `--no-strict`: strict mode fails when critical source fields are missing
 - `--allow-placeholders` / `--no-allow-placeholders`: allow or disallow placeholder narrative text
-- `--force`: overwrite existing `data/{TICKER}.json`
+- `--force`: overwrite existing `data/{TICKER}/{TICKER}-{YYYY-MM-DD}.json`
 - `--dry-run`: run generation without writing files
 - `--build-index`: run `validate:stocks` and `build:index` after generation
 
 The generator also writes source metadata to:
 
-- `data/sources/{TICKER}.sources.json`
+- `data/sources/{TICKER}/{TICKER}-{YYYY-MM-DD}.sources.json`
 
 This file records source URLs, generation timestamp, placeholder usage, and field-level source mapping.
 
@@ -103,7 +121,7 @@ Optional flags:
 2. In repository settings, enable Pages with branch source (for example `main` / root).
 3. Access:
     - `https://<username>.github.io/investor-report/`
-    - `https://<username>.github.io/investor-report/stock.html?ticker=IREN`
+    - `https://<username>.github.io/investor-report/stock.html?ticker=RKLB&date=2026-02-18`
 
 ## Local Preview
 

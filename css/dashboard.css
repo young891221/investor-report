@@ -198,8 +198,11 @@ body{
 .home-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;margin-bottom:.8rem;background:linear-gradient(135deg,#fff 0%,#94a3c0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .home-sub{color:var(--text2);font-size:1rem;max-width:600px;margin:0 auto 2rem}
 .stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;padding:0 2rem;max-width:1280px;margin:0 auto 3rem}
-.stock-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-decoration:none;color:var(--text);transition:all .3s;display:block;position:relative;overflow:hidden}
+.stock-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.5rem 3rem;color:var(--text);transition:all .3s;display:block;position:relative;overflow:hidden}
+.stock-card{cursor:pointer;user-select:none}
 .stock-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(59,130,246,.15)}
+.stock-card-collapsible{outline:1px solid transparent}
+.stock-card-collapsible[aria-expanded='true']{border-color:var(--accent);box-shadow:0 14px 44px rgba(59,130,246,.22)}
 .stock-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
 .stock-card-ticker{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent2)}
 .stock-card-price{text-align:right}
@@ -209,6 +212,41 @@ body{
 .stock-card-tags{display:flex;gap:6px;flex-wrap:wrap}
 .stock-card-tag{font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
 .stock-card-tag.buy{background:rgba(34,197,94,.1);color:var(--green2);border-color:rgba(34,197,94,.2)}
-.stock-card-arrow{position:absolute;right:1.5rem;bottom:1.5rem;font-size:1.2rem;color:var(--text3);transition:all .3s}
-.stock-card:hover .stock-card-arrow{color:var(--accent2);transform:translateX(4px)}
+.stock-report-title{margin-top:1rem;margin-bottom:.4rem;color:var(--text3);font-size:.68rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.stock-report-list{display:flex;flex-direction:column;gap:6px;max-height:180px;overflow:auto;padding-right:2px}
+.stock-report-list[hidden]{display:none}
+.stock-report-link{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);text-decoration:none;transition:all .2s}
+.stock-report-link:hover{border-color:var(--accent);background:rgba(59,130,246,.08)}
+.stock-report-date{font-size:.74rem;font-weight:600;color:var(--text)}
+.stock-report-rating{font-size:.68rem;font-weight:700;color:var(--accent2)}
+.stock-card-arrow{position:absolute;right:1.5rem;bottom:1rem;font-size:1.2rem;color:var(--text3);transition:all .3s;text-decoration:none}
+.stock-card-arrow.is-open{transform:rotate(90deg)}
+.stock-card:hover .stock-card-arrow{color:var(--accent2)}
+.stock-card-arrow.disabled{pointer-events:none;opacity:.45}
+.stock-report-empty{font-size:.78rem;color:var(--text3);padding:7px 10px;background:var(--bg3);border:1px dashed var(--border);border-radius:8px}
 .home-footer{text-align:center;padding:2rem;color:var(--text3);font-size:.78rem;border-top:1px solid var(--border);max-width:1280px;margin:0 auto}
+
+/* 리스트형 홈 화면(종목 클릭 시 Date 리스트 확장) */
+.stock-grid{display:flex;flex-direction:column;gap:.9rem;padding:0 2rem;max-width:960px;margin:0 auto 3rem !important}
+.stock-list-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;color:var(--text);display:block;position:relative;overflow:hidden;transition:all .3s;cursor:pointer;user-select:none}
+.stock-list-item:hover{border-color:var(--accent);box-shadow:0 12px 40px rgba(59,130,246,.12)}
+.stock-list-item[aria-expanded='true']{border-color:var(--accent);box-shadow:0 12px 44px rgba(59,130,246,.2)}
+.stock-list-item[aria-expanded='true'] .stock-list-arrow{transform:rotate(90deg)}
+.stock-list-head{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:1rem}
+.stock-list-ticker{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:800;color:var(--accent2)}
+.stock-list-name{font-size:.85rem;color:var(--text2);margin-top:.15rem}
+.stock-list-latest{display:flex;flex-direction:column;align-items:flex-end}
+.stock-list-latest-date{font-size:.72rem;color:var(--text3);font-weight:600}
+.stock-list-arrow{font-size:1rem;line-height:1;color:var(--text2);transition:transform .25s ease;display:inline-flex;align-items:center}
+.stock-list-arrow.disabled{opacity:.45;transform:none!important}
+.stock-list-arrow{margin-left:.2rem}
+.stock-list-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:.7rem}
+.stock-list-desc{font-size:.8rem;color:var(--text3);line-height:1.6;margin-top:.7rem}
+.stock-date-list{display:flex;flex-direction:column;gap:6px;padding-top:.9rem;margin-top:.9rem;border-top:1px solid var(--border);max-height:240px;overflow:auto}
+.stock-date-list[hidden]{display:none}
+.stock-report-list{padding-right:2px}
+.stock-report-link{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);text-decoration:none;transition:all .2s}
+.stock-report-link:hover{border-color:var(--accent);background:rgba(59,130,246,.08)}
+.stock-report-date{font-size:.74rem;font-weight:600;color:var(--text)}
+.stock-report-rating{font-size:.68rem;font-weight:700;color:var(--accent2)}
+.stock-report-change{font-size:.68rem;color:var(--text2)}
