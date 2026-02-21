@@ -60,6 +60,7 @@ function toReportIndex(stock, date) {
     changeBasis: changeMeta.changeBasis,
     rating: stock.analystRating,
     reportScore: Number.isFinite(stock.reportScore) ? stock.reportScore : undefined,
+    analysisAi: stock.analysisAi,
     href: `stock.html?ticker=${encodeURIComponent(stock.ticker)}&date=${encodeURIComponent(date)}`,
   };
 }

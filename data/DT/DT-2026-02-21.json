@@ -650,5 +650,6 @@
       "국내 증권사 DT 커버 리포트는 확인되지 않아 analystReports.domestic을 빈 배열로 유지",
       "valuation.industry는 DDOG/NOW/ESTC 공개 지표 기반 단순 proxy 사용"
     ]
-  }
+  },
+  "analysisAi": "GPT"
 }

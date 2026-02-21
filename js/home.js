@@ -73,6 +73,20 @@
     return 'rating-neutral';
   }
 
+  function getAnalysisAiClass(rawAnalysisAi) {
+    const value = String(rawAnalysisAi || '').trim().toUpperCase();
+
+    if (value === 'GPT') {
+      return 'analysis-ai-gpt';
+    }
+
+    if (!value) {
+      return 'analysis-ai-empty';
+    }
+
+    return 'analysis-ai';
+  }
+
   function buildReportHref(ticker, date, rawHref) {
     if (typeof rawHref === 'string' && rawHref.trim() !== '') {
       return rawHref;
@@ -110,12 +124,15 @@
         const score = formatReportScore(report.score);
         const ratingClass = getRatingClass(report.rating);
         const scoreClass = getScoreClass(report.score);
+        const analysisAi = report.analysisAi || '-';
+        const analysisAiClass = getAnalysisAiClass(analysisAi);
 
         return `
           <a class="stock-report-link" href="${escapeHtml(href)}">
             <span class="stock-report-date">${escapeHtml(reportLabel)} Report</span>
             <span class="stock-report-rating ${escapeHtml(ratingClass)}">${escapeHtml(report.rating || '-')}</span>
             <span class="stock-report-score ${escapeHtml(scoreClass)}">${escapeHtml(score)}</span>
+            <span class="stock-report-ai ${escapeHtml(analysisAiClass)}">${escapeHtml(analysisAi)}</span>
             <span class="stock-report-change">${escapeHtml(report.change || '-')}</span>
           </a>
         `;
@@ -134,6 +151,7 @@
       changeBasis: raw && raw.changeBasis ? raw.changeBasis : '기준',
       rating: raw && (raw.rating || raw.analystRating) ? raw.rating || raw.analystRating : '-',
       score: raw && Object.prototype.hasOwnProperty.call(raw, 'reportScore') ? raw.reportScore : '-',
+      analysisAi: raw && Object.prototype.hasOwnProperty.call(raw, 'analysisAi') ? raw.analysisAi : '-',
       href: buildReportHref(ticker, date, raw && raw.href),
     };
   }
@@ -292,6 +310,7 @@
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
           <span class="stock-card-tag ${escapeHtml(getRatingClass(latest.rating))}">${escapeHtml(latest.rating || '-')}</span>
           <span class="stock-card-tag ${escapeHtml(getScoreClass(latest.score))}">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}`)}</span>
+          <span class="stock-card-tag ${escapeHtml(getAnalysisAiClass(latest.analysisAi))}">${escapeHtml(latest.analysisAi || '-')}</span>
         </div>
         ${stock.description ? `<p class="stock-list-desc">${escapeHtml(stock.description || '')}</p>` : ''}
       `;
