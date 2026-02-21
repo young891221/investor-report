@@ -33,6 +33,45 @@
     return Number.isFinite(Number(rawScore)) ? `${Math.round(Number(rawScore))}점` : '-';
   }
 
+  function getScoreClass(rawScore) {
+    const score = Number(rawScore);
+    if (!Number.isFinite(score)) {
+      return '';
+    }
+    if (score >= 80) {
+      return 'score-good';
+    }
+    if (score >= 65) {
+      return 'score-neutral';
+    }
+    if (score >= 50) {
+      return 'score-warning';
+    }
+    return 'score-bad';
+  }
+
+  function getRatingClass(rawRating) {
+    const rating = String(rawRating || '').toUpperCase().trim();
+
+    if (!rating) {
+      return 'rating-neutral';
+    }
+
+    if (/(BUY|OVERWEIGHT|매수|강력.*매수|STRONG)/u.test(rating)) {
+      return 'rating-buy';
+    }
+
+    if (/(HOLD|NEUTRAL|중립|보유|평가)/u.test(rating)) {
+      return 'rating-hold';
+    }
+
+    if (/(SELL|REDUCE|UNDERPERFORM|UNDERWEIGHT|매도|매도|다운|부정)/u.test(rating)) {
+      return 'rating-sell';
+    }
+
+    return 'rating-neutral';
+  }
+
   function buildReportHref(ticker, date, rawHref) {
     if (typeof rawHref === 'string' && rawHref.trim() !== '') {
       return rawHref;
@@ -68,12 +107,14 @@
         const href = buildReportHref(ticker, date, report.href);
         const reportLabel = formatDisplayDate(date);
         const score = formatReportScore(report.score);
+        const ratingClass = getRatingClass(report.rating);
+        const scoreClass = getScoreClass(report.score);
 
         return `
           <a class="stock-report-link" href="${escapeHtml(href)}">
             <span class="stock-report-date">${escapeHtml(reportLabel)} Report</span>
-            <span class="stock-report-rating">${escapeHtml(report.rating || '-')}</span>
-            <span class="stock-report-score">${escapeHtml(score)}</span>
+            <span class="stock-report-rating ${escapeHtml(ratingClass)}">${escapeHtml(report.rating || '-')}</span>
+            <span class="stock-report-score ${escapeHtml(scoreClass)}">${escapeHtml(score)}</span>
             <span class="stock-report-change">${escapeHtml(report.change || '-')}</span>
           </a>
         `;
@@ -215,8 +256,8 @@
         ${hasReportHistory ? `<div class="stock-date-list" id="${escapeHtml(reportListId)}" hidden>${listHtml}</div>` : ''}
         <div class="stock-list-tag-row">
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
-          <span class="stock-card-tag buy">${escapeHtml(latest.rating || '-')}</span>
-          <span class="stock-card-tag">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}`)}</span>
+          <span class="stock-card-tag ${escapeHtml(getRatingClass(latest.rating))}">${escapeHtml(latest.rating || '-')}</span>
+          <span class="stock-card-tag ${escapeHtml(getScoreClass(latest.score))}">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}`)}</span>
           <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
         </div>
         ${stock.description ? `<p class="stock-list-desc">${escapeHtml(stock.description || '')}</p>` : ''}

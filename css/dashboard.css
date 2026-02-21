@@ -235,6 +235,10 @@ body{
 .stock-report-link:hover{border-color:var(--accent);background:rgba(59,130,246,.08)}
 .stock-report-date{font-size:.74rem;font-weight:600;color:var(--text)}
 .stock-report-rating{font-size:.68rem;font-weight:700;color:var(--accent2)}
+.stock-report-rating.rating-buy{color:var(--green2)}
+.stock-report-rating.rating-hold{color:var(--accent2)}
+.stock-report-rating.rating-sell{color:var(--red2)}
+.stock-report-rating.rating-neutral{color:var(--text2)}
 .stock-card-arrow{position:absolute;right:1.5rem;bottom:1rem;font-size:1.2rem;color:var(--text3);transition:all .3s;text-decoration:none}
 .stock-card-arrow.is-open{transform:rotate(90deg)}
 .stock-card:hover .stock-card-arrow{color:var(--accent2)}
@@ -266,4 +270,16 @@ body{
 .stock-report-date{font-size:.74rem;font-weight:600;color:var(--text)}
 .stock-report-rating{font-size:.68rem;font-weight:700;color:var(--accent2)}
 .stock-report-score{font-size:.68rem;font-weight:700;color:var(--text2)}
+.stock-report-score.score-good{color:var(--green2)}
+.stock-report-score.score-neutral{color:var(--accent2)}
+.stock-report-score.score-warning{color:var(--orange)}
+.stock-report-score.score-bad{color:var(--red2)}
 .stock-report-change{font-size:.68rem;color:var(--text2)}
+.stock-card-tag.rating-buy{background:rgba(34,197,94,.1);color:var(--green2);border-color:rgba(34,197,94,.2)}
+.stock-card-tag.rating-hold{background:rgba(96,165,250,.12);color:var(--accent2);border-color:rgba(96,165,250,.26)}
+.stock-card-tag.rating-sell{background:rgba(248,113,113,.12);color:var(--red2);border-color:rgba(248,113,113,.26)}
+.stock-card-tag.rating-neutral{background:rgba(148,163,184,.15);color:var(--text2);border-color:rgba(148,163,184,.28)}
+.stock-card-tag.score-good{background:rgba(34,197,94,.1);color:var(--green2);border-color:rgba(34,197,94,.2)}
+.stock-card-tag.score-neutral{background:rgba(96,165,250,.1);color:var(--accent2);border-color:rgba(96,165,250,.24)}
+.stock-card-tag.score-warning{background:rgba(245,158,11,.1);color:var(--orange);border-color:rgba(245,158,11,.24)}
+.stock-card-tag.score-bad{background:rgba(248,113,113,.1);color:var(--red2);border-color:rgba(248,113,113,.24)}
