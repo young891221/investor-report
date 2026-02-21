@@ -1,8 +1,41 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
 function isObject(value) {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isIsoDateString(value) {
+  if (!ISO_DATE_RE.test(String(value || '').trim())) {
+    return false;
+  }
+
+  const [yearText, monthText, dayText] = value.split('-');
+  const year = Number(yearText);
+  const month = Number(monthText);
+  const day = Number(dayText);
+  const utcDate = new Date(Date.UTC(year, month - 1, day));
+
+  return (
+    utcDate.getUTCFullYear() === year &&
+    utcDate.getUTCMonth() + 1 === month &&
+    utcDate.getUTCDate() === day
+  );
+}
+
+function extractReportDate(fileName) {
+  const base = path.basename(String(fileName || ''), '.json');
+  const withTickerPrefix = /^.+-(\d{4}-\d{2}-\d{2})$/u;
+  const direct = /^(\d{4}-\d{2}-\d{2})$/u;
+
+  if (direct.test(base)) {
+    return base;
+  }
+
+  const match = withTickerPrefix.exec(base);
+  return match ? match[1] : null;
 }
 
 function addError(errors, field, message) {
@@ -131,6 +164,12 @@ function validateStock(stock, options = {}) {
 
   if (!['up', 'down'].includes(stock.priceChangeDir)) {
     addError(errors, 'root.priceChangeDir', "must be either 'up' or 'down'");
+  }
+
+  if (typeof stock.analysisDate === 'string' && stock.analysisDate.trim() !== '') {
+    if (!isIsoDateString(stock.analysisDate)) {
+      addError(errors, 'root.analysisDate', 'must use YYYY-MM-DD format');
+    }
   }
 
   if (
@@ -406,7 +445,19 @@ function validateStock(stock, options = {}) {
     addError(
       errors,
       'root.ticker',
-      `must match file name (${options.expectedTicker})`
+      `must match directory name (${options.expectedTicker})`
+    );
+  }
+
+  if (
+    options.expectedDate &&
+    typeof stock.analysisDate === 'string' &&
+    stock.analysisDate !== options.expectedDate
+  ) {
+    addError(
+      errors,
+      'root.analysisDate',
+      `must match file date (${options.expectedDate})`
     );
   }
 
@@ -414,20 +465,55 @@ function validateStock(stock, options = {}) {
 }
 
 function readStockFiles(dataDir) {
-  const entries = fs.readdirSync(dataDir)
-    .filter(file => file.endsWith('.json') && file !== 'index.json')
-    .sort();
+  const dirEntries = fs.readdirSync(dataDir, { withFileTypes: true });
+  const files = [];
 
-  return entries.map(file => {
-    const fullPath = path.join(dataDir, file);
-    const raw = fs.readFileSync(fullPath, 'utf8');
-    return {
-      file,
-      fullPath,
-      expectedTicker: path.basename(file, '.json').toUpperCase(),
-      json: JSON.parse(raw),
-    };
+  dirEntries.forEach(entry => {
+    if (entry.isDirectory()) {
+      if (entry.name === 'sources') {
+        return;
+      }
+
+      const ticker = entry.name.toUpperCase();
+      const tickerDir = path.join(dataDir, entry.name);
+      const reportFiles = fs.readdirSync(tickerDir, { withFileTypes: true })
+        .filter(item => item.isFile() && item.name.endsWith('.json'))
+        .map(item => item.name)
+        .sort();
+
+      reportFiles.forEach(reportFile => {
+        const fullPath = path.join(tickerDir, reportFile);
+        const expectedDate = extractReportDate(reportFile);
+        if (!expectedDate) {
+          throw new Error(`Invalid report filename format: ${reportFile}`);
+        }
+
+        const raw = fs.readFileSync(fullPath, 'utf8');
+        files.push({
+          file: `${entry.name}/${reportFile}`,
+          fullPath,
+          expectedTicker: ticker,
+          expectedDate,
+          json: JSON.parse(raw),
+        });
+      });
+      return;
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.json') && entry.name !== 'index.json') {
+      const fullPath = path.join(dataDir, entry.name);
+      const raw = fs.readFileSync(fullPath, 'utf8');
+      files.push({
+        file: entry.name,
+        fullPath,
+        expectedTicker: path.basename(entry.name, '.json').toUpperCase(),
+        expectedDate: null,
+        json: JSON.parse(raw),
+      });
+    }
   });
+
+  return files.sort((a, b) => a.file.localeCompare(b.file));
 }
 
 module.exports = {

@@ -3,10 +3,6 @@
     "ticker": "IREN",
     "name": "IREN Limited",
     "nameKr": "아이렌 리미티드",
-    "price": "$42.22",
-    "change": "▲ +723%",
-    "changeDir": "up",
-    "changeBasis": "52주",
     "sector": "AI 인프라 / 비트코인 채굴",
     "description": "비트코인 채굴에서 AI 클라우드 인프라로 전환 중인 차세대 데이터센터 기업. 마이크로소프트 $97억 계약 확보.",
     "tags": [
@@ -14,17 +10,31 @@
       "AI 클라우드 서비스",
       "데이터센터 인프라"
     ],
-    "rating": "Buy",
-    "analysisDate": "2026.02.17"
+    "latest": {
+      "date": "2026-02-17",
+      "price": "$42.22",
+      "change": "▲ +723%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "Buy",
+      "href": "stock.html?ticker=IREN&date=2026-02-17"
+    },
+    "reports": [
+      {
+        "date": "2026-02-17",
+        "price": "$42.22",
+        "change": "▲ +723%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "Buy",
+        "href": "stock.html?ticker=IREN&date=2026-02-17"
+      }
+    ]
   },
   {
     "ticker": "RKLB",
     "name": "Rocket Lab Corporation",
     "nameKr": "로켓 랩",
-    "price": "$67.44",
-    "change": "▲ +139%",
-    "changeDir": "up",
-    "changeBasis": "52주",
     "sector": "우주항공 / 국방 우주 시스템",
     "description": "소형 발사체 Electron, 위성 플랫폼/부품, 그리고 중형 재사용 로켓 Neutron을 축으로 확장 중인 엔드투엔드 우주 인프라 기업.",
     "tags": [
@@ -32,17 +42,31 @@
       "발사 서비스 (Electron/HASTE)",
       "Neutron + 국방 메가프로그램"
     ],
-    "rating": "Buy",
-    "analysisDate": "2026.02.18"
+    "latest": {
+      "date": "2026-02-18",
+      "price": "$67.44",
+      "change": "▲ +139%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "Buy",
+      "href": "stock.html?ticker=RKLB&date=2026-02-18"
+    },
+    "reports": [
+      {
+        "date": "2026-02-18",
+        "price": "$67.44",
+        "change": "▲ +139%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "Buy",
+        "href": "stock.html?ticker=RKLB&date=2026-02-18"
+      }
+    ]
   },
   {
     "ticker": "TSLA",
     "name": "Tesla, Inc.",
     "nameKr": "테슬라",
-    "price": "$410.63",
-    "change": "▲ +15.4%",
-    "changeDir": "up",
-    "changeBasis": "52주",
     "sector": "자동차 / 에너지 저장 / 자율주행 소프트웨어",
     "description": "전기차와 에너지저장장치(ESS), 자율주행 소프트웨어를 통합 운영하는 글로벌 모빌리티·에너지 기업.",
     "tags": [
@@ -50,7 +74,25 @@
       "에너지 발전·저장",
       "서비스·기타"
     ],
-    "rating": "Hold",
-    "analysisDate": "2026.02.18"
+    "latest": {
+      "date": "2026-02-18",
+      "price": "$410.63",
+      "change": "▲ +15.4%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "Hold",
+      "href": "stock.html?ticker=TSLA&date=2026-02-18"
+    },
+    "reports": [
+      {
+        "date": "2026-02-18",
+        "price": "$410.63",
+        "change": "▲ +15.4%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "Hold",
+        "href": "stock.html?ticker=TSLA&date=2026-02-18"
+      }
+    ]
   }
 ]
