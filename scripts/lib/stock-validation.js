@@ -134,6 +134,51 @@ function ensureNumberArray(array, field, errors, allowNull = false) {
   });
 }
 
+function isValidHttpUrl(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch (error) {
+    return false;
+  }
+}
+
+function validateAnalystReportItem(item, index, sectionPath, errors) {
+  if (!isObject(item)) {
+    addError(errors, `${sectionPath}[${index}]`, 'must be an object');
+    return;
+  }
+
+  requireString(item, 'title', errors, sectionPath);
+  requireString(item, 'source', errors, sectionPath);
+  requireString(item, 'link', errors, sectionPath);
+  if (typeof item.link === 'string' && item.link.trim() && !isValidHttpUrl(item.link.trim())) {
+    addError(errors, `${sectionPath}[${index}].link`, 'must be a valid http/https URL');
+  }
+
+  if (item.publishedDate !== undefined) {
+    if (typeof item.publishedDate !== 'string' || !isIsoDateString(item.publishedDate)) {
+      addError(errors, `${sectionPath}[${index}].publishedDate`, 'must use YYYY-MM-DD format');
+    }
+  }
+
+  if (item.summary !== undefined) {
+    requireString(item, 'summary', errors, sectionPath);
+  }
+
+  if (item.keyPoints !== undefined) {
+    if (!Array.isArray(item.keyPoints)) {
+      addError(errors, `${sectionPath}.keyPoints`, 'must be an array');
+    } else {
+      ensureStringArray(item.keyPoints, `${sectionPath}.keyPoints`, errors);
+    }
+  }
+}
+
 function validateStock(stock, options = {}) {
   const errors = [];
   if (!isObject(stock)) {
@@ -438,7 +483,30 @@ function validateStock(stock, options = {}) {
       ['icon', 'name', 'desc'].forEach(field => {
         requireString(moat, field, errors, `root.moats[${index}]`);
       });
-    });
+      });
+  }
+
+  const analystReports = stock.analystReports;
+  if (analystReports !== undefined) {
+    if (!isObject(analystReports)) {
+      addError(errors, 'root.analystReports', 'must be an object');
+    } else {
+      const sections = ['domestic', 'international'];
+      sections.forEach(sectionName => {
+        const section = analystReports[sectionName];
+        const sectionPath = `root.analystReports.${sectionName}`;
+        if (section === undefined) {
+          return;
+        }
+        if (!Array.isArray(section)) {
+          addError(errors, sectionPath, 'must be an array');
+          return;
+        }
+        section.forEach((item, index) => {
+          validateAnalystReportItem(item, index, `${sectionPath}[${index}]`, errors);
+        });
+      });
+    }
   }
 
   if (options.expectedTicker && stock.ticker !== options.expectedTicker) {

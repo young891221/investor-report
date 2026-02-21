@@ -135,6 +135,22 @@ body{
 .callout-risk .callout-title{color:var(--red2)}
 .callout-risk li::before{content:'⚠';color:var(--orange)}
 
+/* ═══ Analyst Reports ═══ */
+.analyst-report-group{margin-bottom:1rem;padding:1rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:linear-gradient(135deg,rgba(96,165,250,.05),rgba(167,139,250,.05))}
+.analyst-report-group:last-child{margin-bottom:0}
+.analyst-report-group-title{font-weight:700;color:var(--text);margin-bottom:.8rem;font-size:.9rem;display:flex;align-items:center;gap:6px}
+.analyst-report-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.9rem}
+.analyst-report-item{padding:0}
+.analyst-report-title{display:block;color:var(--text);font-weight:600;text-decoration:none;font-size:.95rem;line-height:1.45}
+.analyst-report-title:hover{color:var(--accent2);text-decoration:underline}
+.analyst-report-title[aria-disabled='true']{color:var(--text3);text-decoration:none;cursor:default}
+.analyst-report-meta{margin-top:.25rem;color:var(--text2);font-size:.78rem}
+.analyst-report-summary{margin-top:.6rem;color:var(--text);font-size:.88rem;line-height:1.6}
+.analyst-report-points{margin-top:.5rem;padding-left:1rem;list-style:disc;display:flex;flex-direction:column;gap:3px}
+.analyst-report-points li{color:var(--text2);font-size:.82rem;line-height:1.6}
+
+.report-empty{margin:.2rem 0;color:var(--text3);font-size:.88rem}
+
 /* ═══ Timeline ═══ */
 .timeline{position:relative;padding-left:28px}
 .timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border2)}

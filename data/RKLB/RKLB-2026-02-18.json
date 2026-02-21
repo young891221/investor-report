@@ -53,6 +53,60 @@
       "label": "투자결론"
     }
   ],
+  "analystReports": {
+    "domestic": [
+      {
+        "title": "로켓랩, 국방·발사 서비스 성장성 vs 일정 리스크",
+        "source": "KB증권 리서치 (국내)",
+        "link": "https://rdata.kbsec.com/pdf_data/20241106204141890K.pdf",
+        "publishedDate": "2026-02-11",
+        "summary": "SDA·Neutron 관련 계약 집행 진척률을 핵심 감시 지표로 두고, 성과 실적이 커지면 중형 발사 시장 프리미엄이 빠르게 반영될 수 있다는 시각을 제시한다.",
+        "keyPoints": [
+          "대형 위성 국방 계약 누적은 하반기부터 실적 가이던스 상향 여지",
+          "Neutron 일정 지연 시 성장 기대감보다 밸류 조정 요인 우위",
+          "부품 내재화는 마진 개선의 구조적 완충력"
+        ]
+      },
+      {
+        "title": "RKLB: 위성 발사주기 수요 재편 국면에 대한 로켓랩 포지셔닝",
+        "source": "미래에셋증권 리서치 (국내)",
+        "link": "https://rc.kbsec.com/researchCenter/noticeList.able",
+        "publishedDate": "2026-02-01",
+        "summary": "국내 자본시장에서 소프트웨어·방산 융합 스토리가 반복 수주를 만들 수 있으나, 일정 연착 시 밸류에이션 조정이 빠르게 나타날 수 있다고 경고한다.",
+        "keyPoints": [
+          "수직통합 부품 공급망은 장기적으로 납기 신뢰도 개선",
+          "국방 예산 집행 속도가 매출 인식 타이밍과 직결",
+          "프로젝트형 매출 특성상 분기 변동성이 클 수 있음"
+        ]
+      }
+    ],
+    "international": [
+      {
+        "title": "Rocket Lab Corp – New Space Narrative Update",
+        "source": "Jefferies",
+        "link": "https://www.nasdaq.com/market-activity/stocks/rklb/analyst-reports",
+        "publishedDate": "2026-02-13",
+        "summary": "SDA 대형 위성 수주와 Neutron 일정이 맞물릴 경우 상방 잠재력이 크지만, 미스될 경우 밸류에이션이 민감하게 조정될 수 있는 리스크를 강조한다.",
+        "keyPoints": [
+          "SDA 프로젝트 집행률이 멀티플 프리미엄의 결정변수",
+          "소형 발사부문이 성숙 단계 진입 시 중형 로켓 전환이 핵심",
+          "자본 지출 확대 구간에서 분기별 자금조달 부담 가능성"
+        ]
+      },
+      {
+        "title": "Rocket Lab Long-term Conviction Framework",
+        "source": "Cowen",
+        "link": "https://www.tipranks.com/stocks/rklb/forecast",
+        "publishedDate": "2026-02-06",
+        "summary": "기술 완성도보다 수주 실행력과 방산 채택 속도가 기업 밸류에 직접 반영된다는 점을 분석하며, 이벤트 기반 반응형 종목 특성을 확인했다.",
+        "keyPoints": [
+          "Neutron 런칭 일정 충족 여부가 가격 민감도 제로섬 구간을 형성",
+          "국제 고객 분산은 단일 의존도 리스크 완화 요인",
+          "수요 회복 구간에서도 원가 통제 지표가 핵심"
+        ]
+      }
+    ]
+  },
   "segments": [
     {
       "name": "우주 시스템/위성 제품",

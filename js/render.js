@@ -71,6 +71,15 @@ function renderDashboard(CONFIG) {
       /^[-–—]+$/u.test(normalized)
     );
   };
+  const isObject = value => typeof value === 'object' && value !== null && !Array.isArray(value);
+  const escapeHtml = value => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+  const isReportUrl = value => /^https?:\/\/\S+/u.test(String(value || '').trim());
+  const ensureSummary = value => typeof value === 'string' ? value.trim() : '';
   const deriveForwardPeg = () => {
     const pegInputs = C.pegInputs && typeof C.pegInputs === 'object' ? C.pegInputs : null;
     if (!pegInputs) {
@@ -260,11 +269,120 @@ function renderDashboard(CONFIG) {
     if (verdict === 'HOLD') return { valueClass: 'orange', changeDir: 'neutral' };
     return { valueClass: 'red', changeDir: 'down' };
   };
+  const getAnalystReportSections = () => {
+    const raw = isObject(C.analystReports) ? C.analystReports : null;
+    const toSection = key => {
+      const list = ensureArray(raw ? raw[key] : null)
+        .map(item => {
+          if (!isObject(item)) {
+            return null;
+          }
+
+          const title = ensureSummary(item.title);
+          const source = ensureSummary(item.source);
+          const link = ensureSummary(item.link);
+          if (!title || !source || !link) {
+            return null;
+          }
+
+          const publishedDate = ensureSummary(item.publishedDate);
+          const summary = ensureSummary(item.summary);
+          const keyPoints = ensureArray(item.keyPoints)
+            .map(item => ensureSummary(item))
+            .filter(Boolean)
+            .slice(0, 3);
+
+          return {
+            title,
+            source,
+            link,
+            publishedDate: publishedDate || null,
+            summary,
+            keyPoints,
+          };
+        })
+        .filter(Boolean);
+
+      return list;
+    };
+
+    const domestic = toSection('domestic');
+    const international = toSection('international');
+    return {
+      hasReports: domestic.length > 0 || international.length > 0,
+      domestic,
+      international,
+    };
+  };
+  const renderAnalystReportsSection = reportData => {
+    const section = document.getElementById('analyst-reports');
+    const listEl = document.getElementById('analyst-reports-list');
+    if (!section || !listEl) {
+      return;
+    }
+
+    if (!reportData || !reportData.hasReports) {
+      section.style.display = 'none';
+      return;
+    }
+
+    const renderReportItems = (items, prefix) => {
+      if (items.length === 0) {
+        return '';
+      }
+
+      const itemsHtml = items.map(item => {
+        const linkLabel = escapeHtml(item.link);
+        const safeLink = isReportUrl(item.link)
+          ? `<a class="analyst-report-title" href="${linkLabel}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>`
+          : `<span class="analyst-report-title" aria-disabled="true">${escapeHtml(item.title)}</span>`;
+
+        const publishedLabel = item.publishedDate
+          ? `<div class="analyst-report-meta">${escapeHtml(item.source)} · ${escapeHtml(item.publishedDate)}</div>`
+          : `<div class="analyst-report-meta">${escapeHtml(item.source)}</div>`;
+
+        const summaryHtml = item.summary
+          ? `<div class="analyst-report-summary">${escapeHtml(item.summary)}</div>`
+          : '';
+        const keyPoints = item.keyPoints.length > 0
+          ? `<ul class="analyst-report-points">${item.keyPoints.map(point => `<li>${escapeHtml(point)}</li>`).join('')}</ul>`
+          : '';
+        return `
+          <li class="analyst-report-item">
+            ${safeLink}
+            ${publishedLabel}
+            ${summaryHtml}
+            ${keyPoints}
+          </li>
+        `;
+      }).join('');
+
+      return `
+        <div class="analyst-report-group">
+          <div class="analyst-report-group-title">${escapeHtml(prefix)}</div>
+          <ul class="analyst-report-list">${itemsHtml}</ul>
+        </div>
+      `;
+    };
+
+    const domesticHtml = renderReportItems(reportData.domestic, '국내 애널리스트');
+    const internationalHtml = renderReportItems(reportData.international, '해외 애널리스트');
+    const combined = `${domesticHtml}${internationalHtml}`.trim();
+    listEl.innerHTML = combined || '<p class="report-empty">연결된 애널리스트 리포트가 없습니다.</p>';
+  };
 
   // ── Nav ──
   document.getElementById('nav-ticker').textContent = C.ticker;
   const navLinks = document.getElementById('nav-links');
-  C.navSections.forEach(s => {
+  const analystReportSections = getAnalystReportSections();
+  const navSections = ensureArray(C.navSections).slice();
+  if (analystReportSections.hasReports && !navSections.some(item => item && item.id === 'analyst-reports')) {
+    const verdictIndex = navSections.findIndex(item => item && item.id === 'verdict');
+    const insertIndex = verdictIndex >= 0 ? verdictIndex : navSections.length;
+    navSections.splice(insertIndex, 0, { id: 'analyst-reports', label: '애널리스트 리포트' });
+  }
+
+  navSections.forEach(s => {
     const a = document.createElement('a');
     a.href = '#' + s.id; a.textContent = s.label;
     navLinks.appendChild(a);
@@ -312,6 +430,7 @@ function renderDashboard(CONFIG) {
   // ── Key Points ──
   const kpList = document.getElementById('key-points');
   C.keyPoints.forEach(p => { kpList.innerHTML += `<li>${p}</li>`; });
+  renderAnalystReportsSection(analystReportSections);
 
   // ── Segments ──
   const segGrid = document.getElementById('segments-grid');

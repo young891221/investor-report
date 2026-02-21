@@ -263,6 +263,48 @@
           "desc": { "type": "string" }
         }
       }
+    },
+    "analystReports": {
+      "type": "object",
+      "properties": {
+        "domestic": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "source", "link"],
+            "properties": {
+              "title": { "type": "string", "minLength": 1 },
+              "source": { "type": "string", "minLength": 1 },
+              "link": { "type": "string", "pattern": "^https?:\\/\\/.+" },
+              "publishedDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+              "summary": { "type": "string", "minLength": 1 },
+              "keyPoints": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        },
+        "international": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "source", "link"],
+            "properties": {
+              "title": { "type": "string", "minLength": 1 },
+              "source": { "type": "string", "minLength": 1 },
+              "link": { "type": "string", "pattern": "^https?:\\/\\/.+" },
+              "publishedDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+              "summary": { "type": "string", "minLength": 1 },
+              "keyPoints": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": true
     }
   }
 }
