@@ -191,17 +191,28 @@
       "Neutron + 국방 메가프로그램"
     ],
     "latest": {
-      "date": "2026-02-18",
+      "date": "2026-02-21",
       "price": "$67.44",
       "change": "▲ +139%",
       "changeDir": "up",
       "changeBasis": "52주",
       "rating": "Buy",
-      "reportScore": 68,
+      "reportScore": 47,
       "analysisAi": "GPT",
-      "href": "stock.html?ticker=RKLB&date=2026-02-18"
+      "href": "stock.html?ticker=RKLB&date=2026-02-21"
     },
     "reports": [
+      {
+        "date": "2026-02-21",
+        "price": "$67.44",
+        "change": "▲ +139%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "Buy",
+        "reportScore": 47,
+        "analysisAi": "GPT",
+        "href": "stock.html?ticker=RKLB&date=2026-02-21"
+      },
       {
         "date": "2026-02-18",
         "price": "$67.44",
