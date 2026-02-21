@@ -56,53 +56,53 @@
   "analystReports": {
     "domestic": [
       {
-        "title": "테슬라 2026 상반기 실적 상쇄 논란과 리스크 집중 분석",
-        "source": "키움증권 리서치센터 (국내)",
+        "title": "미국기업분석 Tesla (TSLA.US) FY3Q24 Review: 성장에 성장을 더하여",
+        "source": "키움증권 리서치센터",
         "link": "https://bbn.kiwoom.com/rfCC723.pdf",
-        "publishedDate": "2026-02-10",
-        "summary": "자동차 성장 둔화에도 에너지 및 FSD 구독 전환 수익이 개선되며 실적 변동성이 낮아질 수 있다는 시나리오를 제시한다.",
+        "publishedDate": "2024-10-24",
+        "summary": "FY3Q24 실적 리뷰에서 차량 본업 둔화 우려에도 이익 체력과 밸류에이션 밴드 재평가 가능성을 함께 점검했다. 당시 블룸버그 목표주가(218.16달러)와 현재주가(213.65달러, 2024-10-23)를 병기하며 단기 변동성 대비 중기 모멘텀을 확인하는 프레임을 제시했다.",
         "keyPoints": [
-          "단기 실적은 마진 압박이 크지만, 에너지 저장장치 부문의 구조적 성장성이 방어 요인으로 작동",
-          "로보택시·FSD 상용화 속도가 주가 멀티플 재평가의 핵심 트리거",
-          "거시 경기 둔화 구간에서 CAPEX 축소가 일시적 재료"
+          "FY3Q24 실적 점검의 핵심은 성장 지속 여부와 이익률 방어력 확인",
+          "당시 기준 현재주가 213.65달러, 블룸버그 목표주가 218.16달러 제시",
+          "실적표와 12M fwd PER 밴드를 통해 단기 조정 가능성과 중기 상승 여력을 동시에 제시"
         ]
       },
       {
-        "title": "TSLA의 밸류에이션 리스크와 성장성 리셋",
-        "source": "KB증권 리서치 (국내)",
+        "title": "Tesla (TSLA US): 마스터 플랜 3 점검",
+        "source": "KB증권 리서치",
         "link": "https://rdata.kbsec.com/pdf_data/20230309101819690K.pdf",
-        "publishedDate": "2026-02-02",
-        "summary": "고평가 구간에서 수익성 회복 확인 전까지 멀티플 부담이 커지며 단기 변동성 노출이 지속된다는 보수적 결론을 제시한다.",
+        "publishedDate": "2023-03-09",
+        "summary": "마스터 플랜 3 발표 내용을 바탕으로 에너지·차세대 플랫폼·생산효율 로드맵을 재정리한 리포트다. 차세대 플랫폼의 비용/공장면적 50% 절감 목표와 함께 차량 인도 증가 대비 ASP 하락, 자사주 매입 검토 등 밸류에이션 변수들을 함께 제시했다.",
         "keyPoints": [
-          "산업별 보조금 구조와 원가 민감도가 가격 탄력성 악화 요인으로 작동",
-          "AI 인프라 수주 확대 속도가 목표치 미달 시 멀티플 압박 가속",
-          "2026~27년 실적 가이던스 일치도가 핵심 모니터링 포인트"
+          "마스터 플랜 3의 핵심 축으로 에너지 확장, 신차/차세대 플랫폼, 공정 혁신을 제시",
+          "차세대 플랫폼에서 비용과 필요 공장면적 50% 절감 목표를 강조",
+          "차량 인도 증가와 ASP 하락의 동시 진행, 자사주 매입 검토를 주요 밸류에이션 변수로 제시"
         ]
       }
     ],
     "international": [
       {
-        "title": "Tesla, Inc. - AI and Autonomy Opportunity Review",
-        "source": "Morgan Stanley",
-        "link": "https://www.nasdaq.com/market-activity/stocks/tsla/analyst-research",
-        "publishedDate": "2026-02-07",
-        "summary": "본 보고서는 AI 데이터센터 연계 수요와 자율주행 소프트웨어 현금창출력이 장기 성장의 중심으로 재정렬될 가능성에 주목한다.",
+        "title": "Morgan Stanley: Tesla rating maintain (Equalweight, PT $425)",
+        "source": "Morgan Stanley (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/morgan-stanley-maintains-tesla-stock-rating-citing-robotaxi-catalyst-93CH-4428086",
+        "publishedDate": "2026-01-02",
+        "summary": "모건스탠리는 테슬라에 대해 Equalweight와 목표가 425달러를 유지했다. Q4 인도대수 41.8만대가 전년 대비 감소했지만 buy-side 기대치 대비로는 선방했다는 해석과 함께, 단기 핵심 촉매로 로보택시를 제시했다.",
         "keyPoints": [
-          "기본 시나리오에서 목표가 상단은 에너지·AI 통합 수익이 실적 가속화할 때 형성",
-          "로보택시 상용화 지연 시 주가 멀티플은 변동성 확대 가능",
-          "경쟁사 대비 가격 인하 영향은 18~24개월 내 마진에 가장 민감"
+          "투자의견 Equalweight, 목표가 425달러 유지",
+          "Q4 인도 41.8만대로 전년 대비 16% 감소, sell-side 컨센서스는 소폭 하회",
+          "로보택시 상용화 진행을 다음 멀티플 변곡점으로 제시"
         ]
       },
       {
-        "title": "Tesla Price Target Update",
-        "source": "Goldman Sachs",
-        "link": "https://www.tipranks.com/stocks/tsla/forecast",
-        "publishedDate": "2026-02-14",
-        "summary": "차량 부문의 모멘텀 둔화에도 AI 관련 서비스 라인의 성장성으로 인해 중장기 밸류에이션 하방보다 상방 변동성이 크다고 제시한다.",
+        "title": "Cantor Fitzgerald: Tesla PT 상향 ($355 → $510)",
+        "source": "Cantor Fitzgerald (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/tesla-stock-price-target-raised-to-510-from-355-at-cantor-fitzgerald-93CH-4310514",
+        "publishedDate": "2025-10-27",
+        "summary": "캔터피츠제럴드는 테슬라 목표가를 355달러에서 510달러로 상향하고 Overweight를 유지했다. Cybercab·Semi·Megapack 3 양산 일정이 2026년 가시권에 들어왔다는 점과 이에 따른 대규모 CAPEX 증가 전망을 핵심 근거로 제시했다.",
         "keyPoints": [
-          "서비스 ARPU 상승과 소프트웨어 구독 확대 속도를 성장 지표로 삼음",
-          "에너지 저장 인프라 계약 성사는 분기 실적 변동을 완화",
-          "배터리 비용 변동성은 여전히 최대 단기 위험요인"
+          "투자의견 Overweight 유지, 목표가 355달러에서 510달러로 상향",
+          "Cybercab, Semi, Megapack 3의 2026년 생산 일정 가시성을 긍정적으로 평가",
+          "2026년 CAPEX 확대를 중장기 성장 투자로 해석"
         ]
       }
     ]

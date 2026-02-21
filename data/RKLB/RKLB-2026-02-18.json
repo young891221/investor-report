@@ -56,53 +56,53 @@
   "analystReports": {
     "domestic": [
       {
-        "title": "로켓랩, 국방·발사 서비스 성장성 vs 일정 리스크",
-        "source": "KB증권 리서치 (국내)",
-        "link": "https://rdata.kbsec.com/pdf_data/20241106204141890K.pdf",
-        "publishedDate": "2026-02-11",
-        "summary": "SDA·Neutron 관련 계약 집행 진척률을 핵심 감시 지표로 두고, 성과 실적이 커지면 중형 발사 시장 프리미엄이 빠르게 반영될 수 있다는 시각을 제시한다.",
+        "title": "미국기업분석 로켓랩 (RKLB.US): SpaceX 유일 대항마, 종합 우주 플랫폼",
+        "source": "키움증권 리서치센터",
+        "link": "https://bbn.kiwoom.com/rfCC1288",
+        "publishedDate": "2025-12-18",
+        "summary": "로켓랩을 발사 서비스 기업에서 위성 플랫폼·방산·소프트웨어를 묶은 종합 우주 플랫폼으로 재평가한 리포트다. 보고서에서는 Neutron의 첫 발사 시점을 2026년 3분기로 제시하며, 일정 이행 여부를 멀티플 재평가의 핵심 변수로 제시했다.",
         "keyPoints": [
-          "대형 위성 국방 계약 누적은 하반기부터 실적 가이던스 상향 여지",
-          "Neutron 일정 지연 시 성장 기대감보다 밸류 조정 요인 우위",
-          "부품 내재화는 마진 개선의 구조적 완충력"
+          "로켓랩을 SpaceX 대안 축으로 제시하며 우주 인프라 밸류체인 확장성을 강조",
+          "Neutron 첫 발사 목표 시점(2026년 3분기) 달성 여부를 핵심 체크포인트로 제시",
+          "발사·위성·국방 계약의 동시 확장이 중장기 매출 체력 강화 요인으로 제시"
         ]
       },
       {
-        "title": "RKLB: 위성 발사주기 수요 재편 국면에 대한 로켓랩 포지셔닝",
-        "source": "미래에셋증권 리서치 (국내)",
-        "link": "https://rc.kbsec.com/researchCenter/noticeList.able",
-        "publishedDate": "2026-02-01",
-        "summary": "국내 자본시장에서 소프트웨어·방산 융합 스토리가 반복 수주를 만들 수 있으나, 일정 연착 시 밸류에이션 조정이 빠르게 나타날 수 있다고 경고한다.",
+        "title": "2025 글로벌 연간전망: 차세대에너지·우주항공/방산 ETF 점검",
+        "source": "KB증권 리서치본부",
+        "link": "https://rdata.kbsec.com/pdf_data/20241106204141890K.pdf",
+        "publishedDate": "2024-11-06",
+        "summary": "우주항공/방산 ETF(UFO) 구성 종목 분석에서 Rocket Lab을 핵심 보유종목으로 제시한 연간전망 리포트다. 보고서에서는 ETF 내 비중과 함께 연초 대비 강한 주가 성과를 근거로 민간 우주 인프라 수요 확대 국면을 설명한다.",
         "keyPoints": [
-          "수직통합 부품 공급망은 장기적으로 납기 신뢰도 개선",
-          "국방 예산 집행 속도가 매출 인식 타이밍과 직결",
-          "프로젝트형 매출 특성상 분기 변동성이 클 수 있음"
+          "UFO ETF의 상위 비중 종목으로 Rocket Lab을 명시",
+          "우주/방산 테마 강세 구간에서 Rocket Lab의 상대 성과를 강조",
+          "테마 수급과 실적 모멘텀의 동행 여부를 추적할 필요성을 제시"
         ]
       }
     ],
     "international": [
       {
-        "title": "Rocket Lab Corp – New Space Narrative Update",
-        "source": "Jefferies",
-        "link": "https://www.nasdaq.com/market-activity/stocks/rklb/analyst-reports",
-        "publishedDate": "2026-02-13",
-        "summary": "SDA 대형 위성 수주와 Neutron 일정이 맞물릴 경우 상방 잠재력이 크지만, 미스될 경우 밸류에이션이 민감하게 조정될 수 있는 리스크를 강조한다.",
+        "title": "Morgan Stanley: Rocket Lab PT 상향 ($20 → $68)",
+        "source": "Morgan Stanley (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/morgan-stanley-calls-rocket-lab-a-spacex-alternative-raises-stock-target-to-68-93CH-4363627",
+        "publishedDate": "2025-10-13",
+        "summary": "모건스탠리는 Rocket Lab을 SpaceX 대안 축으로 평가하며 목표가를 20달러에서 68달러로 상향했다. 발사 수요가 특정 사업자에 집중되는 구조에서 대체 공급자로서의 전략적 가치가 커졌다는 논리다.",
         "keyPoints": [
-          "SDA 프로젝트 집행률이 멀티플 프리미엄의 결정변수",
-          "소형 발사부문이 성숙 단계 진입 시 중형 로켓 전환이 핵심",
-          "자본 지출 확대 구간에서 분기별 자금조달 부담 가능성"
+          "목표가 20달러에서 68달러로 상향, 우주 발사 수요의 구조적 확대를 반영",
+          "SpaceX 대체 공급자 포지션을 밸류에이션 상향 근거로 제시",
+          "중장기적으로 발사체 공급능력과 고객 다변화를 핵심 변수로 평가"
         ]
       },
       {
-        "title": "Rocket Lab Long-term Conviction Framework",
-        "source": "Cowen",
-        "link": "https://www.tipranks.com/stocks/rklb/forecast",
-        "publishedDate": "2026-02-06",
-        "summary": "기술 완성도보다 수주 실행력과 방산 채택 속도가 기업 밸류에 직접 반영된다는 점을 분석하며, 이벤트 기반 반응형 종목 특성을 확인했다.",
+        "title": "Cantor Fitzgerald: Rocket Lab PT 상향 ($29 → $35)",
+        "source": "Cantor Fitzgerald (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-lifts-rocket-lab-stock-target-to-35-maintains-overweight-93CH-4085531",
+        "publishedDate": "2025-06-10",
+        "summary": "캔터피츠제럴드는 Rocket Lab에 대해 Overweight를 유지하면서 목표가를 29달러에서 35달러로 상향했다. 전자(Electron) 발사 수행력과 중형 로켓 Neutron 일정의 가시성을 반영해 리스크 프리미엄을 일부 낮춘 평가다.",
         "keyPoints": [
-          "Neutron 런칭 일정 충족 여부가 가격 민감도 제로섬 구간을 형성",
-          "국제 고객 분산은 단일 의존도 리스크 완화 요인",
-          "수요 회복 구간에서도 원가 통제 지표가 핵심"
+          "투자의견 Overweight 유지, 목표가 29달러에서 35달러로 상향",
+          "기존 발사체 운영 트랙레코드가 밸류에이션 하단을 지지",
+          "Neutron 일정 이행이 다음 단계 멀티플 확장 조건으로 제시"
         ]
       }
     ]

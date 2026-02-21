@@ -56,53 +56,53 @@
   "analystReports": {
     "domestic": [
       {
-        "title": "IREN 전환기 전략의 수익성 분기점 분석",
-        "source": "키움증권 리서치 (국내)",
-        "link": "https://rc.kbsec.com/researchCenter/today/index.able",
-        "publishedDate": "2026-02-09",
-        "summary": "비트코인 의존도를 단계적으로 낮추는 전환이 정상화되면 AI 인프라 수요 상승 시 수익성 개선 여지가 크나, 전환 초반에는 변동성이 확대될 수 있다고 본다.",
+        "title": "오늘의종목리포트 참고사항: 아이렌 (IREN US) 블랙웰 도입으로 AI 데이터센터 파워업",
+        "source": "KB증권 리서치",
+        "link": "https://rdata.kbsec.com/pdf_data/20250903074728607K.pdf",
+        "publishedDate": "2025-09-03",
+        "summary": "아이렌의 채굴 중심 구조에서 AI 데이터센터 중심 구조로의 전환 속도를 점검한 노트다. 블랙웰 GPU 도입, 2025년 말 GPU 10,900개 가동 계획, AI 클라우드 연환산 매출 가이던스(2.0~2.5억달러)를 핵심 지표로 제시했다.",
         "keyPoints": [
-          "전력 확보량(4.5GW+)은 장기 성장 레버리지",
-          "AI 매출 비중이 단기간 내에 목표치 미달일 경우 단기 적자 지속",
-          "BTC 가격 급락은 단기 자금흐름 악영향 요인"
+          "NVIDIA Blackwell 도입을 통해 AI 데이터센터 수익화 구간 진입을 강조",
+          "2025년 말 GPU 10,900개 가동과 AI 클라우드 연환산 매출 2.0~2.5억달러 목표 제시",
+          "FY25 Q4 실적(매출 1.9억달러, YoY +226.3%, EPS 0.66달러)로 기초 체력 개선 확인"
         ]
       },
       {
-        "title": "IREN AI 인프라 스토리 리스크 점검",
-        "source": "하나증권 리서치 (국내)",
-        "link": "https://rdata.kbsec.com/pdf_data/20250903074728607K.pdf",
-        "publishedDate": "2026-02-03",
-        "summary": "MS 협업은 전략적 우위를 강화하나, 단일 고객 집중도와 프로젝트 동시 진행 리스크가 과도한 밸류에이션 프리미엄을 제한할 수 있다고 분석한다.",
+        "title": "글로벌/한국 ETF 시장 동향: TIGER 미국AI데이터센터TOP4Plus 구성 점검",
+        "source": "미래에셋증권 글로벌 ETF 전략",
+        "link": "https://securities.miraeasset.com/bbs/maildownload/2026010516075650_2141410.pdf",
+        "publishedDate": "2026-01-05",
+        "summary": "AI 데이터센터 테마 ETF 구성을 통해 미국 AI 인프라 핵심 종목군을 점검한 리포트다. 보고서에서 IREN은 Top4 Plus 편입 종목으로 비중 15.0%를 부여받아, 전력·데이터센터 확장 스토리에 대한 국내 기관 시각을 확인할 수 있다.",
         "keyPoints": [
-          "AI 계약 물량 확대와 구축 속도 동시 확인 필요",
-          "일정 지연 시 현금흐름은 급격히 민감하게 반응",
-          "전력 가동률 상승률이 실적 방향성의 가장 빠른 신호"
+          "TIGER 미국AI데이터센터TOP4Plus 내 IREN 비중 15.0%로 제시",
+          "AI 데이터센터/클라우드 관련 키워드 기반 종목 스크리닝을 운용 논리로 제시",
+          "단일 종목보다 테마 바스켓 관점에서 IREN의 상대매력을 점검"
         ]
       }
     ],
     "international": [
       {
-        "title": "IREN Limited – AI infrastructure expansion outlook",
-        "source": "Rosenfeld (Overseas)",
-        "link": "https://www.marketbeat.com/stocks/NASDAQ/IREN/price-target/",
-        "publishedDate": "2026-02-12",
-        "summary": "비트코인에서 AI 데이터센터 중심으로의 전환이 성공할 경우 프리미엄 재평가 여지가 있지만, 현재는 매출 구성 전환 속도와 Capex 효율이 핵심 변수로 제시된다.",
+        "title": "Goldman Sachs: IREN coverage 개시 (Neutral, PT $39)",
+        "source": "Goldman Sachs (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/goldman-sachs-initiates-iren-at-neutral-stock-rated-93CH-3777011",
+        "publishedDate": "2025-12-18",
+        "summary": "골드만삭스는 IREN 커버리지를 Neutral, 목표가 39달러로 개시했다. 마이크로소프트와의 97억달러 계약 및 AI 데이터센터 확장 잠재력을 인정하면서도, 높은 CAPEX와 실행 리스크를 고려해 밸류에이션 프리미엄을 보수적으로 반영했다.",
         "keyPoints": [
-          "ARR 목표 달성 속도가 목표가 레벨을 좌우",
-          "고정비 부담이 높은 만큼 분기 가동률 추적이 중요",
-          "단일 고객 의존도가 실적 예측 오차를 키우는 요인"
+          "투자의견 Neutral, 목표가 39달러로 커버리지 개시",
+          "매출 성장(2025년 5.01억달러 → 2028년 38억달러 전망)과 대형 고객 계약을 긍정 평가",
+          "대규모 투자 집행 및 실행 변동성을 할인 요인으로 반영"
         ]
       },
       {
-        "title": "IREN Limited – Sector Transition Thesis",
-        "source": "Morningstar",
-        "link": "https://www.morningstar.com/stocks/xnys/iren/quote",
-        "publishedDate": "2026-02-15",
-        "summary": "시장 구성비 확대 과정에서 AI 매출 비중이 빠르게 오르면 밸류에이션의 반등 동력이 커지지만, BTC 경기 반등/하락에 대한 동시 노출을 해소하지 못하면 밸류 변동성이 남는다.",
+        "title": "H.C. Wainwright: IREN PT 상향 ($21 → $36)",
+        "source": "H.C. Wainwright (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/hc-wainwright-raises-iren-stock-price-target-to-36-maintains-buy-rating-93CH-3595144",
+        "publishedDate": "2025-08-29",
+        "summary": "H.C. Wainwright는 IREN 목표가를 21달러에서 36달러로 상향하며 Buy를 유지했다. AI 인프라 전환 속도와 상대적으로 낮은 EV/매출 배수를 상향 근거로 제시했지만, 비트코인 가격 변동과 데이터센터 증설 지연은 핵심 리스크로 명시했다.",
         "keyPoints": [
-          "AI 프로젝트 상용 수익화 속도가 모멘텀을 좌우",
-          "부채 비중과 자본조달 비용이 멀티플에 직접 반영",
-          "공급망 안정성 및 설비 가동률은 투자심리에 큰 영향"
+          "목표가 21달러에서 36달러로 상향, Buy 유지",
+          "AI 사업 성장과 피어 대비 낮은 EV/매출 배수를 재평가 근거로 제시",
+          "비트코인 변동성과 사이트 증설 일정(Childress) 지연 가능성을 주요 하방 리스크로 지목"
         ]
       }
     ]
