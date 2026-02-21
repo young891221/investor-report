@@ -13,6 +13,8 @@
   --orange:#f59e0b;--orange-bg:rgba(245,158,11,.08);
   --purple:#a78bfa;--purple-bg:rgba(167,139,250,.08);
   --cyan:#06b6d4;
+  --analysis-ai-gpt:#c084fc;
+  --analysis-ai:#67e8f9;
   --radius:16px;--radius-sm:10px;--radius-xs:6px;
   --shadow:0 4px 24px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.2);
   --shadow-lg:0 8px 40px rgba(0,0,0,.4);
@@ -285,8 +287,9 @@ body{
 .stock-report-score.score-neutral{color:var(--accent2)}
 .stock-report-score.score-warning{color:var(--orange)}
 .stock-report-score.score-bad{color:var(--red2)}
-.stock-report-ai{font-size:.68rem;font-weight:700;color:var(--text2);min-width:40px}
-.stock-report-ai.analysis-ai-gpt{color:var(--green2)}
+.stock-report-ai{font-size:.68rem;font-weight:700;min-width:40px}
+.stock-report-ai.analysis-ai-gpt{color:var(--analysis-ai-gpt)}
+.stock-report-ai.analysis-ai{color:var(--analysis-ai)}
 .stock-report-ai.analysis-ai-empty{color:var(--text3)}
 .stock-report-change{font-size:.68rem;color:var(--text2)}
 .stock-card-tag.rating-buy{background:rgba(34,197,94,.1);color:var(--green2);border-color:rgba(34,197,94,.2)}
@@ -297,6 +300,6 @@ body{
 .stock-card-tag.score-neutral{background:rgba(96,165,250,.1);color:var(--accent2);border-color:rgba(96,165,250,.24)}
 .stock-card-tag.score-warning{background:rgba(245,158,11,.1);color:var(--orange);border-color:rgba(245,158,11,.24)}
 .stock-card-tag.score-bad{background:rgba(248,113,113,.1);color:var(--red2);border-color:rgba(248,113,113,.24)}
-.stock-card-tag.analysis-ai-gpt{background:rgba(34,197,94,.1);color:var(--green2);border-color:rgba(34,197,94,.2)}
-.stock-card-tag.analysis-ai{background:rgba(96,165,250,.1);color:var(--accent2);border-color:rgba(96,165,250,.24)}
+.stock-card-tag.analysis-ai-gpt{background:rgba(192,132,252,.12);color:var(--analysis-ai-gpt);border-color:rgba(192,132,252,.3)}
+.stock-card-tag.analysis-ai{background:rgba(103,232,249,.12);color:var(--analysis-ai);border-color:rgba(103,232,249,.3)}
 .stock-card-tag.analysis-ai-empty{background:rgba(148,163,184,.12);color:var(--text3);border-color:rgba(148,163,184,.24)}
