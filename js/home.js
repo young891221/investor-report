@@ -255,10 +255,10 @@
         </div>
         ${hasReportHistory ? `<div class="stock-date-list" id="${escapeHtml(reportListId)}" hidden>${listHtml}</div>` : ''}
         <div class="stock-list-tag-row">
+          <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
           <span class="stock-card-tag ${escapeHtml(getRatingClass(latest.rating))}">${escapeHtml(latest.rating || '-')}</span>
           <span class="stock-card-tag ${escapeHtml(getScoreClass(latest.score))}">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}`)}</span>
-          <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
         </div>
         ${stock.description ? `<p class="stock-list-desc">${escapeHtml(stock.description || '')}</p>` : ''}
       `;
