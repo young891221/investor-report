@@ -1,0 +1,654 @@
+{
+  "ticker": "DT",
+  "companyName": "다이나트레이스",
+  "companyNameEn": "Dynatrace, Inc.",
+  "exchange": "NYSE",
+  "sector": "소프트웨어 / 옵저버빌리티(AIOps)",
+  "description": "클라우드 관측(Observability), 애플리케이션 보안, 로그/분석을 통합한 엔터프라이즈 소프트웨어 플랫폼 기업. 구독형 ARR 성장을 기반으로 대형 고객 확장에 집중하고 있다.",
+  "analysisDate": "2026-02-21",
+  "price": "$35.40",
+  "priceChange": "▼ 42.4% from 52주 고점 ($61.47)",
+  "priceChangeDir": "down",
+  "marketCap": "$10.56B",
+  "marketCapChange": "▼ -41.6% (1Y)",
+  "weekRange": "$32.83 — $61.47",
+  "analystRating": "Strong Buy",
+  "analystTarget": "평균 $53.57 (상승여력 +51.3%)",
+  "reportScore": 52,
+  "reportVerdict": "HOLD",
+  "keyPoints": [
+    "📈 <strong>ARR 고성장 지속:</strong> FY26 Q3 ARR이 $1.972B로 전년 대비 +20% 성장하며 구독 기반 확장세가 유지되고 있습니다.",
+    "💼 <strong>기업용 구독 모델 견조:</strong> FY26 Q3 매출 $515.5M(+18% YoY), 이 중 구독 매출 $493.4M으로 매출 믹스가 고마진 구독 중심입니다.",
+    "🧠 <strong>제품 확장 여지:</strong> 관측 + 보안 + 로그를 단일 플랫폼으로 제공해 대형 고객의 모듈 업셀링과 계약 확대 여지가 큽니다.",
+    "💰 <strong>재무 완충력:</strong> 현금 $1.19B, 총부채 $85.8M, 순현금 $1.10B로 투자/환원 병행이 가능한 구조입니다.",
+    "⚖️ <strong>밸류에이션은 부담:</strong> TTM P/E 58.7배로 절대 밸류 부담이 남아 있으며, 성장 둔화 시 멀티플 조정 리스크가 존재합니다."
+  ],
+  "navSections": [
+    {
+      "id": "summary",
+      "label": "핵심요약"
+    },
+    {
+      "id": "business",
+      "label": "비즈니스"
+    },
+    {
+      "id": "finance",
+      "label": "재무"
+    },
+    {
+      "id": "catalyst",
+      "label": "촉매"
+    },
+    {
+      "id": "competitors",
+      "label": "경쟁사"
+    },
+    {
+      "id": "risks",
+      "label": "리스크"
+    },
+    {
+      "id": "verdict",
+      "label": "투자결론"
+    }
+  ],
+  "analystReports": {
+    "domestic": [],
+    "international": [
+      {
+        "title": "TD Cowen, Dynatrace 목표가 하향 ($61 → $55), Buy 유지",
+        "source": "TD Cowen (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/td-cowen-cuts-dynatrace-stock-target-to-55-maintains-buy-rating-93CH-3853383",
+        "publishedDate": "2026-01-21",
+        "summary": "TD Cowen은 Dynatrace의 목표가를 61달러에서 55달러로 낮췄지만 Buy 의견은 유지했다. 기사에서는 밸류에이션 조정 국면을 반영한 목표가 리셋으로 해석하면서도, 기업 관측 소프트웨어 수요의 구조적 성장에 대한 긍정 시각은 유지했다.",
+        "keyPoints": [
+          "투자의견 Buy 유지",
+          "목표가 61달러에서 55달러로 하향",
+          "밸류에이션 조정 반영이 핵심 배경"
+        ]
+      },
+      {
+        "title": "BMO Capital, Dynatrace 목표가 하향 ($65 → $56), Outperform 유지",
+        "source": "BMO Capital (via Investing.com)",
+        "link": "https://www.investing.com/news/analyst-ratings/bmo-capital-adjusts-price-target-on-dynatrace-to-56-from-65-maintains-outperform-rating-93CH-3643882",
+        "publishedDate": "2025-09-29",
+        "summary": "BMO Capital은 목표가를 65달러에서 56달러로 조정하면서도 Outperform 의견을 유지했다. 기사 내 핵심 팩트는 목표가 조정과 동시에 기존 긍정 의견을 유지했다는 점으로, 실적 및 성장 가시성 대비 밸류에이션 재조정이 반영된 것으로 해석된다.",
+        "keyPoints": [
+          "투자의견 Outperform 유지",
+          "목표가 65달러에서 56달러로 조정",
+          "의견 유지와 목표가 하향이 동시에 제시됨"
+        ]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "name": "구독 플랫폼",
+      "icon": "☁️",
+      "color": "accent",
+      "backlog": "핵심",
+      "description": "인프라/애플리케이션 관측, AIOps, 보안을 포함한 핵심 SaaS 구독 사업. ARR 성장의 대부분을 담당하며 리텐션과 업셀의 중심 축이다.",
+      "revenue": "FY26 Q3 구독 매출: $493.4M (+18% YoY)"
+    },
+    {
+      "name": "서비스/프로페셔널",
+      "icon": "🛠️",
+      "color": "orange",
+      "backlog": "보조",
+      "description": "도입 컨설팅, 온보딩, 기술 지원을 포함하는 서비스 매출. 규모는 작지만 대형 고객 확장 및 장기 계약 유지에 기여한다.",
+      "revenue": "FY26 Q3 서비스 매출: $22.1M (+13% YoY)"
+    },
+    {
+      "name": "플랫폼 확장 (로그·보안·AI)",
+      "icon": "🧠",
+      "color": "purple",
+      "backlog": "성장엔진",
+      "description": "기존 APM 고객 기반 위에 로그, 앱보안, AI 분석 모듈을 추가 판매하며 계정당 매출을 확대하는 구간. 대형 엔터프라이즈 채택 확대가 관건이다.",
+      "revenue": "FY26 Q3 ARR: $1.972B (+20% YoY)"
+    }
+  ],
+  "revenueBreakdown": {
+    "labels": [
+      "구독 매출 ($493.4M)",
+      "서비스 매출 ($22.1M)"
+    ],
+    "data": [
+      95.7,
+      4.3
+    ],
+    "colors": [
+      "#3b82f6",
+      "#f59e0b"
+    ]
+  },
+  "annualRevenue": {
+    "labels": [
+      "FY2022",
+      "FY2023",
+      "FY2024",
+      "FY2025",
+      "FY2026E",
+      "FY2027E"
+    ],
+    "data": [
+      929.4,
+      1158.5,
+      1430.5,
+      1698.7,
+      2008,
+      2370
+    ],
+    "estimateStartIndex": 4
+  },
+  "quarterlyRevenue": {
+    "labels": [
+      "Q2'25",
+      "Q3'25",
+      "Q4'25",
+      "Q1'26",
+      "Q2'26",
+      "Q3'26",
+      "Q4'26E"
+    ],
+    "data": [
+      418.1,
+      436.2,
+      445.2,
+      477.3,
+      493.8,
+      515.5,
+      520.5
+    ]
+  },
+  "marginTrend": {
+    "labels": [
+      "FY2022",
+      "FY2023",
+      "FY2024",
+      "FY2025",
+      "Q1'26",
+      "Q2'26",
+      "Q3'26",
+      "Q4'26E"
+    ],
+    "gaap": [
+      8.7,
+      8,
+      9,
+      10.6,
+      13,
+      15,
+      14,
+      null
+    ],
+    "nonGaap": [
+      null,
+      null,
+      null,
+      null,
+      30,
+      31,
+      30,
+      null
+    ]
+  },
+  "financialTable": [
+    [
+      "매출",
+      "$515.5M",
+      "$436.2M",
+      "+18% YoY",
+      "green",
+      "Q3 FY26 기준 두 자릿수 성장 지속"
+    ],
+    [
+      "구독 매출",
+      "$493.4M",
+      "$416.8M",
+      "+18% YoY",
+      "green",
+      "구독 비중 95%+ 구조 유지"
+    ],
+    [
+      "ARR",
+      "$1.972B",
+      "$1.641B",
+      "+20% YoY",
+      "green",
+      "엔터프라이즈 계약 확장에 따른 반복매출 성장"
+    ],
+    [
+      "GAAP 영업이익률",
+      "14%",
+      "11%",
+      "+3%p",
+      "green",
+      "운영 효율 개선으로 마진 레벨 상향"
+    ],
+    [
+      "Non-GAAP 영업이익률",
+      "30%",
+      "27%",
+      "+3%p",
+      "green",
+      "고정비 레버리지 효과 확인"
+    ],
+    [
+      "FCF (TTM)",
+      "$465.5M",
+      "-",
+      "견조",
+      "blue",
+      "고마진 구독 모델 기반 현금창출력 유지"
+    ],
+    [
+      "현금",
+      "$1.19B",
+      "-",
+      "충분",
+      "green",
+      "순현금 구조로 전략 투자 여력 확보"
+    ],
+    [
+      "총부채",
+      "$85.8M",
+      "-",
+      "낮음",
+      "green",
+      "D/E 0.03배 수준의 보수적 레버리지"
+    ]
+  ],
+  "valuation": {
+    "labels": [
+      "P/E (TTM)",
+      "P/S (TTM)",
+      "Forward P/E",
+      "EV/EBITDA"
+    ],
+    "company": [
+      58.73,
+      5.47,
+      19.5,
+      35.01
+    ],
+    "industry": [
+      62.44,
+      8.03,
+      34.14,
+      37.04
+    ]
+  },
+  "pegInputs": {
+    "forwardPE": 19.5,
+    "epsGrowthPct": 14.48,
+    "basis": "StockAnalysis Forward P/E 및 EPS 5Y 성장률 (2026-02-20)"
+  },
+  "financialHealth": [
+    {
+      "label": "현금",
+      "value": "$1.19B",
+      "width": "82%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "총부채",
+      "value": "$0.09B",
+      "width": "18%",
+      "gradient": "var(--red),var(--red2)"
+    },
+    {
+      "label": "순현금",
+      "value": "$1.10B",
+      "width": "76%",
+      "gradient": "var(--accent),var(--accent2)"
+    }
+  ],
+  "healthMetrics": [
+    {
+      "label": "D/E 비율",
+      "value": "0.03 (매우 양호)",
+      "color": "var(--green2)"
+    },
+    {
+      "label": "유동비율",
+      "value": "1.56 (양호)",
+      "color": "var(--green2)"
+    },
+    {
+      "label": "ROE (최근 1년)",
+      "value": "6.96%",
+      "color": "var(--orange)"
+    },
+    {
+      "label": "PEG (최근 1년)",
+      "value": "1.13x",
+      "color": "var(--green2)"
+    },
+    {
+      "label": "베타",
+      "value": "0.81 (중간 변동)",
+      "color": "var(--accent2)"
+    },
+    {
+      "label": "FCF (TTM)",
+      "value": "$465.5M",
+      "color": "var(--accent2)"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2025.08.06",
+      "text": "Q1 FY26 실적 발표 (매출 $477.3M, ARR 성장 지속)",
+      "status": "done"
+    },
+    {
+      "date": "2025.11.05",
+      "text": "Q2 FY26 실적 발표 (매출 $493.8M, GAAP OPM 15%)",
+      "status": "done"
+    },
+    {
+      "date": "2026.02.09",
+      "text": "Q3 FY26 실적 발표 (매출 $515.5M, ARR $1.972B)",
+      "status": "done"
+    },
+    {
+      "date": "2026.02.09",
+      "text": "이사회, 최대 $1.0B 자사주 매입 승인",
+      "status": "done"
+    },
+    {
+      "date": "2026.05 (예상)",
+      "text": "Q4/FY26 실적 발표 및 FY27 가이던스 공개",
+      "status": "pending"
+    },
+    {
+      "date": "2026.말",
+      "text": "연간 ARR 가이던스($2.053B~$2.061B) 달성 여부 점검",
+      "status": "pending"
+    }
+  ],
+  "competitorChart": {
+    "labels": [
+      "Dynatrace",
+      "Datadog",
+      "ServiceNow",
+      "Elastic"
+    ],
+    "data": [
+      10.56,
+      40.78,
+      109.07,
+      6.4
+    ],
+    "colors": [
+      "#3b82f6",
+      "#f59e0b",
+      "#8b5cf6",
+      "#22c55e"
+    ],
+    "chartLabel": "옵저버빌리티/SaaS 피어 시가총액 (2026.02.20, 단위: $B)",
+    "yLabel": "B"
+  },
+  "competitorTable": {
+    "headers": [
+      "기업",
+      "티커",
+      "시가총액",
+      "TTM 매출",
+      "영업이익률",
+      "P/S",
+      "위협 수준"
+    ],
+    "rows": [
+      [
+        "Dynatrace",
+        "DT",
+        "$10.56B",
+        "$1.93B",
+        "12.99%",
+        "5.47x",
+        "—"
+      ],
+      [
+        "Datadog",
+        "DDOG",
+        "$40.78B",
+        "$3.43B",
+        "-1.25%",
+        "11.90x",
+        "<span class='tag tag-red'>높음</span>"
+      ],
+      [
+        "ServiceNow",
+        "NOW",
+        "$109.07B",
+        "$13.28B",
+        "15.06%",
+        "8.21x",
+        "<span class='tag tag-orange'>중간</span>"
+      ],
+      [
+        "Elastic",
+        "ESTC",
+        "$6.40B",
+        "$1.61B",
+        "N/A",
+        "약 4.0x",
+        "<span class='tag tag-orange'>중간</span>"
+      ]
+    ]
+  },
+  "risks": {
+    "items": [
+      {
+        "label": "성장률 둔화",
+        "x": 7,
+        "y": 8,
+        "r": 18,
+        "bg": "rgba(239,68,68,.55)",
+        "border": "#ef4444"
+      },
+      {
+        "label": "밸류에이션 디레이팅",
+        "x": 8,
+        "y": 8,
+        "r": 19,
+        "bg": "rgba(245,158,11,.55)",
+        "border": "#f59e0b"
+      },
+      {
+        "label": "대형 고객 집중",
+        "x": 5,
+        "y": 7,
+        "r": 15,
+        "bg": "rgba(14,165,233,.45)",
+        "border": "#0ea5e9"
+      },
+      {
+        "label": "플랫폼 경쟁 심화",
+        "x": 7,
+        "y": 7,
+        "r": 16,
+        "bg": "rgba(139,92,246,.45)",
+        "border": "#8b5cf6"
+      },
+      {
+        "label": "환율/매크로 IT 지출",
+        "x": 6,
+        "y": 6,
+        "r": 13,
+        "bg": "rgba(236,72,153,.4)",
+        "border": "#ec4899"
+      }
+    ],
+    "warnings": [
+      "📉 <strong>성장 둔화 리스크:</strong> 현재 멀티플은 중장기 고성장을 전제하고 있어 ARR/매출 성장률이 둔화되면 밸류 재평가 압력이 커질 수 있습니다.",
+      "🧮 <strong>멀티플 조정 위험:</strong> TTM P/E가 58.7배로 절대 수준이 높은 편이라 금리·실적 민감도가 큽니다.",
+      "🏢 <strong>엔터프라이즈 예산 변수:</strong> 경기 둔화 국면에서는 대형 고객의 신규 모듈 도입 속도가 늦어질 수 있습니다.",
+      "⚔️ <strong>경쟁 심화:</strong> Datadog, ServiceNow 등 플랫폼 사업자의 기능 확장이 가격/업셀 경쟁으로 이어질 수 있습니다.",
+      "🌍 <strong>글로벌 매크로/환율:</strong> 다국가 매출 구조 특성상 환율 변동과 IT 지출 사이클 변화가 실적 가시성에 영향을 줍니다."
+    ]
+  },
+  "radar": {
+    "labels": [
+      "성장성",
+      "수익성",
+      "경쟁우위",
+      "재무건전성",
+      "밸류에이션\n매력도",
+      "카탈리스트"
+    ],
+    "data": [
+      8,
+      7,
+      8,
+      8,
+      5,
+      7
+    ]
+  },
+  "bullCase": [
+    "📊 <strong>반복매출 구조:</strong> ARR 기반 SaaS 모델은 경기 변동에도 상대적으로 높은 매출 가시성을 제공합니다.",
+    "🔁 <strong>업셀 레버리지:</strong> 기존 관측 고객에게 보안/로그/AI 모듈을 추가 판매하는 확장 경로가 명확합니다.",
+    "💸 <strong>현금창출력:</strong> FCF $465.5M과 순현금 구조는 M&A, R&D, 자사주매입을 동시에 수행할 수 있는 기반입니다.",
+    "📈 <strong>가이던스 상향 이력:</strong> FY26 중 ARR/매출 가이던스를 단계적으로 상향하며 실행 신뢰도를 보여줬습니다.",
+    "🧠 <strong>플랫폼 통합 가치:</strong> 관측성과 보안을 단일 플랫폼으로 묶는 전략은 고객 락인 강화에 유리합니다."
+  ],
+  "bearCase": [
+    "📉 <strong>밸류 민감도:</strong> 높은 멀티플 구간에서는 단기 실적 미스만으로도 주가 변동폭이 커질 수 있습니다.",
+    "🏁 <strong>경쟁 환경:</strong> 대형 SaaS 사업자와의 기능 중첩이 심해질수록 가격 정책 및 영업 효율이 압박받을 수 있습니다.",
+    "⏳ <strong>도입 사이클 장기화:</strong> 대기업의 보수적 IT 예산 운용 시 계약 체결/확장 사이클이 길어질 수 있습니다.",
+    "🔄 <strong>제품 포트폴리오 확장 리스크:</strong> 보안/로그 신제품에서 기대 대비 채택이 느리면 성장 믹스 개선이 지연될 수 있습니다.",
+    "🌐 <strong>거시 불확실성:</strong> 환율 및 지역별 경기 변화가 달러 환산 성장률에 노이즈를 만들 수 있습니다."
+  ],
+  "checklist": [
+    [
+      "Q4/FY26 실적 발표",
+      "2026.05 (예상)",
+      "매출 가이던스 $518M~$523M 및 FY27 가이던스 확인"
+    ],
+    [
+      "ARR 목표 달성",
+      "2026.말",
+      "FY26 ARR 가이던스 $2.053B~$2.061B 달성 여부 점검"
+    ],
+    [
+      "구독 성장률",
+      "분기별",
+      "구독 매출 YoY +15% 이상 유지 여부 확인"
+    ],
+    [
+      "마진 추이",
+      "분기별",
+      "GAAP/Non-GAAP 영업이익률의 동반 개선 여부 점검"
+    ],
+    [
+      "자본배분",
+      "반기별",
+      "$1B 자사주 매입 집행 속도와 FCF 커버리지 확인"
+    ],
+    [
+      "경쟁사 기능 출혈경쟁",
+      "상시",
+      "Datadog/ServiceNow와의 기능 중첩 및 가격 압박 모니터링"
+    ],
+    [
+      "[100배] 시총 여력",
+      "분기별",
+      "통과 · 22/25 · 시가총액 $10.56B (<$20B 우대)"
+    ],
+    [
+      "[100배] ROE 품질",
+      "분기별",
+      "미달 · 6/20 · ROE 6.96% (목표 15~20% 미달)"
+    ],
+    [
+      "[100배] 재투자 효율",
+      "분기별",
+      "관찰 · 16/20 · TTM 매출 +18.2% · FCF $465.5M · 순현금 $1.10B"
+    ],
+    [
+      "[100배] PER 안전마진",
+      "상시",
+      "미달 · 5/20 · P/E 58.73x (8~30 우대), Forward P/E 19.50x"
+    ],
+    [
+      "[100배] 창업자 운영력",
+      "반기별",
+      "미달 · 3/15 · Founder-CEO 구조 아님, 내부자 지분 0.48%"
+    ]
+  ],
+  "moats": [
+    {
+      "icon": "🧩",
+      "name": "통합 플랫폼",
+      "desc": "관측성+보안+로그를 단일 스택으로 제공<br>도입 복잡도와 운영비용 절감"
+    },
+    {
+      "icon": "🔁",
+      "name": "높은 전환비용",
+      "desc": "대규모 시스템 모니터링의 특성상<br>도입 후 교체 비용이 높음"
+    },
+    {
+      "icon": "📚",
+      "name": "데이터 기반 AI 운영",
+      "desc": "대규모 트래픽/이벤트 데이터 학습으로<br>AIOps 정확도 개선"
+    },
+    {
+      "icon": "🏢",
+      "name": "엔터프라이즈 세일즈 역량",
+      "desc": "대형 고객 중심 영업/확장 구조로<br>ARR의 안정적 복리 성장 기반"
+    }
+  ],
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 52,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력이 큼",
+        "weight": 25,
+        "score": 22,
+        "status": "pass",
+        "evidence": "시가총액 $10.56B (<$20B 우대)"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 6,
+        "status": "fail",
+        "evidence": "ROE 6.96%"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자(복리)",
+        "weight": 20,
+        "score": 16,
+        "status": "watch",
+        "evidence": "TTM 매출 +18.2% · FCF $465.5M · 순현금 $1.10B"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER이 과열되지 않은 안전마진",
+        "weight": 20,
+        "score": 5,
+        "status": "fail",
+        "evidence": "P/E 58.73x (8~30 우대), Forward P/E 19.50x"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영(Founder-led)",
+        "weight": 15,
+        "score": 3,
+        "status": "fail",
+        "evidence": "Founder-CEO 구조 아님, 내부자 지분 0.48%"
+      }
+    ],
+    "notes": [
+      "국내 증권사 DT 커버 리포트는 확인되지 않아 analystReports.domestic을 빈 배열로 유지",
+      "valuation.industry는 DDOG/NOW/ESTC 공개 지표 기반 단순 proxy 사용"
+    ]
+  }
+}

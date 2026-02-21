@@ -411,7 +411,7 @@ function renderDashboard(CONFIG) {
     {label:'1년 범위', value: C.weekRange, valueStyle:'font-size:1.15rem'},
     {label:'애널리스트', value: C.analystRating, valueClass:'green', change: C.analystTarget, dir:'up'},
     {
-      label:'리포트 점수',
+      label:'100배 주식 점수',
       value: Number.isFinite(reportScore) ? `${reportScore}점` : '-',
       valueClass: reportTone.valueClass,
       change: reportVerdict ? `AI 결론 ${reportVerdict}` : 'AI 결론 산출 필요',

@@ -1,0 +1,619 @@
+{
+  "ticker": "BMNR",
+  "companyName": "비트마인 이머전 테크놀로지스",
+  "companyNameEn": "Bitmine Immersion Technologies, Inc.",
+  "exchange": "NYSEAMERICAN",
+  "sector": "디지털자산 / 블록체인 인프라",
+  "description": "ETH 트레저리 운영, BTC 생태계 서비스, 장비·호스팅 최적화를 결합한 디지털자산 인프라 기업.",
+  "analysisDate": "2026-02-21",
+  "price": "$20.13",
+  "priceChange": "▼ 87.5% from 52주 고점 ($161.00)",
+  "priceChangeDir": "down",
+  "marketCap": "$9.16B",
+  "marketCapChange": "▲ +208.44% (52주 주가)",
+  "weekRange": "$3.20 — $161.00",
+  "analystRating": "Strong Buy",
+  "analystTarget": "평균 $43.00 (Investing 2명 기준, ↑113.6%)",
+  "reportScore": 57,
+  "reportVerdict": "HOLD",
+  "keyPoints": [
+    "📈 <strong>매출 고성장:</strong> 2025년 11월 종료 분기 매출은 $2.29M으로 전년동기 대비 +90.92% 성장했습니다.",
+    "🧾 <strong>연간 외형 확대:</strong> FY2025 연매출은 $6.10M으로 전년 대비 +84.14% 증가했습니다.",
+    "⚠️ <strong>손익 변동성 극대화:</strong> FY2025 순이익 $328.16M 이후 TTM 순이익은 -$4.87B로 급변했습니다.",
+    "🏦 <strong>자산규모 재료:</strong> 회사 발표 기준 총 크립토+현금 보유액이 $10.0B(2026-02 공시성 보도) 수준으로 제시됐습니다.",
+    "🎯 <strong>애널리스트 시각:</strong> B. Riley(목표 $47), Cantor(목표 $39) 기반으로 컨센서스는 Strong Buy를 유지 중입니다."
+  ],
+  "navSections": [
+    {
+      "id": "summary",
+      "label": "핵심요약"
+    },
+    {
+      "id": "business",
+      "label": "비즈니스"
+    },
+    {
+      "id": "finance",
+      "label": "재무"
+    },
+    {
+      "id": "catalyst",
+      "label": "촉매"
+    },
+    {
+      "id": "competitors",
+      "label": "경쟁사"
+    },
+    {
+      "id": "risks",
+      "label": "리스크"
+    },
+    {
+      "id": "verdict",
+      "label": "투자결론"
+    }
+  ],
+  "analystReports": {
+    "domestic": [],
+    "international": [
+      {
+        "title": "B. Riley Securities: Buy 유지, PT $90 → $47 하향",
+        "source": "B. Riley Securities (via Nasdaq/Fintel)",
+        "link": "https://www.nasdaq.com/articles/b-riley-securities-maintains-bitmine-immersion-technologies-bmnr-buy-recommendation",
+        "publishedDate": "2025-11-20",
+        "summary": "B. Riley는 BMNR에 대해 Buy를 유지하면서 목표가를 90달러에서 47달러로 하향했다. 긍정 의견은 유지했지만 밸류 재조정 과정에서 기대수익률 가정을 보수화한 액션으로 해석된다.",
+        "keyPoints": [
+          "투자의견 Buy 유지",
+          "목표주가 90달러에서 47달러로 하향",
+          "상향 여력은 유지하되 리스크 프리미엄 확대를 반영"
+        ]
+      },
+      {
+        "title": "Cantor Fitzgerald: 신규 커버리지, Buy/Overweight, PT $39",
+        "source": "Cantor Fitzgerald (via Investing.com consensus)",
+        "link": "https://www.investing.com/equities/bitmine-immersion-tech-consensus-estimates",
+        "publishedDate": "2026-01-05",
+        "summary": "Investing 집계 기준 Cantor Fitzgerald은 BMNR 신규 커버리지를 Buy(Overweight)로 시작하며 목표가 39달러를 제시했다. 고변동 구간에서도 디지털자산 보유전략과 유동성을 핵심 투자포인트로 본 시각이다.",
+        "keyPoints": [
+          "신규 커버리지 개시(2026-01-05)",
+          "의견 Buy/Overweight, 목표가 39달러",
+          "기존 B. Riley 액션과 함께 컨센서스 Strong Buy 형성"
+        ]
+      }
+    ]
+  },
+  "segments": [
+    {
+      "name": "ETH 트레저리 운영",
+      "icon": "🪙",
+      "color": "accent",
+      "backlog": "핵심축",
+      "description": "ETH 보유량 확대 및 보유자산 운용이 기업가치 변동의 중심. 공시성 보도에서 ETH 보유량과 총 크립토+현금 규모를 정기 업데이트합니다.",
+      "revenue": "매출 분할 미공개 (자산/평가이익 변동 영향 큼)"
+    },
+    {
+      "name": "BTC 생태계 서비스",
+      "icon": "⛏️",
+      "color": "orange",
+      "backlog": "운영중",
+      "description": "컨설팅·자문·장비 임대 및 전력/호스팅 최적화 서비스 제공. 기존 채굴 운영에서 서비스/운용형 모델로 무게중심을 조정 중입니다.",
+      "revenue": "분기 총매출 $2.29M(2025-11)"
+    },
+    {
+      "name": "MAVAN 스테이킹 인프라",
+      "icon": "🧱",
+      "color": "purple",
+      "backlog": "출시단계",
+      "description": "Made-in-America Validator Network(MAVAN)를 통한 스테이킹 인프라 확장이 예정되어 있으며, 2026년 초 가동이 핵심 이벤트입니다.",
+      "revenue": "상용화 초기 (실적 기여 확인 필요)"
+    }
+  ],
+  "revenueBreakdown": {
+    "labels": [
+      "총매출 ($2.29M, 2025-11 분기)"
+    ],
+    "data": [
+      100
+    ],
+    "colors": [
+      "#3b82f6"
+    ]
+  },
+  "annualRevenue": {
+    "labels": [
+      "FY2022",
+      "FY2023",
+      "FY2024",
+      "FY2025",
+      "FY2026E"
+    ],
+    "data": [
+      0.43,
+      0.65,
+      3.31,
+      6.1,
+      8.36
+    ],
+    "estimateStartIndex": 4
+  },
+  "quarterlyRevenue": {
+    "labels": [
+      "Q3'25",
+      "Q1'26"
+    ],
+    "data": [
+      2.05,
+      2.29
+    ]
+  },
+  "marginTrend": {
+    "labels": [
+      "FY2023",
+      "FY2024",
+      "FY2025",
+      "TTM"
+    ],
+    "gaap": [
+      -210.33,
+      -73.78,
+      -224.35,
+      -3268.01
+    ],
+    "nonGaap": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "financialTable": [
+    [
+      "분기 매출 (2025-11)",
+      "$2.29M",
+      "$1.20M(역산)",
+      "+90.92% YoY",
+      "green",
+      "공개된 분기 매출 성장률 기준 고성장 확인"
+    ],
+    [
+      "TTM 매출",
+      "$7.19M",
+      "$4.00M",
+      "+79.69%",
+      "green",
+      "연환산 외형은 빠르게 확대"
+    ],
+    [
+      "FY2025 매출",
+      "$6.10M",
+      "$3.31M",
+      "+84.14%",
+      "green",
+      "전년 대비 매출 고성장"
+    ],
+    [
+      "FY2025 순이익(보통주)",
+      "$328.16M",
+      "-$3.29M",
+      "흑자전환",
+      "green",
+      "연간 기준 대규모 이익 인식"
+    ],
+    [
+      "TTM 순이익",
+      "-$4,872M",
+      "$328.16M",
+      "급감",
+      "red",
+      "비경상/평가손익 요인으로 변동성 확대"
+    ],
+    [
+      "EPS (Diluted)",
+      "-46.42 (TTM)",
+      "13.39 (FY2025)",
+      "급감",
+      "red",
+      "주당손익 변동성 매우 높음"
+    ],
+    [
+      "FCF",
+      "-$233.83M (TTM)",
+      "-$5.21M (FY2025)",
+      "악화",
+      "red",
+      "현금흐름 안정성은 추가 모니터링 필요"
+    ]
+  ],
+  "valuation": {
+    "labels": [
+      "P/S (TTM)",
+      "Forward P/E",
+      "Beta",
+      "애널리스트 평균 목표가"
+    ],
+    "company": [
+      1274.02,
+      26.93,
+      1.24,
+      43
+    ],
+    "industry": [
+      1274.02,
+      26.93,
+      1.24,
+      43
+    ]
+  },
+  "pegInputs": {
+    "forwardPE": 26.93,
+    "epsGrowthPct": null,
+    "basis": "StockAnalysis statistics/forecast (2026-02-20), EPS 성장률 신뢰 수치 미확보"
+  },
+  "financialHealth": [
+    {
+      "label": "총 크립토+현금 보유",
+      "value": "$10.0B (2026-02 회사 발표)",
+      "width": "88%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "시가총액",
+      "value": "$9.16B",
+      "width": "82%",
+      "gradient": "var(--accent),var(--accent2)"
+    },
+    {
+      "label": "TTM 순이익",
+      "value": "-$4.87B",
+      "width": "68%",
+      "gradient": "var(--orange),#fbbf24"
+    }
+  ],
+  "healthMetrics": [
+    {
+      "label": "D/E 비율",
+      "value": "N/A (원문 공시 확인 필요)",
+      "color": "var(--orange)"
+    },
+    {
+      "label": "유동비율",
+      "value": "N/A (원문 공시 확인 필요)",
+      "color": "var(--orange)"
+    },
+    {
+      "label": "ROE (최근 1년)",
+      "value": "N/A (산출 신뢰구간 이탈)",
+      "color": "var(--orange)"
+    },
+    {
+      "label": "PEG (최근 1년)",
+      "value": "N/A (EPS 변동성 과도)",
+      "color": "var(--orange)"
+    },
+    {
+      "label": "베타",
+      "value": "1.24 (고변동)",
+      "color": "var(--orange)"
+    },
+    {
+      "label": "TTM 매출 성장",
+      "value": "+79.69%",
+      "color": "var(--green2)"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2025.10.16",
+      "text": "B. Riley, BMNR 신규 커버리지 개시 (Buy, PT $90)",
+      "status": "done"
+    },
+    {
+      "date": "2025.11.20",
+      "text": "B. Riley, Buy 유지 및 목표가 $90→$47 하향",
+      "status": "done"
+    },
+    {
+      "date": "2025.11.21",
+      "text": "FY2025 실적 공시 (EPS 13.39, 연간 배당 $0.01 선언)",
+      "status": "done"
+    },
+    {
+      "date": "2026.01.05",
+      "text": "Cantor Fitzgerald 신규 커버리지 (Buy/Overweight, PT $39)",
+      "status": "done"
+    },
+    {
+      "date": "2026.04.15",
+      "text": "다음 실적 발표 예정일(시장 추정)",
+      "status": "pending"
+    },
+    {
+      "date": "2026.상반기",
+      "text": "MAVAN 스테이킹 인프라 상용화 및 수익기여 확인",
+      "status": "pending"
+    }
+  ],
+  "competitorChart": {
+    "labels": [
+      "BMNR",
+      "Galaxy Digital",
+      "Jefferies",
+      "Stifel"
+    ],
+    "data": [
+      0.00719,
+      61.36,
+      7.34,
+      5.53
+    ],
+    "colors": [
+      "#ef4444",
+      "#3b82f6",
+      "#22c55e",
+      "#f59e0b"
+    ],
+    "chartLabel": "TTM 매출 비교 (단위: $B, StockAnalysis related stocks)",
+    "yLabel": "B"
+  },
+  "competitorTable": {
+    "headers": [
+      "기업",
+      "티커",
+      "시가총액",
+      "TTM 매출",
+      "순이익",
+      "P/S",
+      "위협 수준"
+    ],
+    "rows": [
+      [
+        "Bitmine Immersion",
+        "BMNR",
+        "$9.16B",
+        "$7.19M",
+        "-$4.87B (TTM)",
+        "1274.02x",
+        "—"
+      ],
+      [
+        "Galaxy Digital",
+        "GLXY",
+        "N/A",
+        "$61.36B",
+        "N/A",
+        "N/A",
+        "<span class='tag tag-red'>높음</span>"
+      ],
+      [
+        "Jefferies Financial",
+        "JEF",
+        "N/A",
+        "$7.34B",
+        "N/A",
+        "N/A",
+        "<span class='tag tag-orange'>중간</span>"
+      ],
+      [
+        "Stifel Financial",
+        "SF",
+        "N/A",
+        "$5.53B",
+        "N/A",
+        "N/A",
+        "<span class='tag tag-orange'>중간</span>"
+      ]
+    ]
+  },
+  "risks": {
+    "items": [
+      {
+        "label": "자산가격 변동성(ETH)",
+        "x": 9,
+        "y": 9,
+        "r": 22,
+        "bg": "rgba(239,68,68,.55)",
+        "border": "#ef4444"
+      },
+      {
+        "label": "평가손익 회계 변동",
+        "x": 8,
+        "y": 8,
+        "r": 19,
+        "bg": "rgba(245,158,11,.5)",
+        "border": "#f59e0b"
+      },
+      {
+        "label": "유동성/희석 리스크",
+        "x": 7,
+        "y": 8,
+        "r": 17,
+        "bg": "rgba(14,165,233,.45)",
+        "border": "#0ea5e9"
+      },
+      {
+        "label": "사업모델 전환 리스크",
+        "x": 6,
+        "y": 7,
+        "r": 15,
+        "bg": "rgba(139,92,246,.45)",
+        "border": "#8b5cf6"
+      },
+      {
+        "label": "규제/세무 불확실성",
+        "x": 6,
+        "y": 7,
+        "r": 14,
+        "bg": "rgba(236,72,153,.4)",
+        "border": "#ec4899"
+      }
+    ],
+    "warnings": [
+      "📉 <strong>기초자산 민감도:</strong> ETH 가격 급변은 NAV와 손익을 동시에 크게 흔들 수 있습니다.",
+      "🧮 <strong>회계 변동성:</strong> 평가손익 비중이 커서 분기 실적의 예측 오차가 매우 큽니다.",
+      "📦 <strong>운영 규모 리스크:</strong> 소규모 조직 구조(직원 수 적음)는 실행역량 병목 가능성을 내포합니다.",
+      "💧 <strong>수급 변동성:</strong> 높은 거래대금과 주가 급등락이 단기 투자자 비중 확대를 유발할 수 있습니다.",
+      "⚖️ <strong>제도 리스크:</strong> 디지털자산 관련 회계/세무/규제 변화가 기업가치 산정 방식에 영향을 줄 수 있습니다."
+    ]
+  },
+  "radar": {
+    "labels": [
+      "성장성",
+      "수익성",
+      "경쟁우위",
+      "재무건전성",
+      "밸류에이션\n매력도",
+      "카탈리스트"
+    ],
+    "data": [
+      7,
+      3,
+      6,
+      4,
+      3,
+      8
+    ]
+  },
+  "bullCase": [
+    "🚀 <strong>ETH 사이클 상방:</strong> ETH 강세 국면에서 보유자산 가치와 투자심리가 동시에 개선될 수 있습니다.",
+    "📈 <strong>외형 성장:</strong> 최근 분기·연간 매출 성장률이 높아 기초 체력 개선 기대를 높입니다.",
+    "🎯 <strong>애널리스트 상방:</strong> 현재가 대비 목표가 괴리가 커 이벤트 발생 시 탄력적 반등 가능성이 있습니다.",
+    "🧱 <strong>스테이킹 인프라:</strong> MAVAN 상용화가 실행되면 수익원 다변화 신호가 될 수 있습니다.",
+    "💵 <strong>대규모 자산 보유:</strong> 크립토+현금 보유 규모가 전략 실행의 버퍼로 작동할 수 있습니다."
+  ],
+  "bearCase": [
+    "📉 <strong>실적 변동성:</strong> TTM 손실 급증은 실적 신뢰도와 멀티플 방어력을 약화시킬 수 있습니다.",
+    "🧮 <strong>초고 P/S 부담:</strong> 매출 대비 밸류에이션이 높아 리스크 오프 구간에서 하방 압력이 큽니다.",
+    "⛏️ <strong>본업 가시성 부족:</strong> 자산운용 성과와 운영매출의 분리가 명확하지 않아 해석 난도가 높습니다.",
+    "🔄 <strong>전략 전환 리스크:</strong> 채굴·서비스·트레저리 간 전략 조정 과정에서 실행오차가 발생할 수 있습니다.",
+    "🌪️ <strong>시장 심리 의존:</strong> 크립토 위험자산 전반의 위험회피 심리 확산 시 동반 급락 가능성이 큽니다."
+  ],
+  "checklist": [
+    [
+      "다음 실적 발표",
+      "2026.04.15",
+      "매출·순이익·현금흐름의 정상화 여부 확인"
+    ],
+    [
+      "ETH 보유량 업데이트",
+      "상시",
+      "보유 토큰 수, 평균 매입단가, 현금 비중 점검"
+    ],
+    [
+      "MAVAN 출시 일정",
+      "2026.상반기",
+      "스테이킹 인프라 상용화 지연 여부 확인"
+    ],
+    [
+      "애널리스트 액션",
+      "분기별",
+      "B. Riley/Cantor 목표가·의견 변경 추적"
+    ],
+    [
+      "유동성 지표",
+      "주간",
+      "거래대금 급변과 변동성 확대 구간 모니터링"
+    ],
+    [
+      "가이던스 신뢰도",
+      "분기별",
+      "회사가 제시한 운영·재무 지표의 달성률 점검"
+    ],
+    [
+      "[100배] 시총 여력",
+      "분기별",
+      "충족 · 21/25 · 시가총액 $9.16B (<$20B 우대)"
+    ],
+    [
+      "[100배] ROE 품질",
+      "분기별",
+      "데이터 부족 · 8/20 · ROE 신뢰 수치 미확보로 중립 처리"
+    ],
+    [
+      "[100배] 재투자 효율",
+      "분기별",
+      "관찰 · 11/20 · 매출 성장 +79.69% vs FCF -$233.83M"
+    ],
+    [
+      "[100배] PER 안전마진",
+      "상시",
+      "관찰 · 11/20 · Forward P/E 26.93x (Trailing P/E N/A)"
+    ],
+    [
+      "[100배] 창업자 운영력",
+      "반기별",
+      "데이터 부족 · 6/15 · Founder 여부/내부자 지분 정량 확인 필요"
+    ]
+  ],
+  "moats": [
+    {
+      "icon": "🧠",
+      "name": "디지털자산 운용 민첩성",
+      "desc": "시장 변동에 빠른 포지셔닝 전환<br>트레저리 운용 유연성"
+    },
+    {
+      "icon": "🔗",
+      "name": "크립토 생태계 네트워크",
+      "desc": "장비·호스팅·자문을 아우르는 연결 구조<br>서비스 확장 기반"
+    },
+    {
+      "icon": "⚙️",
+      "name": "액침 기반 운영 노하우",
+      "desc": "채굴/인프라 운영 경험 축적<br>에너지 효율 최적화 잠재력"
+    },
+    {
+      "icon": "🏦",
+      "name": "자산규모 기반 선택권",
+      "desc": "대규모 크립토+현금 보유 시나리오<br>전략적 투자/운영 유연성"
+    }
+  ],
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 57,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력이 큼",
+        "weight": 25,
+        "score": 21,
+        "status": "pass",
+        "evidence": "시가총액 $9.16B 기준 (<$20B 우대)"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 8,
+        "status": "unknown",
+        "evidence": "ROE 신뢰 수치 미확보로 중립 처리"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자(복리)",
+        "weight": 20,
+        "score": 11,
+        "status": "watch",
+        "evidence": "매출 성장 +79.69% vs FCF -$233.83M (TTM)"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER이 과열되지 않은 안전마진",
+        "weight": 20,
+        "score": 11,
+        "status": "watch",
+        "evidence": "Forward P/E 26.93x (Trailing P/E N/A)"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영(Founder-led)",
+        "weight": 15,
+        "score": 6,
+        "status": "unknown",
+        "evidence": "Founder 여부/내부자 지분 정량 데이터 미확보"
+      }
+    ],
+    "notes": [
+      "BMNR은 디지털자산 평가손익 비중이 높아 전통 PER/ROE 해석의 한계가 큼",
+      "국내 애널리스트 커버리지는 확인 가능한 원문을 찾지 못해 미기재"
+    ]
+  }
+}
