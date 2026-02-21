@@ -21,7 +21,7 @@ Use this skill to convert natural-language stock requests into a production-read
 2. Load repository context.
 - Read `template/stock_analysis_template.md`.
 - Read `schema/stock.schema.json`.
-- Read at least one existing stock sample (`data/IREN.json` recommended).
+- Read at least one existing stock sample (`data/IREN/IREN-2026-02-17.json` recommended).
 - Read rendering assumptions if needed (`js/render.js`, `scripts/lib/stock-validation.js`).
 
 3. Collect data with official-first policy.
