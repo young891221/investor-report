@@ -271,7 +271,7 @@ function renderDashboard(CONFIG) {
   });
 
   // ── Hero ──
-  document.getElementById('hero-date').textContent = `실시간 분석 · ${C.analysisDate}`;
+  document.getElementById('hero-date').textContent = `${C.analysisDate} Report`;
   document.getElementById('hero-title').innerHTML = `${C.companyNameEn}<br>${C.companyName}`;
   document.getElementById('hero-sub').innerHTML = `${C.exchange}: ${C.ticker} — ${C.description}`;
   document.title = `${C.ticker} — 종합 분석 리포트`;

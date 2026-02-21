@@ -66,7 +66,7 @@
 
         return `
           <a class="stock-report-link" href="${escapeHtml(href)}">
-            <span class="stock-report-date">${escapeHtml(reportLabel)}</span>
+            <span class="stock-report-date">${escapeHtml(reportLabel)} Report</span>
             <span class="stock-report-rating">${escapeHtml(report.rating || '-')}</span>
             <span class="stock-report-change">${escapeHtml(report.change || '-')}</span>
           </a>
