@@ -204,6 +204,11 @@ body{
 @media(max-width:768px){
   .main{padding:1rem}.hero{padding:1.5rem 0 1rem}.hero-title{font-size:2rem}
   .hero-right{flex-direction:column}.comp-label{width:70px;font-size:.72rem}.section-title{font-size:1.15rem}
+  .home-controls{flex-direction:column;align-items:stretch;padding:0 1rem}
+  .home-search-wrap{min-width:0;max-width:none}
+  .home-filters{justify-content:flex-start}
+  .stock-grid{padding:0 1rem}
+  .stock-list-item{padding:1rem}
   .chart-wrap{height:260px;min-height:220px}
   .chart-wrap-tall{height:320px;min-height:260px}
   .chart-wrap-sq{height:min(280px,86vw);min-height:220px}
@@ -213,6 +218,12 @@ body{
 .home-hero{text-align:center;padding:4rem 2rem 3rem}
 .home-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;margin-bottom:.8rem;background:linear-gradient(135deg,#fff 0%,#94a3c0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .home-sub{color:var(--text2);font-size:1rem;max-width:600px;margin:0 auto 2rem}
+.home-controls{display:flex;gap:.7rem;align-items:center;justify-content:center;max-width:1280px;margin:0 auto 1.5rem;padding:0 2rem;flex-wrap:wrap;text-align:center}
+.home-search-wrap{display:flex;flex-direction:column;gap:6px;min-width:260px;max-width:420px;flex:1 1 320px}
+.home-search-label{font-size:.74rem;font-weight:600;color:var(--text2)}
+.home-search-wrap input{width:100%;padding:.64rem .8rem;border-radius:12px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-size:.9rem;outline:none;transition:all .2s}
+.home-search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.home-filters{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:0}
 .stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;padding:0 2rem;max-width:1280px;margin:0 auto 3rem}
 .stock-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.5rem 3rem;color:var(--text);transition:all .3s;display:block;position:relative;overflow:hidden}
 .stock-card{cursor:pointer;user-select:none}

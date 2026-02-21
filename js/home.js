@@ -1,6 +1,7 @@
 (function () {
   const grid = document.getElementById('stocks');
   const filterWrap = document.getElementById('sector-filters');
+  const searchInput = document.getElementById('stock-search');
 
   function escapeHtml(value) {
     return String(value)
@@ -179,6 +180,38 @@
     };
   }
 
+  function matchesSearch(stock, query) {
+    if (!query) {
+      return true;
+    }
+
+    const q = String(query).trim().toLowerCase();
+    if (!q) {
+      return true;
+    }
+
+    const rating = stock && stock.latest ? stock.latest.rating : '';
+    const fields = [
+      stock.ticker,
+      stock.name,
+      stock.nameKr,
+      stock.sector,
+      stock.description,
+      ...(Array.isArray(stock.tags) ? stock.tags : []),
+      rating,
+    ].map(value => String(value || '').toLowerCase());
+
+    return fields.some(value => value.includes(q));
+  }
+
+  function filterStocks(stocks, sector, query) {
+    return stocks.filter(stock => {
+      const matchSector = sector === '전체' || stock.sector === sector;
+      const matchSearch = matchesSearch(stock, query);
+      return matchSector && matchSearch;
+    });
+  }
+
   function createSectorFilters(stocks, onSelect) {
     const sectors = [...new Set(stocks.map(stock => stock.sector).filter(Boolean))].sort();
     const labels = ['전체', ...sectors];
@@ -301,6 +334,14 @@
     });
   }
 
+  function renderNoResultMessage(term) {
+    const safeTerm = escapeHtml(String(term || '').trim());
+    const message = safeTerm
+      ? `${safeTerm} 검색 결과가 없습니다.`
+      : '조건에 맞는 종목이 없습니다.';
+    grid.innerHTML = `<div style=\"text-align:center;padding:3rem;color:var(--text3)\">${escapeHtml(message)}</div>`;
+  }
+
   function normalizeStocks(raw) {
     if (!Array.isArray(raw)) {
       return [];
@@ -330,18 +371,31 @@
       }
 
       let selectedSector = '전체';
+      let searchTerm = '';
+      const getFilteredStocks = () => filterStocks(stocks, selectedSector, searchTerm);
+
+      const updateList = () => {
+        const filtered = getFilteredStocks();
+        if (filtered.length === 0) {
+          renderNoResultMessage(searchTerm);
+          return;
+        }
+        renderCards(filtered);
+      };
+
+      if (searchInput) {
+        searchInput.addEventListener('input', event => {
+          searchTerm = String(event && event.target ? event.target.value : '').trim();
+          updateList();
+        });
+      }
+
       createSectorFilters(stocks, sector => {
         selectedSector = sector;
-        const filtered = selectedSector === '전체'
-          ? stocks
-          : stocks.filter(stock => stock.sector === selectedSector);
-        renderCards(filtered);
+        updateList();
       });
 
-      const initial = selectedSector === '전체'
-        ? stocks
-        : stocks.filter(stock => stock.sector === selectedSector);
-      renderCards(initial);
+      updateList();
     } catch (error) {
       showError(error.message);
     }
