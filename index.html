@@ -11,31 +11,47 @@
 <div class="bg-grid"></div>
 
 <nav class="nav"><div class="nav-inner">
-  <a href="index.html" class="nav-logo">Stock Analysis</a>
+  <a href="index.html" class="nav-logo">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    Stock Analysis
+  </a>
   <div class="nav-links">
-    <a href="#stocks" class="active">종목 리스트</a>
+    <a href="#stocks" class="active">Portfolio</a>
   </div>
 </div></nav>
 
 <div class="main">
 <div class="home-hero fade-in">
+  <div class="home-hero-badge">Investment Research</div>
   <h1 class="home-title">주식 종합 분석<br>포트폴리오</h1>
-  <p class="home-sub">초보 투자자도 이해할 수 있는 심층 분석 리포트. 인터랙티브 차트와 함께 기업의 비즈니스, 재무, 리스크를 한눈에 파악하세요.</p>
+  <p class="home-sub">초보 투자자도 이해할 수 있는 심층 분석 리포트.<br>인터랙티브 차트와 함께 기업의 비즈니스, 재무, 리스크를 한눈에 파악하세요.</p>
 </div>
 
-  <div class="home-controls">
-    <label class="home-search-wrap" for="stock-search">
-      <input id="stock-search" type="search" placeholder="티커, 기업명, 섹터, 태그로 검색" autocomplete="off" aria-label="종목 검색">
-    </label>
-    <div id="sector-filters" class="home-filters"></div>
-  </div>
+<div id="portfolio-stats" class="portfolio-stats fade-in delay-1"></div>
 
-  <div class="stock-grid" id="stocks" aria-live="polite"></div>
+<div class="home-controls fade-in delay-2">
+  <label class="home-search-wrap" for="stock-search">
+    <svg class="home-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="stock-search" type="search" placeholder="티커, 기업명, 섹터, 태그로 검색" autocomplete="off" aria-label="종목 검색">
+  </label>
+  <div id="sector-filters" class="home-filters"></div>
+</div>
 
-  <div class="home-footer">
-    본 사이트의 모든 분석은 투자 참고용이며, 매수·매도 권유가 아닙니다.<br>
-    투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
-  </div>
+<div id="view-toggle" class="home-view-toggle fade-in delay-2">
+  <button type="button" class="view-btn active" data-view="grid" aria-label="그리드 보기">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+  </button>
+  <button type="button" class="view-btn" data-view="list" aria-label="리스트 보기">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+  </button>
+</div>
+
+<div class="stock-grid stock-grid--card" id="stocks" aria-live="polite"></div>
+
+<div class="home-footer">
+  본 사이트의 모든 분석은 투자 참고용이며, 매수·매도 권유가 아닙니다.<br>
+  투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
+</div>
 </div>
 
 <script src="js/home.js"></script>
