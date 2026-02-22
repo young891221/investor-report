@@ -8,6 +8,10 @@
     "migrate:layout": "node scripts/migrate-stock-layout.js",
     "validate:stocks": "node scripts/validate-stocks.js",
     "build:index": "node scripts/build-index.js",
-    "build:data": "npm run validate:stocks && npm run build:index"
+    "build:data": "npm run validate:stocks && npm run build:index",
+    "scan:stocks": "node scripts/scan-stocks.js",
+    "scan:stocks:generate": "node scripts/scan-stocks.js --generate --build-index",
+    "update:all": "node scripts/update-all-stocks.js",
+    "update:all:force": "node scripts/update-all-stocks.js --force --build-index"
   }
 }
