@@ -12,6 +12,11 @@ const {
   resolveTicker,
 } = require('./sources');
 const { buildStockJson, choosePeers, formatDateIsoKst } = require('./builder');
+const {
+  buildQuoteFromSnapshot,
+  buildSummaryFromSnapshot,
+  loadLatestLocalSnapshot,
+} = require('./local-fallback');
 
 function writeJsonAtomic(filePath, json) {
   const tempPath = `${filePath}.tmp`;
@@ -121,9 +126,12 @@ function buildSourceManifest(input) {
     metadata,
     secEntry,
     asOfDate,
+    fallbackState,
   } = input;
 
   const generatedAt = new Date().toISOString();
+  const fallback = fallbackState && typeof fallbackState === 'object' ? fallbackState : {};
+  const usesLocalFallback = Boolean(fallback.quoteFromLocal || fallback.summaryFromLocal);
 
   return {
     ticker,
@@ -155,6 +163,16 @@ function buildSourceManifest(input) {
         url: `https://query2.finance.yahoo.com/v10/finance/quoteSummary/${ticker}`,
         retrievedAt: generatedAt,
       },
+      ...(usesLocalFallback
+        ? [
+            {
+              id: 'local_snapshot_fallback',
+              type: 'local_cache',
+              url: fallback.snapshotPath || `data/${ticker}/<latest>.json`,
+              retrievedAt: generatedAt,
+            },
+          ]
+        : []),
     ],
     sec: secEntry
       ? {
@@ -167,6 +185,10 @@ function buildSourceManifest(input) {
       criticalIssues: metadata.criticalChecks,
       annualPoints: metadata.summary.annualPoints,
       quarterPoints: metadata.summary.quarterPoints,
+      fallback: {
+        quoteFromLocal: Boolean(fallback.quoteFromLocal),
+        summaryFromLocal: Boolean(fallback.summaryFromLocal),
+      },
     },
     fieldSources: {
       companyNameEn: ['sec_company_tickers'],
@@ -232,32 +254,56 @@ async function generateStockReport(optionsInput = {}) {
   );
 
   const ticker = resolution.ticker;
+  const localSnapshot = loadLatestLocalSnapshot(dataDir, ticker);
   const secEntry = findSecEntryByTicker(ticker, secRows);
   if (options.strict && !secEntry) {
     throw new Error(`SEC primary source did not return company metadata for ticker ${ticker}.`);
   }
 
-  let primaryQuotes;
+  const fallbackState = {
+    quoteFromLocal: false,
+    summaryFromLocal: false,
+    snapshotPath: localSnapshot ? localSnapshot.relativePath : null,
+  };
+
+  let quote = null;
+  let quoteFetchError = null;
   try {
-    primaryQuotes = await fetchYahooQuote([ticker]);
+    const primaryQuotes = await fetchYahooQuote([ticker]);
+    quote = primaryQuotes.find(item => item.symbol === ticker) || null;
   } catch (error) {
-    throw new Error(`Failed to load quote data for ${ticker}: ${error.message}`);
+    quoteFetchError = error;
   }
-  const quote = primaryQuotes.find(item => item.symbol === ticker);
+
+  if (!quote && localSnapshot) {
+    quote = buildQuoteFromSnapshot(localSnapshot.stock, ticker);
+    fallbackState.quoteFromLocal = true;
+  }
 
   if (!quote) {
+    if (quoteFetchError) {
+      throw new Error(`Failed to load quote data for ${ticker}: ${quoteFetchError.message}`);
+    }
     throw new Error(`Ticker ${ticker} quote lookup failed.`);
   }
 
   let summary = null;
+  let summaryFetchError = null;
   try {
     summary = await fetchYahooSummary(ticker);
   } catch (error) {
-    if (options.strict) {
-      throw new Error(`Failed to load summary data for ${ticker} in strict mode: ${error.message}`);
-    }
+    summaryFetchError = error;
   }
+
+  if (!summary && localSnapshot) {
+    summary = buildSummaryFromSnapshot(localSnapshot.stock);
+    fallbackState.summaryFromLocal = true;
+  }
+
   if (!summary && options.strict) {
+    if (summaryFetchError) {
+      throw new Error(`Failed to load summary data for ${ticker} in strict mode: ${summaryFetchError.message}`);
+    }
     throw new Error(`Ticker ${ticker} summary data is unavailable in strict mode.`);
   }
 
@@ -266,7 +312,12 @@ async function generateStockReport(optionsInput = {}) {
   }`;
 
   const peers = choosePeers(ticker, sectorText);
-  const peerQuotes = await fetchYahooQuote(peers);
+  let peerQuotes = [];
+  try {
+    peerQuotes = await fetchYahooQuote(peers);
+  } catch (error) {
+    peerQuotes = [];
+  }
 
   const { stock, metadata } = buildStockJson({
     ticker,
@@ -303,6 +354,7 @@ async function generateStockReport(optionsInput = {}) {
     metadata,
     secEntry,
     asOfDate: reportDate,
+    fallbackState,
   });
 
   if (!options.dryRun) {

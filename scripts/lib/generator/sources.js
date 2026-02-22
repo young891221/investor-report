@@ -5,6 +5,7 @@ const { getJson, withRetry } = require('./http');
 const SEC_TICKERS_URL = 'https://www.sec.gov/files/company_tickers.json';
 const YAHOO_SEARCH_URL = 'https://query2.finance.yahoo.com/v1/finance/search';
 const YAHOO_QUOTE_URL = 'https://query1.finance.yahoo.com/v7/finance/quote';
+const YAHOO_QUOTE_FALLBACK_URL = 'https://query2.finance.yahoo.com/v7/finance/quote';
 const YAHOO_SUMMARY_URL = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary';
 
 const SEC_USER_AGENT =
@@ -190,7 +191,7 @@ async function searchYahooTickerByName(name) {
   return rankYahooSearchQuotes(name, quotes);
 }
 
-async function fetchYahooQuote(symbols) {
+async function fetchYahooQuote(symbols, runtime = {}) {
   if (!Array.isArray(symbols) || symbols.length === 0) {
     return [];
   }
@@ -200,11 +201,33 @@ async function fetchYahooQuote(symbols) {
     return [];
   }
 
-  const url = `${YAHOO_QUOTE_URL}?symbols=${encodeURIComponent(unique.join(','))}`;
-  const payload = await withRetry(() => getJson(url, { timeoutMs: 15000 }), {
-    attempts: 2,
-    delayMs: 400,
-  });
+  const quoteUrls = Array.isArray(runtime.quoteUrls) && runtime.quoteUrls.length > 0
+    ? runtime.quoteUrls
+    : [YAHOO_QUOTE_URL, YAHOO_QUOTE_FALLBACK_URL];
+  const requestJson = typeof runtime.getJson === 'function' ? runtime.getJson : getJson;
+  const retry = typeof runtime.withRetry === 'function' ? runtime.withRetry : withRetry;
+
+  let payload = null;
+  const endpointErrors = [];
+
+  for (const baseUrl of quoteUrls) {
+    const url = `${baseUrl}?symbols=${encodeURIComponent(unique.join(','))}`;
+    try {
+      payload = await retry(() => requestJson(url, { timeoutMs: 15000 }), {
+        attempts: 2,
+        delayMs: 400,
+      });
+      break;
+    } catch (error) {
+      endpointErrors.push(`${baseUrl}: ${error.message}`);
+    }
+  }
+
+  if (!payload) {
+    throw new Error(
+      `All Yahoo quote endpoints failed for ${unique.join(', ')}. ${endpointErrors.join(' | ')}`
+    );
+  }
 
   const results = payload && payload.quoteResponse && Array.isArray(payload.quoteResponse.result)
     ? payload.quoteResponse.result
