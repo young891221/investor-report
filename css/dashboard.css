@@ -515,6 +515,7 @@ html[data-template='v2'] body{
   background:var(--bg);
   color:var(--text);
   font-family:'Plus Jakarta Sans','Noto Sans KR',sans-serif;
+  line-height:1.62;
 }
 
 html[data-template='v2'] .bg-grid{
@@ -577,6 +578,20 @@ html[data-template='v2'] .v2-home-hero{
   border-radius:var(--radius);
   padding:1.5rem 1.6rem;
   box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+html[data-template='v2'] .v2-home-hero::after{
+  content:'';
+  position:absolute;
+  right:-48px;
+  top:-48px;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(30,64,175,.16) 0%,rgba(30,64,175,0) 68%);
+  pointer-events:none;
 }
 
 html[data-template='v2'] .v2-home-eyebrow{
@@ -597,8 +612,8 @@ html[data-template='v2'] .v2-home-title{
 html[data-template='v2'] .v2-home-sub{
   margin:0;
   max-width:820px;
-  font-size:.92rem;
-  line-height:1.65;
+  font-size:.94rem;
+  line-height:1.6;
   color:var(--text2);
 }
 
@@ -649,6 +664,10 @@ html[data-template='v2'] .v2-portfolio-stats .pf-stat{
 
 html[data-template='v2'] .v2-portfolio-stats .pf-stat-value{
   font-size:1.3rem;
+}
+
+html[data-template='v2'] .v2-portfolio-stats .pf-stat-label{
+  letter-spacing:.55px;
 }
 
 html[data-template='v2'] .home-search-wrap input{
@@ -722,6 +741,11 @@ html[data-template='v2'] .v2-pf-card:hover{
   transform:translateY(-2px);
 }
 
+html[data-template='v2'] .v2-pf-card[aria-expanded='true']{
+  border-color:var(--accent);
+  box-shadow:0 14px 28px rgba(30,64,175,.16);
+}
+
 html[data-template='v2'] .v2-pf-head{
   display:flex;
   justify-content:space-between;
@@ -737,6 +761,7 @@ html[data-template='v2'] .v2-pf-ticker{
 html[data-template='v2'] .v2-pf-name{
   font-size:.78rem;
   color:var(--text2);
+  line-height:1.45;
 }
 
 html[data-template='v2'] .v2-pf-rating{
@@ -745,7 +770,13 @@ html[data-template='v2'] .v2-pf-rating{
   font-weight:700;
   padding:4px 8px;
   border-radius:999px;
+  border:1px solid transparent;
 }
+
+html[data-template='v2'] .v2-pf-rating.rating-buy{background:var(--green-bg);color:var(--green2);border-color:rgba(22,163,74,.25)}
+html[data-template='v2'] .v2-pf-rating.rating-hold{background:var(--accent-glow);color:var(--accent2);border-color:rgba(37,99,235,.25)}
+html[data-template='v2'] .v2-pf-rating.rating-sell{background:var(--red-bg);color:var(--red2);border-color:rgba(220,38,38,.25)}
+html[data-template='v2'] .v2-pf-rating.rating-neutral{background:rgba(148,163,184,.14);color:var(--text2);border-color:rgba(148,163,184,.3)}
 
 html[data-template='v2'] .v2-pf-metrics{
   display:grid;
@@ -756,7 +787,7 @@ html[data-template='v2'] .v2-pf-metrics{
 
 html[data-template='v2'] .v2-pf-price{
   font-family:'JetBrains Mono',monospace;
-  font-size:1rem;
+  font-size:1.04rem;
   font-weight:700;
 }
 
@@ -776,7 +807,7 @@ html[data-template='v2'] .v2-pf-date{
 html[data-template='v2'] .v2-pf-score-row{
   display:flex;
   justify-content:space-between;
-  font-size:.7rem;
+  font-size:.72rem;
   color:var(--text3);
   font-weight:600;
 }
@@ -820,11 +851,15 @@ html[data-template='v2'] .v2-pf-tag{
 
 html[data-template='v2'] .v2-pf-tag.analysis-ai-gpt{color:var(--analysis-ai-gpt)}
 html[data-template='v2'] .v2-pf-tag.analysis-ai{color:var(--analysis-ai)}
+html[data-template='v2'] .v2-pf-tag.score-good{color:var(--green2);border-color:rgba(22,163,74,.25)}
+html[data-template='v2'] .v2-pf-tag.score-neutral{color:var(--accent2);border-color:rgba(37,99,235,.25)}
+html[data-template='v2'] .v2-pf-tag.score-warning{color:var(--orange);border-color:rgba(217,119,6,.25)}
+html[data-template='v2'] .v2-pf-tag.score-bad{color:var(--red2);border-color:rgba(220,38,38,.25)}
 
 html[data-template='v2'] .v2-pf-desc{
   color:var(--text2);
-  font-size:.78rem;
-  line-height:1.55;
+  font-size:.79rem;
+  line-height:1.58;
 }
 
 html[data-template='v2'] .v2-pf-expand{
@@ -837,6 +872,11 @@ html[data-template='v2'] .v2-pf-expand{
   padding:.42rem .55rem;
   cursor:pointer;
   text-align:left;
+}
+
+html[data-template='v2'] .v2-pf-expand:hover:not(:disabled){
+  border-color:var(--accent);
+  background:var(--accent-glow);
 }
 
 html[data-template='v2'] .v2-pf-expand:disabled{
@@ -862,6 +902,17 @@ html[data-template='v2'] .v2-stock-list-item{
   padding:.78rem .9rem;
   box-shadow:0 6px 16px rgba(16,24,40,.05);
   cursor:pointer;
+  transition:border-color .2s,box-shadow .2s;
+}
+
+html[data-template='v2'] .v2-stock-list-item:hover{
+  border-color:var(--accent);
+  box-shadow:0 12px 24px rgba(30,64,175,.12);
+}
+
+html[data-template='v2'] .v2-stock-list-item[aria-expanded='true']{
+  border-color:var(--accent);
+  box-shadow:0 14px 26px rgba(30,64,175,.14);
 }
 
 html[data-template='v2'] .v2-stock-list-main{
@@ -880,6 +931,7 @@ html[data-template='v2'] .v2-stock-list-ticker{
 html[data-template='v2'] .v2-stock-list-name{
   font-size:.76rem;
   color:var(--text2);
+  line-height:1.45;
 }
 
 html[data-template='v2'] .v2-stock-list-center{
@@ -919,7 +971,13 @@ html[data-template='v2'] .v2-stock-list-rating{
   font-weight:700;
   padding:2px 8px;
   border-radius:999px;
+  border:1px solid transparent;
 }
+
+html[data-template='v2'] .v2-stock-list-rating.rating-buy{background:var(--green-bg);color:var(--green2);border-color:rgba(22,163,74,.25)}
+html[data-template='v2'] .v2-stock-list-rating.rating-hold{background:var(--accent-glow);color:var(--accent2);border-color:rgba(37,99,235,.25)}
+html[data-template='v2'] .v2-stock-list-rating.rating-sell{background:var(--red-bg);color:var(--red2);border-color:rgba(220,38,38,.25)}
+html[data-template='v2'] .v2-stock-list-rating.rating-neutral{background:rgba(148,163,184,.14);color:var(--text2);border-color:rgba(148,163,184,.3)}
 
 html[data-template='v2'] .v2-stock-list-reports{
   margin-top:.6rem;
@@ -1009,11 +1067,12 @@ html[data-template='v2'] .hero-title{
   line-height:1.2;
   background:none;
   -webkit-text-fill-color:var(--text);
+  font-weight:780;
 }
 
 html[data-template='v2'] .hero-sub{
   color:var(--text2);
-  font-size:.9rem;
+  font-size:.92rem;
   margin-bottom:.65rem;
 }
 
@@ -1095,6 +1154,7 @@ html[data-template='v2'] .card:hover{
 
 html[data-template='v2'] .card-title{
   color:var(--text2);
+  letter-spacing:.52px;
 }
 
 html[data-template='v2'] .callout{
@@ -1108,10 +1168,12 @@ html[data-template='v2'] .callout-title{
 
 html[data-template='v2'] .data-table th{
   color:var(--text2);
+  font-size:.7rem;
 }
 
 html[data-template='v2'] .data-table td{
   color:var(--text);
+  line-height:1.48;
 }
 
 html[data-template='v2'] .data-table tr:hover td{
@@ -1121,6 +1183,7 @@ html[data-template='v2'] .data-table tr:hover td{
 html[data-template='v2'] .stock-report-link{
   border-color:var(--border);
   background:#fff;
+  box-shadow:0 1px 0 rgba(15,23,42,.03);
 }
 
 html[data-template='v2'] .stock-report-link:hover{
@@ -1143,6 +1206,7 @@ html[data-template='v2'] .dash-to-top{
 html[data-template='v2'] .disclaimer{
   margin-top:0;
   color:var(--text3);
+  line-height:1.6;
 }
 
 @media(max-width:1040px){
@@ -1185,6 +1249,27 @@ html[data-template='v2'] .disclaimer{
     grid-template-columns:1fr;
   }
 
+  html[data-template='v2'] .v2-home-title{
+    font-size:clamp(1.45rem,8vw,2rem);
+    line-height:1.25;
+  }
+
+  html[data-template='v2'] .v2-home-sub{
+    font-size:.88rem;
+  }
+
+  html[data-template='v2'] .v2-pf-card{
+    padding:.78rem;
+  }
+
+  html[data-template='v2'] .v2-pf-metrics{
+    grid-template-columns:1fr auto;
+  }
+
+  html[data-template='v2'] .v2-pf-date{
+    grid-column:1 / -1;
+  }
+
   html[data-template='v2'] .v2-stock-list-main{
     grid-template-columns:1fr;
     gap:.35rem;
@@ -1194,6 +1279,14 @@ html[data-template='v2'] .disclaimer{
     align-items:flex-start;
     flex-direction:row;
     gap:.5rem;
+  }
+
+  html[data-template='v2'] .hero-title{
+    font-size:clamp(1.5rem,7vw,2rem);
+  }
+
+  html[data-template='v2'] .hero-sub{
+    font-size:.86rem;
   }
 }
 
@@ -1208,5 +1301,24 @@ html[data-template='v2'] .disclaimer{
 
   html[data-template='v2'] .template-switch-btn{
     padding:5px 8px;
+  }
+
+  html[data-template='v2'] .v2-home-hero{
+    padding:1.1rem 1rem;
+  }
+
+  html[data-template='v2'] .v2-home-toolbar,
+  html[data-template='v2'] .v2-stock-header,
+  html[data-template='v2'] .v2-stock-body{
+    padding:.75rem;
+  }
+
+  html[data-template='v2'] .v2-pf-ticker{
+    font-size:1.06rem;
+  }
+
+  html[data-template='v2'] .v2-pf-name,
+  html[data-template='v2'] .v2-stock-list-name{
+    font-size:.73rem;
   }
 }
