@@ -13,27 +13,46 @@
 
 <!-- ═══ NAV ═══ -->
 <nav class="nav"><div class="nav-inner">
-  <a href="index.html" class="nav-logo"><span id="nav-ticker"></span> 분석 리포트</a>
+  <a href="index.html" class="nav-logo">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    <span id="nav-ticker"></span> Analysis
+  </a>
   <div class="nav-links" id="nav-links"></div>
 </div></nav>
 
 <div class="main">
 
+<!-- ═══ Breadcrumb ═══ -->
+<div class="dash-breadcrumb fade-in">
+  <a href="index.html" class="dash-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Portfolio
+  </a>
+  <span class="dash-breadcrumb-sep">/</span>
+  <span id="breadcrumb-ticker" class="dash-breadcrumb-current"></span>
+</div>
+
 <!-- ═══ HERO ═══ -->
-<div class="hero fade-in" id="summary">
-  <div class="hero-left">
+<div class="dash-hero fade-in" id="summary">
+  <div class="dash-hero-main">
     <div class="hero-badge"><span class="live"></span> <span id="hero-date"></span></div>
     <h1 class="hero-title" id="hero-title"></h1>
     <p class="hero-sub" id="hero-sub"></p>
+    <div id="hero-date-nav" class="dash-date-nav"></div>
   </div>
-  <div class="hero-right" id="hero-stats"></div>
+  <div class="dash-hero-score" id="hero-score-ring"></div>
 </div>
+
+<div class="dash-stats-grid fade-in delay-1" id="hero-stats"></div>
 
 <!-- ═══ 01. 핵심 투자 포인트 ═══ -->
 <div class="section fade-in">
   <div class="section-header"><div class="section-num">01</div><h2 class="section-title">핵심 투자 포인트</h2></div>
   <div class="callout">
-    <div class="callout-title">💡 5가지 핵심 포인트</div>
+    <div class="callout-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      5가지 핵심 포인트
+    </div>
     <ul id="key-points"></ul>
   </div>
 </div>
@@ -137,7 +156,10 @@
     <div class="chart-wrap chart-wrap-sq" style="max-width:420px;margin:0 auto"><canvas id="radarChart"></canvas></div>
   </div>
   <div class="card" id="score-breakdown-card" style="margin-bottom:1.5rem;display:none">
-    <div class="card-title">📐 100배 주식 체크리스트</div>
+    <div class="card-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      100배 주식 체크리스트
+    </div>
     <div id="score-breakdown-meta" style="margin:.4rem 0 1rem 0;color:var(--text2);font-size:.85rem"></div>
     <div style="overflow-x:auto">
       <table class="data-table" id="score-breakdown-table">
@@ -150,9 +172,24 @@
     <ul id="score-breakdown-notes" style="margin-top:.8rem;color:var(--text2);font-size:.82rem"></ul>
   </div>
   <div class="card">
-    <div class="card-title">📋 장기 투자자 체크리스트</div>
+    <div class="card-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      장기 투자자 체크리스트
+    </div>
     <div style="overflow-x:auto"><table class="data-table" id="checklist-table"><thead><tr><th>확인 항목</th><th>시점</th><th>평가 포인트</th></tr></thead><tbody></tbody></table></div>
   </div>
+</div>
+
+<!-- ═══ Back to top ═══ -->
+<div class="dash-footer-nav">
+  <a href="index.html" class="dash-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Portfolio
+  </a>
+  <button type="button" class="dash-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로 스크롤">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    Top
+  </button>
 </div>
 
 <div class="disclaimer" id="disclaimer"></div>
@@ -327,6 +364,20 @@ async function bootstrap() {
 
   replaceCanonicalQuery(rawTicker, selectedDate);
   renderDashboard(data);
+
+  // Render date navigation after dashboard is rendered
+  const dateNavEl = document.getElementById('hero-date-nav');
+  if (dateNavEl && availableDates.length > 0) {
+    const links = availableDates.map(date => {
+      const display = date.replace(/-/g, '.');
+      if (date === selectedDate) {
+        return `<span class="dash-date-current">${escapeHtml(display)}</span>`;
+      }
+      const href = `stock.html?ticker=${encodeURIComponent(rawTicker)}&date=${encodeURIComponent(date)}`;
+      return `<a href="${escapeHtml(href)}">${escapeHtml(display)}</a>`;
+    });
+    dateNavEl.innerHTML = links.join('');
+  }
 
   if (noticeMessage) {
     showLoadNotice(noticeMessage);

@@ -388,10 +388,16 @@ function renderDashboard(CONFIG) {
     navLinks.appendChild(a);
   });
 
+  // ── Breadcrumb ──
+  const breadcrumbEl = document.getElementById('breadcrumb-ticker');
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = `${C.ticker} · ${C.companyName}`;
+  }
+
   // ── Hero ──
   document.getElementById('hero-date').textContent = `${C.analysisDate} Report`;
-  document.getElementById('hero-title').innerHTML = `${C.companyNameEn}<br>${C.companyName}`;
-  document.getElementById('hero-sub').innerHTML = `${C.exchange}: ${C.ticker} — ${C.description}`;
+  document.getElementById('hero-title').innerHTML = `${escapeHtml(C.companyNameEn)}<br>${escapeHtml(C.companyName)}`;
+  document.getElementById('hero-sub').innerHTML = `${escapeHtml(C.exchange)}: ${escapeHtml(C.ticker)} — ${escapeHtml(C.description)}`;
   document.title = `${C.ticker} — 종합 분석 리포트`;
 
   const reportScoreBreakdown = getReportScoreBreakdown();
@@ -405,25 +411,64 @@ function renderDashboard(CONFIG) {
     : verdictFromScore(reportScore);
   const reportTone = reportToneFromVerdict(reportVerdict);
 
+  // ── Score Ring ──
+  const scoreRingEl = document.getElementById('hero-score-ring');
+  if (scoreRingEl && Number.isFinite(reportScore)) {
+    const radius = 48;
+    const circumference = 2 * Math.PI * radius;
+    const scorePercent = Math.min(reportScore, 100) / 100;
+    const dashOffset = circumference * (1 - scorePercent);
+    const scoreClass = reportScore >= 80 ? 'score-good' : reportScore >= 65 ? 'score-neutral' : reportScore >= 50 ? 'score-warning' : 'score-bad';
+
+    scoreRingEl.innerHTML = `
+      <div class="score-ring">
+        <svg viewBox="0 0 120 120">
+          <circle class="score-ring-bg" cx="60" cy="60" r="${radius}"/>
+          <circle class="score-ring-fill ${scoreClass}" cx="60" cy="60" r="${radius}" stroke-dasharray="${circumference}" stroke-dashoffset="${dashOffset}"/>
+        </svg>
+        <div class="score-ring-value">
+          <span class="score-ring-num ${reportTone.valueClass}">${reportScore}</span>
+          <span class="score-ring-label">Score</span>
+        </div>
+      </div>
+      <div class="score-verdict ${escapeHtml(reportTone.valueClass === 'green' ? 'rating-buy' : reportTone.valueClass === 'orange' ? 'rating-hold' : 'rating-sell')}">${escapeHtml(reportVerdict || '-')}</div>
+    `;
+  } else if (scoreRingEl) {
+    scoreRingEl.innerHTML = '';
+  }
+
+  // ── Date Navigation ──
+  const dateNavEl = document.getElementById('hero-date-nav');
+  if (dateNavEl) {
+    try {
+      const currentDate = C.analysisDate;
+      const params = new URLSearchParams(window.location.search);
+      const ticker = (params.get('ticker') || params.get('stock') || '').trim().toUpperCase();
+      // Read available dates from the index data that was already fetched by bootstrap
+      // We'll build the nav from the reports array if available in config, or show current date
+      const dateLinks = [];
+      if (currentDate) {
+        dateLinks.push(`<span class="dash-date-current">${escapeHtml(currentDate.replace(/-/g, '.'))}</span>`);
+      }
+      dateNavEl.innerHTML = dateLinks.join('');
+    } catch (e) {
+      dateNavEl.innerHTML = '';
+    }
+  }
+
+  // ── Stats Grid ──
   const statsData = [
     {label:'현재 주가', value: C.price, change: C.priceChange, dir: C.priceChangeDir},
     {label:'시가총액', value: C.marketCap, change: C.marketCapChange, dir:'up'},
-    {label:'1년 범위', value: C.weekRange, valueStyle:'font-size:1.15rem'},
+    {label:'1년 범위', value: C.weekRange, valueStyle:'font-size:1.1rem'},
     {label:'애널리스트', value: C.analystRating, valueClass:'green', change: C.analystTarget, dir:'up'},
-    {
-      label:'100배 주식 점수',
-      value: Number.isFinite(reportScore) ? `${reportScore}점` : '-',
-      valueClass: reportTone.valueClass,
-      change: reportVerdict ? `AI 결론 ${reportVerdict}` : 'AI 결론 산출 필요',
-      dir: reportTone.changeDir,
-    },
   ];
   const heroStats = document.getElementById('hero-stats');
   statsData.forEach((s,i) => {
-    heroStats.innerHTML += `<div class="stat-card fade-in delay-${i+1}">
-      <div class="stat-label">${s.label}</div>
-      <div class="stat-value ${s.valueClass||''}" ${s.valueStyle?`style="${s.valueStyle}"`:''}>${s.value}</div>
-      ${s.change ? `<div class="stat-change ${s.dir}">${s.change}</div>` : ''}
+    heroStats.innerHTML += `<div class="dash-stat fade-in delay-${i+1}">
+      <div class="dash-stat-label">${escapeHtml(s.label)}</div>
+      <div class="dash-stat-value ${s.valueClass||''}" ${s.valueStyle?`style="${s.valueStyle}"`:''}>${escapeHtml(s.value || '-')}</div>
+      ${s.change ? `<div class="dash-stat-change ${s.dir}">${escapeHtml(s.change)}</div>` : ''}
     </div>`;
   });
 

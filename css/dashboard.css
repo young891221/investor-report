@@ -376,3 +376,94 @@ body{
   .pf-card-ticker{font-size:1.3rem}
   .pf-card-price{font-size:1rem}
 }
+
+/* ═══════════════════════════════════════════════════
+   DASHBOARD PAGE (stock.html) — Enhanced Styles
+   ═══════════════════════════════════════════════════ */
+
+/* ── Breadcrumb ── */
+.dash-breadcrumb{display:flex;align-items:center;gap:8px;padding:.8rem 0 0;font-size:.8rem}
+.dash-back{display:inline-flex;align-items:center;gap:4px;color:var(--text3);text-decoration:none;font-weight:500;transition:color .2s;cursor:pointer}
+.dash-back:hover{color:var(--accent2)}
+.dash-breadcrumb-sep{color:var(--border2)}
+.dash-breadcrumb-current{color:var(--text);font-weight:600}
+
+/* ── Dashboard Hero ── */
+.dash-hero{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;padding:2rem 0 1.5rem;flex-wrap:wrap}
+.dash-hero-main{flex:1;min-width:300px}
+
+/* ── Score Ring ── */
+.dash-hero-score{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:140px}
+.score-ring{position:relative;width:120px;height:120px}
+.score-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.score-ring-bg{fill:none;stroke:var(--border);stroke-width:8}
+.score-ring-fill{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)}
+.score-ring-fill.score-good{stroke:var(--green)}
+.score-ring-fill.score-neutral{stroke:var(--accent)}
+.score-ring-fill.score-warning{stroke:var(--orange)}
+.score-ring-fill.score-bad{stroke:var(--red)}
+.score-ring-value{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-ring-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;line-height:1}
+.score-ring-num.green{color:var(--green2)}
+.score-ring-num.orange{color:var(--orange)}
+.score-ring-num.red{color:var(--red2)}
+.score-ring-label{font-size:.62rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.score-verdict{font-size:.72rem;font-weight:700;padding:3px 12px;border-radius:12px;text-align:center}
+
+/* ── Date Nav ── */
+.dash-date-nav{display:flex;align-items:center;gap:8px;margin-top:.8rem}
+.dash-date-nav a,.dash-date-nav span{font-size:.78rem;font-weight:600;text-decoration:none;padding:4px 12px;border-radius:8px;transition:all .2s}
+.dash-date-nav a{color:var(--text2);background:var(--bg3);border:1px solid var(--border);cursor:pointer}
+.dash-date-nav a:hover{color:var(--accent2);border-color:var(--accent);background:var(--accent-glow)}
+.dash-date-nav .dash-date-current{color:var(--accent2);background:var(--accent-glow);border:1px solid var(--accent)}
+
+/* ── Stats Grid ── */
+.dash-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-bottom:2rem}
+.dash-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.2rem;transition:all .3s;position:relative;overflow:hidden}
+.dash-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--purple));opacity:0;transition:opacity .3s}
+.dash-stat:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.dash-stat:hover::before{opacity:1}
+.dash-stat-label{color:var(--text3);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.dash-stat-value{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text)}
+.dash-stat-value.green{color:var(--green2)}
+.dash-stat-value.orange{color:var(--orange)}
+.dash-stat-value.red{color:var(--red2)}
+.dash-stat-change{font-size:.72rem;font-weight:600;margin-top:2px}
+.dash-stat-change.up{color:var(--green2)}
+.dash-stat-change.down{color:var(--red2)}
+.dash-stat-change.neutral{color:var(--orange)}
+
+/* ── Improved Section Headers ── */
+.section-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+
+/* ── Improved Cards ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .3s;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--purple));opacity:0;transition:opacity .3s}
+.card:hover{border-color:var(--border2);box-shadow:var(--shadow)}
+.card:hover::after{opacity:1}
+.card-title{font-size:.8rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:1rem;display:flex;align-items:center;gap:6px}
+
+/* ── Callout improvements ── */
+.callout-title{font-weight:700;font-size:.95rem;color:var(--accent2);margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+.callout-title svg{flex-shrink:0;color:var(--accent2)}
+.callout-risk .callout-title svg{color:var(--red2)}
+
+/* ── Dashboard Footer Nav ── */
+.dash-footer-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;margin-top:1rem;border-top:1px solid var(--border)}
+.dash-to-top{display:inline-flex;align-items:center;gap:4px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.dash-to-top:hover{color:var(--accent2);border-color:var(--accent)}
+
+/* ── Dashboard Responsive ── */
+@media(max-width:768px){
+  .dash-hero{flex-direction:column;align-items:stretch}
+  .dash-hero-score{flex-direction:row;gap:12px;align-items:center}
+  .score-ring{width:80px;height:80px}
+  .score-ring-num{font-size:1.4rem}
+  .dash-stats-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-date-nav{flex-wrap:wrap}
+}
+@media(max-width:480px){
+  .dash-stats-grid{grid-template-columns:1fr}
+  .score-ring{width:70px;height:70px}
+  .score-ring-num{font-size:1.2rem}
+}
