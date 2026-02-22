@@ -16,7 +16,8 @@
       "change": "▲ +208.44%",
       "changeDir": "up",
       "changeBasis": "52주",
-      "rating": "Strong Buy",
+      "rating": "HOLD",
+      "reportVerdict": "HOLD",
       "reportScore": 57,
       "analysisAi": "GPT",
       "href": "stock.html?ticker=BMNR&date=2026-02-21"
@@ -28,7 +29,8 @@
         "change": "▲ +208.44%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Strong Buy",
+        "rating": "HOLD",
+        "reportVerdict": "HOLD",
         "reportScore": 57,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=BMNR&date=2026-02-21"
@@ -52,7 +54,8 @@
       "change": "▲ +10.7%",
       "changeDir": "up",
       "changeBasis": "52주",
-      "rating": "Buy",
+      "rating": "HOLD",
+      "reportVerdict": "HOLD",
       "reportScore": 43,
       "analysisAi": "GPT",
       "href": "stock.html?ticker=CRWD&date=2026-02-21"
@@ -64,7 +67,8 @@
         "change": "▲ +10.7%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Buy",
+        "rating": "HOLD",
+        "reportVerdict": "HOLD",
         "reportScore": 43,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=CRWD&date=2026-02-21"
@@ -88,7 +92,8 @@
       "change": "▼ -41.6%",
       "changeDir": "down",
       "changeBasis": "52주",
-      "rating": "Strong Buy",
+      "rating": "HOLD",
+      "reportVerdict": "HOLD",
       "reportScore": 52,
       "analysisAi": "GPT",
       "href": "stock.html?ticker=DT&date=2026-02-21"
@@ -100,7 +105,8 @@
         "change": "▼ -41.6%",
         "changeDir": "down",
         "changeBasis": "52주",
-        "rating": "Strong Buy",
+        "rating": "HOLD",
+        "reportVerdict": "HOLD",
         "reportScore": 52,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=DT&date=2026-02-21"
@@ -124,7 +130,8 @@
       "change": "▲ +682%",
       "changeDir": "up",
       "changeBasis": "52주",
-      "rating": "Moderate Buy",
+      "rating": "HOLD",
+      "reportVerdict": "HOLD",
       "reportScore": 64,
       "analysisAi": "Claude",
       "href": "stock.html?ticker=IREN&date=2026-02-22"
@@ -136,7 +143,8 @@
         "change": "▲ +682%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Moderate Buy",
+        "rating": "HOLD",
+        "reportVerdict": "HOLD",
         "reportScore": 64,
         "analysisAi": "Claude",
         "href": "stock.html?ticker=IREN&date=2026-02-22"
@@ -147,7 +155,8 @@
         "change": "▲ +723%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Buy",
+        "rating": "HOLD",
+        "reportVerdict": "HOLD",
         "reportScore": 61,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=IREN&date=2026-02-17"
@@ -171,7 +180,8 @@
       "change": "▼ -4.4%",
       "changeDir": "down",
       "changeBasis": "52주",
-      "rating": "Buy",
+      "rating": "HOLD",
+      "reportVerdict": "HOLD",
       "reportScore": 41,
       "analysisAi": "GPT",
       "href": "stock.html?ticker=PANW&date=2026-02-21"
@@ -183,7 +193,8 @@
         "change": "▼ -4.4%",
         "changeDir": "down",
         "changeBasis": "52주",
-        "rating": "Buy",
+        "rating": "HOLD",
+        "reportVerdict": "HOLD",
         "reportScore": 41,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=PANW&date=2026-02-21"
@@ -207,7 +218,8 @@
       "change": "▲ +139%",
       "changeDir": "up",
       "changeBasis": "52주",
-      "rating": "Buy",
+      "rating": "REDUCE",
+      "reportVerdict": "REDUCE",
       "reportScore": 47,
       "analysisAi": "GPT",
       "href": "stock.html?ticker=RKLB&date=2026-02-21"
@@ -219,7 +231,8 @@
         "change": "▲ +139%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Buy",
+        "rating": "REDUCE",
+        "reportVerdict": "REDUCE",
         "reportScore": 47,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=RKLB&date=2026-02-21"
@@ -230,7 +243,8 @@
         "change": "▲ +139%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Buy",
+        "rating": "BUY",
+        "reportVerdict": "BUY",
         "reportScore": 68,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=RKLB&date=2026-02-18"
@@ -254,7 +268,8 @@
       "change": "▲ +15.4%",
       "changeDir": "up",
       "changeBasis": "52주",
-      "rating": "Hold",
+      "rating": "REDUCE",
+      "reportVerdict": "REDUCE",
       "reportScore": 36,
       "analysisAi": "GPT",
       "href": "stock.html?ticker=TSLA&date=2026-02-18"
@@ -266,7 +281,8 @@
         "change": "▲ +15.4%",
         "changeDir": "up",
         "changeBasis": "52주",
-        "rating": "Hold",
+        "rating": "REDUCE",
+        "reportVerdict": "REDUCE",
         "reportScore": 36,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=TSLA&date=2026-02-18"

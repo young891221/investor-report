@@ -51,6 +51,7 @@ function toChangeMeta(stock) {
 
 function toReportIndex(stock, date) {
   const changeMeta = toChangeMeta(stock);
+  const opinion = stock.reportVerdict || stock.analystRating || '-';
 
   return {
     date,
@@ -58,7 +59,8 @@ function toReportIndex(stock, date) {
     change: changeMeta.change,
     changeDir: changeMeta.changeDir,
     changeBasis: changeMeta.changeBasis,
-    rating: stock.analystRating,
+    rating: opinion,
+    reportVerdict: stock.reportVerdict,
     reportScore: Number.isFinite(stock.reportScore) ? stock.reportScore : undefined,
     analysisAi: stock.analysisAi,
     href: `stock.html?ticker=${encodeURIComponent(stock.ticker)}&date=${encodeURIComponent(date)}`,

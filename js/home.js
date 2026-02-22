@@ -157,6 +157,11 @@
     return 'analysis-ai';
   }
 
+  function getOpinionText(raw) {
+    const opinion = raw && (raw.reportVerdict || raw.analystRating || raw.rating);
+    return typeof opinion === 'string' && opinion.trim() ? opinion.trim() : '-';
+  }
+
   function buildReportHref(ticker, date, rawHref) {
     if (typeof rawHref === 'string' && rawHref.trim() !== '') {
       return templateMode && typeof templateMode.decorateHref === 'function'
@@ -205,7 +210,8 @@
         const href = buildReportHref(ticker, date, report.href);
         const reportLabel = formatDisplayDate(date);
         const score = formatReportScore(report.score);
-        const ratingClass = getRatingClass(report.rating);
+        const opinion = getOpinionText(report);
+        const ratingClass = getRatingClass(opinion);
         const scoreClass = getScoreClass(report.score);
         const analysisAi = report.analysisAi || '-';
         const analysisAiClass = getAnalysisAiClass(analysisAi);
@@ -213,7 +219,7 @@
         return `
           <a class="stock-report-link" href="${escapeHtml(href)}">
             <span class="stock-report-date">${escapeHtml(reportLabel)} Report</span>
-            <span class="stock-report-rating ${escapeHtml(ratingClass)}">${escapeHtml(report.rating || '-')}</span>
+            <span class="stock-report-rating ${escapeHtml(ratingClass)}">${escapeHtml(opinion)}</span>
             <span class="stock-report-score ${escapeHtml(scoreClass)}">${escapeHtml(score)}</span>
             <span class="stock-report-ai ${escapeHtml(analysisAiClass)}">${escapeHtml(analysisAi)}</span>
             <span class="stock-report-change">${escapeHtml(report.change || '-')}</span>
@@ -232,7 +238,8 @@
       change: getDisplayChange(raw || {}),
       changeDir: detectChangeDir(raw || {}),
       changeBasis: raw && raw.changeBasis ? raw.changeBasis : '기준',
-      rating: raw && (raw.rating || raw.analystRating) ? raw.rating || raw.analystRating : '-',
+      rating: getOpinionText(raw),
+      reportVerdict: raw && raw.reportVerdict ? raw.reportVerdict : undefined,
       score: raw && Object.prototype.hasOwnProperty.call(raw, 'reportScore') ? raw.reportScore : '-',
       analysisAi: raw && Object.prototype.hasOwnProperty.call(raw, 'analysisAi') ? raw.analysisAi : '-',
       href: buildReportHref(ticker, date, raw && raw.href),
@@ -291,7 +298,7 @@
       return true;
     }
 
-    const rating = stock && stock.latest ? stock.latest.rating : '';
+    const opinion = stock && stock.latest ? getOpinionText(stock.latest) : '';
     const fields = [
       stock.ticker,
       stock.name,
@@ -299,7 +306,7 @@
       stock.sector,
       stock.description,
       ...(Array.isArray(stock.tags) ? stock.tags : []),
-      rating,
+      opinion,
     ].map(value => String(value || '').toLowerCase());
 
     return fields.some(value => value.includes(q));
@@ -365,7 +372,7 @@
     let scoreCount = 0;
 
     stocks.forEach(stock => {
-      const rating = getRatingClass(stock.latest && stock.latest.rating);
+      const rating = getRatingClass(getOpinionText(stock && stock.latest));
       if (rating === 'rating-buy') buyCount++;
       else if (rating === 'rating-hold') holdCount++;
       else if (rating === 'rating-sell') sellCount++;
@@ -417,7 +424,8 @@
 
       const changeText = getDisplayChange(latest);
       const changeDir = detectChangeDir(latest);
-      const ratingClass = getRatingClass(latest.rating);
+      const opinion = getOpinionText(latest);
+      const ratingClass = getRatingClass(opinion);
       const scoreClass = getScoreClass(latest.score);
       const scoreNum = Number(latest.score);
       const scoreDisplay = formatReportScore(latest.score);
@@ -436,7 +444,7 @@
       card.innerHTML = `
         <div class="pf-card-head">
           <span class="pf-card-ticker">${escapeHtml(stock.ticker)}</span>
-          <span class="pf-card-rating ${escapeHtml(ratingClass)}">${escapeHtml(latest.rating || '-')}</span>
+          <span class="pf-card-rating ${escapeHtml(ratingClass)}">${escapeHtml(opinion)}</span>
         </div>
         <div class="pf-card-name">${escapeHtml(stock.name || '-')} · ${escapeHtml(stock.nameKr || '-')}</div>
         <div class="pf-card-price-row">
@@ -503,7 +511,8 @@
       const hasReportHistory = Array.isArray(stock.reports) && stock.reports.length > 0;
       const changeText = getDisplayChange(latest);
       const changeDir = detectChangeDir(latest);
-      const ratingClass = getRatingClass(latest.rating);
+      const opinion = getOpinionText(latest);
+      const ratingClass = getRatingClass(opinion);
       const scoreClass = getScoreClass(latest.score);
       const scoreNum = Number(latest.score);
       const scoreDisplay = formatReportScore(latest.score);
@@ -524,7 +533,7 @@
             <div class="v2-pf-ticker">${escapeHtml(stock.ticker)}</div>
             <div class="v2-pf-name">${escapeHtml(stock.name || '-')} · ${escapeHtml(stock.nameKr || '-')}</div>
           </div>
-          <span class="v2-pf-rating ${escapeHtml(ratingClass)}">${escapeHtml(latest.rating || '-')}</span>
+          <span class="v2-pf-rating ${escapeHtml(ratingClass)}">${escapeHtml(opinion)}</span>
         </div>
         <div class="v2-pf-metrics">
           <div class="v2-pf-price">${escapeHtml(latest.price || '-')}</div>
@@ -623,7 +632,7 @@
         <div class="stock-list-tag-row">
           <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
-          <span class="stock-card-tag ${escapeHtml(getRatingClass(latest.rating))}">${escapeHtml(latest.rating || '-')}</span>
+          <span class="stock-card-tag ${escapeHtml(getRatingClass(getOpinionText(latest)))}">${escapeHtml(getOpinionText(latest))}</span>
           <span class="stock-card-tag ${escapeHtml(getScoreClass(latest.score))}">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}점`)}</span>
           <span class="stock-card-tag ${escapeHtml(getAnalysisAiClass(latest.analysisAi))}">${escapeHtml(latest.analysisAi || '-')}</span>
         </div>
@@ -694,7 +703,7 @@
           </div>
           <div class="v2-stock-list-right">
             <span class="v2-stock-list-date">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
-            <span class="v2-stock-list-rating ${escapeHtml(getRatingClass(latest.rating))}">${escapeHtml(latest.rating || '-')}</span>
+            <span class="v2-stock-list-rating ${escapeHtml(getRatingClass(getOpinionText(latest)))}">${escapeHtml(getOpinionText(latest))}</span>
           </div>
         </div>
         <div class="v2-stock-list-tags">
