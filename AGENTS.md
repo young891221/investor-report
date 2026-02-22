@@ -5,6 +5,8 @@ A skill is a set of local instructions stored in a `SKILL.md` file.
 ### Available skills
 
 - stock-report-codex-generator: Generate new stock report JSON files from natural-language company/ticker requests for this repository, then validate and rebuild index data. (file: skills/stock-report-codex-generator/SKILL.md)
+- scan-stocks: Discover new investment-worthy stocks via Finviz screening + 100x-book-v1 scoring. Trigger: "종목 스캔 돌려줘", "유망 종목 찾아줘", "새 종목 발굴해줘" (file: .claude/commands/scan-stocks.md)
+- update-all-stocks: Refresh all existing stock reports with latest market data. Trigger: "전체 업데이트 돌려줘", "리포트 갱신해줘", "실적 시즌 업데이트" (file: .claude/commands/update-all-stocks.md)
 
 ### How to use skills
 
