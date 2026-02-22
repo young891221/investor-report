@@ -1,6 +1,7 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const { getJson, withRetry } = require('./http');
+const { getYahooSession, clearYahooSession } = require('./yahoo-session');
 
 const SEC_TICKERS_URL = 'https://www.sec.gov/files/company_tickers.json';
 const YAHOO_SEARCH_URL = 'https://query2.finance.yahoo.com/v1/finance/search';
@@ -181,8 +182,17 @@ function rankYahooSearchQuotes(name, quotes) {
 }
 
 async function searchYahooTickerByName(name) {
-  const url = `${YAHOO_SEARCH_URL}?q=${encodeURIComponent(name)}&quotesCount=10&newsCount=0`;
-  const payload = await withRetry(() => getJson(url, { timeoutMs: 15000 }), {
+  let session;
+  try {
+    session = await getYahooSession();
+  } catch (_) {
+    session = null;
+  }
+
+  const crumbParam = session ? `&crumb=${encodeURIComponent(session.crumb)}` : '';
+  const url = `${YAHOO_SEARCH_URL}?q=${encodeURIComponent(name)}&quotesCount=10&newsCount=0${crumbParam}`;
+  const headers = session ? { Cookie: session.cookie } : undefined;
+  const payload = await withRetry(() => getJson(url, { timeoutMs: 15000, headers }), {
     attempts: 2,
     delayMs: 400,
   });
@@ -207,13 +217,22 @@ async function fetchYahooQuote(symbols, runtime = {}) {
   const requestJson = typeof runtime.getJson === 'function' ? runtime.getJson : getJson;
   const retry = typeof runtime.withRetry === 'function' ? runtime.withRetry : withRetry;
 
+  let session;
+  try {
+    session = await getYahooSession();
+  } catch (_) {
+    session = null;
+  }
+
   let payload = null;
   const endpointErrors = [];
 
   for (const baseUrl of quoteUrls) {
-    const url = `${baseUrl}?symbols=${encodeURIComponent(unique.join(','))}`;
+    const crumbParam = session ? `&crumb=${encodeURIComponent(session.crumb)}` : '';
+    const url = `${baseUrl}?symbols=${encodeURIComponent(unique.join(','))}${crumbParam}`;
+    const headers = session ? { Cookie: session.cookie } : undefined;
     try {
-      payload = await retry(() => requestJson(url, { timeoutMs: 15000 }), {
+      payload = await retry(() => requestJson(url, { timeoutMs: 15000, headers }), {
         attempts: 2,
         delayMs: 400,
       });
@@ -221,6 +240,10 @@ async function fetchYahooQuote(symbols, runtime = {}) {
     } catch (error) {
       endpointErrors.push(`${baseUrl}: ${error.message}`);
     }
+  }
+
+  if (!payload && session) {
+    clearYahooSession();
   }
 
   if (!payload) {
@@ -266,8 +289,17 @@ async function fetchYahooSummary(ticker) {
     'earningsTrend',
   ].join(',');
 
-  const url = `${YAHOO_SUMMARY_URL}/${encodeURIComponent(ticker)}?modules=${encodeURIComponent(modules)}`;
-  const payload = await withRetry(() => getJson(url, { timeoutMs: 18000 }), {
+  let session;
+  try {
+    session = await getYahooSession();
+  } catch (_) {
+    session = null;
+  }
+
+  const crumbParam = session ? `&crumb=${encodeURIComponent(session.crumb)}` : '';
+  const url = `${YAHOO_SUMMARY_URL}/${encodeURIComponent(ticker)}?modules=${encodeURIComponent(modules)}${crumbParam}`;
+  const headers = session ? { Cookie: session.cookie } : undefined;
+  const payload = await withRetry(() => getJson(url, { timeoutMs: 18000, headers }), {
     attempts: 2,
     delayMs: 500,
   });

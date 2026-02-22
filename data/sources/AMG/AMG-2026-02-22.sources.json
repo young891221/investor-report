@@ -1,0 +1,107 @@
+{
+  "ticker": "AMG",
+  "requestedName": null,
+  "resolvedBy": "ticker_input",
+  "generatedAt": "2026-02-22T13:12:00.458Z",
+  "asOfDate": "2026-02-22",
+  "policy": {
+    "strict": false,
+    "allowPlaceholders": true,
+    "sourcePriority": "official_first"
+  },
+  "sources": [
+    {
+      "id": "sec_company_tickers",
+      "type": "official",
+      "url": "https://www.sec.gov/files/company_tickers.json",
+      "retrievedAt": "2026-02-22T13:12:00.458Z"
+    },
+    {
+      "id": "yahoo_quote",
+      "type": "market_data",
+      "url": "https://query1.finance.yahoo.com/v7/finance/quote?symbols=AMG",
+      "retrievedAt": "2026-02-22T13:12:00.458Z"
+    },
+    {
+      "id": "yahoo_quote_summary",
+      "type": "market_data",
+      "url": "https://query2.finance.yahoo.com/v10/finance/quoteSummary/AMG",
+      "retrievedAt": "2026-02-22T13:12:00.458Z"
+    }
+  ],
+  "sec": {
+    "cik": "0001004434",
+    "companyNameEn": "AFFILIATED MANAGERS GROUP, INC."
+  },
+  "placeholders": [
+    {
+      "field": "valuation.priceToSales",
+      "reason": "P/S unavailable"
+    },
+    {
+      "field": "valuation.evToEbitda",
+      "reason": "EV/EBITDA unavailable"
+    }
+  ],
+  "checks": {
+    "criticalIssues": [],
+    "annualPoints": 5,
+    "quarterPoints": 4,
+    "fallback": {
+      "quoteFromLocal": false,
+      "summaryFromLocal": false
+    }
+  },
+  "fieldSources": {
+    "companyNameEn": [
+      "sec_company_tickers"
+    ],
+    "price": [
+      "yahoo_quote"
+    ],
+    "marketCap": [
+      "yahoo_quote"
+    ],
+    "weekRange": [
+      "yahoo_quote"
+    ],
+    "analystRating": [
+      "yahoo_quote_summary"
+    ],
+    "analystTarget": [
+      "yahoo_quote_summary"
+    ],
+    "reportScore": [
+      "yahoo_quote",
+      "yahoo_quote_summary"
+    ],
+    "reportVerdict": [
+      "yahoo_quote",
+      "yahoo_quote_summary"
+    ],
+    "reportScoreModel": [
+      "yahoo_quote",
+      "yahoo_quote_summary"
+    ],
+    "reportScoreBreakdown": [
+      "yahoo_quote",
+      "yahoo_quote_summary"
+    ],
+    "annualRevenue": [
+      "yahoo_quote_summary"
+    ],
+    "quarterlyRevenue": [
+      "yahoo_quote_summary"
+    ],
+    "valuation": [
+      "yahoo_quote",
+      "yahoo_quote_summary"
+    ],
+    "timeline": [
+      "yahoo_quote_summary"
+    ],
+    "checklist": [
+      "yahoo_quote_summary"
+    ]
+  }
+}

@@ -38,30 +38,29 @@ For each of the top 10 candidates from Step 1:
 
 ### 3. Generate Reports for Top 5
 
-For each of the final top 5 stocks, run:
+For each of the final top 5 stocks, invoke the `generate-stock-report` skill:
 
-```bash
-node scripts/generate-stock.js --ticker {TICKER} --no-strict --allow-placeholders --build-index --force
+```
+/generate-stock-report {TICKER}
 ```
 
-Or run all at once:
+This skill performs the full report generation workflow:
+- Loads template, schema, and reference docs
+- Collects data from official sources (IR, SEC, Yahoo Finance)
+- Drafts comprehensive stock JSON with all required fields and 100x scoring
+- Validates schema and rebuilds the dashboard index
+- Ensures data quality (no fabricated figures, proper placeholders)
 
-```bash
-node scripts/scan-stocks.js --preset small-cap-growth --top 5 --generate --build-index
-```
+Generate each stock sequentially, waiting for one to complete before starting the next.
 
-### 4. Validate & Report
+### 4. Final Report
 
-```bash
-node scripts/validate-stocks.js
-node scripts/build-index.js
-```
-
-Report:
-- Total candidates screened
-- Top 5 selected with scores and rationale
+After all 5 reports are generated, summarize:
+- Total candidates screened from Finviz
+- Top 5 selected with adjusted scores and rationale
 - Generated file paths
 - Any placeholders or data quality warnings
+- Index rebuild confirmation
 
 ## Notes
 

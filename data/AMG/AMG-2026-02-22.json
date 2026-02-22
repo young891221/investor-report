@@ -1,0 +1,278 @@
+{
+  "ticker": "AMG",
+  "companyName": "어필리에이티드 매니저스 그룹",
+  "companyNameEn": "Affiliated Managers Group, Inc.",
+  "exchange": "NYSE",
+  "sector": "금융 서비스 / 멀티 어필리에이트 자산운용",
+  "description": "독립 투자운용사에 소수 지분 투자하는 독특한 멀티 어필리에이트 모델. AUM $813B, 대체투자 AUM $373B(EBITDA 60%). Pantheon, AQR 등 세계적 운용사 파트너십. 2025년 Economic EPS $26.05(+22%), 자사주 $700M 매입.",
+  "analysisDate": "2026-02-22",
+  "price": "$287.69",
+  "priceChange": "▲ 107% from 52주 저가 ($139.22)",
+  "priceChangeDir": "up",
+  "marketCap": "$8.2B",
+  "marketCapChange": "▲ +107% (52주)",
+  "weekRange": "$139.22 — $334.78",
+  "analystRating": "Buy",
+  "analystTarget": "목표 $350.14 (↑22%)",
+  "reportScore": 74,
+  "reportVerdict": "BUY",
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 74,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력 큼",
+        "weight": 25,
+        "score": 18,
+        "status": "pass",
+        "evidence": "시총 $8.2B — $20B 미만 중형주. AUM $813B 대비 시총 극소. BX($149B)·KKR($93.7B) 대비 1/10~1/18. 대체투자 AUM $373B 성장 시 시총 재평가 여력 충분"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 16,
+        "status": "pass",
+        "evidence": "Economic Net Income $769.3M, 자산경량 모델. Economic EPS $26.05(+22%). 적극적 자사주 매입($700M, 11%)으로 자기자본 압축 → 자본 효율성 높음"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자",
+        "weight": 20,
+        "score": 14,
+        "status": "pass",
+        "evidence": "매출 성장 +1.6%로 낮으나, Economic EPS +22%, $1B+ 신규 투자, $29B 순유입. 대체투자 확장 + Global Wealth $100B+ 100% 유기 성장. 다만 매출 성장률이 제한적"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER 안전마진",
+        "weight": 20,
+        "score": 18,
+        "status": "pass",
+        "evidence": "P/E 12.46x, PEG 0.54 — 8~30 적정 범위 내에서 매우 저평가. Economic P/E ~11x(Economic EPS $26.05 기준). 업종 평균 대비 50%+ 할인"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영",
+        "weight": 15,
+        "score": 8,
+        "status": "watch",
+        "evidence": "창업자 William Nutt(1993)는 경영 일선 퇴진. CEO Jay Horgen(2019~)은 비창업자, 2007년 합류. 내부자 지분 3.4~6.6%. 전문 경영인 체제"
+      }
+    ],
+    "notes": [
+      "매출 성장 +1.6%로 낮으나, Economic EPS +22%의 괴리 — 자사주 매입·지분 투자 수익 구조 이해 필요",
+      "대체투자 AUM $373B(EBITDA 60%)가 핵심 가치 드라이버 — 장기 성장 축",
+      "52주 저가 $139에서 $334까지 급등 후 조정 구간 — 단기 변동성 높음"
+    ]
+  },
+  "keyPoints": [
+    "🏦 <strong>독특한 멀티 어필리에이트 모델:</strong> 독립 투자운용사에 소수 지분 투자. AUM $813.3B, Pantheon·AQR·ValueAct 등 세계적 운용사 파트너십. 2025년 $1B+ 신규 투자(Garda, HighBrook 등 5건)",
+    "📈 <strong>대체투자 핵심 성장:</strong> 대체투자 AUM $373B(EBITDA 60%). $74B 순유입 + $23B 신규 어필리에이트 추가. Global Wealth AUM $100B+ 100% 유기 성장. 장기 구조적 성장 축",
+    "💰 <strong>공격적 주주환원 + 저평가:</strong> 2025년 자사주 $700M 매입(발행주식 11%). Economic P/E ~11x, PEG 0.54. BX(31x)·KKR(43x) 대비 60~75% 할인. 52주 저가 대비 107% 급등에도 여전히 저평가",
+    "📊 <strong>2025년 최고 실적:</strong> Economic EPS $26.05(+22%), Q4 Economic EPS $9.48(est $8.75 beat). AUM $813B 사상 최대(+14.9%). 순유입 $29B(사상 최대). Q1 2026 FRE +30% 가이던스",
+    "⚠️ <strong>매출 성장 제한 + 복잡한 구조:</strong> 매출 +1.6%로 외형 성장 미미. 어필리에이트 지분 투자 모델의 복잡성. 시장 하락 시 AUM 연동 수수료 급감. 부채 $2.69B"
+  ],
+  "navSections": [
+    { "id": "summary", "label": "핵심요약" },
+    { "id": "business", "label": "비즈니스" },
+    { "id": "finance", "label": "재무" },
+    { "id": "catalyst", "label": "촉매" },
+    { "id": "competitors", "label": "경쟁사" },
+    { "id": "risks", "label": "리스크" },
+    { "id": "verdict", "label": "투자결론" }
+  ],
+  "segments": [
+    {
+      "name": "대체투자 (Alternatives)",
+      "icon": "🏢",
+      "color": "accent",
+      "backlog": "60%",
+      "description": "PE, 실물자산, 크레딧, 멀티전략 등 대체투자 운용사 지분. AUM $373B. Pantheon, AQR, ValueAct 등. EBITDA의 60% 기여. $74B 순유입 + $23B 신규 추가.",
+      "revenue": "FY2025 EBITDA 기여: ~60%"
+    },
+    {
+      "name": "전통 자산운용 (Liquid Alts/Traditional)",
+      "icon": "📊",
+      "color": "orange",
+      "backlog": "25%",
+      "description": "주식·채권·멀티에셋 등 전통 자산운용사 지분. AUM ~$340B. 시장 수익률 연동 수수료. 안정적 현금흐름 기반.",
+      "revenue": "FY2025 EBITDA 기여: ~25%"
+    },
+    {
+      "name": "글로벌 웰스 (Global Wealth)",
+      "icon": "💎",
+      "color": "purple",
+      "backlog": "15%",
+      "description": "고액 자산가·패밀리오피스 대상 자산관리. AUM $100B+ 달성(100%+ 유기 성장). 안정적 수수료 수익원으로 급성장.",
+      "revenue": "FY2025 EBITDA 기여: ~15%"
+    }
+  ],
+  "revenueBreakdown": {
+    "labels": ["대체투자 (~60%)", "전통 운용 (~25%)", "글로벌 웰스 (~15%)"],
+    "data": [60, 25, 15],
+    "colors": ["#3b82f6", "#f59e0b", "#8b5cf6"]
+  },
+  "annualRevenue": {
+    "labels": ["2021", "2022", "2023", "2024", "2025", "2026E"],
+    "data": [2213, 1955, 1981, 2038, 2070, 2300],
+    "estimateStartIndex": 5
+  },
+  "quarterlyRevenue": {
+    "labels": ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26E", "Q2'26E"],
+    "data": [499, 512, 503, 557, 580, 600]
+  },
+  "marginTrend": {
+    "labels": ["2021", "2022", "2023", "2024", "Q1'25", "Q2'25", "Q3'25", "Q4'25"],
+    "gaap": [35, 28, 30, 32, 33, 34, 35, 37],
+    "nonGaap": [null, null, null, null, 38, 39, 40, 49]
+  },
+  "financialTable": [
+    ["총 수익", "$2.07B", "$2.04B", "+1.6% YoY", "orange", "매출 성장 미미하나 Economic 지표와 괴리 — 구조적 특성"],
+    ["Economic Net Income", "$769.3M", "$701.7M", "+9.6% YoY", "green", "핵심 수익 지표. 어필리에이트 지분 수익 포함"],
+    ["Economic EPS", "$26.05", "$21.36", "+22% YoY", "green", "자사주 매입(11%) 효과 + 실질 이익 성장 동시 반영"],
+    ["Q4 Economic EPS", "$9.48", "$6.53", "+45.2% YoY", "green", "Zacks est $8.75 대비 $0.73 beat"],
+    ["AUM", "$813.3B", "$707.8B", "+14.9%", "green", "사상 최대. 대체투자 $373B(EBITDA 60%)"],
+    ["순유입", "$29B(연)", "$12.1B(Q4)", "사상 최대", "green", "대체투자 중심 순유입 가속화"],
+    ["자사주 매입", "$700M", "—", "11% 감소", "blue", "적극적 주주환원. 주당 가치 극대화 전략"],
+    ["현금", "$586M", "$950M", "감소", "orange", "신규 투자·자사주 매입으로 현금 소진"],
+    ["총 부채", "$2.69B", "$2.62B", "+2.7%", "orange", "$425M 시니어노트 발행(전환우선주 차환)"]
+  ],
+  "valuation": {
+    "labels": ["P/E (TTM)", "Economic P/E", "P/B", "PEG"],
+    "company": [12.46, 11.04, 2.5, 0.54],
+    "industry": [25.0, 18.0, 4.0, 1.2]
+  },
+  "pegInputs": {
+    "forwardPE": 11.04,
+    "epsGrowthPct": 22,
+    "basis": "Economic EPS 성장률 +22% YoY 기준 PEG 0.54 (2026-02-22)"
+  },
+  "financialHealth": [
+    {
+      "label": "현금",
+      "value": "$586M",
+      "width": "25%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "총 부채",
+      "value": "$2.69B",
+      "width": "65%",
+      "gradient": "var(--red),var(--red2)"
+    },
+    {
+      "label": "순부채",
+      "value": "~$2.1B",
+      "width": "50%",
+      "gradient": "var(--orange),#fbbf24"
+    }
+  ],
+  "healthMetrics": [
+    { "label": "D/E 비율", "value": "적정 수준", "color": "var(--orange)" },
+    { "label": "자사주 매입", "value": "$700M (11%)", "color": "var(--green2)" },
+    { "label": "Economic ROE", "value": "높음 (EPS +22%)", "color": "var(--green2)" },
+    { "label": "PEG (최근 1년)", "value": "0.54 (극저평가)", "color": "var(--green2)" },
+    { "label": "베타", "value": "1.21 (시장 상회)", "color": "var(--orange)" },
+    { "label": "내부자 지분", "value": "3.4~6.6%", "color": "var(--orange)" }
+  ],
+  "timeline": [
+    { "date": "1993.12", "text": "William J. Nutt가 AMG 설립 — 독립 운용사 소수 지분 투자 모델 창시", "status": "done" },
+    { "date": "1997.11", "text": "NYSE 상장 (IPO)", "status": "done" },
+    { "date": "2019", "text": "Jay Horgen CEO 취임 — 대체투자 전환 가속화", "status": "done" },
+    { "date": "2025.Q1", "text": "대체투자 AUM $300B+ 돌파, Global Wealth $100B 달성", "status": "done" },
+    { "date": "2025", "text": "$1B+ 신규 투자 (Garda, HighBrook 등 5건). 자사주 $700M 매입", "status": "done" },
+    { "date": "2026.02", "text": "FY2025 실적 — AUM $813B 사상 최대, Economic EPS $26.05(+22%), 순유입 $29B", "status": "done" },
+    { "date": "2026.Q1", "text": "Q1 가이던스: Adj EBITDA $310~330M, FRE +30% YoY 기대", "status": "pending" },
+    { "date": "2026.H1", "text": "HighBrook 투자 클로징 예정. 추가 어필리에이트 파트너십 기대", "status": "pending" },
+    { "date": "2026.H2", "text": "대체투자 AUM $400B+ 목표. 성과보수 $170M 타겟", "status": "pending" },
+    { "date": "2027~", "text": "대체투자·글로벌 웰스 비중 70%+ 달성 시 구조적 리레이팅 기대", "status": "pending" }
+  ],
+  "competitorChart": {
+    "labels": ["Blackstone", "Apollo\nGlobal", "Blue Owl\nCapital", "BrightSphere\nInvest", "AMG"],
+    "data": [149, 69.5, 34.0, 1.1, 8.2],
+    "colors": ["#8b5cf6", "#3b82f6", "#ec4899", "#0ea5e9", "#f59e0b"],
+    "chartLabel": "자산운용 시가총액 비교 (2026.02, 단위: $B)",
+    "yLabel": "B"
+  },
+  "competitorTable": {
+    "headers": ["기업", "티커", "시총", "P/E", "AUM", "핵심 차별화", "위협 수준"],
+    "rows": [
+      ["AMG", "AMG", "$8.2B", "12.5x", "$813B", "멀티 어필리에이트 모델·대체투자 60%·PEG 0.54", "—"],
+      ["Blackstone", "BX", "$149B", "31.3x", "$1.1T", "대체자산 1위·자체 운용·보험 지배적", "<span class='tag tag-orange'>중간</span>"],
+      ["Apollo Global", "APO", "$69.5B", "17.5x", "$733B", "크레딧 1위·Athene 보험·은퇴자산", "<span class='tag tag-orange'>중간</span>"],
+      ["Blue Owl Capital", "OWL", "$34B", "35x", "$250B+", "영구자본 100%·GP 솔루션·테크 렌딩", "<span class='tag tag-orange'>중간</span>"],
+      ["BrightSphere", "BSIG", "$1.1B", "8x", "$100B", "유사 멀티 어필리에이트·가치투자 중심", "<span class='tag tag-green'>낮음</span>"]
+    ]
+  },
+  "risks": {
+    "items": [
+      { "label": "시장 하락 → AUM 급감", "x": 8, "y": 9, "r": 22, "bg": "rgba(239,68,68,.6)", "border": "#ef4444" },
+      { "label": "어필리에이트 이탈", "x": 6, "y": 7, "r": 18, "bg": "rgba(245,158,11,.5)", "border": "#f59e0b" },
+      { "label": "복잡한 기업 구조", "x": 5, "y": 6, "r": 16, "bg": "rgba(139,92,246,.5)", "border": "#8b5cf6" },
+      { "label": "부채 부담 ($2.7B)", "x": 6, "y": 6, "r": 14, "bg": "rgba(6,182,212,.5)", "border": "#06b6d4" },
+      { "label": "내부자 지분 낮음", "x": 4, "y": 5, "r": 12, "bg": "rgba(236,72,153,.4)", "border": "#ec4899" }
+    ],
+    "warnings": [
+      "📉 <strong>시장 하락 → AUM·수수료 급감:</strong> AUM $813B의 대부분이 시장가치에 연동. 시장 20% 하락 시 AUM ~$650B, 수수료 수익 비례 감소. 베타 1.21로 시장 대비 변동성 높음",
+      "🤝 <strong>어필리에이트 이탈 리스크:</strong> 독립 운용사 소수 지분 투자 모델 특성상, 핵심 어필리에이트(Pantheon, AQR 등)가 AMG 지분 바이백 후 독립할 가능성. 핵심 인력·AUM 유출 위험",
+      "🧩 <strong>복잡한 기업 구조:</strong> 수십 개 어필리에이트 지분의 합산 가치 평가가 어려움. GAAP 매출($2.07B)과 Economic Net Income($769M) 간 해석 차이. 투자자 이해도 낮아 밸류에이션 할인 요인",
+      "💸 <strong>부채 부담:</strong> 총 부채 $2.69B, 현금 $586M → 순부채 ~$2.1B. $425M 시니어노트 신규 발행. 금리 상승 시 차입 비용 증가로 수익성 압박",
+      "📊 <strong>매출 성장 정체:</strong> 매출 +1.6%로 실질 외형 성장 미미. 자사주 매입(11%)에 의한 EPS 성장 의존도 높음. 유기적 매출 성장 없이는 장기 투자 매력 제한"
+    ]
+  },
+  "radar": {
+    "labels": ["성장성", "수익성", "경쟁우위", "재무건전성", "밸류에이션\n매력도", "카탈리스트"],
+    "data": [6, 8, 7, 5, 9, 7]
+  },
+  "bullCase": [
+    "💰 <strong>극단적 저평가:</strong> P/E 12.5x, Economic P/E 11x, PEG 0.54. 대체자산 운용사 중 최저 밸류에이션. BX(31x)·APO(17.5x)·OWL(35x) 대비 60~70% 할인. 밸류 트랩이 아닌 구조적 할인 해소 기회",
+    "📈 <strong>대체투자 구조적 전환:</strong> 대체투자 AUM $373B(EBITDA 60%). 연금·보험·국부펀드의 대체투자 배분 확대 수혜. $74B 순유입 + $23B 신규 어필리에이트. 2026 FRE +30% 가이던스",
+    "🌍 <strong>Global Wealth 폭발적 성장:</strong> AUM $100B+ 달성(유기 성장 100%+). 고액 자산가 시장 TAM 확대. 안정적 수수료 수익원으로 매력도 높음",
+    "💎 <strong>공격적 주주환원:</strong> 2025년 자사주 $700M(11%) 매입. 경영진의 주당 가치 극대화 의지. 동시에 $1B+ 신규 투자로 성장과 환원 병행",
+    "🔧 <strong>포트폴리오 재구성 효과:</strong> 저수익 전통운용→고수익 대체투자 전환 진행. 대체투자 비중 증가 시 마진·밸류에이션 멀티플 동시 개선 기대"
+  ],
+  "bearCase": [
+    "📉 <strong>시장 의존적 AUM:</strong> AUM $813B의 대부분이 시장가치 연동. 2022년처럼 시장 급락 시 AUM·수수료 동반 급감. 베타 1.21로 하방 리스크 증폭",
+    "📊 <strong>매출 성장 정체:</strong> 매출 +1.6%로 외형 성장 미미. EPS 성장(+22%)의 절반 이상이 자사주 매입(11%) 효과. 유기적 성장 없는 EPS 성장은 지속 가능성 의문",
+    "🧩 <strong>복잡한 구조 → 밸류에이션 할인:</strong> 멀티 어필리에이트 모델의 투명성 부족. GAAP과 Economic 지표 괴리. 투자자 이해 어려워 구조적 콩글로머릿 할인 지속 가능",
+    "🤝 <strong>어필리에이트 의존:</strong> 핵심 운용사(AQR, Pantheon 등)의 독립 시 AUM·수익 대규모 유출 위험. AMG의 가치 제안이 어필리에이트 입장에서 약해질 가능성",
+    "💸 <strong>부채 증가 추세:</strong> 총 부채 $2.69B(+2.7%), $425M 시니어노트 신규 발행. 자사주 매입+신규 투자에 차입 의존 시 재무 건전성 악화 우려"
+  ],
+  "checklist": [
+    ["Q1 2026 실적 확인", "2026.05", "Adj EBITDA $310~330M 가이던스 충족, FRE +30% 달성 여부"],
+    ["대체투자 AUM 성장", "분기별", "$373B에서 $400B+ 돌파 추이. 순유입 지속 여부"],
+    ["어필리에이트 변동", "분기별", "신규 파트너십 체결·기존 어필리에이트 이탈 여부"],
+    ["자사주 매입 속도", "분기별", "2026년 매입 속도 — 주당 가치 극대화 의지 확인"],
+    ["부채 추이", "분기별", "$2.69B 부채 관리. 차입 비용 vs 투자 수익 균형"],
+    ["[100배] 시총 여력", "분기별", "시총 $8.2B — BX($149B) 대비 18x 격차 축소 진행도"],
+    ["[100배] ROE 품질", "분기별", "Economic EPS 성장률 +22% 유지 여부. GAAP ROE 개선 추세"],
+    ["[100배] 재투자 효율", "분기별", "신규 어필리에이트 투자 ROI, 대체투자·웰스 AUM 성장률"],
+    ["[100배] PER 안전마진", "상시", "P/E 12.5x, PEG 0.54 — 구조적 할인 해소 시 적정 P/E 15~18x"],
+    ["[100배] 창업자 운영력", "반기별", "CEO Jay Horgen 전략 실행력, 내부자 지분 3.4% 변화"]
+  ],
+  "moats": [
+    {
+      "icon": "🤝",
+      "name": "멀티 어필리에이트 모델",
+      "desc": "독립 운용사 소수 지분 투자 플랫폼<br>Pantheon·AQR·ValueAct 등 세계적 파트너"
+    },
+    {
+      "icon": "🏢",
+      "name": "대체투자 $373B AUM",
+      "desc": "EBITDA 60% 기여하는 대체투자 핵심<br>구조적 성장 + 높은 수수료율"
+    },
+    {
+      "icon": "💎",
+      "name": "Global Wealth $100B+",
+      "desc": "100%+ 유기 성장 달성<br>고액 자산가 안정적 수수료 수익원"
+    },
+    {
+      "icon": "📊",
+      "name": "30년 투자 트랙레코드",
+      "desc": "1993년 설립, 수십 개 운용사 파트너십<br>운용사 M&A·가치 창출 전문성"
+    }
+  ],
+  "analysisAi": "Claude"
+}

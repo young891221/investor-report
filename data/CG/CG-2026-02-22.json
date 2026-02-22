@@ -1,0 +1,278 @@
+{
+  "ticker": "CG",
+  "companyName": "칼라일 그룹",
+  "companyNameEn": "The Carlyle Group Inc.",
+  "exchange": "NASDAQ",
+  "sector": "금융 서비스 / 대체 자산운용",
+  "description": "세계 3대 대체자산 운용사. PE, 크레딧, 투자 솔루션 3개 부문에서 AUM $477B 운용. 1987년 설립, 공동창업자 3인이 공동의장으로 활동 중. Harvey Schwartz CEO 체제 하에 FRE 마진 47%, 2025년 사상 최대 실적 달성.",
+  "analysisDate": "2026-02-22",
+  "price": "$53.23",
+  "priceChange": "▼ 24% from ATH ($69.85)",
+  "priceChangeDir": "down",
+  "marketCap": "$19.2B",
+  "marketCapChange": "▲ +41% (52주)",
+  "weekRange": "$33.02 — $69.85",
+  "analystRating": "Buy",
+  "analystTarget": "목표 $63.00 (↑18%)",
+  "reportScore": 80,
+  "reportVerdict": "STRONG BUY",
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 80,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력 큼",
+        "weight": 25,
+        "score": 16,
+        "status": "pass",
+        "evidence": "시총 $19.2B — $20B 경계선. BX($149B), KKR($93.7B) 대비 1/5~1/8 수준으로 대체자산 업종 내 상대적 소형. AUM $477B→$1T 목표 달성 시 시총 2~3배 리레이팅 가능"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 13,
+        "status": "pass",
+        "evidence": "ROE 14.10% (Yahoo Finance 2025 기준). 15% 기준선 근접하나 미달. FRE 마진 47%로 수익성 개선 추세. 자산경량 운용사 특성상 자본 효율성 높음"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자",
+        "weight": 20,
+        "score": 18,
+        "status": "pass",
+        "evidence": "2025년 $54B 유입(+32% YoY), FRE $1.24B(+12%), DE $1.7B(+11%). 크레딧·보험솔루션·일본 시장 등 신성장 축 확장. 영구자본 $111B(Fee-earning AUM의 33%)"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER 안전마진",
+        "weight": 20,
+        "score": 18,
+        "status": "pass",
+        "evidence": "Forward P/E 9.78x — 동종 최저(BX 31.3x, KKR 43.2x, APO 17.5x, ARES 72.4x). DE 기준 P/E ~13x. GAAP Trailing P/E 29.9x는 일회성 항목 영향"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영",
+        "weight": 15,
+        "score": 15,
+        "status": "pass",
+        "evidence": "공동창업자 3인(Conway, Rubenstein, D'Aniello) 모두 Co-Chairman으로 활동 중. 내부자 지분 26.71%. CEO Harvey Schwartz가 운영, 창업자들이 전략적 감독"
+      }
+    ],
+    "notes": [
+      "GAAP 순이익($809M)과 DE($1.7B)의 괴리가 큼 — 주가 평가 시 DE 기준이 업계 표준",
+      "AUM $477B에서 $1T 목표까지 장기 성장 스토리 건재",
+      "2025년 사상 최대 실적 달성 후 2026년 추가 성장 모멘텀 확인 필요 (Q1 실적 5/7)"
+    ]
+  },
+  "keyPoints": [
+    "🏦 <strong>글로벌 3대 대체자산 운용사:</strong> AUM $477B(사상 최대). PE·크레딧·투자솔루션 3개 부문, 29개국에 2,300+명 투자 전문가. 1987년 설립 이후 38년간 대체투자 전문성 축적",
+    "📈 <strong>2025년 사상 최대 실적:</strong> FRE $1.24B(+12%), DE $1.7B($4.02/주, +11%), 신규 유입 $54B(+32%). FRE 마진 47%로 운영 효율성 입증. 영구자본 $111B으로 수수료 수익 안정성 강화",
+    "💰 <strong>동종 최저 밸류에이션:</strong> Forward P/E 9.78x로 BX(31.3x), KKR(43.2x), APO(17.5x), ARES(72.4x) 대비 압도적 할인. DE 기준 P/E ~13x — 실적 대비 현저한 저평가",
+    "👨‍💼 <strong>창업자 3인 공동의장 + 27% 내부자:</strong> Conway·Rubenstein·D'Aniello 모두 Co-Chairman 활동. 내부자 지분 26.71%. CEO Harvey Schwartz(前 Goldman Sachs 사장)가 2023년부터 수익성 혁신 주도",
+    "⚠️ <strong>시장 의존적 수익 구조:</strong> 캐리(성과보수)와 투자 수익이 시장 환경에 민감. 금리 상승·경기 침체 시 펀드 성과 저하 → DE 급감 가능. 총 부채 $13.9B(펀드 레버리지 포함)"
+  ],
+  "navSections": [
+    { "id": "summary", "label": "핵심요약" },
+    { "id": "business", "label": "비즈니스" },
+    { "id": "finance", "label": "재무" },
+    { "id": "catalyst", "label": "촉매" },
+    { "id": "competitors", "label": "경쟁사" },
+    { "id": "risks", "label": "리스크" },
+    { "id": "verdict", "label": "투자결론" }
+  ],
+  "segments": [
+    {
+      "name": "Global Private Equity",
+      "icon": "🏢",
+      "color": "accent",
+      "backlog": "38%",
+      "description": "바이아웃, 그로스, 부동산 등 전통 PE 전략. AUM ~$183B. 항공우주·방위·헬스케어·테크 분야 전문성. 캐리(성과보수) 수익의 핵심 엔진.",
+      "revenue": "FY2025 FRE 기여: ~$600M (전체의 ~48%)"
+    },
+    {
+      "name": "Global Credit",
+      "icon": "💳",
+      "color": "orange",
+      "backlog": "41%",
+      "description": "CLO, 다이렉트 렌딩, 보험솔루션, 구조화 신용 등. AUM ~$195B으로 가장 빠르게 성장하는 부문. 영구자본(보험 등) 비중 높아 수수료 안정성 우수.",
+      "revenue": "FY2025 FRE 기여: ~$450M (전체의 ~36%)"
+    },
+    {
+      "name": "Global Investment Solutions",
+      "icon": "📊",
+      "color": "purple",
+      "backlog": "21%",
+      "description": "세컨더리, 공동투자, 펀드오브펀즈 등 멀티매니저 전략. AUM ~$99B. LP 관계 기반 크로스셀링 플랫폼 역할.",
+      "revenue": "FY2025 FRE 기여: ~$190M (전체의 ~15%)"
+    }
+  ],
+  "revenueBreakdown": {
+    "labels": ["Global PE (~38%)", "Global Credit (~41%)", "Investment Solutions (~21%)"],
+    "data": [38, 41, 21],
+    "colors": ["#3b82f6", "#f59e0b", "#8b5cf6"]
+  },
+  "annualRevenue": {
+    "labels": ["2021", "2022", "2023", "2024", "2025", "2026E"],
+    "data": [4700, 1600, 2100, 2080, 4030, 5200],
+    "estimateStartIndex": 5
+  },
+  "quarterlyRevenue": {
+    "labels": ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26E", "Q2'26E"],
+    "data": [900, 980, 1050, 1100, 1200, 1350]
+  },
+  "marginTrend": {
+    "labels": ["2021", "2022", "2023", "2024", "Q1'25", "Q2'25", "Q3'25", "Q4'25"],
+    "gaap": [35, -5, 15, 12, 20, 22, 24, 25],
+    "nonGaap": [null, null, null, null, 44, 45, 47, 48]
+  },
+  "financialTable": [
+    ["총 수익 (GAAP)", "$4.03B", "$2.08B", "+93.9% YoY", "green", "투자 수익 인식 + 수수료 성장 동시 반영"],
+    ["FRE (수수료관련이익)", "$1.24B", "$1.11B", "+12% YoY", "green", "FRE 마진 47%로 운영 효율성 입증"],
+    ["DE (분배가능이익)", "$1.7B", "$1.53B", "+11% YoY", "green", "DE/주 $4.02 — 업계 핵심 수익 지표"],
+    ["GAAP 순이익", "$809M", "—", "EPS $2.18", "blue", "희석 EPS $2.18. GAAP과 DE 괴리 큼 (보상비용 등)"],
+    ["신규 자금 유입", "$54B", "$41B", "+32% YoY", "green", "2025년 사상 최대 펀드레이징 실적"],
+    ["AUM", "$477B", "$447B", "+6.7%", "green", "사상 최대. 장기 $1T 목표"],
+    ["영구자본 (AUM 중)", "$111B", "—", "FE-AUM의 33%", "green", "안정적 수수료 기반 확대"],
+    ["현금 및 등가물", "$3.21B", "—", "—", "blue", "충분한 유동성"],
+    ["총 부채", "$13.89B", "—", "—", "orange", "펀드 레벨 차입 포함. 운용사 자체 부채는 ~$2.2B"]
+  ],
+  "valuation": {
+    "labels": ["P/E (TTM)", "Forward P/E", "P/B", "P/S (TTM)"],
+    "company": [29.9, 9.78, 2.7, 4.76],
+    "industry": [35.0, 20.0, 5.0, 10.0]
+  },
+  "pegInputs": {
+    "forwardPE": 9.78,
+    "epsGrowthPct": 71,
+    "basis": "Yahoo Finance earningsGrowth FY2025 기준 (2026-02-22 조회)"
+  },
+  "financialHealth": [
+    {
+      "label": "현금",
+      "value": "$3.21B",
+      "width": "30%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "총 부채 (연결)",
+      "value": "$13.89B",
+      "width": "85%",
+      "gradient": "var(--red),var(--red2)"
+    },
+    {
+      "label": "운용사 자체 부채",
+      "value": "~$2.2B",
+      "width": "25%",
+      "gradient": "var(--orange),#fbbf24"
+    }
+  ],
+  "healthMetrics": [
+    { "label": "D/E 비율", "value": "1.96x (운용사 자체)", "color": "var(--orange)" },
+    { "label": "유동비율", "value": "1.86", "color": "var(--green2)" },
+    { "label": "ROE (최근 1년)", "value": "14.10%", "color": "var(--orange)" },
+    { "label": "PEG (Forward)", "value": "0.14x (극저평가)", "color": "var(--green2)" },
+    { "label": "베타", "value": "2.04 (고변동)", "color": "var(--orange)" },
+    { "label": "내부자 지분", "value": "26.71%", "color": "var(--green2)" }
+  ],
+  "timeline": [
+    { "date": "1987", "text": "William Conway, David Rubenstein, Daniel D'Aniello가 워싱턴 DC에서 Carlyle Group 설립", "status": "done" },
+    { "date": "2012.05", "text": "NASDAQ 상장 (IPO)", "status": "done" },
+    { "date": "2020", "text": "C-Corp 전환 — S&P 500 편입 가능 구조로 변경", "status": "done" },
+    { "date": "2023.02", "text": "Harvey Schwartz(前 Goldman Sachs 사장) CEO 취임 — 수익성 혁신 시작", "status": "done" },
+    { "date": "2025.02", "text": "Q4 2024 실적 — AUM $447B, FRE 마진 개선 본격화", "status": "done" },
+    { "date": "2025.08", "text": "FY2025 H1 — 크레딧 부문 급성장, 보험솔루션 확장", "status": "done" },
+    { "date": "2026.02", "text": "FY2025 실적 발표 — AUM $477B 사상 최대, FRE $1.24B, DE $1.7B", "status": "done" },
+    { "date": "2026.05.07", "text": "Q1 2026 실적 발표 예정 — 성장 모멘텀 지속 여부 핵심 확인 포인트", "status": "pending" },
+    { "date": "2026.H2", "text": "S&P 500 편입 가능성 — 시총·유동성 기준 충족 시 대규모 패시브 자금 유입", "status": "pending" },
+    { "date": "2027~30", "text": "AUM $1T 목표 — 크레딧·보험·아시아 확장이 핵심 드라이버", "status": "pending" }
+  ],
+  "competitorChart": {
+    "labels": ["Blackstone", "KKR", "Apollo\nGlobal", "Ares\nManagement", "Carlyle\nGroup"],
+    "data": [149, 93.7, 69.5, 40.4, 19.2],
+    "colors": ["#8b5cf6", "#3b82f6", "#ec4899", "#0ea5e9", "#f59e0b"],
+    "chartLabel": "시가총액 비교 (2026.02, 단위: $B)",
+    "yLabel": "B"
+  },
+  "competitorTable": {
+    "headers": ["기업", "티커", "시총", "P/E", "AUM", "핵심 차별화", "위협 수준"],
+    "rows": [
+      ["Carlyle Group", "CG", "$19.2B", "9.78x(F)", "$477B", "PE·크레딧·솔루션 균형·창업자 3인 활동", "—"],
+      ["Blackstone", "BX", "$149B", "31.3x", "$1.1T", "대체자산 1위·부동산·인프라·보험 지배적", "<span class='tag tag-red'>높음</span>"],
+      ["KKR", "KKR", "$93.7B", "43.2x", "$624B", "PE 명가·보험(Global Atlantic)·아시아 강점", "<span class='tag tag-red'>높음</span>"],
+      ["Apollo Global", "APO", "$69.5B", "17.5x", "$733B", "크레딧 1위·Athene 보험·은퇴자산 강점", "<span class='tag tag-orange'>중간</span>"],
+      ["Ares Management", "ARES", "$40.4B", "72.4x", "$464B", "다이렉트렌딩 선두·유럽 크레딧 강점", "<span class='tag tag-orange'>중간</span>"]
+    ]
+  },
+  "risks": {
+    "items": [
+      { "label": "시장 하락 → DE 급감", "x": 8, "y": 9, "r": 22, "bg": "rgba(239,68,68,.6)", "border": "#ef4444" },
+      { "label": "경쟁 심화 (BX/KKR)", "x": 7, "y": 7, "r": 18, "bg": "rgba(245,158,11,.5)", "border": "#f59e0b" },
+      { "label": "금리 환경 변화", "x": 6, "y": 8, "r": 16, "bg": "rgba(139,92,246,.5)", "border": "#8b5cf6" },
+      { "label": "핵심 인력 이탈", "x": 5, "y": 6, "r": 14, "bg": "rgba(6,182,212,.5)", "border": "#06b6d4" },
+      { "label": "LP 자금 유출", "x": 4, "y": 5, "r": 12, "bg": "rgba(236,72,153,.4)", "border": "#ec4899" }
+    ],
+    "warnings": [
+      "📉 <strong>시장 하락 시 DE 급감:</strong> 캐리(성과보수)와 투자 수익은 시장 환경에 직접 연동. 2022년처럼 시장 급락 시 GAAP 매출이 $4.7B→$1.6B로 66% 감소한 전례. DE 변동성이 주가 변동성(베타 2.04)의 근원",
+      "🏦 <strong>대형 경쟁사와의 격차 확대 우려:</strong> BX(AUM $1.1T), KKR($624B), APO($733B)가 보험·인프라·영구자본에서 선두. Carlyle의 AUM $477B는 4위로 규모 경쟁에서 열위. 펀드레이징 경쟁 심화",
+      "💰 <strong>금리 환경 불확실성:</strong> 금리 인하 시 PE 포트폴리오 밸류에이션 회복 기대이나, 크레딧 부문 수익률 하락 가능. 금리 인상 시 차입 비용 증가로 레버리지 바이아웃 수익성 저하",
+      "👥 <strong>핵심 인력 의존 리스크:</strong> 대체자산 운용은 인적 자본 중심 사업. 핵심 투자 전문가 이탈 시 펀드 성과 및 LP 관계에 직접적 타격. CEO Harvey Schwartz 체제 안착 여부 모니터링 필요",
+      "📊 <strong>GAAP vs DE 괴리:</strong> GAAP 순이익($809M, EPS $2.18)과 DE($1.7B, DE/주 $4.02) 간 2배 이상 괴리. 보상비용·미실현 투자 손익 등으로 실질 수익 판단이 복잡"
+    ]
+  },
+  "radar": {
+    "labels": ["성장성", "수익성", "경쟁우위", "재무건전성", "밸류에이션\n매력도", "카탈리스트"],
+    "data": [8, 7, 7, 6, 9, 8]
+  },
+  "bullCase": [
+    "💰 <strong>동종 최저 밸류에이션:</strong> Forward P/E 9.78x로 BX(31.3x), KKR(43.2x), APO(17.5x), ARES(72.4x) 대비 60~85% 할인 거래. DE 기준 P/E ~13x — 업종 리레이팅 시 주가 2~3배 상승 가능",
+    "📈 <strong>AUM $477B → $1T 장기 성장:</strong> 2025년 $54B 순유입(+32%). 크레딧·보험솔루션·일본/아시아 확장으로 AUM 성장 가속. 영구자본 $111B(FE-AUM 33%)으로 수수료 안정성 강화",
+    "👨‍💼 <strong>창업자 3인 + 골드만 CEO 조합:</strong> Conway·Rubenstein·D'Aniello 공동의장으로 전략 감독, Harvey Schwartz CEO가 FRE 마진 47%로 수익성 혁신. 내부자 26.71% 보유로 주주 이해 일치",
+    "🏦 <strong>크레딧 부문 폭발적 성장:</strong> Global Credit AUM $195B으로 가장 큰 부문. 다이렉트 렌딩·CLO·보험 솔루션 수요 확대. 은행 규제 강화로 비은행 대출 시장 구조적 성장",
+    "🎯 <strong>S&P 500 편입 가능성:</strong> C-Corp 전환 완료, 시총 $19.2B로 편입 기준 접근. 편입 시 패시브 자금 대규모 유입 + 기관투자자 접근성 확대로 밸류에이션 리레이팅 촉매"
+  ],
+  "bearCase": [
+    "📉 <strong>시장 사이클 취약성:</strong> 2022년 매출 66% 급감 전례. 캐리·투자수익이 시장에 연동되어 실적 변동성 극심. 베타 2.04로 시장 하락 시 주가 2배 속도로 하락",
+    "🏦 <strong>BX/KKR 대비 규모 열위:</strong> AUM $477B는 BX($1.1T)의 절반 미만, KKR·APO보다도 작음. 대형 LP의 '플랫폼 통합' 선호로 자금이 1~2위 운용사에 집중되는 추세",
+    "💸 <strong>높은 보상비용:</strong> GAAP 순이익($809M)과 DE($1.7B) 간 2배 괴리의 주요 원인. 핵심 인력 유지를 위한 주식보상이 기존 주주 희석 요인",
+    "⚖️ <strong>규제 리스크:</strong> PE 업계 전반에 대한 SEC 규제 강화(수수료 투명성, LP 보호). 추가 규제 시 비용 증가 및 사업 모델 제약 가능",
+    "🌍 <strong>지정학적 리스크:</strong> 글로벌 운용(29개국)으로 지정학적 갈등, 환율 변동, 현지 규제 변화에 노출. 특히 중국/아시아 투자 포트폴리오의 정치적 리스크"
+  ],
+  "checklist": [
+    ["Q1 2026 실적 확인", "2026.05.07", "AUM 성장률·FRE 마진 47% 유지·신규 유입 추세 확인"],
+    ["DE/주 추이", "분기별", "DE/주 $4.02 성장 지속 여부 — 배당 여력·자사주 매입 근거"],
+    ["크레딧 부문 AUM", "분기별", "$195B에서 연 15-20% 성장 유지 여부 — 최대 성장 엔진"],
+    ["금리 환경", "상시", "금리 인하 시 PE 밸류에이션 개선, 인상 시 차입 비용 압박"],
+    ["경쟁사 동향", "분기별", "BX·KKR·APO 펀드레이징 대비 CG 시장 점유율 변화"],
+    ["[100배] 시총 여력", "분기별", "시총 $19.2B — BX($149B) 대비 7.8x 격차 축소 진행도"],
+    ["[100배] ROE 품질", "분기별", "ROE 14.1% → 15%+ 개선 여부. FRE 마진 추이 연동"],
+    ["[100배] 재투자 효율", "분기별", "AUM 성장률, 신규 전략 론칭, 영구자본 비중 확대 추적"],
+    ["[100배] PER 안전마진", "상시", "Forward P/E 9.78x — 동종 최저 유지 여부, 리레이팅 진행도"],
+    ["[100배] 창업자 운영력", "반기별", "공동창업자 3인 Co-Chairman 유지, CEO 리더십 안정성, 내부자 26.71% 변화"]
+  ],
+  "moats": [
+    {
+      "icon": "🏛️",
+      "name": "38년 투자 트랙레코드",
+      "desc": "1987년 설립 이후 PE·크레딧·솔루션 전략<br>$477B AUM, 29개국 글로벌 네트워크"
+    },
+    {
+      "icon": "👨‍💼",
+      "name": "창업자 3인 + 골드만 CEO",
+      "desc": "Conway·Rubenstein·D'Aniello 공동의장<br>Harvey Schwartz CEO — 수익성 혁신 주도"
+    },
+    {
+      "icon": "💳",
+      "name": "크레딧 플랫폼 확장",
+      "desc": "AUM $195B 크레딧 부문 급성장<br>보험솔루션·CLO·다이렉트 렌딩"
+    },
+    {
+      "icon": "🔒",
+      "name": "영구자본 $111B",
+      "desc": "Fee-earning AUM의 33%가 영구자본<br>시장 변동에도 안정적 수수료 수익"
+    }
+  ],
+  "analysisAi": "Claude"
+}

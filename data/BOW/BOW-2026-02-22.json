@@ -1,0 +1,286 @@
+{
+  "ticker": "BOW",
+  "companyName": "보우헤드 스페셜티",
+  "companyNameEn": "Bowhead Specialty Holdings Inc.",
+  "exchange": "NYSE",
+  "sector": "금융 서비스 / 특수보험 (E&S)",
+  "description": "기술 기반 특수보험 언더라이팅 전문 회사. 상업 캐주얼티, 전문직 배상, 헬스케어 배상, 특수보험(Baleen) 4개 부문 운영. 2020년 보험 업계 전설 Stephen Sills가 창업. IPO 2024.05. 무차입 경영, 결합비율 95.4%.",
+  "analysisDate": "2026-02-22",
+  "price": "$24.90",
+  "priceChange": "▼ 41% from ATH ($42.29)",
+  "priceChangeDir": "down",
+  "marketCap": "$866M",
+  "marketCapChange": "▲ +6% (52주)",
+  "weekRange": "$23.50 — $42.29",
+  "analystRating": "Buy",
+  "analystTarget": "목표 $35.00 (↑41%)",
+  "reportScore": 87,
+  "reportVerdict": "STRONG BUY",
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 87,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력 큼",
+        "weight": 25,
+        "score": 25,
+        "status": "pass",
+        "evidence": "시총 $866M — 순수 소형주. E&S 시장 $95B(2024) 대비 시장 점유율 0.5% 미만. GWP 17.5% 성장으로 점유율 확대 중. 비교 대상 Kinsale(시총 $12B)의 1/14 수준"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 16,
+        "status": "pass",
+        "evidence": "Adj ROE 15.1% (Q3 2025). 15~20% 적정 범위 진입. 결합비율 95.4%로 언더라이팅 이익 창출. 투자소득 성장(+30.9%)으로 ROE 추가 개선 여력"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자",
+        "weight": 20,
+        "score": 16,
+        "status": "pass",
+        "evidence": "GWP +17.5% YoY, 순보험료 수입 +22.1%. Baleen 특수보험 부문 +83.4% 급성장. 신규 상품 라인 확장 중. 보수적 레버리지(순보험료/잉여금 <1.2x). 무차입 경영"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER 안전마진",
+        "weight": 20,
+        "score": 17,
+        "status": "pass",
+        "evidence": "P/E ~15.9x, PEG 0.81 — 8~30 적정 범위 내에서도 저평가 구간. P/B ~1.9x(BV $13.15). ATH 대비 41% 하락으로 진입 매력도 높음"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영",
+        "weight": 15,
+        "score": 13,
+        "status": "pass",
+        "evidence": "창업자 Stephen Sills가 CEO·사장·이사. 보험 업계 40년 경력의 시리얼 파운더(Executive Risk→Chubb, Darwin). 지분 4.04%($31.9M) + IPO 시 $1M 자비 매입. 헤지·담보 금지 정책"
+      }
+    ],
+    "notes": [
+      "Q4 2025 실적 2026-02-24 발표 예정 — 연간 실적 확인 필요",
+      "E&S 시장 하드닝 사이클 수혜 중이나, 사이클 전환 시 성장률 둔화 가능",
+      "IPO 후 1년 9개월 된 신생 상장사 — 트랙레코드 축적 필요"
+    ]
+  },
+  "keyPoints": [
+    "🛡️ <strong>기술 기반 E&S 특수보험 전문:</strong> 캐주얼티(64%), 전문직배상(21%), 헬스케어(14%), Baleen 특수(2%) 4개 부문. Q3 2025 GWP $231.5M(+17.5%). 결합비율 95.4%로 언더라이팅 이익 창출",
+    "👨‍💼 <strong>보험계 전설 창업자 경영:</strong> Stephen Sills — Executive Risk 창업(1987, →Chubb), Darwin 창업(2003). 40년 보험 전문가가 2020년 설립. IPO 시 $1M 자비 매입. 기술 기반 언더라이팅 혁신 주도",
+    "📈 <strong>고성장 + 건전한 재무:</strong> 매출 +22.1%, GWP +17.5%, 순이익 +25.5% (Q3 YoY). 무차입 경영, RBC 비율 400%+, 투자 포트폴리오 AA등급. 베타 -1.05로 경기 역행적 특성",
+    "💰 <strong>극단적 저평가 구간:</strong> P/E 15.9x, PEG 0.81, P/B 1.9x. ATH($42.29) 대비 41% 하락. 비교 대상 Kinsale(P/E 38x, 시총 $12B)의 1/14 규모에 훨씬 저렴한 밸류에이션",
+    "⚠️ <strong>소형 신생 상장사 리스크:</strong> 2024.05 IPO 후 1년 9개월. 유동성 제한(시총 $866M). E&S 하드마켓 사이클 전환 시 성장 둔화 가능. Q4 2025 실적(2/24) 확인 필요"
+  ],
+  "navSections": [
+    { "id": "summary", "label": "핵심요약" },
+    { "id": "business", "label": "비즈니스" },
+    { "id": "finance", "label": "재무" },
+    { "id": "catalyst", "label": "촉매" },
+    { "id": "competitors", "label": "경쟁사" },
+    { "id": "risks", "label": "리스크" },
+    { "id": "verdict", "label": "투자결론" }
+  ],
+  "segments": [
+    {
+      "name": "Casualty (상업 캐주얼티)",
+      "icon": "🏢",
+      "color": "accent",
+      "backlog": "64%",
+      "description": "일반배상, 초과배상, 우산보험 등 상업 캐주얼티 보험. GWP $144.7M(Q3). 가장 큰 부문으로 20.4% YoY 성장. E&S 시장 하드닝 수혜 핵심.",
+      "revenue": "Q3 2025 GWP: $144.7M (전체의 64%)"
+    },
+    {
+      "name": "Professional Liability (전문직 배상)",
+      "icon": "⚖️",
+      "color": "orange",
+      "backlog": "21%",
+      "description": "D&O, E&O, EPL, 사이버 배상, 수탁자 배상 등 전문직 보험. GWP $45.7M(Q3). 창업자 Sills의 Executive Risk 시절 핵심 전문 영역.",
+      "revenue": "Q3 2025 GWP: $45.7M (전체의 21%)"
+    },
+    {
+      "name": "Healthcare Liability (헬스케어 배상)",
+      "icon": "🏥",
+      "color": "purple",
+      "backlog": "14%",
+      "description": "의료과실, 병원배상, 요양시설 배상 등 헬스케어 전문 보험. GWP $34.8M(Q3). 11.1% 성장으로 안정적 확대.",
+      "revenue": "Q3 2025 GWP: $34.8M (전체의 14%)"
+    },
+    {
+      "name": "Baleen Specialty (특수보험)",
+      "icon": "🐋",
+      "color": "green",
+      "backlog": "2%",
+      "description": "특수 위험 보험 신규 부문. GWP $6.2M(Q3). 전분기 대비 83.4% 폭발적 성장. 신규 상품 라인 확장 테스트베드.",
+      "revenue": "Q3 2025 GWP: $6.2M (전체의 2%)"
+    }
+  ],
+  "revenueBreakdown": {
+    "labels": ["Casualty (64%)", "Professional (21%)", "Healthcare (14%)", "Baleen (2%)"],
+    "data": [64, 21, 14, 2],
+    "colors": ["#3b82f6", "#f59e0b", "#8b5cf6", "#10b981"]
+  },
+  "annualRevenue": {
+    "labels": ["2022", "2023", "2024", "2025E", "2026E"],
+    "data": [190, 283, 426, 550, 650],
+    "estimateStartIndex": 3
+  },
+  "quarterlyRevenue": {
+    "labels": ["Q4'24", "Q1'25", "Q2'25", "Q3'25", "Q4'25E", "Q1'26E"],
+    "data": [107, 115, 125, 144, 146, 155]
+  },
+  "marginTrend": {
+    "labels": ["2022", "2023", "2024", "Q1'25", "Q2'25", "Q3'25", "Q4'25E"],
+    "gaap": [5, 8, 9, 10, 11, 11, 11],
+    "nonGaap": [null, null, null, 11, 12, 12, 12]
+  },
+  "financialTable": [
+    ["GWP (총 수입보험료)", "$231.5M", "$197.0M", "+17.5% YoY", "green", "Q3 2025. 캐주얼티+Baleen 주도 성장"],
+    ["순보험료 수입", "$128.4M", "$105.2M", "+22.1% YoY", "green", "Q3 2025. 보유율 개선 효과"],
+    ["순이익", "$15.2M", "$12.1M", "+25.5% YoY", "green", "Q3 2025. EPS $0.45 (Adj $0.47, est $0.41 beat)"],
+    ["결합비율", "95.4%", "94.4%", "+1.0pt", "orange", "100% 미만 → 언더라이팅 이익 창출. 손해율 65.9%(+1.4pt)"],
+    ["사업비율", "29.5%", "29.9%", "-0.4pt 개선", "green", "규모의 경제 효과로 비용 효율성 개선"],
+    ["순투자수익", "$15.0M", "$11.5M", "+30.9% YoY", "green", "AA등급 포트폴리오, 장부 수익률 4.8%"],
+    ["Adj ROE", "15.1%", "—", "목표 범위 내", "green", "15~20% 고수익 구조 진입"],
+    ["BV/주", "$13.15", "—", "—", "blue", "희석 BV $12.75. P/B ~1.9x"],
+    ["총 부채", "$0", "—", "무차입", "green", "부채 제로. RBC 비율 400%+"]
+  ],
+  "valuation": {
+    "labels": ["P/E (TTM)", "P/B", "P/S (TTM)", "PEG"],
+    "company": [15.92, 1.9, 1.76, 0.81],
+    "industry": [25.0, 3.0, 3.5, 1.5]
+  },
+  "pegInputs": {
+    "forwardPE": 15.92,
+    "epsGrowthPct": 20,
+    "basis": "GWP 성장률 17.5% + 순이익 성장률 25.5% 평균 기준 (2026-02-22)"
+  },
+  "financialHealth": [
+    {
+      "label": "투자 포트폴리오",
+      "value": "AA등급·$15M 수익/Q",
+      "width": "60%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "총 부채",
+      "value": "$0 (무차입)",
+      "width": "2%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "RBC 비율",
+      "value": "400%+ (매우 건전)",
+      "width": "80%",
+      "gradient": "var(--green),var(--green2)"
+    }
+  ],
+  "healthMetrics": [
+    { "label": "D/E 비율", "value": "0x (무차입)", "color": "var(--green2)" },
+    { "label": "결합비율", "value": "95.4% (이익 구간)", "color": "var(--green2)" },
+    { "label": "ROE (Adj, 최근 1년)", "value": "15.1%", "color": "var(--green2)" },
+    { "label": "PEG (최근 1년)", "value": "0.81 (저평가)", "color": "var(--green2)" },
+    { "label": "베타", "value": "-1.05 (역행적)", "color": "var(--green2)" },
+    { "label": "순보험료/잉여금", "value": "<1.2x (보수적)", "color": "var(--green2)" }
+  ],
+  "timeline": [
+    { "date": "1987", "text": "Stephen Sills가 Executive Risk 설립 (1999년 Chubb에 매각)", "status": "done" },
+    { "date": "2003", "text": "Sills가 Darwin Professional Underwriters 설립", "status": "done" },
+    { "date": "2020.09", "text": "Stephen Sills가 Bowhead Specialty 설립 — 기술 기반 E&S 보험 언더라이팅", "status": "done" },
+    { "date": "2024.05", "text": "NYSE 상장 (IPO). 창업자 Sills $1M 자비 매입", "status": "done" },
+    { "date": "2025.08", "text": "Q2 2025 실적 — GWP 성장 가속, Baleen 부문 신설", "status": "done" },
+    { "date": "2025.11", "text": "Q3 2025 실적 — GWP $231.5M(+17.5%), Adj ROE 15.1%, 결합비율 95.4%", "status": "done" },
+    { "date": "2026.02.24", "text": "Q4 2025 실적 발표 예정 — 연간 실적 최초 확인 (IPO 후 첫 풀이어)", "status": "pending" },
+    { "date": "2026.H1", "text": "신규 상품 라인 확장 기대 — Baleen 부문 성장 + 캐주얼티 확대", "status": "pending" },
+    { "date": "2026.H2", "text": "E&S 시장 사이클 모니터링 — 하드마켓 지속 여부가 성장률 핵심 변수", "status": "pending" },
+    { "date": "2027~", "text": "AUM/GWP $1B+ 목표 — 규모의 경제 달성 시 비용비율 추가 개선 기대", "status": "pending" }
+  ],
+  "competitorChart": {
+    "labels": ["Kinsale\nCapital", "RLI\nCorp", "Palomar", "James\nRiver", "Bowhead\nSpecialty"],
+    "data": [12.0, 4.5, 2.0, 0.4, 0.866],
+    "colors": ["#8b5cf6", "#3b82f6", "#ec4899", "#0ea5e9", "#f59e0b"],
+    "chartLabel": "E&S/특수보험 시가총액 비교 (2026.02, 단위: $B)",
+    "yLabel": "B"
+  },
+  "competitorTable": {
+    "headers": ["기업", "티커", "시총", "P/E", "결합비율", "핵심 차별화", "위협 수준"],
+    "rows": [
+      ["Bowhead Specialty", "BOW", "$866M", "15.9x", "95.4%", "기술 기반 언더라이팅·시리얼 파운더·무차입", "—"],
+      ["Kinsale Capital", "KNSL", "$12B", "38x", "~78%", "E&S 1위 순수 플레이·30%+ ROE·20년 트랙레코드", "<span class='tag tag-red'>높음</span>"],
+      ["RLI Corp", "RLI", "$4.5B", "22x", "~85%", "45년 E&S 전문·높은 배당·보수적 언더라이팅", "<span class='tag tag-orange'>중간</span>"],
+      ["Palomar Holdings", "PLMR", "$2.0B", "18x", "~72%", "지진·허리케인 특수 보험·재보험 전략", "<span class='tag tag-orange'>중간</span>"],
+      ["James River Group", "JRVR", "$0.4B", "N/A", "~110%", "E&S 캐주얼티·구조조정 중·적자 전환", "<span class='tag tag-green'>낮음</span>"]
+    ]
+  },
+  "risks": {
+    "items": [
+      { "label": "E&S 사이클 전환", "x": 7, "y": 8, "r": 22, "bg": "rgba(239,68,68,.6)", "border": "#ef4444" },
+      { "label": "소형 신생 상장사", "x": 6, "y": 7, "r": 18, "bg": "rgba(245,158,11,.5)", "border": "#f59e0b" },
+      { "label": "대형 리저브 위험", "x": 5, "y": 8, "r": 16, "bg": "rgba(139,92,246,.5)", "border": "#8b5cf6" },
+      { "label": "창업자 Key-man", "x": 4, "y": 6, "r": 14, "bg": "rgba(6,182,212,.5)", "border": "#06b6d4" },
+      { "label": "유동성 부족", "x": 3, "y": 5, "r": 12, "bg": "rgba(236,72,153,.4)", "border": "#ec4899" }
+    ],
+    "warnings": [
+      "📉 <strong>E&S 시장 사이클 전환 위험:</strong> 현재 하드마켓(보험료 인상기) 수혜 중이나, 소프트마켓 전환 시 GWP 성장률 급감 + 결합비율 악화 가능. E&S 시장은 역사적으로 5~7년 사이클",
+      "🏦 <strong>소형 신생 상장사 리스크:</strong> IPO 후 1년 9개월, 시총 $866M. 유동성 제한(일 거래량 소량), 기관 투자자 커버리지 부족. 실적 미스 시 주가 급등락 위험 높음",
+      "⚖️ <strong>보험 리저브(준비금) 리스크:</strong> 캐주얼티 보험은 장기 테일(long-tail) 특성. 손해율 65.9%가 향후 리저브 부족으로 소급 조정될 가능성. 2020년 설립으로 역사적 손해 데이터 제한적",
+      "👤 <strong>창업자 Key-man 리스크:</strong> Stephen Sills(65세+)의 경영 능력에 높은 의존. 후계 경영자 불확실. 창업자 퇴임 시 언더라이팅 문화·LP 관계 변화 위험",
+      "📊 <strong>주가 하락 모멘텀:</strong> ATH $42.29에서 41% 하락. 단기적으로 시장의 신뢰도 저하 우려. 다만 펀더멘털(결합비율 95.4%, ROE 15.1%) 대비 과매도 구간일 수도 있음"
+    ]
+  },
+  "radar": {
+    "labels": ["성장성", "수익성", "경쟁우위", "재무건전성", "밸류에이션\n매력도", "카탈리스트"],
+    "data": [8, 7, 6, 9, 8, 7]
+  },
+  "bullCase": [
+    "💰 <strong>극단적 저평가:</strong> P/E 15.9x, PEG 0.81, P/B 1.9x. ATH 대비 41% 하락. Kinsale(P/E 38x, 시총 $12B) 대비 1/14 규모에 60% 할인. 성장률·ROE 유사한데 밸류에이션 격차 과도",
+    "📈 <strong>E&S 시장 구조적 성장:</strong> E&S 시장 $27B(2013)→$95B(2024), CAGR 20%. 표준시장→E&S 이전 가속화. GWP +17.5% 성장으로 시장 점유율 확대 중",
+    "👨‍💼 <strong>시리얼 파운더 CEO:</strong> Stephen Sills — Executive Risk($38B Chubb 매각), Darwin 등 3개 보험사 연속 성공. 40년 언더라이팅 전문성. $1M IPO 자비 매입으로 주주 이해 일치",
+    "🏦 <strong>완벽한 재무 건전성:</strong> 부채 $0, RBC 400%+, AA등급 투자 포트폴리오, 순보험료/잉여금 <1.2x. 보험 업계 최상위 재무 건전성으로 위기 시 방어력 탁월",
+    "🐋 <strong>Baleen 신사업 확장:</strong> 특수보험 신규 부문 GWP +83.4% 폭발적 성장. 신규 상품 라인 확장 테스트베드. 베타 -1.05로 경기 침체 방어주 역할"
+  ],
+  "bearCase": [
+    "📉 <strong>하드마켓 사이클 정점 우려:</strong> E&S 시장이 2020년부터 하드마켓 진행 중. 소프트마켓 전환 시 보험료 인하 경쟁 → GWP 성장 정체 + 결합비율 악화 불가피",
+    "🏦 <strong>규모의 열위:</strong> 시총 $866M, GWP $900M+ 수준은 Kinsale($12B), RLI($4.5B) 대비 극소. 대형 리스크 인수 능력 제한. 재보험 비용 상대적 열위",
+    "⏰ <strong>짧은 트랙레코드:</strong> 2020년 설립, 2024년 IPO. 보험 준비금의 장기 적정성 검증 미완. 경기 침체·대형 재해 시 실제 손실 대응력 미지수",
+    "📊 <strong>유동성 부족:</strong> 시총 $866M으로 기관 투자 문턱 이하. 일 거래량 소량으로 대량 매도 시 주가 충격 위험. 분석가 커버리지 6명에 불과",
+    "👤 <strong>Key-man 리스크:</strong> 창업자 Sills에 대한 높은 의존. 보험 언더라이팅 사업은 인적 자본 중심. 경영진 변화 시 언더라이팅 품질·파트너 관계 변동 우려"
+  ],
+  "checklist": [
+    ["Q4 2025 / FY2025 실적", "2026.02.24", "IPO 후 첫 풀이어 연간 실적. GWP 성장률·결합비율·ROE 확인"],
+    ["결합비율 추이", "분기별", "95.4%에서 95% 이하 유지 여부 — 언더라이팅 규율 핵심 지표"],
+    ["GWP 성장률", "분기별", "17.5% 성장률 유지·가속 여부. E&S 시장 사이클과 연동"],
+    ["Baleen 부문 성장", "분기별", "신규 특수보험 부문 성장 추세 — 미래 성장 동력 테스트"],
+    ["경쟁사 동향", "분기별", "Kinsale·RLI·Palomar 대비 성장률·결합비율 비교"],
+    ["[100배] 시총 여력", "분기별", "시총 $866M — Kinsale($12B) 대비 13.8x 격차 축소 진행도"],
+    ["[100배] ROE 품질", "분기별", "Adj ROE 15.1% → 16%+ 개선 추세. 결합비율 개선 연동"],
+    ["[100배] 재투자 효율", "분기별", "GWP 성장률, 신규 상품 론칭, 보수적 레버리지 유지"],
+    ["[100배] PER 안전마진", "상시", "P/E 15.9x, PEG 0.81 — 리레이팅 진행 시 적정 P/E 20~25x"],
+    ["[100배] 창업자 운영력", "반기별", "Stephen Sills CEO 유지, 후계 경영자 계획, 4.04% 지분 변화"]
+  ],
+  "moats": [
+    {
+      "icon": "👨‍💼",
+      "name": "시리얼 파운더 CEO",
+      "desc": "Stephen Sills — 40년 보험 전문가<br>Executive Risk→Chubb, Darwin 연속 성공"
+    },
+    {
+      "icon": "🔧",
+      "name": "기술 기반 언더라이팅",
+      "desc": "독자 기술 플랫폼으로 리스크 선별<br>데이터 드리븐 보험 심사 차별화"
+    },
+    {
+      "icon": "🛡️",
+      "name": "E&S 시장 전문성",
+      "desc": "표준시장이 기피하는 복잡 리스크 전문<br>캐주얼티·전문직·헬스케어 3축 분산"
+    },
+    {
+      "icon": "🏦",
+      "name": "무차입 보수적 재무",
+      "desc": "부채 $0, RBC 400%+, AA 포트폴리오<br>위기 시 방어력 + 성장 여력 동시 확보"
+    }
+  ],
+  "analysisAi": "Claude"
+}

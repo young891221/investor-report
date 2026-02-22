@@ -21,26 +21,24 @@ node scripts/update-all-stocks.js --dry-run
 
 ### 2. Run Updates
 
-If specific tickers were requested in `$ARGUMENTS`:
+For each stock in the portfolio (or the specific tickers from `$ARGUMENTS`), invoke the `generate-stock-report` skill:
 
-```bash
-node scripts/update-all-stocks.js --ticker {TICKERS} --force --build-index
+```
+/generate-stock-report {TICKER}
 ```
 
-Otherwise, update all stocks:
+This skill performs the full report generation workflow:
+- Loads template, schema, and reference docs
+- Collects latest data from official sources (IR, SEC, Yahoo Finance)
+- Drafts comprehensive stock JSON with all required fields and 100x scoring
+- Validates schema and rebuilds the dashboard index
+- Ensures data quality (no fabricated figures, proper placeholders)
 
-```bash
-node scripts/update-all-stocks.js --force --build-index
-```
+Generate each stock sequentially, waiting for one to complete before starting the next.
 
-### 3. Validate & Report
+### 3. Final Report
 
-```bash
-node scripts/validate-stocks.js
-node scripts/build-index.js
-```
-
-Report:
+After all stocks are updated, summarize:
 - Number of stocks updated successfully
 - Any failures (with reasons)
 - Placeholder warnings

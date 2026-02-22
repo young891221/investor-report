@@ -1,5 +1,81 @@
 [
   {
+    "ticker": "AMG",
+    "name": "Affiliated Managers Group, Inc.",
+    "nameKr": "어필리에이티드 매니저스 그룹",
+    "sector": "금융 서비스 / 멀티 어필리에이트 자산운용",
+    "description": "독립 투자운용사에 소수 지분 투자하는 독특한 멀티 어필리에이트 모델. AUM $813B, 대체투자 AUM $373B(EBITDA 60%). Pantheon, AQR 등 세계적 운용사 파트너십. 2025년 Economic EPS $26.05(+22%), 자사주 $700M 매입.",
+    "tags": [
+      "대체투자 (Alternatives)",
+      "전통 자산운용 (Liquid Alts/Traditional)",
+      "글로벌 웰스 (Global Wealth)"
+    ],
+    "latest": {
+      "date": "2026-02-22",
+      "price": "$287.69",
+      "change": "▲ +107%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "BUY",
+      "reportVerdict": "BUY",
+      "reportScore": 74,
+      "analysisAi": "Claude",
+      "href": "stock.html?ticker=AMG&date=2026-02-22"
+    },
+    "reports": [
+      {
+        "date": "2026-02-22",
+        "price": "$287.69",
+        "change": "▲ +107%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "BUY",
+        "reportVerdict": "BUY",
+        "reportScore": 74,
+        "analysisAi": "Claude",
+        "href": "stock.html?ticker=AMG&date=2026-02-22"
+      }
+    ]
+  },
+  {
+    "ticker": "ATLC",
+    "name": "Atlanticus Holdings Corporation",
+    "nameKr": "아틀란티쿠스 홀딩스",
+    "sector": "금융 서비스 / 소비자 신용",
+    "description": "서브프라임 소비자 대상 핀테크 신용 플랫폼. 자체 브랜드(Aspire, Fortiva) 및 리테일 파트너를 통해 일반 및 프라이빗 라벨 신용카드, 오토론 제공. 2025년 Mercury Financial 인수로 관리 채권 $6.6B 돌파.",
+    "tags": [
+      "CaaS (Credit as a Service)",
+      "Auto Finance",
+      "AI 리스크 관리"
+    ],
+    "latest": {
+      "date": "2026-02-22",
+      "price": "$54.47",
+      "change": "▼ -2.8%",
+      "changeDir": "down",
+      "changeBasis": "52주",
+      "rating": "STRONG BUY",
+      "reportVerdict": "STRONG BUY",
+      "reportScore": 96,
+      "analysisAi": "Claude",
+      "href": "stock.html?ticker=ATLC&date=2026-02-22"
+    },
+    "reports": [
+      {
+        "date": "2026-02-22",
+        "price": "$54.47",
+        "change": "▼ -2.8%",
+        "changeDir": "down",
+        "changeBasis": "52주",
+        "rating": "STRONG BUY",
+        "reportVerdict": "STRONG BUY",
+        "reportScore": 96,
+        "analysisAi": "Claude",
+        "href": "stock.html?ticker=ATLC&date=2026-02-22"
+      }
+    ]
+  },
+  {
     "ticker": "BMNR",
     "name": "Bitmine Immersion Technologies, Inc.",
     "nameKr": "비트마인 이머전 테크놀로지스",
@@ -34,6 +110,120 @@
         "reportScore": 57,
         "analysisAi": "GPT",
         "href": "stock.html?ticker=BMNR&date=2026-02-21"
+      }
+    ]
+  },
+  {
+    "ticker": "BOW",
+    "name": "Bowhead Specialty Holdings Inc.",
+    "nameKr": "보우헤드 스페셜티",
+    "sector": "금융 서비스 / 특수보험 (E&S)",
+    "description": "기술 기반 특수보험 언더라이팅 전문 회사. 상업 캐주얼티, 전문직 배상, 헬스케어 배상, 특수보험(Baleen) 4개 부문 운영. 2020년 보험 업계 전설 Stephen Sills가 창업. IPO 2024.05. 무차입 경영, 결합비율 95.4%.",
+    "tags": [
+      "Casualty (상업 캐주얼티)",
+      "Professional Liability (전문직 배상)",
+      "Healthcare Liability (헬스케어 배상)"
+    ],
+    "latest": {
+      "date": "2026-02-22",
+      "price": "$24.90",
+      "change": "▲ +6%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "STRONG BUY",
+      "reportVerdict": "STRONG BUY",
+      "reportScore": 87,
+      "analysisAi": "Claude",
+      "href": "stock.html?ticker=BOW&date=2026-02-22"
+    },
+    "reports": [
+      {
+        "date": "2026-02-22",
+        "price": "$24.90",
+        "change": "▲ +6%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "STRONG BUY",
+        "reportVerdict": "STRONG BUY",
+        "reportScore": 87,
+        "analysisAi": "Claude",
+        "href": "stock.html?ticker=BOW&date=2026-02-22"
+      }
+    ]
+  },
+  {
+    "ticker": "CART",
+    "name": "Maplebear Inc. (Instacart)",
+    "nameKr": "인스타카트 (메이플베어)",
+    "sector": "소비재 / 온라인 식료품 배달 플랫폼",
+    "description": "북미 최대 온라인 식료품 배달 플랫폼. 2,200+ 리테일 배너, ~100,000 매장, 26M+ 고객 연결. 2025년 GTV $37.2B, 광고 매출 $1B+ 돌파. $1.4B 자사주 매입으로 적극적 주주환원.",
+    "tags": [
+      "마켓플레이스 (트랜잭션)",
+      "광고 및 기타",
+      "식료품 배달 네트워크 효과"
+    ],
+    "latest": {
+      "date": "2026-02-22",
+      "price": "$36.14",
+      "change": "▲ +10%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "BUY",
+      "reportVerdict": "BUY",
+      "reportScore": 77,
+      "analysisAi": "Claude",
+      "href": "stock.html?ticker=CART&date=2026-02-22"
+    },
+    "reports": [
+      {
+        "date": "2026-02-22",
+        "price": "$36.14",
+        "change": "▲ +10%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "BUY",
+        "reportVerdict": "BUY",
+        "reportScore": 77,
+        "analysisAi": "Claude",
+        "href": "stock.html?ticker=CART&date=2026-02-22"
+      }
+    ]
+  },
+  {
+    "ticker": "CG",
+    "name": "The Carlyle Group Inc.",
+    "nameKr": "칼라일 그룹",
+    "sector": "금융 서비스 / 대체 자산운용",
+    "description": "세계 3대 대체자산 운용사. PE, 크레딧, 투자 솔루션 3개 부문에서 AUM $477B 운용. 1987년 설립, 공동창업자 3인이 공동의장으로 활동 중. Harvey Schwartz CEO 체제 하에 FRE 마진 47%, 2025년 사상 최대 실적 달성.",
+    "tags": [
+      "Global Private Equity",
+      "Global Credit",
+      "Global Investment Solutions"
+    ],
+    "latest": {
+      "date": "2026-02-22",
+      "price": "$53.23",
+      "change": "▲ +41%",
+      "changeDir": "up",
+      "changeBasis": "52주",
+      "rating": "STRONG BUY",
+      "reportVerdict": "STRONG BUY",
+      "reportScore": 80,
+      "analysisAi": "Claude",
+      "href": "stock.html?ticker=CG&date=2026-02-22"
+    },
+    "reports": [
+      {
+        "date": "2026-02-22",
+        "price": "$53.23",
+        "change": "▲ +41%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "STRONG BUY",
+        "reportVerdict": "STRONG BUY",
+        "reportScore": 80,
+        "analysisAi": "Claude",
+        "href": "stock.html?ticker=CG&date=2026-02-22"
       }
     ]
   },

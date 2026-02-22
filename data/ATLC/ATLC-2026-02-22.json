@@ -1,0 +1,270 @@
+{
+  "ticker": "ATLC",
+  "companyName": "아틀란티쿠스 홀딩스",
+  "companyNameEn": "Atlanticus Holdings Corporation",
+  "exchange": "NASDAQ",
+  "sector": "금융 서비스 / 소비자 신용",
+  "description": "서브프라임 소비자 대상 핀테크 신용 플랫폼. 자체 브랜드(Aspire, Fortiva) 및 리테일 파트너를 통해 일반 및 프라이빗 라벨 신용카드, 오토론 제공. 2025년 Mercury Financial 인수로 관리 채권 $6.6B 돌파.",
+  "analysisDate": "2026-02-22",
+  "price": "$54.47",
+  "priceChange": "▼ 31% from ATH ($78.91)",
+  "priceChangeDir": "down",
+  "marketCap": "$825M",
+  "marketCapChange": "▼ -2.8% (52주)",
+  "weekRange": "$41.37 — $78.91",
+  "analystRating": "Buy",
+  "analystTarget": "목표 $87.50 (↑61%)",
+  "reportScore": 96,
+  "reportVerdict": "STRONG BUY",
+  "reportScoreModel": "100x-book-v1",
+  "reportScoreBreakdown": {
+    "total": 96,
+    "criteria": [
+      {
+        "id": "small_cap",
+        "label": "시가총액이 작고 성장 여력 큼",
+        "weight": 25,
+        "score": 25,
+        "status": "pass",
+        "evidence": "시총 $825M — $2B 미만 소형주. Mercury 인수 후 관리 자산 $6.6B 대비 시총이 매우 작아 재평가 여력 충분"
+      },
+      {
+        "id": "roe_quality",
+        "label": "ROE 15~20% 고수익 구조",
+        "weight": 20,
+        "score": 20,
+        "status": "pass",
+        "evidence": "ROE 19.59% (Yahoo Finance 2025-09 기준). Q1 2025 ROE 22.0% 보고. 자산 규모 확대에도 수익성 유지"
+      },
+      {
+        "id": "reinvestment",
+        "label": "이익의 효율적 재투자",
+        "weight": 20,
+        "score": 16,
+        "status": "pass",
+        "evidence": "매출 성장률 +41.3% YoY (Q3 2025). Mercury($166.5M) + Vive($165M) 인수로 적극적 재투자. 영업 현금흐름 $494M 양호. 다만 부채 비율 높음"
+      },
+      {
+        "id": "reasonable_per",
+        "label": "PER 안전마진",
+        "weight": 20,
+        "score": 20,
+        "status": "pass",
+        "evidence": "Trailing P/E 9.67x, Forward P/E 6.35x — 8~30x 적정 범위 내에서도 매우 낮은 수준. 업종 평균(SYF 7.9x, CACC 13.6x) 대비 합리적"
+      },
+      {
+        "id": "founder_led",
+        "label": "창업자 주도 운영",
+        "weight": 15,
+        "score": 15,
+        "status": "pass",
+        "evidence": "창업자 David Hanna가 Executive Chairman으로 활동 중. 내부자 지분 64.81% (Yahoo Finance). Hanna 가문이 경영권 확보"
+      }
+    ],
+    "notes": [
+      "Mercury Financial 인수 효과로 Q3 2025부터 매출 구조 근본적 변화",
+      "금융업 특성상 D/E 비율(970%)이 높으나 유동비율 15.67로 단기 재무 안정성 양호",
+      "Q4 2025 실적 미발표 (2026-03-12 예정) — 인수 통합 효과 확인 필요"
+    ]
+  },
+  "keyPoints": [
+    "🏦 <strong>서브프라임 핀테크 리더:</strong> Aspire, Fortiva 등 자체 브랜드로 570만+ 소비자에게 신용카드 및 오토론 제공. 은행 파트너십 기반 CaaS(Credit as a Service) 모델",
+    "🔑 <strong>Mercury 인수 — 게임 체인저:</strong> 2025년 Q3에 $166.5M에 Mercury Financial 인수, 130만 계정과 $31.6억 채권 추가. 관리 채권 148.7% 성장하여 $6.6B 도달",
+    "📈 <strong>놀라운 밸류에이션:</strong> Trailing P/E 9.67x, Forward P/E 6.35x로 업종 최저 수준. 시총 $825M 대비 관리 자산 $6.6B — 재평가 여력 극대",
+    "👨‍💼 <strong>창업자 경영 + 65% 내부자 지분:</strong> 1996년 설립자 David Hanna가 Executive Chairman으로 활동. 내부자 지분 64.81%로 주주 이해 일치도 극도로 높음",
+    "⚠️ <strong>서브프라임 리스크 상존:</strong> 경기 침체 시 대손율 급증 가능. 높은 부채($6.06B) 구조와 금리 민감성. Q4 2025 실적(3/12 발표)에서 통합 효과 확인 필요"
+  ],
+  "navSections": [
+    { "id": "summary", "label": "핵심요약" },
+    { "id": "business", "label": "비즈니스" },
+    { "id": "finance", "label": "재무" },
+    { "id": "catalyst", "label": "촉매" },
+    { "id": "competitors", "label": "경쟁사" },
+    { "id": "risks", "label": "리스크" },
+    { "id": "verdict", "label": "투자결론" }
+  ],
+  "segments": [
+    {
+      "name": "CaaS (Credit as a Service)",
+      "icon": "💳",
+      "color": "accent",
+      "backlog": "93%",
+      "description": "Aspire, Imagine, Fortiva 브랜드 일반 신용카드 + 리테일/헬스케어 파트너 프라이빗 라벨 카드. 570만+ 소비자 서비스. Mercury 인수로 130만 계정 추가.",
+      "revenue": "Q3 2025 매출: ~$460M (전체의 93%)"
+    },
+    {
+      "name": "Auto Finance",
+      "icon": "🚗",
+      "color": "orange",
+      "backlog": "7%",
+      "description": "독립 딜러 네트워크를 통한 중고차 할부금융(Buy-Here Pay-Here). 플로어 플랜 파이낸싱 및 할부 대출 제공.",
+      "revenue": "Q3 2025 매출: ~$35M (전체의 7%)"
+    }
+  ],
+  "revenueBreakdown": {
+    "labels": ["CaaS 신용카드 (~93%)", "Auto Finance (~7%)"],
+    "data": [93, 7],
+    "colors": ["#3b82f6", "#f59e0b"]
+  },
+  "annualRevenue": {
+    "labels": ["2021", "2022", "2023", "2024", "2025E", "2026E"],
+    "data": [282, 325, 354, 400, 1590, 2700],
+    "estimateStartIndex": 4
+  },
+  "quarterlyRevenue": {
+    "labels": ["Q4'24", "Q1'25", "Q2'25", "Q3'25", "Q4'25E", "Q1'26E"],
+    "data": [353, 345, 394, 495, 692, 705]
+  },
+  "marginTrend": {
+    "labels": ["2021", "2022", "2023", "2024", "Q1'25", "Q2'25", "Q3'25", "Q4'25E"],
+    "gaap": [18, 20, 22, 22, 24, 24, 16, 20],
+    "nonGaap": [null, null, null, null, 26, 26, 20, 22]
+  },
+  "financialTable": [
+    ["매출 (총 운영수익)", "$495.3M", "$350.8M", "+41.1% YoY", "green", "Mercury 인수 효과로 Q3 대폭 성장"],
+    ["순이익", "$22.7M", "$23.2M", "-2.4%", "orange", "인수 관련 비용 반영. 조정 순이익 $27.9M (+20%)"],
+    ["EPS (희석)", "$1.21", "$1.49", "Miss", "orange", "조정 EPS $1.48로 실질적 성장 지속"],
+    ["관리 채권", "$6.6B", "$2.6B", "+148.7%", "green", "Mercury $31.6억 + 유기적 성장"],
+    ["매출총이익률", "71.7%", "—", "양호", "green", "고마진 신용카드 수수료 구조"],
+    ["영업이익률", "28.2%", "—", "양호", "green", "규모의 경제 효과 확대 중"],
+    ["영업 현금흐름", "$494.3M", "—", "강력", "green", "채권 포트폴리오 현금 창출력"],
+    ["현금", "$425M", "—", "적정", "blue", "단기 유동성 확보"],
+    ["총 부채", "$6.06B", "—", "높음", "orange", "채권 포트폴리오 파이낸싱 — 금융업 특성"]
+  ],
+  "valuation": {
+    "labels": ["P/E (TTM)", "Forward P/E", "P/B", "P/S (TTM)"],
+    "company": [9.67, 6.35, 1.40, 1.65],
+    "industry": [10.5, 7.5, 2.0, 3.0]
+  },
+  "pegInputs": {
+    "forwardPE": 6.35,
+    "epsGrowthPct": 16.44,
+    "basis": "Yahoo Finance earningsTrend Q1 2026E (2026-02-22 기준)"
+  },
+  "financialHealth": [
+    {
+      "label": "현금",
+      "value": "$425M",
+      "width": "25%",
+      "gradient": "var(--green),var(--green2)"
+    },
+    {
+      "label": "총 부채",
+      "value": "$6.06B",
+      "width": "95%",
+      "gradient": "var(--red),var(--red2)"
+    },
+    {
+      "label": "순부채",
+      "value": "$5.64B",
+      "width": "85%",
+      "gradient": "var(--orange),#fbbf24"
+    }
+  ],
+  "healthMetrics": [
+    { "label": "D/E 비율", "value": "9.70x (금융업 특성)", "color": "var(--orange)" },
+    { "label": "유동비율", "value": "15.67 (매우 양호)", "color": "var(--green2)" },
+    { "label": "ROE (최근 1년)", "value": "19.59%", "color": "var(--green2)" },
+    { "label": "PEG (Forward)", "value": "0.39x (저평가)", "color": "var(--green2)" },
+    { "label": "베타", "value": "1.96 (고변동)", "color": "var(--orange)" },
+    { "label": "내부자 지분", "value": "64.81%", "color": "var(--green2)" }
+  ],
+  "timeline": [
+    { "date": "1996", "text": "David Hanna가 Atlanticus 설립 (구 CompuCredit)", "status": "done" },
+    { "date": "2012.12", "text": "CompuCredit에서 Atlanticus Holdings로 사명 변경", "status": "done" },
+    { "date": "2025.05", "text": "Q1 2025 실적 — ROE 22%, 순이익 +40.6% YoY", "status": "done" },
+    { "date": "2025.07", "text": "Mercury Financial $166.5M 인수 완료 — 130만 계정 + $31.6B 채권 추가", "status": "done" },
+    { "date": "2025.08", "text": "Q2 2025 실적 — 순이익 마진 35.8% 성장", "status": "done" },
+    { "date": "2025.11", "text": "Q3 2025 실적 — 매출 $495M (+41.1%), 관리 채권 $6.6B", "status": "done" },
+    { "date": "2025.Q4", "text": "PROG Holdings로부터 Vive 포트폴리오 $165M 인수", "status": "done" },
+    { "date": "2026.03.12", "text": "Q4 2025 실적 발표 예정 — Mercury 통합 효과 핵심 확인 포인트", "status": "pending" },
+    { "date": "2026.H1", "text": "Mercury 통합 완료 + 포트폴리오 최적화 — 비용 시너지 실현 기대", "status": "pending" },
+    { "date": "2026~27", "text": "관리 채권 $10B 돌파 목표 — 규모의 경제 본격화", "status": "pending" }
+  ],
+  "competitorChart": {
+    "labels": ["Synchrony\nFinancial", "OneMain\nHoldings", "Credit\nAcceptance", "Enova\nInt'l", "Atlanticus"],
+    "data": [26.4, 6.7, 5.5, 3.6, 0.825],
+    "colors": ["#8b5cf6", "#3b82f6", "#ec4899", "#0ea5e9", "#f59e0b"],
+    "chartLabel": "시가총액 비교 (2026.02, 단위: $B)",
+    "yLabel": "B"
+  },
+  "competitorTable": {
+    "headers": ["기업", "티커", "시총", "P/E", "ROE", "핵심 차별화", "위협 수준"],
+    "rows": [
+      ["Atlanticus", "ATLC", "$0.8B", "9.7x", "19.6%", "서브프라임 핀테크·창업자 경영·65% 내부자", "—"],
+      ["Synchrony Financial", "SYF", "$26.4B", "7.9x", "22%", "대형 리테일 파트너(Amazon,PayPal)·규모", "<span class='tag tag-red'>높음</span>"],
+      ["Credit Acceptance", "CACC", "$5.5B", "13.6x", "25%", "딥서브프라임 오토론 전문·높은 수익성", "<span class='tag tag-orange'>중간</span>"],
+      ["OneMain Holdings", "OMF", "$6.7B", "8.7x", "18%", "개인 대출 전문·1,300+ 오프라인 지점", "<span class='tag tag-orange'>중간</span>"],
+      ["Enova International", "ENVA", "$3.6B", "12.6x", "15%", "온라인 대출 핀테크·AI 언더라이팅", "<span class='tag tag-orange'>중간</span>"]
+    ]
+  },
+  "risks": {
+    "items": [
+      { "label": "신용 손실 급증", "x": 8, "y": 9, "r": 22, "bg": "rgba(239,68,68,.6)", "border": "#ef4444" },
+      { "label": "금리 상승 압박", "x": 7, "y": 8, "r": 18, "bg": "rgba(245,158,11,.5)", "border": "#f59e0b" },
+      { "label": "규제 리스크 (CFPB)", "x": 6, "y": 7, "r": 16, "bg": "rgba(139,92,246,.5)", "border": "#8b5cf6" },
+      { "label": "Mercury 통합 리스크", "x": 5, "y": 6, "r": 14, "bg": "rgba(6,182,212,.5)", "border": "#06b6d4" },
+      { "label": "유동성 부족 (소형주)", "x": 4, "y": 4, "r": 12, "bg": "rgba(236,72,153,.4)", "border": "#ec4899" }
+    ],
+    "warnings": [
+      "📉 <strong>신용 손실 위험:</strong> 서브프라임 소비자 대상 사업 특성상 경기 침체 시 대손율 급증 가능. 실업률 상승이 직접적 타격. 관리 채권 $6.6B의 부실화 시 자본 잠식 우려",
+      "💰 <strong>금리 민감성:</strong> 총 부채 $6.06B로 금리 변동에 매우 민감. 차입 비용 상승이 NIM(순이자마진)을 직접 압박. Q3 2025 이자비용 $75.5M으로 전분기 대비 증가",
+      "⚖️ <strong>규제 강화 리스크:</strong> CFPB(소비자금융보호국)의 서브프라임 대출 규제 강화 가능성. 수수료 상한, 이자율 제한 등 수익 모델 직접 영향",
+      "🔧 <strong>Mercury 통합 실행 리스크:</strong> $166.5M에 인수한 Mercury Financial의 130만 계정·$31.6억 채권 통합 중. 시스템 통합 지연, 고객 이탈, 예상보다 높은 부실율 가능성",
+      "📊 <strong>소형주 유동성:</strong> 시총 $825M, 일평균 거래량 6.7만주, float 비율 34.8%로 낮음. Short interest 28.4%가 높아 변동성 확대 요인"
+    ]
+  },
+  "radar": {
+    "labels": ["성장성", "수익성", "경쟁우위", "재무건전성", "밸류에이션\n매력도", "카탈리스트"],
+    "data": [9, 8, 7, 5, 9, 8]
+  },
+  "bullCase": [
+    "📈 <strong>극단적 저평가:</strong> P/E 9.67x, Forward P/E 6.35x는 업종 평균 대비 최저 수준. 관리 자산 $6.6B 대비 시총 $825M — 관리 자산 1달러당 12.5센트에 매수하는 셈",
+    "🚀 <strong>Mercury 인수 시너지:</strong> 관리 채권 148.7% 성장으로 규모의 경제 본격화. 통합 비용 절감 + 크로스셀링으로 인수 후 연간 수익 대폭 증가 기대",
+    "👨‍💼 <strong>압도적 내부자 지분:</strong> 창업자 David Hanna 가문 포함 내부자 64.81% 보유. 경영진-주주 이해 일치도가 극도로 높아 장기 가치 창출에 집중",
+    "💳 <strong>서브프라임 핀테크 성장:</strong> 미국 비프라임 인구 1억+ 명 시장. 디지털 채널 확장 + AI 리스크 관리로 시장 점유율 확대 중. 2025년 기록적 73만 신규 고객 유치",
+    "💰 <strong>강력한 현금 창출:</strong> 영업 현금흐름 $494M — 시총의 60%에 해당. ROE 19.6%로 자본 효율성 높음. 자사주 매입 여력 충분"
+  ],
+  "bearCase": [
+    "📉 <strong>경기 침체 시 대손율 폭등:</strong> 서브프라임 대상 사업은 경기 역행적. 실업률 1%p 상승 시 대손율 2~3%p 증가 예상. $6.6B 포트폴리오에 직격탄",
+    "💸 <strong>과도한 레버리지:</strong> D/E 970%, 총 부채 $6.06B. 금융업 특성이지만 금리 상승기에 차입 비용이 수익을 잠식할 수 있음",
+    "🏦 <strong>대형 경쟁사 위협:</strong> Synchrony($26B), OneMain($6.7B) 등 대형 경쟁사가 동일 시장 공략. 자본력과 브랜드 인지도에서 열위",
+    "⚖️ <strong>CFPB 규제 불확실성:</strong> 소비자 금융 규제 강화 시 수수료·이자율 제한으로 사업 모델 직접 타격. 정치적 환경 변화에 민감",
+    "📊 <strong>낮은 유동성·높은 공매도:</strong> Float 5.3M주, Short interest 28.4%로 공매도 비율 매우 높음. 실적 부진 시 급격한 주가 하락 위험"
+  ],
+  "checklist": [
+    ["Q4 2025 실적 확인", "2026.03.12", "Mercury 통합 효과 + 매출·EPS 성장 지속 여부"],
+    ["대손율 추이", "분기별", "Net charge-off rate 6~8% 이내 유지 여부 — 핵심 리스크 지표"],
+    ["Mercury 통합 진척", "2026.H1", "시스템 통합 완료·비용 시너지 실현·고객 이탈률 확인"],
+    ["금리 환경", "상시", "Fed 금리 인하 시 NIM 개선, 인상 시 차입비용 압박"],
+    ["경쟁사 동향", "분기별", "SYF·CACC·OMF 서브프라임 시장 전략 변화 모니터링"],
+    ["[100배] 시총 여력", "분기별", "시총 $825M — $2B 미만 소형주 유지 여부, 관리 자산 대비 재평가 진행도"],
+    ["[100배] ROE 품질", "분기별", "ROE 19.6% — Mercury 통합 후에도 15~20% 유지 여부"],
+    ["[100배] 재투자 효율", "분기별", "인수 통합 시너지 실현도, 매출 성장률, 영업현금흐름 유지"],
+    ["[100배] PER 안전마진", "상시", "P/E 9.67x — 8~30 범위 내 이탈 여부, Forward P/E 6.35x 추이"],
+    ["[100배] 창업자 운영력", "반기별", "David Hanna Executive Chairman 유지, 내부자 64.81% 변화 추적"]
+  ],
+  "moats": [
+    {
+      "icon": "🧠",
+      "name": "AI 리스크 관리",
+      "desc": "30년간 축적된 서브프라임 데이터<br>독자적 신용평가 모델로 대손율 관리"
+    },
+    {
+      "icon": "🤝",
+      "name": "은행 파트너십 네트워크",
+      "desc": "다수 발행은행과 CaaS 파트너십<br>신규 진입자 대비 규제 허들 우위"
+    },
+    {
+      "icon": "👨‍💼",
+      "name": "창업자 경영 + 65% 내부자",
+      "desc": "David Hanna 가문 경영 28년<br>주주 이해 극도로 일치"
+    },
+    {
+      "icon": "📈",
+      "name": "규모의 경제",
+      "desc": "관리 채권 $6.6B·570만+ 소비자<br>Mercury 인수로 규모 3배 확대"
+    }
+  ],
+  "analysisAi": "Claude"
+}

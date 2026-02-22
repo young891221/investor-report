@@ -10,7 +10,7 @@ function buildScreenerUrl(filters, startRow) {
 
 function parseFinvizTable(html) {
   const results = [];
-  const tickerPattern = /href="quote\.ashx\?t=([A-Z]{1,5})"/g;
+  const tickerPattern = /href="quote\.ashx\?t=([A-Z]{1,5})(?:&[^"]*)?"/g;
   const seen = new Set();
   let match;
 
@@ -22,11 +22,14 @@ function parseFinvizTable(html) {
     }
   }
 
-  const rowPattern = /quote\.ashx\?t=([A-Z]{1,5})">[^<]+<\/a>\s*<\/td>\s*<td[^>]*>([^<]+)<\/td>/g;
+  const rowPattern = /quote\.ashx\?t=([A-Z]{1,5})(?:&[^"]*)?">([^<]+)<\/a>/g;
   const nameMap = new Map();
 
   while ((match = rowPattern.exec(html)) !== null) {
-    nameMap.set(match[1], match[2].trim());
+    const name = match[2].trim();
+    if (name && !/^\d+$/.test(name)) {
+      nameMap.set(match[1], name);
+    }
   }
 
   return results.map(item => ({
