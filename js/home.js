@@ -1,9 +1,75 @@
 (function () {
+  const templateMode = window.TemplateMode && typeof window.TemplateMode.getTemplate === 'function'
+    ? window.TemplateMode
+    : null;
+  const mainEl = document.querySelector('.main');
+
+  function getCurrentTemplate() {
+    if (templateMode && typeof templateMode.getTemplate === 'function') {
+      return templateMode.getTemplate();
+    }
+    return 'v1';
+  }
+
+  function buildV2HomeLayout() {
+    return `
+      <div class="v2-home-wrap">
+        <section class="v2-home-hero fade-in">
+          <div class="v2-home-eyebrow">Template V2 · Research Desk</div>
+          <h1 class="v2-home-title">주식 종합 분석 포트폴리오</h1>
+          <p class="v2-home-sub">화이트톤 리서치 템플릿으로 기업 분석과 리포트 히스토리를 빠르게 탐색합니다.</p>
+        </section>
+
+        <section class="v2-home-toolbar fade-in delay-1">
+          <div id="portfolio-stats" class="portfolio-stats v2-portfolio-stats"></div>
+          <div class="v2-home-controls">
+            <label class="home-search-wrap v2-search-wrap" for="stock-search">
+              <svg class="home-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input id="stock-search" type="search" placeholder="티커, 기업명, 섹터, 태그로 검색" autocomplete="off" aria-label="종목 검색">
+            </label>
+            <div id="sector-filters" class="home-filters v2-home-filters"></div>
+            <div id="view-toggle" class="home-view-toggle v2-home-view-toggle">
+              <button type="button" class="view-btn active" data-view="grid" aria-label="그리드 보기">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </button>
+              <button type="button" class="view-btn" data-view="list" aria-label="리스트 보기">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <div class="v2-stock-grid stock-grid stock-grid--card" id="stocks" aria-live="polite"></div>
+
+        <div class="home-footer v2-home-footer">
+          본 사이트의 모든 분석은 투자 참고용이며, 매수·매도 권유가 아닙니다.<br>
+          투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
+        </div>
+      </div>
+    `;
+  }
+
+  function applyTemplateLayout() {
+    if (!mainEl) {
+      return;
+    }
+    if (getCurrentTemplate() === 'v2') {
+      mainEl.innerHTML = buildV2HomeLayout();
+    }
+  }
+
+  applyTemplateLayout();
+
   const grid = document.getElementById('stocks');
   const filterWrap = document.getElementById('sector-filters');
   const searchInput = document.getElementById('stock-search');
   const statsWrap = document.getElementById('portfolio-stats');
   const viewToggle = document.getElementById('view-toggle');
+  const isV2Template = getCurrentTemplate() === 'v2';
+
+  if (!grid || !filterWrap || !searchInput || !statsWrap || !viewToggle) {
+    return;
+  }
 
   let currentView = 'grid';
 
@@ -93,15 +159,28 @@
 
   function buildReportHref(ticker, date, rawHref) {
     if (typeof rawHref === 'string' && rawHref.trim() !== '') {
-      return rawHref;
+      return templateMode && typeof templateMode.decorateHref === 'function'
+        ? templateMode.decorateHref(rawHref.trim())
+        : rawHref;
+    }
+
+    const query = new URLSearchParams();
+    if (ticker) {
+      query.set('ticker', ticker);
+    }
+    if (date) {
+      query.set('date', date);
+    }
+    if (templateMode && typeof templateMode.getTemplate === 'function') {
+      query.set('template', templateMode.getTemplate());
     }
 
     if (ticker && date) {
-      return `stock.html?ticker=${encodeURIComponent(ticker)}&date=${encodeURIComponent(date)}`;
+      return `stock.html?${query.toString()}`;
     }
 
     if (ticker) {
-      return `stock.html?ticker=${encodeURIComponent(ticker)}`;
+      return `stock.html?${query.toString()}`;
     }
 
     return '#';
@@ -409,6 +488,95 @@
     });
   }
 
+  function renderV2CardGrid(stocks) {
+    grid.innerHTML = '';
+    grid.className = 'v2-stock-grid v2-stock-grid--card';
+
+    if (stocks.length === 0) {
+      grid.innerHTML = '<div class="v2-empty">조건에 맞는 종목이 없습니다.</div>';
+      return;
+    }
+
+    stocks.forEach((stock, idx) => {
+      const latest = stock.latest || {};
+      const tags = Array.isArray(stock.tags) ? stock.tags : [];
+      const hasReportHistory = Array.isArray(stock.reports) && stock.reports.length > 0;
+      const changeText = getDisplayChange(latest);
+      const changeDir = detectChangeDir(latest);
+      const ratingClass = getRatingClass(latest.rating);
+      const scoreClass = getScoreClass(latest.score);
+      const scoreNum = Number(latest.score);
+      const scoreDisplay = formatReportScore(latest.score);
+      const scoreWidth = Number.isFinite(scoreNum) ? Math.min(scoreNum, 100) : 0;
+      const analysisAiClass = getAnalysisAiClass(latest.analysisAi);
+      const listHtml = renderReportLinks(stock.ticker, stock.reports);
+
+      const card = document.createElement('article');
+      card.className = 'v2-pf-card fade-in';
+      card.style.animationDelay = `${idx * 0.05}s`;
+      card.tabIndex = 0;
+      card.setAttribute('aria-expanded', 'false');
+      card.dataset.open = 'false';
+
+      card.innerHTML = `
+        <div class="v2-pf-head">
+          <div>
+            <div class="v2-pf-ticker">${escapeHtml(stock.ticker)}</div>
+            <div class="v2-pf-name">${escapeHtml(stock.name || '-')} · ${escapeHtml(stock.nameKr || '-')}</div>
+          </div>
+          <span class="v2-pf-rating ${escapeHtml(ratingClass)}">${escapeHtml(latest.rating || '-')}</span>
+        </div>
+        <div class="v2-pf-metrics">
+          <div class="v2-pf-price">${escapeHtml(latest.price || '-')}</div>
+          <div class="v2-pf-change ${escapeHtml(changeDir)}">${escapeHtml(changeText)}</div>
+          <div class="v2-pf-date">${escapeHtml(formatDisplayDate(latest.date || '-'))}</div>
+        </div>
+        <div class="v2-pf-score-row">
+          <span>100x Score</span>
+          <strong class="${escapeHtml(scoreClass)}">${escapeHtml(scoreDisplay)}</strong>
+        </div>
+        <div class="v2-pf-score-track">
+          <div class="v2-pf-score-bar ${escapeHtml(scoreClass)}" style="width:${scoreWidth}%"></div>
+        </div>
+        <div class="v2-pf-tags">
+          ${tags.slice(0, 3).map(tag => `<span class="v2-pf-tag">${escapeHtml(tag)}</span>`).join('')}
+          <span class="v2-pf-tag ${escapeHtml(analysisAiClass)}">${escapeHtml(latest.analysisAi || '-')}</span>
+        </div>
+        ${stock.description ? `<p class="v2-pf-desc">${escapeHtml(stock.description)}</p>` : ''}
+        <button type="button" class="v2-pf-expand" ${hasReportHistory ? '' : 'disabled'}>
+          ${hasReportHistory ? '리포트 히스토리 보기' : '리포트 없음'}
+        </button>
+        ${hasReportHistory ? `<div class="v2-pf-reports" hidden>${listHtml}</div>` : ''}
+      `;
+
+      const reportList = card.querySelector('.v2-pf-reports');
+      const toggleButton = card.querySelector('.v2-pf-expand');
+      const toggleCard = event => {
+        if (!hasReportHistory || !reportList || !toggleButton) return;
+        if (event && event.target && event.target.closest('.stock-report-link')) return;
+
+        const isOpen = card.dataset.open === 'true';
+        const nextOpen = !isOpen;
+        card.dataset.open = nextOpen ? 'true' : 'false';
+        card.setAttribute('aria-expanded', String(nextOpen));
+        reportList.hidden = !nextOpen;
+        toggleButton.textContent = nextOpen ? '리포트 히스토리 닫기' : '리포트 히스토리 보기';
+      };
+
+      if (toggleButton) {
+        toggleButton.addEventListener('click', toggleCard);
+      }
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleCard(event);
+        }
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
   /* ── List View ── */
 
   function renderListView(stocks) {
@@ -488,9 +656,91 @@
     });
   }
 
+  function renderV2ListView(stocks) {
+    grid.innerHTML = '';
+    grid.className = 'v2-stock-grid v2-stock-grid--list';
+
+    if (stocks.length === 0) {
+      grid.innerHTML = '<div class="v2-empty">조건에 맞는 종목이 없습니다.</div>';
+      return;
+    }
+
+    stocks.forEach((stock, idx) => {
+      const tags = Array.isArray(stock.tags) ? stock.tags : [];
+      const latest = stock.latest || {};
+      const hasReportHistory = Array.isArray(stock.reports) && stock.reports.length > 0;
+      const reportListId = `v2-stock-reports-${stock.ticker.toLowerCase()}-${idx}`;
+      const listHtml = renderReportLinks(stock.ticker, stock.reports);
+      const changeText = getDisplayChange(latest);
+      const changeDir = detectChangeDir(latest);
+
+      const row = document.createElement('article');
+      row.className = 'v2-stock-list-item fade-in';
+      row.style.animationDelay = `${idx * 0.03}s`;
+      row.tabIndex = 0;
+      row.setAttribute('role', 'button');
+      row.setAttribute('aria-expanded', 'false');
+      row.dataset.open = 'false';
+
+      row.innerHTML = `
+        <div class="v2-stock-list-main">
+          <div class="v2-stock-list-left">
+            <div class="v2-stock-list-ticker">${escapeHtml(stock.ticker)}</div>
+            <div class="v2-stock-list-name">${escapeHtml(stock.name || '-')} · ${escapeHtml(stock.nameKr || '-')}</div>
+          </div>
+          <div class="v2-stock-list-center">
+            <span class="v2-stock-list-price">${escapeHtml(latest.price || '-')}</span>
+            <span class="v2-stock-list-change ${escapeHtml(changeDir)}">${escapeHtml(changeText)}</span>
+          </div>
+          <div class="v2-stock-list-right">
+            <span class="v2-stock-list-date">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
+            <span class="v2-stock-list-rating ${escapeHtml(getRatingClass(latest.rating))}">${escapeHtml(latest.rating || '-')}</span>
+          </div>
+        </div>
+        <div class="v2-stock-list-tags">
+          ${tags.map(tag => `<span class="v2-pf-tag">${escapeHtml(tag)}</span>`).join('')}
+          <span class="v2-pf-tag ${escapeHtml(getScoreClass(latest.score))}">Score ${escapeHtml(formatReportScore(latest.score))}</span>
+          <span class="v2-pf-tag ${escapeHtml(getAnalysisAiClass(latest.analysisAi))}">${escapeHtml(latest.analysisAi || '-')}</span>
+        </div>
+        ${hasReportHistory ? `<div class="v2-stock-list-reports" id="${escapeHtml(reportListId)}" hidden>${listHtml}</div>` : ''}
+      `;
+
+      const reportList = row.querySelector('.v2-stock-list-reports');
+      const toggleRow = event => {
+        if (!hasReportHistory || !reportList) return;
+        if (event && event.target && event.target.closest('.stock-report-link')) return;
+
+        const isOpen = row.dataset.open === 'true';
+        const nextOpen = !isOpen;
+        row.dataset.open = nextOpen ? 'true' : 'false';
+        row.setAttribute('aria-expanded', String(nextOpen));
+        reportList.hidden = !nextOpen;
+      };
+
+      row.addEventListener('click', toggleRow);
+      row.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleRow(event);
+        }
+      });
+
+      grid.appendChild(row);
+    });
+  }
+
   /* ── Render dispatcher ── */
 
   function renderCards(stocks) {
+    if (isV2Template && currentView === 'grid') {
+      renderV2CardGrid(stocks);
+      return;
+    }
+    if (isV2Template && currentView !== 'grid') {
+      renderV2ListView(stocks);
+      return;
+    }
+
     if (currentView === 'grid') {
       renderCardGrid(stocks);
     } else {
@@ -503,6 +753,10 @@
     const message = safeTerm
       ? `${safeTerm} 검색 결과가 없습니다.`
       : '조건에 맞는 종목이 없습니다.';
+    if (isV2Template) {
+      grid.innerHTML = `<div class="v2-empty">${escapeHtml(message)}</div>`;
+      return;
+    }
     grid.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text3)">${escapeHtml(message)}</div>`;
   }
 

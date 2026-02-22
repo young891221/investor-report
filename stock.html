@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>종합 분석 리포트</title>
+<script src="js/template-mode.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/dashboard.css">
@@ -17,7 +18,13 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
     <span id="nav-ticker"></span> Analysis
   </a>
-  <div class="nav-links" id="nav-links"></div>
+  <div class="nav-actions">
+    <div class="nav-links" id="nav-links"></div>
+    <div class="template-switch" role="group" aria-label="UI 템플릿 선택" data-template-switch>
+      <button type="button" class="template-switch-btn" data-template-value="v1" aria-pressed="true">V1</button>
+      <button type="button" class="template-switch-btn" data-template-value="v2" aria-pressed="false">V2</button>
+    </div>
+  </div>
 </div></nav>
 
 <div class="main">
@@ -206,11 +213,206 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
+function withTemplate(href) {
+  if (window.TemplateMode && typeof window.TemplateMode.decorateHref === 'function') {
+    return window.TemplateMode.decorateHref(href);
+  }
+  return href;
+}
+
+function isTemplateV2() {
+  return window.TemplateMode
+    && typeof window.TemplateMode.getTemplate === 'function'
+    && window.TemplateMode.getTemplate() === 'v2';
+}
+
+function buildV2StockLayout() {
+  const homeHref = escapeHtml(withTemplate('index.html'));
+  return `
+  <div class="v2-stock-shell">
+    <div class="v2-stock-header fade-in">
+      <div class="v2-stock-breadcrumb">
+        <a href="${homeHref}" class="dash-back v2-dash-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Portfolio
+        </a>
+        <span class="dash-breadcrumb-sep">/</span>
+        <span id="breadcrumb-ticker" class="dash-breadcrumb-current"></span>
+      </div>
+
+      <div class="dash-hero hero v2-dash-hero" id="summary">
+        <div class="dash-hero-main">
+          <div class="hero-badge"><span class="live"></span> <span id="hero-date"></span></div>
+          <h1 class="hero-title" id="hero-title"></h1>
+          <p class="hero-sub" id="hero-sub"></p>
+          <div id="hero-date-nav" class="dash-date-nav"></div>
+        </div>
+        <div class="dash-hero-score" id="hero-score-ring"></div>
+      </div>
+
+      <div class="dash-stats-grid v2-dash-stats fade-in delay-1" id="hero-stats"></div>
+    </div>
+
+    <div class="v2-stock-body">
+      <div class="v2-stock-main">
+        <div class="section fade-in">
+          <div class="section-header"><div class="section-num">01</div><h2 class="section-title">핵심 투자 포인트</h2></div>
+          <div class="callout">
+            <div class="callout-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              5가지 핵심 포인트
+            </div>
+            <ul id="key-points"></ul>
+          </div>
+        </div>
+
+        <div class="section fade-in" id="business">
+          <div class="section-header"><div class="section-num">02</div><h2 class="section-title">비즈니스 모델</h2></div>
+          <div class="grid grid-2" style="margin-bottom:1rem" id="segments-grid"></div>
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-title">매출 구성 비교</div>
+            <div class="chart-wrap"><canvas id="revenueBreakdownChart"></canvas></div>
+          </div>
+          <div class="subsection"><div class="subsection-title"><span class="dot"></span>경쟁 우위 (Competitive Moat)</div></div>
+          <div class="grid grid-4" id="moats-grid"></div>
+        </div>
+
+        <div class="section fade-in" id="finance">
+          <div class="section-header"><div class="section-num">03</div><h2 class="section-title">재무 분석</h2></div>
+          <div class="grid grid-2" style="margin-bottom:1rem">
+            <div class="card"><div class="card-title">연간 매출 추이</div><div class="chart-wrap"><canvas id="revenueChart"></canvas></div></div>
+            <div class="card"><div class="card-title">분기별 매출 추이</div><div class="chart-wrap"><canvas id="quarterlyChart"></canvas></div></div>
+          </div>
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-title">마진 개선 추이</div>
+            <div class="chart-wrap"><canvas id="marginChart"></canvas></div>
+          </div>
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-title">핵심 재무지표</div>
+            <div style="overflow-x:auto"><table class="data-table" id="financial-table"><thead><tr><th>항목</th><th>최근 분기</th><th>전년 동기</th><th>변화</th><th>의미</th></tr></thead><tbody></tbody></table></div>
+          </div>
+          <div class="grid grid-2">
+            <div class="card"><div class="card-title">밸류에이션 비교</div><div class="chart-wrap"><canvas id="valuationChart"></canvas></div></div>
+            <div class="card">
+              <div class="card-title" style="display:flex;align-items:center;gap:6px">재무 건전성 <span class="info-icon">?<span class="info-tip">D/E·유동비율·ROE·PEG 등 핵심 지표를 함께 확인하세요</span></span></div>
+              <div id="health-bars" style="margin-top:.5rem"></div>
+              <div id="health-metrics" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:var(--radius-xs)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section fade-in" id="catalyst">
+          <div class="section-header"><div class="section-num">04</div><h2 class="section-title">핵심 촉매 & 성장 동력</h2></div>
+          <div class="card">
+            <div class="card-title">이벤트 타임라인</div>
+            <div class="timeline" style="margin-top:.8rem" id="timeline"></div>
+          </div>
+        </div>
+
+        <div class="section fade-in" id="competitors">
+          <div class="section-header"><div class="section-num">05</div><h2 class="section-title">경쟁사 비교</h2></div>
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-title" id="comp-chart-title"></div>
+            <div class="chart-wrap"><canvas id="competitorChart"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-title">경쟁사 종합 비교표</div>
+            <div style="overflow-x:auto"><table class="data-table" id="competitor-table"></table></div>
+          </div>
+        </div>
+
+        <div class="section fade-in" id="risks">
+          <div class="section-header"><div class="section-num">06</div><h2 class="section-title">주요 리스크 요인</h2></div>
+          <div class="callout callout-risk" style="margin-bottom:1rem">
+            <div class="callout-title">핵심 리스크 요약</div>
+            <ul id="risk-warnings"></ul>
+          </div>
+          <div class="card">
+            <div class="card-title">리스크 영향도 매트릭스</div>
+            <div class="chart-wrap chart-wrap-tall"><canvas id="riskChart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="section fade-in" id="analyst-reports">
+          <div class="section-header"><div class="section-num">07</div><h2 class="section-title">국내 / 해외 애널리스트 리포트</h2></div>
+          <div class="card">
+            <div class="card-title">리포트 링크 및 요약</div>
+            <div id="analyst-reports-list"></div>
+          </div>
+        </div>
+
+        <div class="section fade-in" id="verdict">
+          <div class="section-header"><div class="section-num">08</div><h2 class="section-title">장기 투자 관점 종합 평가</h2></div>
+          <div class="pros-cons" style="margin-bottom:1rem">
+            <div class="card card-green">
+              <div class="card-title" style="color:var(--green2)">✦ 강점 (Bull Case)</div>
+              <ul class="pros-list" id="bull-list"></ul>
+            </div>
+            <div class="card card-red">
+              <div class="card-title" style="color:var(--red2)">✦ 약점 (Bear Case)</div>
+              <ul class="cons-list" id="bear-list"></ul>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-title">투자 매력도 레이더 차트</div>
+            <div class="chart-wrap chart-wrap-sq" style="max-width:420px;margin:0 auto"><canvas id="radarChart"></canvas></div>
+          </div>
+          <div class="card" id="score-breakdown-card" style="margin-bottom:1rem;display:none">
+            <div class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              100배 주식 체크리스트
+            </div>
+            <div id="score-breakdown-meta" style="margin:.4rem 0 1rem 0;color:var(--text2);font-size:.85rem"></div>
+            <div style="overflow-x:auto">
+              <table class="data-table" id="score-breakdown-table">
+                <thead><tr><th>기준</th><th>점수</th><th>상태</th><th>근거</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <ul id="score-breakdown-notes" style="margin-top:.8rem;color:var(--text2);font-size:.82rem"></ul>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              장기 투자자 체크리스트
+            </div>
+            <div style="overflow-x:auto"><table class="data-table" id="checklist-table"><thead><tr><th>확인 항목</th><th>시점</th><th>평가 포인트</th></tr></thead><tbody></tbody></table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-footer-nav">
+      <a href="${homeHref}" class="dash-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+      </a>
+      <button type="button" class="dash-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로 스크롤">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+        Top
+      </button>
+    </div>
+
+    <div class="disclaimer" id="disclaimer"></div>
+  </div>
+  `;
+}
+
+function applyTemplateLayoutForCurrentTemplate() {
+  const main = document.querySelector('.main');
+  if (!main) {
+    return;
+  }
+  if (isTemplateV2()) {
+    main.innerHTML = buildV2StockLayout();
+  }
+}
+
 function showLoadError(message) {
   document.querySelector('.main').innerHTML = `<div style="text-align:center;padding:4rem;color:var(--text2)">
     <h2 style="color:var(--red2);margin-bottom:1rem">데이터 로딩 실패</h2>
     <p>${escapeHtml(message)}</p>
-    <p style="margin-top:1rem"><a href="index.html" style="color:var(--accent2)">← 홈으로 돌아가기</a></p>
+    <p style="margin-top:1rem"><a href="${escapeHtml(withTemplate('index.html'))}" style="color:var(--accent2)">← 홈으로 돌아가기</a></p>
   </div>`;
 }
 
@@ -309,10 +511,15 @@ function replaceCanonicalQuery(ticker, date) {
   } else {
     url.searchParams.delete('date');
   }
+  if (window.TemplateMode && typeof window.TemplateMode.getTemplate === 'function') {
+    url.searchParams.set('template', window.TemplateMode.getTemplate());
+  }
   history.replaceState(null, '', url.toString());
 }
 
 async function bootstrap() {
+  applyTemplateLayoutForCurrentTemplate();
+
   const params = new URLSearchParams(window.location.search);
   const rawTicker = (params.get('ticker') || params.get('stock') || '').trim().toUpperCase();
   const rawDate = (params.get('date') || '').trim();
@@ -373,7 +580,7 @@ async function bootstrap() {
       if (date === selectedDate) {
         return `<span class="dash-date-current">${escapeHtml(display)}</span>`;
       }
-      const href = `stock.html?ticker=${encodeURIComponent(rawTicker)}&date=${encodeURIComponent(date)}`;
+      const href = withTemplate(`stock.html?ticker=${encodeURIComponent(rawTicker)}&date=${encodeURIComponent(date)}`);
       return `<a href="${escapeHtml(href)}">${escapeHtml(display)}</a>`;
     });
     dateNavEl.innerHTML = links.join('');

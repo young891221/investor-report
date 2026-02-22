@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>주식 종합 분석 포트폴리오</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="js/template-mode.js"></script>
 <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
@@ -15,8 +16,14 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
     Stock Analysis
   </a>
-  <div class="nav-links">
-    <a href="#stocks" class="active">Portfolio</a>
+  <div class="nav-actions">
+    <div class="nav-links">
+      <a href="#stocks" class="active">Portfolio</a>
+    </div>
+    <div class="template-switch" role="group" aria-label="UI 템플릿 선택" data-template-switch>
+      <button type="button" class="template-switch-btn" data-template-value="v1" aria-pressed="true">V1</button>
+      <button type="button" class="template-switch-btn" data-template-value="v2" aria-pressed="false">V2</button>
+    </div>
   </div>
 </div></nav>
 
