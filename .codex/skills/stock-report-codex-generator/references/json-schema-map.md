@@ -13,17 +13,16 @@ Use this map before writing `data/{TICKER}.json`.
   - `epsGrowthPct`: number or `null`
   - `basis`: string (source/date note)
 - `reportScoreModel` (string)
-  - Recommended: `100x-book-v1`
+  - Recommended: `turnaround-v1`
 - `reportScoreBreakdown` (object)
   - `total`: number (0~100)
   - `criteria`: array of objects
-    - `id`: `small_cap | roe_quality | reinvestment | reasonable_per | founder_led`
+    - `id`: `margin_recovery | revenue_reaccel | cash_flow_turn | valuation_setup`
     - `label`: string
     - `weight`: number
     - `score`: number
     - `status`: `pass | watch | fail | unknown`
     - `evidence`: string
-  - `notes`: string array
 
 ## High-risk constraints
 
@@ -37,7 +36,7 @@ Use this map before writing `data/{TICKER}.json`.
 - `timeline[].status`: `done` or `pending`.
 - `competitorTable.rows[]`: each row length must match headers length.
 - `checklist`: each row needs at least 3 string cells.
-- Checklist should keep legacy 운영 항목 and add 100배 기준 gate rows (`[100배] ...`).
+- Checklist should keep legacy 운영 항목 and add 턴어라운드 기준 gate rows (`[턴어라운드] ...`).
 - Numeric arrays must stay numeric:
   - `revenueBreakdown.data`
   - `annualRevenue.data`

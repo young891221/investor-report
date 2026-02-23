@@ -6,12 +6,13 @@ const { getPreset, listPresets } = require('./lib/scanner/presets');
 const { fetchScreenerResults } = require('./lib/scanner/finviz');
 const { scoreCandidate } = require('./lib/scanner/scorer');
 const { fetchYahooQuote, fetchYahooSummary, readLocalKnownStocks, pickRaw } = require('./lib/generator/sources');
+const { toQuarterlySeries } = require('./lib/financials');
 
 function printHelp() {
   console.log('Usage: npm run scan:stocks -- [options]');
   console.log('');
   console.log('Options:');
-  console.log('  --preset <name>     Filter preset (default: small-cap-growth)');
+  console.log('  --preset <name>     Filter preset (default: turnaround-growth)');
   console.log('  --top <n>           Number of top candidates to output (default: 5)');
   console.log('  --generate          Auto-generate reports for top candidates');
   console.log('  --build-index       Rebuild index after generation');
@@ -22,7 +23,7 @@ function printHelp() {
 
 function parseArgs(argv) {
   const options = {
-    preset: 'small-cap-growth',
+    preset: 'turnaround-growth',
     top: 5,
     generate: false,
     buildIndex: false,
@@ -47,11 +48,6 @@ function parseArgs(argv) {
   return options;
 }
 
-function toPct(value) {
-  if (!Number.isFinite(value)) return null;
-  return Math.abs(value) <= 1 ? value * 100 : value;
-}
-
 async function enrichWithYahooData(ticker) {
   const quotes = await fetchYahooQuote([ticker]);
   const quote = quotes.find(q => q.symbol === ticker) || null;
@@ -64,37 +60,25 @@ async function enrichWithYahooData(ticker) {
   }
 
   const financialData = summary && summary.financialData || {};
-  const defaultKeyStats = summary && summary.defaultKeyStatistics || {};
-  const assetProfile = summary && summary.assetProfile || {};
-
-  const roePct = toPct(
-    Number.isFinite(pickRaw(financialData.returnOnEquity))
-      ? pickRaw(financialData.returnOnEquity)
-      : pickRaw(defaultKeyStats.returnOnEquity)
-  );
-
-  const revenueGrowthRaw = pickRaw(financialData.revenueGrowth);
-  const revenueGrowthPct = Number.isFinite(revenueGrowthRaw)
-    ? (Math.abs(revenueGrowthRaw) <= 1 ? revenueGrowthRaw * 100 : revenueGrowthRaw)
-    : null;
+  const quarters = toQuarterlySeries(summary);
 
   return {
     ticker,
-    marketCap: quote ? quote.marketCap : null,
-    trailingPE: quote ? quote.trailingPE : null,
-    forwardPE: quote ? quote.forwardPE : null,
-    roePct,
-    revenueGrowthPct,
-    freeCashflow: Number.isFinite(pickRaw(financialData.freeCashflow)) ? pickRaw(financialData.freeCashflow) : null,
-    netCash: (() => {
-      const cash = pickRaw(financialData.totalCash);
-      const debt = pickRaw(financialData.totalDebt);
-      return Number.isFinite(cash) && Number.isFinite(debt) ? cash - debt : null;
-    })(),
-    currentRatio: Number.isFinite(pickRaw(financialData.currentRatio)) ? pickRaw(financialData.currentRatio) : null,
-    companyOfficers: Array.isArray(assetProfile.companyOfficers) ? assetProfile.companyOfficers : [],
-    insiderOwnershipPct: toPct(pickRaw(defaultKeyStats.heldPercentInsiders)),
     companyName: quote ? (quote.longName || quote.shortName || ticker) : ticker,
+    quarters,
+    financialData: {
+      freeCashflow: Number.isFinite(pickRaw(financialData.freeCashflow)) ? pickRaw(financialData.freeCashflow) : null,
+      totalCash: Number.isFinite(pickRaw(financialData.totalCash)) ? pickRaw(financialData.totalCash) : null,
+      totalDebt: Number.isFinite(pickRaw(financialData.totalDebt)) ? pickRaw(financialData.totalDebt) : null,
+    },
+    quote: {
+      trailingPE: quote ? quote.trailingPE : null,
+      forwardPE: quote ? quote.forwardPE : null,
+      priceToSalesTrailing12Months: quote ? quote.priceToSalesTrailing12Months : null,
+      regularMarketPrice: quote ? quote.regularMarketPrice : null,
+      fiftyTwoWeekHigh: quote ? quote.fiftyTwoWeekHigh : null,
+      marketCap: quote ? quote.marketCap : null,
+    },
   };
 }
 
@@ -149,10 +133,8 @@ async function main() {
       scored.push({
         ticker: candidate.ticker,
         company: data.companyName || candidate.company,
-        marketCap: data.marketCap,
-        roePct: data.roePct,
-        trailingPE: data.trailingPE,
-        revenueGrowthPct: data.revenueGrowthPct,
+        marketCap: data.quote.marketCap,
+        trailingPE: data.quote.trailingPE,
         quantScore: score.total,
         criteria: score.criteria,
       });
@@ -180,9 +162,7 @@ async function main() {
       ticker: c.ticker,
       company: c.company,
       marketCap: c.marketCap,
-      roePct: c.roePct,
       trailingPE: c.trailingPE,
-      revenueGrowthPct: c.revenueGrowthPct,
       quantScore: c.quantScore,
     })),
     topPicks: topCandidates.map(c => c.ticker),

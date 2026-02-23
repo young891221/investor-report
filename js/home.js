@@ -453,7 +453,7 @@
         </div>
         <div class="pf-card-score-wrap">
           <div class="pf-card-score-header">
-            <span class="pf-card-score-label">100x Score</span>
+            <span class="pf-card-score-label">Turnaround Score</span>
             <span class="pf-card-score-value ${escapeHtml(scoreClass)}">${escapeHtml(scoreDisplay)}</span>
           </div>
           <div class="pf-card-score-track">
@@ -541,7 +541,7 @@
           <div class="v2-pf-date">${escapeHtml(formatDisplayDate(latest.date || '-'))}</div>
         </div>
         <div class="v2-pf-score-row">
-          <span>100x Score</span>
+          <span>Turnaround Score</span>
           <strong class="${escapeHtml(scoreClass)}">${escapeHtml(scoreDisplay)}</strong>
         </div>
         <div class="v2-pf-score-track">
@@ -633,7 +633,7 @@
           <span class="stock-card-tag">${escapeHtml(formatDisplayDate(latest.date || '-'))}</span>
           ${tags.map(tag => `<span class="stock-card-tag">${escapeHtml(tag)}</span>`).join('')}
           <span class="stock-card-tag ${escapeHtml(getRatingClass(getOpinionText(latest)))}">${escapeHtml(getOpinionText(latest))}</span>
-          <span class="stock-card-tag ${escapeHtml(getScoreClass(latest.score))}">${escapeHtml(`100배 주식 점수 ${formatReportScore(latest.score)}점`)}</span>
+          <span class="stock-card-tag ${escapeHtml(getScoreClass(latest.score))}">${escapeHtml(`턴어라운드 점수 ${formatReportScore(latest.score)}점`)}</span>
           <span class="stock-card-tag ${escapeHtml(getAnalysisAiClass(latest.analysisAi))}">${escapeHtml(latest.analysisAi || '-')}</span>
         </div>
         ${stock.description ? `<p class="stock-list-desc">${escapeHtml(stock.description || '')}</p>` : ''}

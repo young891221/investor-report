@@ -13,7 +13,7 @@
 | 시가총액       | ${시총} |
 | 52주 범위     | ${52주저가} — ${52주고가} |
 | 애널리스트 컨센서스 | {Buy/Hold/Sell} · 목표가 ${목표가} |
-| 100배 주식 점수 | {0~100점} · AI 결론 {STRONG BUY/BUY/HOLD/REDUCE/SELL} · 모델 {100x-book-v1} |
+| 턴어라운드 점수 | {0~100점} · AI 결론 {STRONG BUY/BUY/HOLD/REDUCE/SELL} · 모델 {turnaround-v1} |
 | 다음 실적 발표   | {날짜} |
 
 ### 💡 5가지 핵심 투자 포인트
@@ -230,16 +230,15 @@
 
 <!-- 차트 데이터: [6개 항목], [6개 점수] → HTML에서 radar chart -->
 
-### 📐 100배 주식 기준 점수 상세
+### 📐 턴어라운드 점수 상세
 
 | 기준 | 가중치 | 점수 | 상태 | 근거 |
 |------|------|------|------|------|
-| 시가총액이 작고 성장 여력 큼 (`small_cap`) | 25 | {}/25 | pass/watch/fail/unknown | {시총 근거} |
-| ROE 15~20% 고수익 구조 (`roe_quality`) | 20 | {}/20 | pass/watch/fail/unknown | {ROE 근거} |
-| 이익의 효율적 재투자 (`reinvestment`) | 20 | {}/20 | pass/watch/fail/unknown | {성장·FCF·재무여력} |
-| PER 안전마진 (`reasonable_per`) | 20 | {}/20 | pass/watch/fail/unknown | {Trailing/Forward PER} |
-| 창업자 주도 운영 (`founder_led`) | 15 | {}/15 | pass/watch/fail/unknown | {Founder CEO/내부자 지분} |
-| **합계** | **100** | **{합계}/100** | - | 모델 `100x-book-v1` |
+| Margin 회복 추세 (`margin_recovery`) | 30 | {}/30 | pass/watch/fail/unknown | {영업이익률 기울기·회복폭} |
+| 매출 재가속 (`revenue_reaccel`) | 30 | {}/30 | pass/watch/fail/unknown | {YoY 성장률 가속도} |
+| Cash Flow 턴어라운드 (`cash_flow_turn`) | 25 | {}/25 | pass/watch/fail/unknown | {순이익 추이·FCF·순현금} |
+| 밸류에이션 셋업 (`valuation_setup`) | 15 | {}/15 | pass/watch/fail/unknown | {P/E·P/S + 펀더멘털 개선} |
+| **합계** | **100** | **{합계}/100** | - | 모델 `turnaround-v1` |
 
 ### ✅ 강점 (Bull Case)
 
@@ -266,11 +265,10 @@
 | {이벤트3} | {날짜} | {무엇을 확인해야 하는지} |
 | {이벤트4} | {날짜} | {무엇을 확인해야 하는지} |
 | {이벤트5} | {날짜} | {무엇을 확인해야 하는지} |
-| [100배] 시총 여력 | 분기별 | {시총 구간 변화 추적} |
-| [100배] ROE 품질 | 분기별 | {ROE 15~20 유지 여부} |
-| [100배] 재투자 효율 | 분기별 | {성장률·FCF·재무여력 동시 점검} |
-| [100배] PER 안전마진 | 상시 | {PER 8~30 이탈 여부} |
-| [100배] 창업자 운영력 | 반기별 | {Founder 리더십·내부자 지분 확인} |
+| [턴어라운드] Margin 회복 | 분기별 | {영업이익률 추세 변화 추적} |
+| [턴어라운드] 매출 재가속 | 분기별 | {YoY 매출 성장률 가속도 점검} |
+| [턴어라운드] Cash Flow 전환 | 분기별 | {순이익·FCF·순현금 동시 점검} |
+| [턴어라운드] 밸류에이션 셋업 | 상시 | {P/E·P/S 비대칭 기회 확인} |
 
 ---
 

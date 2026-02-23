@@ -305,28 +305,38 @@
   },
   {
     "ticker": "IREN",
-    "name": "IREN Limited",
+    "name": "IREN Ltd",
     "nameKr": "아이렌 리미티드",
-    "sector": "AI 인프라 / 비트코인 채굴",
-    "description": "비트코인 채굴에서 AI 클라우드 인프라로 전환 중인 차세대 데이터센터 기업. 마이크로소프트 $97억 계약 확보. 공동 창업자 Daniel & Will Roberts가 Co-CEO로 경영.",
+    "sector": "Financial Services / Capital Markets",
+    "description": "IREN Limited operates in the vertically integrated data center business in Australia and Canada.",
     "tags": [
-      "비트코인 채굴",
-      "AI 클라우드 서비스",
-      "데이터센터 인프라"
+      "Capital Markets",
+      "성장 동력 사업",
+      "재무·실행 관리"
     ],
     "latest": {
-      "date": "2026-02-22",
-      "price": "$40.12",
-      "change": "▲ +682%",
+      "date": "2026-02-23",
+      "price": "$41.34",
+      "change": "▲ 707%",
       "changeDir": "up",
       "changeBasis": "52주",
-      "rating": "HOLD",
-      "reportVerdict": "HOLD",
-      "reportScore": 64,
-      "analysisAi": "Claude",
-      "href": "stock.html?ticker=IREN&date=2026-02-22"
+      "rating": "REDUCE",
+      "reportVerdict": "REDUCE",
+      "reportScore": 48,
+      "href": "stock.html?ticker=IREN&date=2026-02-23"
     },
     "reports": [
+      {
+        "date": "2026-02-23",
+        "price": "$41.34",
+        "change": "▲ 707%",
+        "changeDir": "up",
+        "changeBasis": "52주",
+        "rating": "REDUCE",
+        "reportVerdict": "REDUCE",
+        "reportScore": 48,
+        "href": "stock.html?ticker=IREN&date=2026-02-23"
+      },
       {
         "date": "2026-02-22",
         "price": "$40.12",

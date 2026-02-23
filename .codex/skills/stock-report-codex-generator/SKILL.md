@@ -60,22 +60,20 @@ Use this skill to convert natural-language stock requests into a production-read
   - Renderer priority is `Forward PEG > PSG fallback` when `healthMetrics` PEG is `N/A`:
     - Forward PEG = `forwardPE / epsGrowthPct`
     - PSG fallback = `P/S / next-year revenue growth(%)`
-- Apply 100x-book score model (`100x-book-v1`) for `reportScore`:
+- Apply turnaround score model (`turnaround-v1`) for `reportScore`:
   - Criteria and weights:
-    - `small_cap` (25): 시가총액이 작고 성장 여력이 큼 (`<$20B` 우대)
-    - `roe_quality` (20): ROE 15~20% 고수익 구조
-    - `reinvestment` (20): 성장률·FCF·재무여력 기반 재투자 효율
-    - `reasonable_per` (20): PER 8~30 구간 안전마진
-    - `founder_led` (15): Founder CEO + 내부자 지분 병행
+    - `margin_recovery` (30): 분기별 영업이익률 V자 회복 패턴 (선형회귀 기울기 + 저점 대비 회복폭)
+    - `revenue_reaccel` (30): YoY 매출 성장률 가속도 (둔화→재가속 전환)
+    - `cash_flow_turn` (25): 순이익 추이 (전반부 vs 후반부), FCF 양전환, 순현금 여력
+    - `valuation_setup` (15): P/E·P/S 저평가 + 펀더멘털 개선 비대칭 셋업
   - Missing critical inputs must use neutral score (중립점수), not fabricated values.
   - Populate:
-    - `reportScoreModel` (string, `100x-book-v1`)
+    - `reportScoreModel` (string, `turnaround-v1`)
     - `reportScoreBreakdown.total`
     - `reportScoreBreakdown.criteria[]`
-    - `reportScoreBreakdown.notes[]`
 - Keep checklist in dual mode:
   - Existing operational checklist rows
-  - Add 5 `[100배]` gate rows mapped to the criteria above.
+  - Add 4 `[턴어라운드]` gate rows mapped to the criteria above.
 
 5. Validate and rebuild index.
 - Run `node scripts/validate-stocks.js`.

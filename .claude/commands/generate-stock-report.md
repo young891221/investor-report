@@ -47,8 +47,7 @@ Also read the reference docs for policies:
 - Price / market cap / 52-week range
 - Core revenue trend values
 - Major contract amounts and key milestone dates
-- PEG / ROE related inputs
-- 100x score inputs (marketCap, ROE, PER, founder/insider ownership)
+- Turnaround score inputs (quarterly financials, FCF, P/E, P/S)
 
 Use web search and fetch tools to gather real-time data. Use concrete dates (YYYY-MM-DD).
 
@@ -58,17 +57,16 @@ Write to `data/{TICKER}/{TICKER}-{YYYY-MM-DD}.json` with ALL required top-level 
 
 `ticker`, `companyName`, `companyNameEn`, `exchange`, `sector`, `description`, `analysisDate`, `price`, `priceChange`, `priceChangeDir`, `marketCap`, `marketCapChange`, `weekRange`, `analystRating`, `analystTarget`, `reportScore`, `reportVerdict`, `keyPoints`, `navSections`, `segments`, `revenueBreakdown`, `annualRevenue`, `quarterlyRevenue`, `marginTrend`, `financialTable`, `valuation`, `financialHealth`, `healthMetrics`, `timeline`, `competitorChart`, `competitorTable`, `risks`, `radar`, `bullCase`, `bearCase`, `checklist`, `moats`
 
-**Scoring model** (`100x-book-v1`):
+**Scoring model** (`turnaround-v1`):
 
 | Criterion | Weight | Description |
 |-----------|--------|-------------|
-| `small_cap` | 25 | Market cap growth potential (<$20B preferred) |
-| `roe_quality` | 20 | ROE 15-20% sustained high returns |
-| `reinvestment` | 20 | Growth rate, FCF, balance sheet efficiency |
-| `reasonable_per` | 20 | P/E ratio 8-30x safety margin |
-| `founder_led` | 15 | Founder CEO + insider ownership |
+| `margin_recovery` | 30 | 분기별 영업이익률 V자 회복 패턴 (선형회귀 기울기 + 저점 대비 회복폭) |
+| `revenue_reaccel` | 30 | YoY 매출 성장률 가속도 (둔화→재가속 전환) |
+| `cash_flow_turn` | 25 | 순이익 추이 (전반부 vs 후반부), FCF 양전환, 순현금 여력 |
+| `valuation_setup` | 15 | P/E·P/S 저평가 + 펀더멘털 개선 비대칭 셋업 |
 
-Include: `reportScoreModel`, `reportScoreBreakdown.total`, `reportScoreBreakdown.criteria[]`, `reportScoreBreakdown.notes[]`
+Include: `reportScoreModel`, `reportScoreBreakdown.total`, `reportScoreBreakdown.criteria[]`
 
 **Verdict mapping:** 80+ STRONG BUY, 65+ BUY, 50+ HOLD, 35+ REDUCE, <35 SELL
 
@@ -83,7 +81,11 @@ Include: `reportScoreModel`, `reportScoreBreakdown.total`, `reportScoreBreakdown
 - Never use generic portal/search URLs as report links
 - Never fabricate `publishedDate`
 
-**Checklist:** Include legacy operational rows + 5 `[100배]` gate rows
+**Checklist:** Include operational rows + 4 `[턴어라운드]` gate rows:
+- `[턴어라운드] Margin 회복` — 분기별 영업이익률 추세
+- `[턴어라운드] 매출 재가속` — 분기별 YoY 매출 성장률 가속도
+- `[턴어라운드] Cash Flow 전환` — 순이익/FCF 전환 여부
+- `[턴어라운드] 밸류에이션 셋업` — P/E·P/S 비대칭 기회
 
 ### 5. Validate & Rebuild Index
 
@@ -107,7 +109,7 @@ Fix any validation errors before proceeding.
 - Default to new stock creation only; never overwrite without explicit request
 - Never fabricate critical financial figures, analyst report links, or dates
 - Never use ticker portal/search URLs as analyst report links
-- Never invent PEG, ROE, PER, or founder/insider ownership values
+- Never invent PEG, ROE, PER, or turnaround score values
 - Missing score inputs: use neutral score + explicit note in breakdown
 - Mark unknown data as explicit placeholder with reason
 - Keep JSON compatible with current dashboard renderer (`js/render.js`)

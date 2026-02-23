@@ -12,6 +12,7 @@
     "scan:stocks": "node scripts/scan-stocks.js",
     "scan:stocks:generate": "node scripts/scan-stocks.js --generate --build-index",
     "update:all": "node scripts/update-all-stocks.js",
-    "update:all:force": "node scripts/update-all-stocks.js --force --build-index"
+    "update:all:force": "node scripts/update-all-stocks.js --force --build-index",
+    "research:winners": "node scripts/research-winners.js"
   }
 }

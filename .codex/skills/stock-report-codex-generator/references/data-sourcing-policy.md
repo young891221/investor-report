@@ -14,7 +14,7 @@ Prefer recent, dated facts and keep the event date separate from publish date.
 - Core revenue trend values
 - Major contract amounts and key milestone dates
 - PEG / ROE related inputs (`PEG`, `forwardPE`, `epsGrowthPct`)
-- 100x score inputs (`marketCap`, `ROE`, `PER`, founder/insider ownership signals)
+- Turnaround score inputs (quarterly financials, FCF, P/E, P/S)
 
 If a critical value is missing:
 
@@ -34,20 +34,16 @@ If a critical value is missing:
   2. `PSG = P/S / next-year revenue growth(%)`
 - Do not invent PEG, forward P/E, or EPS growth figures.
 
-## 100x score sourcing policy (`100x-book-v1`)
+## Turnaround score sourcing policy (`turnaround-v1`)
 
 - Score criteria use these inputs:
-  - `small_cap`: market cap
-  - `roe_quality`: ROE (recent snapshot)
-  - `reinvestment`: growth + FCF + balance-sheet proxies
-  - `reasonable_per`: trailing P/E first, forward P/E fallback
-  - `founder_led`: founder-CEO signal + insider ownership
-- Founder-led signal priority:
-  1. `assetProfile.companyOfficers[].title` founder/CEO text
-  2. `defaultKeyStatistics.heldPercentInsiders`
+  - `margin_recovery` (30): quarterly operating margins from `incomeStatementHistoryQuarterly`
+  - `revenue_reaccel` (30): quarterly revenue YoY growth rates (min 5 quarters)
+  - `cash_flow_turn` (25): quarterly net income trajectory + `financialData.freeCashflow` + cash/debt
+  - `valuation_setup` (15): trailing P/E, forward P/E, P/S from quote data
 - Missing score inputs:
   - Do **not** fabricate values.
-  - Apply neutral score and record explicit note in `reportScoreBreakdown.notes`.
+  - Apply neutral score (half of weight).
 
 ## Placeholder policy
 
